@@ -1,0 +1,173 @@
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage[english,bulgarian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+\setlength{\parindent}{0in}            % amount of indentation of paragraph
+%this package allows for hyperlinks within the pdf document
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{lemma}{Лема}
+\newtheorem{corollary}{Следствие}
+\newtheorem{prp}{Proposition}
+\newtheorem{example}{Пример}
+\newtheorem{dfn}{Определение}
+\newtheorem{problem}{Задача}
+\newtheorem{claim}{Claim}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\renewcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\Ps}{\mathscr{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\xs}{\overline{x}}
+\newcommand{\ys}{\overline{y}}
+\newcommand{\zs}{\overline{z}}
+\newcommand{\forces}{\Vdash}
+\renewcommand{\iff}{\leftrightarrow}
+\begin{document}
+
+\author{Stefan Vatev}
+
+\section{Мощности}
+
+
+Казваме, че едно множество $A$ е {\em изброимо безкрайно}\index{множество!изброимо}, ако съществува 
+биекция от $A$ въху $\N$.
+
+Казваме, че едно множество $A$ е {\em неизброимо безкрайно}\index{множество!неизброимо}, ако $A$ е безкрайно и {\bf не} съществува 
+биекция от $A$ въху $\N$.
+
+\begin{dfn}
+  Две множества $A$ и $B$ са равномощни, $|A| = |B|$, ако съществува биекция от $A$ върху $B$.
+\end{dfn}
+
+\begin{thm}
+  Нека $A$ е множество и $\Ps(A)$ е множеството от всички подмножества на $A$.
+  Докажете, че $|A| < |\Ps(A)|$.
+\end{thm}
+
+
+\begin{thm}[Кантор-Шрьодер-Бернщайн]\index{Кантор-Шрьодер-Бернщайн}\label{KSB}
+  Ако $|A|\leq|B|\ \&\ |B|\leq|A|$, то $|A| = |B|$.
+\end{thm}
+
+\begin{thm}\label{countable_union}
+  Нека $A = \bigcup_{i\in I}A_i$, където множествата $A_i$ са изброими и индексното множество $I$ е изброимо.
+  Тогава $A$ е изброимо множество.
+\end{thm}
+\begin{corollary}
+  Ако $A$ е крайна или изброимо безкрайна азбука, то $A^*$ е изброимо безкрайно.
+\end{corollary}
+
+\begin{problem}
+  Множеството $\Ps(\N)$ е равномощно с това на затворения интервал от реални числа $[0,1]$.
+\end{problem}
+
+\begin{problem}
+  Докажете, че отвореният интервал от реални числа $(0,1)$ е неизброимо множество.
+\end{problem}
+
+\begin{problem}
+  Докажете, че множеството $^\N\N = \{f\mid f:\N\to\N\}$ е неизброимо.
+\end{problem}
+
+\begin{problem}
+  Нека $A$ е крайна азбука.
+  Докажете, че :
+  \begin{enumerate}[1)]
+  \item
+    $A^*$ е изброимо множество.
+  \item
+    $\Ps(A^*)$ е неизброимо безкрайно.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Докажете, че следните множества са изброимо безкрайни.
+  \begin{enumerate}[1)]
+  \item
+    $B$ е множеството от тези думи над азбуката $\{0,1\}$, които не започват с $0$, с изключение на 
+    думата $0$, т.е. $B = \{0, 1, 10, 11, 100, 101, 110, 111, \dots\}$.
+  \item
+    $F(\N)$ е множеството от всички крайни подмножества от естествени числа.
+  \item
+    $F(A^*)$ е множеството от всички крайни подмножества от $A^*$, за произволна азбука $A$.
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+  Докажете, че :
+  \begin{enumerate}
+  \item
+    aко $g:A\rightarrow B$ е сюрекция, то $|A|\geq |B|$;
+  \item
+    множествата $\Z,\N\times\N,\Q$ са изброимо безкрайни;
+  \item
+    съвкупността от всички полиноми на една променлива с цели коефициенти е изброимо безкрайно множество.
+  \item
+    Съвкупността $\mathscr{K}$ от всички реални алгебрични числа (т.е. корени на полиноми с цели коефициенти) е изброима.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Докажете, че множеството от изброимо безкрайни последователности от естествени числа $\N^{\N}$ е равномощно на $\R$.
+\end{problem}
+
+\begin{problem}
+  Докажете, че следните множества са равномощни:
+  \begin{enumerate}[a)]
+  \item
+    $\R$;
+  \item
+    интервалът от реални числа $(0,1)$;
+\item
+    интервалът от реални числа $[0,1]$;
+  \item
+    интервалът от реални числа $(a,b)$, за $a<b$.
+  \item
+    $\Ps(\N)$;
+  \item
+    $^\N\N = \{f\ \mid\ f:\N\to\N\}$.
+  \item
+    $^\N2 = \{f\ \mid\ f:\N\to\{0,1\}\}$
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Нека $|A_1| = |A_2|$ и $|B_1| = |B_2|$.
+  Докажете, че $|\{f\mid f:A_1\to B_1\}| = |f\mid f:A_2\to B_2|$.
+\end{problem}
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

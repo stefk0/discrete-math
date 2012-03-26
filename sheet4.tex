@@ -1,0 +1,225 @@
+
+
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage[english,bulgarian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+\setlength{\parindent}{0in}            % amount of indentation of paragraph
+%this package allows for hyperlinks within the pdf document
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{dfn}{Дефиниция}
+\newtheorem{problem}{Задача}
+\newtheorem{example}{Пример}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\renewcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\Ps}{\mathscr{P}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\xs}{overline{x}}
+
+\newcommand{\ys}{overline{y}}
+
+\newcommand{\zs}{overline{z}}
+
+\begin{document}
+
+\author{Stefan Vatev}
+
+
+\section{Функции}
+
+
+\begin{dfn}
+  Релацията $f$ се нарича функция\index{функция} от $A$ в $B$, ако
+  $Dom(f)\subseteq A$, $Range(f)\subseteq B$ и 
+  \[(\forall x,y_1,y_2)(\langle{x,y_1}\rangle\in f\ \&\ \langle{x,y_2}\rangle\in f \rightarrow y_1 = y_2)\]
+\end{dfn}
+
+
+\begin{dfn}
+  Нека $f:A\rightarrow B$ е функция. Казваме, че $f$ e
+  \begin{enumerate}
+    \item
+      инекция\index{функция!инекция}, ако $(\forall x\in A)(\forall y\in A)[x\neq y \rightarrow f(x)\neq f(y)]$;
+    \item
+      сюрекция\index{функция!сюрекция}, ако $(\forall y\in B)(\exists x\in A)[f(x) = y]$;
+    \item
+      биекция\index{функция!биекция}, ако е инекция и сюрекция.
+  \end{enumerate}
+\end{dfn}
+
+
+\begin{problem}
+  Докажете:
+  \begin{enumerate}[a)]
+  \item
+    Ако $f,g$ са функции, то $f\cap g$ е функция;
+  \item
+    Нека $f,g$ са функции и $(\forall x)[x\in Domain(f)\cap Domain(g)\rightarrow f(x) = g(x)]$.
+    Докажете, че $f\cup g$ е функция.
+  \end{enumerate}
+\end{problem}
+
+
+\begin{dfn}
+  Дефинираме следните операции върху релацията $R\subseteq A\times{B}$:
+  \begin{enumerate}
+  \item
+    Дефиниционна област
+    $Domain(R) = \{x\mid (\exists y)\langle{x,y}\rangle\in R \}$;
+  \item
+    Област от стойности
+    $Range(R) = \{y\mid (\exists x)[\langle{x,y}\rangle\in R]\}$;
+  \item
+    Поле
+    $Field(R) = Domain(R) \cup Range(R)$;
+  \item
+    Рестрикция
+    $R\upharpoonright{C} = \{\langle{x,y}\rangle\mid \langle{x,y}\rangle\in R\ \&\ x\in C\}$;
+  \item
+    Образ
+    $R[C] = \{ y \mid (\exists x)[ x\in C\ \&\ \langle{x,y}\rangle\in R]\} = Range(R\upharpoonright{C})$.
+
+
+\end{enumerate}
+\end{dfn}
+
+
+
+\begin{example}
+  Нека да разгледаме релацията \[F = \{\langle{\emptyset, a}\rangle,\langle{\{\emptyset\}, b}\rangle\}.\]
+  Лесно се вижда, че $F$ е функция.
+  Имаме, че \[F^{-1} = \{\langle{a,\emptyset}\rangle,\langle{b, \{\emptyset\}}\rangle\}\] е функция тогава и само тогава, когато  $a\neq b$.
+  Обърнете внимание, че
+  \[F\upharpoonright{\emptyset} = \emptyset \mbox{, но } F\upharpoonright\{\emptyset\} = \{\langle{\emptyset,a}\rangle\}.\]
+  Освен това, $F[\{\emptyset\}] = \{a\}$ и $F(\{\emptyset\}) = b$.
+\end{example}
+
+  Нека $f$ е функция и $A$ е множество.
+  \begin{enumerate}[(i)]
+  \item
+    $f(A) = \{y \mid (\exists x\in A)(f(x) = y)\}$
+  \item
+    $f^{-1}(A) = \{x \mid f(x)\in A\}$
+  \end{enumerate}
+  
+
+Ще означаваме с $id_A:A\to A$ фунцкията, за която $id_A(a) = a$, за всяко $a\in A$.
+\begin{problem}
+  Нека $f$ е функция и $A\subseteq Dom(f), B\subseteq Range(f)$.
+  Проверете:
+  \begin{enumerate}[a)]
+  \item
+    $f(A)\cup f(B) = f(A\cup B)$
+  \item
+    $f(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}(A_i)$
+  \item
+    $f(A\cap B)\subseteq f(A)\cap f(B)$
+  \item
+    $f(\bigcap_{i\in I}A_i) \subseteq \bigcap_{i\in I}f(A_i)$
+  \item
+    За всяко $A,B$ : $f(A)\cap f(B) = f(A\cap B) \iff$
+    $f$ е инекция
+  \item
+    $f(A)\backslash f(B)\subseteq f(A\backslash B)$
+  \item
+    $f(A)\backslash f(B) = f(A\backslash B) \iff$
+    $f$ е инекция.
+  \item
+    Проверете при какви условия за $f$, $f\circ f^{-1} = id_{Range(f)}$.
+  \item
+    Проверете при какви условия за $f$, $f^{-1}\circ f = id_{Dom(f)}$.
+  \item
+    Докажете, че $Domain(f\circ g) = g^{-1}[Domain(f)]$, където $g$ е функция.
+  \item
+    $f^{-1}(A\cap B) = f^{-1}(A)\cap f^{-1}(B)$
+  \item
+    $f^{-1}(A\backslash B) = f^{-1}(A)\backslash f^{-1}(B)$
+  \item
+    $A\subseteq f^{-1}(f(A))$
+  \item
+    $B = f(f^{-1}(B))$
+  \item
+    $f(A)\cap B = f(A\cap f^{-1}(B))$
+  \item
+    $f(A)\cap B = \emptyset \iff A\cap f^{-1}(B) = \emptyset$
+  \item
+    $f(A)\subseteq B \iff A\subseteq f^{-1}(B)$
+  \end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}%Л.М. 18 / 23
+  Нека $f,g$ са функции. При какви условия :
+  \begin{enumerate}
+  \item
+    $f^{-1}$ е функция?
+  \item
+    $f\circ g$ е инективна функция?
+\end{enumerate}
+\end{problem}
+
+% \begin{problem}
+%   Дайте примери за функция $f:\mathbb{N}\rightarrow\Z$, която е:
+%   \begin{enumerate}
+%   \item
+%     нито инективна, нито сюрективна;
+%   \item
+%     инективна, но не е сюрективна;
+%   \item
+%     сюрективна, но не е инективна;
+%   \item
+%     сюрективна и инективна.
+% \end{enumerate}
+% \end{problem}
+
+
+\begin{problem}
+  Нека е дадена релацията $R\subseteq A\times B$.
+  Докажете, че $R$ е биективна функция тогава и само тогава, когато $R\circ R^{-1} = id_A$ и $R^{-1}\circ R = id_B$.
+\end{problem}
+
+\begin{problem}
+  Нека $f$ е инективна функция от $A$ в $B$ и $g:\Ps A \rightarrow \Ps B$, дефинирана като $g(X) = f[X]$.
+  Докажете, че $g$ е инективна.
+\end{problem}
+
+\begin{problem}
+  Нека $f:A\rightarrow B$ и $g:B\rightarrow\Ps A$, дефинирана като $g(b) = \{x\in A\mid f(x) = b\}$.
+  Докажете, че ако $f$ е сюрективна, то $g$ е инективна.
+  Вярно ли е обратната посока?
+\end{problem}
+
+
+
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

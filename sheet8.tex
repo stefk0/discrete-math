@@ -1,0 +1,124 @@
+
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage[english,bulgarian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+\setlength{\parindent}{0in}            % amount of indentation of paragraph
+%this package allows for hyperlinks within the pdf document
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{prp}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{dfn}{Defintion}
+\newtheorem{question}{Question}
+\newtheorem{remark}{Remark}
+\newtheorem{claim}{Claim}
+\newtheorem{problem}{Задача}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\renewcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\Ps}{\mathscr{P}}
+
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\xs}{\overline{x}}
+\newcommand{\ys}{\overline{y}}
+\newcommand{\zs}{\overline{z}}
+\newcommand{\forces}{\Vdash}
+\renewcommand{\iff}{\leftrightarrow}
+\begin{document}
+\author{Stefan Vatev}
+
+\begin{thm}
+  Ако $G$ е дърво, то $\varepsilon = \nu - 1$.
+\end{thm}
+
+\begin{corollary}
+  Всяко нетривиално дърво има поне два върха със степен 1.
+\end{corollary}
+
+\begin{problem}
+  Покажете, че ако $G$ е дърво и има връх със степен $\geq k$, то $G$ има поне $k$ върха със степен 1.
+\end{problem}
+
+\begin{problem}
+  Нека $G$ е свързан граф.
+  Докажете, че всеки два най-дълги пътя в свързан граф имат общ връх.
+\end{problem}
+
+\begin{problem}
+  За $G$ прост граф, докажете, че $\varepsilon = \binom{\nu}{2}$ т.с.т.к. $G$ е пълен.
+\end{problem}
+
+\begin{problem}
+  Докажете, че в граф с $\nu\geq 2$, има поне два върха с еднаква степен.
+\end{problem}
+
+\begin{problem}
+  Докажете, че:
+  \begin{enumerate}
+  \item
+    във всеки неориентиран граф броят на върховете с нечетна степен е четен;
+  \item
+    всеки регулярен граф с нечетна степен има четен брой върхове;
+  \item
+    всеки граф с $\varepsilon > \binom{\nu-1}{2}$ е свързан.
+    Дайде пример за несвързан граф с $\varepsilon = \binom{\nu-1}{2}$.
+  \item
+    във граф всички върхове имат степен поне $d$.
+    Докажете, че в графа има път с дължина $d$.
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem} % зад. 1.22
+  Да разгледаме графа $G$ (без примки и без кратни ребра) със $s$ компоненти на свързаност.
+  Докажете, че $\nu - s \leq \varepsilon \leq \binom{\nu-s+1}{2}$.
+\end{problem}
+
+\begin{problem}
+  Нега $G$ е граф с $n$ върха и в $G$ няма прост цикъл с дължина 3.
+  Докажете, че $G$ има най-много $\lfloor{\frac{n^2}{4}}\rfloor$ ребра.
+\end{problem}
+
+\begin{problem}
+  Нека $G$ е произволен граф без примки и кратни ребра, а $\overline{G}$ е неговото допълнение.
+  Докажете, че поне един от графите $G$, $\overline{G}$ е свързан;
+\end{problem}
+
+
+\begin{problem}
+  \begin{enumerate}
+  \item
+    Да се построят всички неизоморфни графи на 1,2,3 и 4 върха.
+  \item
+    Намерете броя на ребрата на граф без цикли с $n$ върха и $k$ компоненти.
+  \end{enumerate}
+\end{problem}
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
