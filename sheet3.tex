@@ -1,0 +1,448 @@
+
+
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage[english,bulgarian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+\setlength{\parindent}{0in}            % amount of indentation of paragraph
+%this package allows for hyperlinks within the pdf document
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{lemma}{Лема}
+\newtheorem{dfn}{Дефиниция}
+\newtheorem{problem}{Задача}
+\newtheorem{example}{Пример}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\renewcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\Ps}{\mathscr{P}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\xs}{overline{x}}
+
+\newcommand{\ys}{overline{y}}
+
+\newcommand{\zs}{overline{z}}
+
+\begin{document}
+
+\author{Stefan Vatev}
+
+
+\section{Декартово произведение}
+  Въвеждаме операция наредена двойка $\langle{x,y}\rangle$, която искаме да има следните свойства:
+  \begin{enumerate}
+  \item
+    $\langle{x,y}\rangle = \langle{x',y'}\rangle \iff x = x' \ \&\ y = y'$;
+  \item
+    класът $A\times B = \{\langle{x,y}\rangle\ \mid\ x\in A\ \&\ x\in B\}$ е множество.
+\end{enumerate}
+
+
+\begin{dfn}[Куратовски]
+  Наредена двойка\index{наредена двойка} $\langle{x,y}\rangle = \{\{x\},\{x,y\}\}$
+\end{dfn}
+
+Първото свойство се проверява лесно.
+За второто свойство, достатъчно е да покажем, че за произволни множества $A,B$ можем да 
+изберем множество $C$, за което е изпълнено, че
+\[x\in A\ \&\ x\in B \rightarrow \{x,\{x,y\}\}\in C.\]
+Ако успеем да намерим такова множество $C$, то тогава от аксиомата за отделянето следва, че $A\times B$
+е множество, защото $A\times B = \{ z\in C\ \mid\ (\exists x\in A)(\exists y\in B)[z = \langle{x,y}\rangle]\}$ е множество.
+
+Лесно може да се провери, че $C = \Ps(\Ps(A\cup B))$ върши работа.
+
+Възможно е да се дадат и други дефиниции на наредена двойка.
+\begin{problem}
+  Проверете кои от следните операции отговарят на условията за наредена двойка.
+  \begin{enumerate}
+  \item
+    $\langle{x,y}\rangle_{1} = \{x,y\}$;
+  \item
+    $\langle{x,y}\rangle_{2} = \{x,\{y\}\}$;
+  \item
+    $\langle{x,y}\rangle_{3} = \{\{\emptyset,\{x\}\},\{\{y\}\}\}$;
+  \item
+    $\langle{x,y}\rangle_{4} = \{\{0,x\},\{1,y\}\}$, 
+    където $0,1$ са различни обекти.
+\end{enumerate}
+\end{problem}
+
+
+
+\begin{problem}
+  Проверете:
+  \begin{enumerate}
+  \item
+    $A\times B = \emptyset \iff A = \emptyset \vee B = \emptyset$
+  \item
+    $A\times(B\cup C) = (A\times B)\cup(A\times C)$
+  \item
+    $A\times(B\cap C) = (A\times B)\cap(A\times C)$ 
+  \item
+    $A\times(B\backslash C) = (A\times B)\backslash(A\times C)$
+  \item
+    $(A\cap B)\times (C\cap D) = (A\times C)\cap(B\times D)$
+  \item
+    $(A\cup B)\times (C\cup D) = (A\times C)\cup(B\times D)$
+  \item
+    $(A\backslash C)\times(B\backslash D)\subsetneq (A\times B)\backslash(C\times D)$
+  \end{enumerate}
+\end{problem}
+
+
+
+
+\section{Релации}
+
+
+\begin{dfn}
+  Една релация $R \subseteq A^2$ е:
+  \begin{enumerate}[1)]
+  \item
+    антирефлексивна, ако
+    $(\forall x\in A)[(x,x)\not\in R]$
+  \item
+    рефликсивна, ако
+    $(\forall x\in A)((x,x)\in R)$;
+  \item
+    транзитивна, ако
+    $(\forall x,y,z\in A)((x,y)\in R\ \&\ (y,z)\in R \rightarrow (x,z)\in R)$;
+  \item
+    симетрична, ако
+    $(\forall x,y\in A)((x,y)\in R \rightarrow (y,x)\in R)$;
+  \item
+    антисиметрична, ако
+    $(\forall x,y\in A)((x,y)\in R\ \&\ (y,x)\in R \rightarrow x = y)$;
+  \item
+    асиметрична, ако
+    $(\forall x,y)[(x,y)\in R \rightarrow (y,x)\not\in R]$.
+\end{enumerate}
+\end{dfn}
+
+\begin{enumerate}[(i)]
+\item
+  Композиция на релации
+  $S\circ T = \{\langle{x,y}\rangle \mid (\exists z)[\langle{x,z}\rangle\in T\ \&\ \langle{z,y}\rangle \in S]\}$;
+\item
+  $R^{-1} = \{\langle{x,y}\rangle \mid \langle{y,x}\rangle \in R\}$;
+\item
+  $\overline{R} = \{\langle{x,y}\rangle \in A\times B \mid\langle{x,y}\rangle\not\in R\}$;
+\end{enumerate}
+
+  
+\begin{problem}
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item
+    $R$ е симетрична тогава и само тогава, когато $R^{-1}\subseteq R$;
+  \item
+    $R$ е транзитивна тогава и само тогава, когато $R\circ R\subseteq R$;
+  \item
+    $R$ е транзитивна и симетрична тогава и само тогава, когато $R = R^{-1}\circ R$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    Задачата се разделя на две подзадачи.
+    \begin{enumerate}[(i)]
+    \item
+      Нека $R$ да бъде симетрична. Ще докажем, че $R^{-1}\subseteq R$, т.е.
+      \[(\forall x\forall y)[(x,y)\in R^{-1} \rightarrow (y,x)\in R].\]
+      Нека $(x,y)\in R^{-1}$. Тогава имаме, че $(y,x)\in R$ и следователно $(x,y)\in R$,
+      защото $R$ е симетрична.
+    \item
+      Нека $R^{-1}\subseteq R$. Щe докажем, че $R$ е симетрична, т.е.
+      \[(\forall x\forall y)[(x,y)\in R \rightarrow (y,x)\in R].\]
+      Нека $(x,y)\in R$, следователно $(y,x)\in R^{-1}$.
+      Тогава от $R^{-1}\subseteq R$ следва, че $(y,x)\in R$.
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+
+
+\begin{problem}
+  Нека $R$ да бъде релация на еквивалентност върху $B$ и $f:A\to B$.
+  Дефинираме множеството \[Q = \{((x,y)\in A\times A\mid (f(x),f(y))\in R\}.\]
+  Докажете, че $Q$ е релация на еквивалентност.
+\end{problem}
+
+\begin{problem}
+  Нека $\{(a,b)\}\subseteq R$, за някои $a\neq b$.
+  Докажете, че ако $R$ е симетрична, то $R$ не е антисиметрична.
+\end{problem}
+\begin{proof}
+  Нека $R$ е симетрична.
+\end{proof}
+
+
+
+\begin{problem}
+  Проверете за $R$ дали е рефлексивна, транзитивна, симетрична, антисиметрична или асиметрична релация.
+  \begin{enumerate}[a)]
+  \item
+    $R\subsetneq \mathbb{N}^2, aRb \iff a | b$ 
+  \item
+    $R\subseteq \R^2 , aRb \iff a.b > 0$ 
+  \item
+    $R\subseteq \R^2, aRb \iff a+b = 0$
+  \item
+    $R\subseteq \R^2, aRb \iff a+b = 5$ 
+  \item
+    $R\subseteq \R^2, aRb \iff a+b\mbox{ е четно }$ 
+  \item
+    $R\subseteq (\R^2)^2, \langle{a,b}\rangle R \langle{c,d}\rangle \iff a+d = b+c$ 
+  \item
+    $R\subseteq (\R^2)^2, \langle{a,b}\rangle R \langle{c,d}\rangle \iff a.d = b.c$ 
+  \item
+    $R_{m}\subseteq \Z^2, m\in \Z, m>0, aR_{m}b \iff m\mid (a - b)$ 
+  \item
+    $R\subseteq \R^2, xRy \iff (x-y)\mbox{ е рационално число}$ 
+  \item
+    $aRb \iff a,b\in\N\ \&\ (a = b \vee a+1 = b)$ 
+  \item
+    $aRb \iff a,b\in\N\ \&\ (\exists k\in\N)(a+k = b)$
+  \item
+    Нека $\leq_1$ е ч.н. върху $A$, $\leq_2$ е ч.н. върху $B$.
+    $\langle{a,b}\rangle R\langle{c,d}\rangle \iff a\leq_{1}c\ \&\ b\leq_{2}d$ 
+  \item
+    Нека $\leq_1$ е ч.н. върху $A$, $\leq_2$ е ч.н. върху $B$.
+    $\langle{a,b}\rangle R\langle{c,d}\rangle \iff a\leq_{1}c\ \vee\ b\leq_{2}d$
+  \item
+    $f:X\rightarrow Y$, $R\subseteq (2^{X})^{2}, ARB \iff f(A) = f(B)$ 
+  \end{enumerate}
+\end{problem}
+
+
+\begin{dfn}
+  \begin{enumerate}
+  \item
+    Азбука е крайно множество $X = \{a_1,\dots,a_n\}, \varepsilon\not\in X$.
+    Елементите на $X$ наричаме букви.
+  \item
+    Думи над азбуката $X$ са:
+    \begin{enumerate}
+    \item
+      $\varepsilon$ е дума над $X$, наричаме я празната дума.
+    \item
+      Нека $\alpha$ е дума над $X$. 
+      Тогава за всяко $i\leq n$ имаме, че $\alpha a_i$ е дума над $X$;
+    \item
+      няма други думи над $X$.
+    \end{enumerate}
+  \item
+    Нека $\alpha=a_{i_1}\dots a_{i_m}$ и $\beta=b_{j_1}\dots b_{j_n}$ са думи над $X$.
+    $\alpha$ е начало на $\beta$, ако $m\leq n$ и $(\forall k\leq m)(a_{i_k} = b_{j_k})$.
+    $\alpha$ е край на $\beta$, ако $m\leq n$ и $(\forall k\leq m)(a_{i_{(m-k)}} = b_{j_{(n-k)}})$.
+  \end{enumerate}
+  Означаваме с $X^n$ множеството от всички думи с дължина $n$ над азбуката $X$, $X^0 = \{\varepsilon\}$.
+  С $X^{*}$ означаваме множеството от всички думи над азбуката $X$, т.е. $X^{*} = \bigcup_{0\leq n} X^{n}$.
+\end{dfn}
+
+Дефинираме дължината $|\alpha|$ на думите $\alpha \in X^*$ с индукция по построението на $\alpha$.
+\begin{enumerate}[(i)]
+  \item
+    Ако $\alpha = \varepsilon$, то $|\alpha| = 0$;
+  \item
+    Ако $\alpha = \beta a$, за някоя дума $\beta\in X^*$ и някоя буква $a\in X$. Тогава \[|\alpha| = |\beta| + 1.\]
+\end{enumerate}
+
+Дефинираме операцията {\em конкатенация}\index{конкатенация} $\cdot$ на две думи $\alpha$ и $\beta$ от $X^*$ с индукция по дължината $\beta$:
+\begin{enumerate}[(i)]
+  \item
+    $|\beta| = 0$, т.е. $\beta = \varepsilon$.
+    Тогава \[\alpha\cdot\beta = \alpha.\]
+  \item
+    $|\beta| = n+1$, т.е. $\beta = \gamma b$, за някоя дума $\gamma$, $|\gamma| = n$, и някоя буква $b\in X$.
+    Тогава \[\alpha\cdot\beta = (\alpha\cdot\gamma)\cdot b.\]
+\end{enumerate}
+
+Сега можем да даден алтернативни дефиниции на понятията начало и край на дума.
+Казваме, че думата $\alpha$ е начало на думата $\beta$, ако съществува дума $\gamma$ такава, че
+$\beta = \alpha\cdot\gamma$.
+Аналогично дефинираме $\alpha$ да бъде край на думата $\beta$.
+
+
+\begin{problem}
+  Определете релациите:
+  \begin{enumerate}[a)]
+  \item
+    $\alpha R \beta \iff \alpha \mbox{ е начало на }\beta$ 
+  \item
+    $\alpha R \beta \iff \alpha \mbox{ е край на }\beta$
+  \item
+    $\alpha R \beta \iff \alpha \mbox{ е начало на }\beta \vee (\exists\alpha_1\in X^{*})(\exists a,b\in X)(\alpha_1 a \mbox{ е начало на }\alpha\ \&\ \alpha_1 b \mbox{ е начало на } \beta)$
+  \item
+    $R\subseteq (\{0,1\}^{n})^{2}, \langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff a_1\leq b_1\ \&\dots\ \&\ a_n\leq b_n$
+    Забележете, че това не е лексикографската наредба.
+  \item
+    $R\subseteq (\{0,1\}^{n})^{2}, \langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff (\exists i : 1\leq i\leq n)((\forall j < i)(a_j = b_j)\ \&\ a_i \leq b_i)$
+\end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[1)]
+  \item[в)]
+    \begin{enumerate}[(i)]
+    \item
+      Ще проверим дали $R$ е рефлексивна, т.е. дали $(\forall\gamma\in X^{*})[\gamma R\gamma]$.
+      Очевидно $R$ е рефлексивна, защото всяка дума е начало на самата себе си ($\alpha = \alpha\cdot\varepsilon$).
+    \item
+      Ще проверим дали $R$ е транзитивна, т.е. дали $(\forall\alpha,\beta,\gamma\in X^*)[\alpha R\beta\wedge\beta R\gamma\rightarrow\alpha R\gamma]$.
+      Тук трябва да разгледаме четири случая:
+      \begin{enumerate}[a)]
+      \item
+        $\beta = \alpha\cdot\delta$ и $\gamma = \beta\cdot\rho$, за някои $\delta$ и $\rho$.
+        Тогава $\gamma = \alpha\cdot(\delta\cdot\rho)$, следователно $\alpha$ е начало на $\gamma$.
+      \item
+        $\beta = \alpha\cdot\delta$ и $\beta = \rho\cdot a\cdot \beta'$ и $\gamma = \rho\cdot b\cdot\gamma'$.
+        Ако $\alpha$ е начало на $\rho$, то $\alpha R \gamma$.
+        Ако $\rho\cdot a$ е начало на $\alpha$, тогава $\alpha = \rho\cdot c\cdot\alpha'$ и $\alpha R \gamma$.
+      \item
+        $\alpha = \rho\cdot a\cdot \alpha'$ и $\beta = \rho\cdot b\cdot\beta'$ и $\gamma = \beta\cdot\delta$ се разглежда аналогично.
+      \item
+        $\alpha = \rho\cdot a\cdot \alpha'$ и $\beta = \rho\cdot b\cdot\beta'$ и $\beta = \delta\cdot c\cdot \beta'$ и $\gamma = \delta\cdot d\cdot\gamma'$.
+        Ако $\rho\cdot b$ е начало на $\delta$, то $\delta = \rho\cdot b\cdot\nu$ и $\gamma = \rho\cdot b\cdot \gamma''$. Тогава $\alpha R \gamma$.
+        Ако $\delta\cdot c$ е начало на $\rho$, то $\rho = \delta\cdot c\cdot\nu$ и $\alpha = \delta\cdot c\cdot\alpha''$. Получаваме, че 
+        $\alpha R \gamma$.
+      \end{enumerate}
+    \item
+      Ще проверим дали $R$ е симетрична, т.е. дали $(\forall\alpha,\beta\in X^*)[\alpha R\beta \rightarrow \beta R\alpha]$.
+      Ако $\alpha = \varepsilon$, то $\alpha R\beta$, но нямаме $\beta R\alpha$.
+      Следователно, релацията не е симетрична.
+    \item
+      Лесно се вижда също, че $R$ не е антисиметрична.
+    \end{enumerate}
+    
+  \end{enumerate}
+  
+\end{proof}
+
+
+\begin{problem}
+  За всяко естествено число $n$, дефинираме релацията $R_n \subseteq (X^*)^2$ като
+  \[\alpha R_n \beta \iff [|\alpha| > n\ \wedge |\beta| > n\wedge (\forall i < n)[a_i = b_i]].\]
+  Докажете, че $R_n$ е релация на еквивалентност и намерете броя на класовете на еквивалентност.
+\end{problem}
+
+\begin{problem}
+  За всяко естествено число $n$, дефинираме релацията $R_n \subseteq (X^*)^2$ като
+  \[\alpha R_n \beta \iff \alpha = \beta \vee [|\alpha| > n\ \wedge |\beta| > n\wedge (\forall i < n)[a_i = b_i]].\]
+  Докажете, че $R_n$ е релация на еквивалентност и намерете броя на класовете на еквивалентност.
+\end{problem}
+\begin{proof}
+  Броят на класовете на еквивалентност е $\frac{|X|^n - 1}{|X| - 1}$.
+\end{proof}
+
+
+\begin{problem}
+  За всяко естествено число $n$, дефинираме релацията $R_n \subseteq (X^*)^2$ като
+  \[\alpha R_n \beta \iff |\alpha| = |\beta| > n\wedge (\forall i > n)[a_i = b_i].\]
+  Докажете, че $R_n$ е релация на еквивалентност.
+\end{problem}
+
+\begin{problem}
+  Нека $R$ е релация върху паметта на един компютър и е дефинирана като
+  \[xRy \iff x,y\mbox{ са указатели в паметта и }*x = *y.\]
+  Докажете, че $R$ е релация на еквивалентност.
+\end{problem}
+
+
+
+\begin{dfn}
+  Нека $R$ е релация.
+  Множеството $[x]_R$ се дефинира като
+  \[[x]_R = \{t\mid xRt\}.\]
+  Ако $R$ е релация на еквивалентност и $x\in Field(R)$, то $[x]_R$ клас на еквивалентност за $x$ (по модул $R$).
+\end{dfn}
+
+\begin{example}
+  Нека $\sim$ е бинарна релация върху $\N$, дефинирана като
+  \[x\sim y \iff x\equiv y\ (mod\ 4).\]
+  $\sim$ е релация на еквивалентност и има четири класове на еквивалентност
+  \[[0]_\sim, [1]_\sim, [2]_\sim, [3]_\sim.\]
+\end{example}
+
+\begin{problem}
+  Да дефинираме релацията $R$ върху реалните числа, като:
+  \[xRy \iff (x-y)\in\Z.\]
+  Намерете $[1]_R$ и $[\frac{1}{2}]_R$.
+\end{problem}
+
+
+\begin{lemma}
+  Нека $R$ е релация на еквивалентност върху $A$ и $x,y\in A$. Тогава \[[x]_R = [y]_R \iff xRy.\]
+\end{lemma}
+
+
+\begin{problem}
+  Покажете, че за всяка релация $R$ и $x$, $[x]_R = R[\{x\}]$.
+\end{problem}
+
+%% Rosen Textbook
+\begin{problem}
+  Кои от следните релации върху множеството от функциите от $\Z$ в $\Z$.
+  \begin{enumerate}[a)]
+  \item
+    $\{(f,g)\mid f(1) = g(1)\}$.
+  \item
+    $\{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
+  \item
+    $\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
+  \item
+    $\{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
+  \item
+    $\{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+  Нека $A$ е непразно множество и $f$ е функция с $Domain(f) = A$.
+  Дефинираме $R$ върху $A$ като:
+  \[\{(x,y)\mid x,y\in A\wedge f(x) = f(y)\}.\]
+  Докажете, че
+  \begin{enumerate}[(i)]
+  \item
+    $R$ е релация на еквивалентност.
+  \item
+    Определете класовете на еквивалентност на $R$.
+\end{enumerate}
+
+\begin{problem}
+  Нека $R_1$ и $R_2$ са симетрични релации.
+  Проверете дали $\overline{R_1}$, $R_1\cap R_2$ и $R_1 \cup R_2$ са симетрични.
+\end{problem}
+
+\begin{problem}
+  Докажете, че подмножество на всяка антисиметрична релация е също антисиметрична.
+\end{problem}
+
+\end{problem}
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

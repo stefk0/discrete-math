@@ -1,0 +1,278 @@
+
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+% \geometry{margin=1in}
+\usepackage[english,bulgarian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+\usepackage{tikz}
+\usepackage{subfigure}
+
+% \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+% \setlength{\parindent}{0in}            % amount of indentation of paragraph
+%this package allows for hyperlinks within the pdf document
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{prp}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{dfn}{Defintion}
+\newtheorem{question}{Question}
+\newtheorem{remark}{Remark}
+\newtheorem{claim}{Claim}
+\newtheorem{problem}{Задача}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\renewcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\Ps}{\mathscr{P}}
+
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\xs}{\overline{x}}
+\newcommand{\ys}{\overline{y}}
+\newcommand{\zs}{\overline{z}}
+\newcommand{\forces}{\Vdash}
+\renewcommand{\iff}{\leftrightarrow}
+\newcommand{\ov}[1]{\overline{#1}}
+\begin{document}
+\author{Stefan Vatev}
+
+\begin{enumerate}[1)]%% ДА се напишат всичките от Манев, стр. 189
+\item
+  Комутативни свойства\\
+  $xy = yx$, $x\vee y = y\vee x$, $x\oplus y = y\oplus x$;
+\item
+  Асоциативни свойства\\
+  $(xy)z = x(yz)$, $(x\vee y)\vee z = x\vee (y\vee z)$, $(x\oplus y)\oplus z = x\oplus (y\oplus z)$;
+\item
+  $x\oplus y = x.\ov{y}\vee \ov{x}.y = (x\vee y).(\ov{x}\vee\ov{y})$;
+\item
+  Свойства на отрицанието\\
+  $x\ov{x} = 0$, $x\vee\ov{x} = x\vee 1$, $x\oplus\ov{x} = 1$;
+\item
+  Закон за двойното отрицание\\
+  $\ov{\ov{x}} = x$;
+\item
+  Свойства на константите\\
+  $x.0 = 0$,$x.1 = x$, $x\vee 0 = x$, $x\vee 1 = 1$, $x\oplus 0 = x$, $x\oplus 1 = \ov{x}$;
+\item
+  Дистрибутивни свойства
+  \begin{enumerate}[]
+  \item
+    $x(y\vee z) = xy \vee xz$,
+  \item
+    $xy \vee z = (x\vee z)(y\vee z)$,
+  \item
+    $(x\oplus y)z = xz \oplus yz$.
+  \end{enumerate}
+\item
+  Идемпотентентни свойства\\
+  $xx = x$, $x\vee x = x$.
+\item
+  Свойства на отрицанието\\
+  $x\ov{x} = 0$, $x\vee\ov{x} = 1$, $x\oplus\ov{x} = 1$;
+\item
+  Закони на Де Морган\\
+  $\ov{xy} = \ov{x}\vee\ov{y}$, $\ov{x\vee y} = \ov{x}.\ov{y}$;
+\end{enumerate}
+
+\begin{problem} %% Гаврилов, стр. 30
+  Проверете еквивалентни ли са формулите $\varphi$ и $\psi$ като използвате еквивалентни преобразования на формулите.
+  \begin{enumerate}[a)]
+  \item
+    $\varphi = (x\oplus y.z)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))$,
+    $\psi = x\rightarrow ((y\rightarrow z)\rightarrow x)$;
+  \item
+    $\varphi = (\overline{x}\vee \overline{y}.z)\rightarrow ((x\rightarrow y)\rightarrow (y\vee z)\rightarrow\overline{x})$,
+    $\psi = (x\rightarrow y)\rightarrow(\overline{y}\rightarrow\overline{x})$;
+  \item
+    $\varphi = (x.\overline{y}\vee \overline{x}.z)\oplus ((y\rightarrow z)\rightarrow \overline{x}.y)$,
+    $\psi = (x.(\overline{y}.\overline{z})\oplus y)\oplus z$;
+  \item
+    $\varphi = x\rightarrow ((\ov{x}.\ov{y}\rightarrow(\ov{x}.\ov{z}\rightarrow y))\rightarrow y).z$,
+    $\psi = \ov{x.(y\rightarrow\ov{z})}$.
+  \item
+    $\varphi = \ov{((x\vee y) \rightarrow y.z)\vee (y\rightarrow x.z)} \vee (x\rightarrow (\ov{y}\rightarrow z))$,
+    $\psi = (x\rightarrow y)\vee z$.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  По метода на неопределените коефициенти, намерете полинома на Жегалкин на функцията 
+  \begin{enumerate}[a)]
+  \item
+    $f(x,y) = x\vee y$;
+  \item
+    $f(x,y,z) = x\vee y \vee z$;
+  \item
+    $f(x,y,z) = x\rightarrow (y \rightarrow z)$;
+  \item
+    $f(x,y,z) = x(y\vee\overline{z})$.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Използвайки еквивалентности от вида $\overline{A} = A\oplus 1$ и $A\vee B = AB\oplus A\oplus B$, 
+  намерете полинома на Жегалкин на 
+  \begin{enumerate}[a)]
+  \item
+    $f(x,y) = x\rightarrow y$;
+  \item
+    $f(x,y,z) = (x\rightarrow (y\rightarrow z))$;
+  \item
+    $f(x,y,z) = ((x\rightarrow y)\rightarrow z)$;
+  \item
+    $f(x,y,z) = (x\rightarrow (y\rightarrow z)).((x\rightarrow y)\rightarrow z)$;
+  \item
+    $f(x,y,z,t) = (x\rightarrow y)\rightarrow (z\rightarrow xt)$;
+  \item
+    $f(x,y,z,t) = x\vee (y\rightarrow ((z\rightarrow y)\rightarrow t)$;
+  \item
+    $f(x,y,z,t) = (x\vee y\vee z)t \vee xyz$.
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem} %% Гаврилов стр. 50
+  С помощта на еквивалентни преобразования постройте ДНФ на булевите функции
+  \begin{enumerate}[a)]
+  \item
+    $f(x,y,z) = (\ov{x}\vee\ov{y}\vee\ov{z}).(xy\vee z)$;
+  \item
+    $f(x,y,z) = (\overline{x}y\oplus z).(xz\rightarrow y)$;
+  \item
+    $f(x,y,z) = (x\vee y\overline{z}).(x\ov{y}\vee\ov{z}).(\ov{xy}\vee z)$;
+  \item
+    $f(x,y,z,t) = (x\vee y\ov{z}.\ov{t})((\ov{x}\vee t)\oplus yz)\vee \ov{y}.(z\vee \ov{x\ov{t}})$;
+  \item
+    $f(x,y,z,t) = (x\rightarrow y).(y\rightarrow \ov{z}).(z\rightarrow x\ov{t})$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}% Гаврилов, стр. 50, 2.12
+  По дадена ДНФ на булевата функция $f$ постройте нейната СДНФ.
+  \begin{enumerate}[1)]
+  \item
+    $f(x,y,z) = xy\vee\ov{z}$;
+  \item
+    $f(x,y,z) = \ov{x}.\ov{y} \vee y\ov{z} \vee z\ov{z}$;
+  \item
+    $f(x,y,z) = x\vee yz \vee \ov{x}.\ov{z}$;
+  \item
+    $f(x,y,z) = x\vee \ov{y}\vee \ov{x}z$;
+  \item
+    $f(x,y,z,t) = xy\ov{z} \vee xz\ov{t}$;
+  \item
+    $f(x,y,z,t) = xy \vee \ov{y}t \vee z\ov{t}$.
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+  Представете в СДНФ следните булеви функции:
+  \begin{enumerate}[1)]
+  \item
+    $f(x,y,z) = (x\vee y)\rightarrow z$;
+  \item
+    $f(x,y,z) = (01010001)$;
+  \item
+    $f(x,y,z) = (11001010)$;
+  \item
+    $f(x,y,z,t) = (x\rightarrow yzt)(z\rightarrow x\ov{y})$;
+  \item
+    $f(x,y,z,t) = (x\oplus y)(z\rightarrow \ov{y}t)$;
+  \end{enumerate}
+\end{problem}
+
+Нека е дадена булевата функция $f(\xn)$. Дефинираме булевата функция $f^\star(\xn)$ като
+\[f^\star(\xn) = \overline{f}(\overline{x_1},\dots,\overline{x_n}).\]
+Ще наричаме $f^\star$ двойнствена функция на $f$.
+
+\begin{problem} %% Гаврилов, стр. 31, зад. 1.25
+  Проверете дали функцията $g$ е двойнствена на $f$.
+  \begin{enumerate}[1)]
+  \item
+    $f = x\rightarrow y$, $g = \overline{x}.y$;
+  \item
+    $f = (\overline{x}\rightarrow\overline{y})\rightarrow(y\rightarrow x)$, $g = (x\rightarrow y).(\overline{y}\rightarrow\overline{x})$;
+  \item
+    $f = x.y \rightarrow z$, $g = \overline{x}.\overline{y}.z$;
+  \item
+    $f = (x\vee y\vee z).t\vee x.y.z$, $g = (x\vee y\vee z).t\vee x.y.z$;
+  \item
+    $f = xy\vee yz\vee zt\vee tx$, $g = xz\vee yt$;
+  \item
+    $f = (x\rightarrow y).(z\rightarrow t)$, $g = (x\rightarrow\overline{z}).(x\rightarrow t).(\overline{y}\rightarrow\overline{z}).(\overline{y}\rightarrow t)$.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Проверете самодвойнствена ли е $f$.
+  \begin{enumerate}[1)]
+  \item
+    $f(x,y) = x\vee y$;
+  \item
+    $f(x,y) = x\rightarrow y$;
+  \item
+    $f(x,y) = x\oplus y$;
+  \item
+    $f_4(x,y,z) = xy\vee yz\vee zx$;
+  \item
+    $f_5(x,y,z) = x\oplus y\oplus z\oplus 1$;
+  \item
+    $f_6(x,y,z) = xyz\oplus xy\ov{z}\oplus yz\oplus xz$.
+  \item
+    $f_7(x,y,z) = xyz\oplus xy\oplus yz\oplus xz$;
+  \item
+    $f(x,y,z) = (x\rightarrow y)\oplus (y\rightarrow z)\oplus (y\rightarrow x)$;
+  \item
+    $f(x,y,z) = (x\rightarrow y)\oplus (y\rightarrow z)\oplus (z\rightarrow x)\oplus z$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Проверете дали функцията $f$ е самодвойнствена, ако е зададена векторно:
+  \begin{enumerate}[1)]
+  \item
+    $\alpha_f = (01001101)$;
+  \item
+    $\alpha_f = (01100110)$;
+  \item
+    $\alpha_f = (1100 1001 0110 1100)$;
+  \item
+    $\alpha_f = (1110 0111 0001 1000)$;
+  \item
+    $\alpha_f = (1100 0011 0011 1100)$;
+  \item
+    $\alpha_f = (1001 0110 1001 0110)$;
+  \item
+    $\alpha_f = (1100 0011 1010 0101)$;
+  \end{enumerate}
+\end{problem}
+
+
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

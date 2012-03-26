@@ -1,0 +1,256 @@
+
+\documentclass[a4paper]{article}
+\usepackage{geometry}
+% \geometry{margin=1in}
+\usepackage[english,bulgarian]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{paralist}
+\usepackage{tikz}
+\usepackage{subfigure}
+
+% \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+% \setlength{\parindent}{0in}            % amount of indentation of paragraph
+%this package allows for hyperlinks within the pdf document
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{prp}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{dfn}{Defintion}
+\newtheorem{question}{Question}
+\newtheorem{remark}{Remark}
+\newtheorem{claim}{Claim}
+\newtheorem{problem}{Задача}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\renewcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\Ps}{\mathscr{P}}
+
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\xs}{\overline{x}}
+\newcommand{\ys}{\overline{y}}
+\newcommand{\zs}{\overline{z}}
+\newcommand{\forces}{\Vdash}
+\renewcommand{\iff}{\leftrightarrow}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\vert{#1}\vert}
+\begin{document}
+\author{Stefan Vatev}
+
+
+\begin{problem}
+  Заменете $-$ в $\chi_f$ с $0$ или $1$ за да получите характеристичен вектор на самодвойнствена функция.\\
+  \begin{inparaenum}[a)]
+  \item
+    $\chi_f = (1-0-)$;
+  \item
+    $\chi_f = (01-0-0--)$;
+  \item
+    $\chi_f = (--01--11)$;
+  \end{inparaenum}
+\end{problem}
+
+\subsection{Линейни функции}
+
+Всяка булева функция $f(\xn)$ с полином на Жегалкин от вида 
+$a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n$ наричаме {\em линейна}.\index{линейна!булева функция}
+Ще означаваме с $L$ множеството от всички линейни булеви функции, а с $L^n$ тези на $n$ променливи.
+
+\begin{problem}
+  Линейна ли е функцията $f$ с характеристичен вектор $\chi_f = (1001011010010110)$ ?
+\end{problem}
+
+\begin{problem}
+  Заменете $-$ в $\chi_f = (-110---0)$ с $0$ или $1$, така че да получите $f$ линейна.
+\end{problem}
+
+
+\begin{problem}
+  Проверете дали $f$ е линейна функция.\\
+  \begin{inparaenum}[a)]
+  \item
+    $f = x\rightarrow y$;
+  \item
+    $f = \ov{x\rightarrow y}\oplus \ov{x}y$;
+  \item
+    $f = xy\vee \ov{x}.\ov{y}\vee z$;
+  \item
+    $f = xy\ov{z}\vee x\ov{y}$;
+  \item
+    $f = (x\vee yz)\oplus xyz$;
+  \item
+    $f = (x\vee yz)\oplus \ov{x}yz$;
+  \item
+    $\chi_f = (1100 0011)$;
+  \item
+    $\chi_f = (1001 0110 0110 1001)$;
+  \end{inparaenum}
+\end{problem}
+
+\begin{problem}
+  Заменете $-$ в $\chi_f$ с $0$ или $1$, така че да получите $f$ линейна.\\  
+  \begin{inparaenum}[a)]
+  \item
+    $\chi_f = (10-1)$;
+  \item
+    $\chi_f = (100-0---)$;
+  \item
+    $\chi_f = (-001--1-)$;
+  \item
+    $\chi_f = (11-0---1)$;
+  \item
+    $\chi_f = (-0-1--00)$;
+  \item
+    $\chi_f = (--10----0--1-110)$;
+  \end{inparaenum}
+\end{problem}
+
+
+\subsection{Монотонни функции}
+
+Нека $\alpha$ и $\beta$ са два бинарни вектора с равна дължина.
+Дефинираме релацията $\preceq$ между тях по следния начин.
+\[\alpha \preceq \beta \iff \abs{\alpha} = \abs{\beta}\wedge (\forall i \leq \abs{\alpha})[a_i \leq b_i].\]
+Булевата фунция $f(\xn)$ наричаме {\em монотонна}\index{монотонна!функция}, ако 
+\[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]
+Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
+
+\begin{problem}
+  Проверете монотонни ли са функциите:\\
+  \begin{inparaenum}[a)]
+  \item
+    $f = x\rightarrow (y\rightarrow x)$;
+  \item
+    $f = x\rightarrow (x\rightarrow y)$;
+  \item
+    $f = (x\oplus y)xy$;
+  \item
+    $f = xy\oplus yz \oplus zx$;
+  \item
+    $f = xy\oplus yz \oplus zx \oplus x$;
+  \end{inparaenum}
+\end{problem}
+
+\begin{problem}
+  За немонотонните функции $f$, намерете съседни $\alpha$, $\beta$, такива че
+  $\alpha \prec \beta$ и $f(\alpha) > f(\beta)$.\\
+  \begin{inparaenum}[a)]
+  \item
+    $f = xyz \vee \ov{x}y$;
+  \item
+    $f = x\oplus y\oplus z$;
+  \item
+    $f = xy\oplus z$;
+  \item
+    $f = x\vee y\ov{z}$;
+  \item
+    $f = xz\oplus yt$;
+  \item
+    $f(x,y,z,t) = (xyt\rightarrow yz)\oplus t$;
+  \end{inparaenum}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    $\alpha = (010)$, $\beta = (110)$;
+  \item
+    $\alpha = (010)$, $\beta = (110)$;
+  \item
+    $\alpha = (110)$, $\beta = (111)$;
+  \item
+    $\alpha = (010)$, $\beta = (011)$;
+  \item
+    $\alpha = (0111)$, $\beta = (1111)$;
+  \item
+    $\alpha = (1110)$, $\beta = (1111)$;
+  \end{enumerate}
+\end{proof}
+
+
+
+\subsection{Пълнота и затворени класове}
+
+\begin{thm}[Критерий за пълнота на Пост-Яблонский]
+  Нека $P\subseteq F_2$. Множеството $P$ е пълно тогава и само тогава, когато то {\em не} е подмножество на 
+  нито едно от множествата $T_0,T_1,S,M,L$.
+\end{thm}
+
+
+\begin{problem} %Гаврилов, стр. 83, зад. 6.1
+  Пълна ли е системата от функции?
+  \begin{enumerate}[1)]
+  \item
+    $A = \{xy, x\vee y, x\oplus y\oplus z\oplus 1\}$;
+  \item
+    $A = \{1, xy(x\oplus z)\}$;
+  \item
+    $A = \{x\rightarrow y, x\oplus y\}$;
+  \item
+    $A = \{0, \ov{x}, x(y\oplus z)\oplus yz\}$;
+  \item
+    $A = \{x\rightarrow y, \ov{x}\rightarrow \ov{y}x, x\oplus y\oplus z, 1\}$;
+  \item
+    $A = \{\chi_{f_1} = (0110), \chi_{f_2} = (1100 0011), \chi_{f_3} = (1001 0110)\}$;
+  \item
+    $A = \{\chi_{f_1} = (11), \chi_{f_2} = (00), \chi_{f_3} = (0011 0101)\}$;
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem} % Гаврилов, стр. 84
+  Проверете пълно ли е множеството от булеви функции:
+  \begin{enumerate}[a)]
+  \item
+    $A = (S\cap M)\cup(L\setminus M)$;
+  \item
+    $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$.
+  \item
+    $A = (L\cap M)\cup (S\setminus T_0)$;
+  \item
+    $A = (L\cap T_1)\cup (S\cap M)$;
+  \item
+    $A = (M\setminus S)\cup(L\cap S)$;
+  \item
+    $A = (M\setminus T_0)\cup (L\setminus S)$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Проверете дали системата от функции $A$ е базис?
+  \begin{enumerate}[a)]
+  \item
+    $A = \{x\rightarrow y, x\oplus y, x\vee y\}$;
+  \item
+    $A = \{x\oplus y\oplus z, x\vee y, 0, 1\}$;
+  \item
+    $A = \{xy\oplus yz\oplus zx, 0, 1, x\vee y\}$;
+  \end{enumerate}
+\end{problem}
+
+
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
