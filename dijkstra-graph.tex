@@ -1,0 +1,365 @@
+
+
+\subfigure[Започваме от съседите на $a$]{
+  \begin{tikzpicture}[scale=0.9]
+    % nodes
+    \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+      a/0/0/0/above/north/green, 
+      b/-1/1/\infty/left/west/black, 
+      c/2.5/1/\infty/above/north/black, 
+      d/2/-0.5/\infty/below/south/black,
+      e/-1/-0.5/\infty/below/south/black, 
+      f/0.5/2/\infty/above/north/black,
+      g/0/-1.8/\infty/below/south/black, 
+      h/2.5/-1.8/\infty/right/east/black}
+    {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      % edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, 
+        g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1,
+        c/f/above/-30/5, c/h/right/15/2, c/d/above/-15/1,
+        f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1, 
+        a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[$b$ е най-близко до $a$]{
+    \begin{tikzpicture}[scale=0.9]
+      %nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green, 
+        b/-1/1/2/left/west/yellow, 
+        c/2.5/1/\infty/above/north/black, 
+        d/2/-0.5/8/below/south/yellow,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/\infty/above/north/black, 
+        g/0/-1.8/9/below/south/yellow, 
+        h/2.5/-1.8/\infty/right/east/black}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {
+        a/g/right/30, a/b/above/0, a/d/above/0}
+      {
+        (\startnode) edge[selected edge,bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[Най-къс път до $f$]{
+    \begin{tikzpicture}[scale=0.9]
+      %nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green, 
+        b/-1/1/2/left/west/green,
+        c/2.5/1/\infty/above/north/black, 
+        d/2/-0.5/8/below/south/yellow,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/3/above/north/yellow, 
+        g/0/-1.8/9/below/south/yellow, 
+        h/2.5/-1.8/\infty/right/east/black}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b);
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {
+        a/g/right/30, a/d/above/0}
+      {
+        (\startnode) edge[selected edge,bend left=\angle] node[\direction] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {
+         b/f/above/0}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[По-къс път до $d$ и $c$]{
+    \begin{tikzpicture}[scale=0.9]
+      % nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green,
+        b/-1/1/2/left/west/green,
+        c/2.5/1/4/above/north/yellow, 
+        d/2/-0.5/7/below/south/yellow,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/3/above/north/green, 
+        g/0/-1.8/9/below/south/yellow, 
+        h/2.5/-1.8/\infty/right/east/black}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b)
+      (b) edge[sure edge] node[] {} (f);
+      
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {
+        a/d/above/0}
+      {
+        (\startnode) edge[path edge,bend left=\angle] node[\direction] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {f/c/below/-15/1, f/d/left/-15/4, a/g/right/30}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[По-къс път до $d$ и $h$]{
+    \begin{tikzpicture}[scale=0.9]
+      % nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green,
+        b/-1/1/2/left/west/green,
+        c/2.5/1/4/above/north/green,
+        d/2/-0.5/5/below/south/yellow,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/3/above/north/green, 
+        g/0/-1.8/9/below/south/yellow, 
+        h/2.5/-1.8/6/right/east/yellow}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b)
+      (b) edge[sure edge] node[] {} (f)
+      (f) edge[sure edge, bend left=-15] node[] {} (c);
+      
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {f/d/left/-15/4, a/d/above/0
+        }
+      {
+        (\startnode) edge[path edge,bend left=\angle] node[\direction] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {c/d/above/-15/1,  c/f/above/-30/5, c/h/right/15/2, a/g/right/30}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[По-къс път до $g$]{
+    \begin{tikzpicture}[scale=0.9]
+      %nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green, 
+        b/-1/1/2/left/west/green,
+        c/2.5/1/4/above/north/green,
+        d/2/-0.5/5/below/south/green,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/3/above/north/green, 
+        g/0/-1.8/7/below/south/yellow,
+        h/2.5/-1.8/6/right/east/yellow}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b)
+      (b) edge[sure edge] node[] {} (f)
+      (f) edge[sure edge, bend left=-15] node[] {} (c)
+      (c) edge[sure edge, bend left=-15] node[] {} (d);
+      
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {f/d/left/-15, a/g/right/30, a/d/above/0, c/f/above/-30
+        }
+      {
+        (\startnode) edge[path edge,bend left=\angle] node[] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {d/g/below/15/2, c/h/right/15}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[$h$ е задънена улица]{
+    \begin{tikzpicture}[scale=0.9]
+      %nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green, 
+        b/-1/1/2/left/west/green,
+        c/2.5/1/4/above/north/green, 
+        d/2/-0.5/5/below/south/green,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/3/above/north/green, 
+        g/0/-1.8/7/below/south/yellow,
+        h/2.5/-1.8/6/right/east/green}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b)
+      (b) edge[sure edge] node[] {} (f)
+      (f) edge[sure edge, bend left=-15] node[] {} (c)
+      (c) edge[sure edge, bend left=-15] node[] {} (d)
+      (c) edge[sure edge, bend left=15] node[] {} (h);
+      
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {f/d/left/-15, a/g/right/30, a/d/above/0, c/f/above/-30
+        }
+      {
+        (\startnode) edge[path edge,bend left=\angle] node[] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {d/g/below/15/2}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[$e$ не е достижим]{
+    \begin{tikzpicture}[scale=0.9]
+      %nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green,
+        b/-1/1/2/left/west/green,
+        c/2.5/1/4/above/north/green, 
+        d/2/-0.5/5/below/south/green,
+        e/-1/-0.5/\infty/below/south/black, 
+        f/0.5/2/3/above/north/green, 
+        g/0/-1.8/7/below/south/green,
+        h/2.5/-1.8/6/right/east/green}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b)
+      (b) edge[sure edge] node[] {} (f)
+      (f) edge[sure edge, bend left=-15] node[] {} (c)
+      (c) edge[sure edge, bend left=-15] node[] {} (d)
+      (c) edge[sure edge, bend left=15] node[] {} (h)
+      (d) edge[sure edge, bend left=15] node[] {} (g);
+      
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {f/d/left/-15, a/g/right/30, a/d/above/0, c/f/above/-30
+        }
+      {
+        (\startnode) edge[path edge,bend left=\angle] node[] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {g/a/left/15}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+  \subfigure[Краен резултат]{
+    \begin{tikzpicture}[scale=0.9]
+      %nodes
+      \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
+        a/0/0/0/above/north/green, b/-1/1/2/left/west/green,
+        c/2.5/1/4/above/north/green, d/2/-0.5/5/below/south/green,
+        e/-1/-0.5/\infty/below/south/black, f/0.5/2/3/above/north/green, 
+        g/0/-1.8/7/below/south/green, h/2.5/-1.8/6/right/east/green}
+      {
+        \node[vertex, nodedecorate, fill=\color!25] (\nodename) at (\x,\y) {$\value$};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      };
+      \path
+      (a) edge[sure edge] node[] {} (b)
+      (b) edge[sure edge] node[] {} (f)
+      (f) edge[sure edge, bend left=-15] node[] {} (c)
+      (c) edge[sure edge, bend left=-15] node[] {} (d)
+      (c) edge[sure edge, bend left=15] node[] {} (h)
+      (d) edge[sure edge, bend left=15] node[] {} (g);
+      
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {f/d/left/-15, a/g/right/30, a/d/above/0, c/f/above/-30, g/a/above/15
+        }
+      {
+        (\startnode) edge[path edge,bend left=\angle] node[] {} (\endnode)
+      };
+      \path
+      \foreach \startnode/\endnode/\direction/\angle in {}
+      {
+        (\startnode) edge[selected edge, bend left=\angle] node[\direction] {} (\endnode)
+      };
+      %edges
+      \path
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        e/b/left/15/5, e/g/below/-15/3, d/g/below/15/2, g/a/left/15/2, a/g/right/30/9, f/c/below/-15/1, c/f/above/-30/5,
+        c/h/right/15/2, c/d/above/-15/1, f/d/left/-15/4, a/b/below/0/2, b/f/above/0/1,  a/d/above/0/8}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "discrete-math"
+%%% End: 

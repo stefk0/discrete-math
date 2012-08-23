@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{book}
 \usepackage{geometry}
 \geometry{margin=1in}
 \usepackage[english,bulgarian]{babel}
@@ -12,6 +12,19 @@
 \usepackage{amsthm}
 \usepackage{paralist}
 \usepackage{enumerate}
+\usepackage{makeidx}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+%%%%%%%%%%%%%%% TIKZ Package %%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgf}
+\usetikzlibrary{arrows,automata}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{subfigure}
+
 \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
 \setlength{\parindent}{0in}            % amount of indentation of paragraph
 %this package allows for hyperlinks within the pdf document
@@ -51,6 +64,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\zs}{overline{z}}
 \newcommand{\ov}[1]{\overline{#1}}
 \newcommand{\abs}[1]{\vert{#1}\vert}
+
+\makeindex
 \begin{document}
 
 
@@ -58,18 +73,26 @@ citecolor=green, urlcolor=blue]{hyperref}
 \tableofcontents
 \include{sets}
 \include{functions}
+\include{cardinality}
 \include{comb1}
 \include{comb2}
-\include{cardinality}
-\include{graphs}
 \include{automata}
 \include{boolean1}
 \include{boolean2}
+\include{graphs}
+\include{graph-alg}
 
+% \backmatter
+
+% \bibliographystyle{plain}
+% \bibliography{discrete-math}
+
+\printindex
 
 \end{document}
 
+
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: t
+%%% TeX-master: "discrete-math"
 %%% End: 

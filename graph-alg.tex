@@ -1,0 +1,276 @@
+\chapter {Алгоритми за графи}
+
+\subsection{Алгоритъм на Дейкстра}\index{Дейкстра!алгоритъм}
+
+В този алгоритъм, разглеждаме ориентирани графи $G = (V,E,c)$ с {\em положителни} тегла по ребрата, т.е. $c:E\to\R^+$. 
+Целта на алгоритъма е да намерим функции $\delta: V\to\R\cup\{\infty\}$ и $\pi:V\to V\cup\{NULL\}$.
+$\delta(v)$ ще дава минималната цена на път от $s$ до $v$. Ако няма път от $s$ до $v$, то $\delta(v)$
+ще приема стойност $\infty$. $\pi(v)$ ще дава предшественика на $v$ по път с минимална цена от $s$ до $v$.
+
+\begin{algorithm}
+\caption{Алгоритъм на Дейкстра}
+\label{alg:dijkstra}
+
+\begin{algorithmic}[1]
+  \STATE INIT-SINGLE-SOURCE(G,s)
+  
+  \WHILE{$V^\prime\neq\emptyset$ \AND $(\exists u\in V^\prime)[\delta(u)<\infty]$}
+  \STATE Избираме $u_0\in V^\prime$, за който $ \delta(u_0) = min\{\delta(v)\mid v\in V^\prime\} $
+  \STATE $V^\prime := V^\prime\setminus\{u_0\}$
+  \FORALL{ $v\in V^\prime $ }
+  \IF{$(u_0,v)\in E$ \AND $\delta(v) > \delta(u_0) + c(u_0,v)$}
+  \STATE $\delta(v):= \delta(u_0)+c(u_0,v)$
+  \STATE $\pi(v) := u_0$
+  \ENDIF
+  \ENDFOR
+  \ENDWHILE
+  \RETURN $\delta$
+\end{algorithmic}
+\end{algorithm}
+
+Във $V^\prime$ може да има останали върхове $v$, но те имат $\delta(v) = \infty$, т.е.
+те са недостижими от $s$ и следователно пътят от $s$ до $v$ има дължина $\infty$.
+
+Фигура \ref{fig:dijkstra-table} илюстрира как се променя функцията $\delta$ по време на изпълнението на алгоритъма.
+Освен това, с лека модификация на горния алгоритъм, можем да намерим не само стойността на най-късите пътища, но
+и списък с ребрата, които участват във всеки оттях. Фигура \ref{fig:dijkstra-graph} илюстрира това.
+Ребрата, оцветени в зелено, са тези, които участват в най-късите пътища.
+
+\tikzstyle{weight} = [font=\small]
+\tikzstyle{value} = [font=\small]
+\tikzstyle{edge} = [draw,thick,-]
+\tikzstyle{nodedecorate}=[shape=circle,draw,thick,font=\small]
+\tikzstyle{arrowdecorate}=[->,>=stealth,thick]
+
+% Rename: selected --> current
+\tikzstyle{selected vertex}=[vertex, fill=yellow!50]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,yellow!50]
+
+\tikzstyle{vertex}=[circle,minimum size=15pt,inner sep=0pt]
+\tikzstyle{sure vertex} = [vertex, fill=green!30]
+
+\tikzstyle{path edge} = [draw,line width=5pt,-,red!50]
+
+\tikzstyle{sure edge} = [draw,line width=5pt,-,green!30]
+% \tikzstyle{ignored edge} = [draw,line width=5pt,-,black!20]
+
+
+\begin{figure}[!htbp]
+  \subfigure{
+    \begin{tikzpicture}[]
+      
+      \foreach \nodename/\x/\y/\direction/\navigate in { a/1/1/above/north,
+        b/0/0/left/west, c/1/-1.5/below/south, d/3/1/above/north, e/3/-1.5/below/south, f/5/0.5/right/east, g/5/2.5/right/east}
+      {
+        \node (\nodename) at (\x,\y) [nodedecorate] {};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      }
+      %% edges or lines
+      \path
+      \foreach \startnode/\endnode/\direction/\weight in {b/a/above/7,
+        b/c/below/2, c/a/left/4, a/d/below/4, c/e/below/5, d/c/left/8, e/d/right/3}
+      {
+        (\startnode) edge[arrowdecorate] node[\direction] {$\weight$} (\endnode)
+      }
+      
+      \foreach \startnode/\endnode/\direction/\angle/\weight in {
+        a/g/above/15/10, d/f/above/15/5, d/g/above/-15/2, f/d/below/15/1, g/f/right/15/6, e/f/below/-15/7}
+      {
+        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+  }
+\quad
+  \subtable[Разстояния с начален връх $b$]{
+    \begin{tabular}[b]{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      $\delta(a)$ & $\delta(b)$ & $\delta(c)$ & $\delta(d)$ & $\delta(e)$ & $\delta(f)$ & $\delta(g)$\\
+      \hline
+      $\infty$ & {\bf \framebox{0}} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+      \hline
+      7 & $\colon$ & {\bf \framebox{2}} & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+      \hline
+      {\bf \framebox{6}} & $\colon$ & $\colon$ & $\infty$ & 7 & $\infty$ & $\infty$ \\
+      \hline
+      $\colon$ & $\colon$ & $\colon$ & 10 & {\bf \framebox{7}} & $\infty$ & 16 \\
+      \hline
+      $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{10}} & $\colon$ & 14 & {\bf 12} \\
+      \hline
+      $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & 14 & {\bf \framebox{12}} \\
+      \hline
+      $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{14}} & $\colon$ \\
+      \hline
+      $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ \\
+      \hline
+    \end{tabular}
+  }
+  \caption{Алгоритъм на Дейкстра}
+  \label{fig:dijkstra-table}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+  \index{Дейкстра!алгоритъм}
+  \input{dijkstra-graph.tex}
+  \caption{Алгоритъм на Дейкстра запазващ минималните пътища}
+  \label{fig:dijkstra-graph}
+\end{figure}
+
+\begin{problem}
+  Дайте пример за насочен граф с отрицателен цикъл, при който алгоритъмът на Дейкстра не дава правилния резултат.
+\end{problem}
+
+\newpage
+\subsection{Алгоритъм на Белман-Форд}\index{Белман-Форд!алгоритъм}
+
+Алгоритъмът на Дейкстра работи само за графи с {\em положителни} тегла по ребрата.
+Сега ще разгледаме един алгоритъм, който работи и за графи с отрицателни тегла по ребрата.
+Отново искаме да намерим минималните разстояния на пътищата с начало върха $s$, но
+алгоритъмът отговаря на въпроса дали има отрицателен цикъл в графа. Ако такъв съществува, то няма решение на проблема.
+Ако отрицателен цикъл не съществува, то алгоритъмът намира най-късите пътища в графа.
+
+
+\begin{algorithm}
+  \caption{Белман-Форд}
+  \label{alg:belman-ford}
+  
+  \begin{algorithmic}[1]
+    
+    \STATE INIT-SINGLE-SOURCE(G,s)
+    
+    \FOR{$i:=1$ to $\abs{V}-1$}
+    \FORALL{$(u,v)\in E$}
+    \IF{$\delta(v) > \delta(u) + c(u,v)$}
+    \STATE $\delta(v) := \delta(u) + c(u,v)$
+    \STATE $\pi(v) := u$
+    \ENDIF
+    \ENDFOR
+    \ENDFOR
+    
+    \COMMENT{Проверка за отрицателен цикъл}
+    \FORALL{$(u,v)\in E$}
+    \IF {$\delta(v) > \delta(u) + c(u,v)$}
+    \RETURN \FALSE
+    \ENDIF
+    \ENDFOR
+    \RETURN \TRUE
+    
+  \end{algorithmic}
+\end{algorithm}
+
+% \begin{enumerate}[1)]
+%   \item
+%     Дефинираме функция $\delta:V\to\R^+\cup\{\infty\}$ като
+%     \[\delta(u)=
+%     \begin{cases}
+%       0 & \text{, ако } u = s\\
+%       \infty & \text{, иначе}
+%     \end{cases}
+%     \]
+%   Тъй като $V$ е крайно множество, можем да представим $\delta$ като масив.
+%   \item
+%     За всяко ребро $(u,v)\in E$,
+%         \[\delta(v) :=
+%         \begin{cases}
+%           \delta(u) + c(u,v) & \text{, ако } \delta(v) > \delta(u) + c(u,v)\\
+%           \delta(v) & \text{, иначе}
+%         \end{cases}
+%         \]
+%   \item
+%     Стъпка 2) се изпълнява общо $\nu- 1$ пъти.
+%   \item
+%     За всяко ребро $(u,v)\in E$, проверяваме дали $\delta(v) > \delta(u) + c(u,v)$.
+%     Ако намерим такова ребро, то процедурата връща $FALSE$, иначе връща $TRUE$.
+% \end{enumerate}
+
+Твърдим, че в масива $\delta$ ще се съдържат търсените минималните пътища, яко няма отрицателни цикли достижими от $s$ в графа.
+Тъй като всеки прост път има дължина не по-голяма от $\nu-1$, то след завършване на процедурата ще имаме минималните 
+дължини на пътищата от зададения връх $s$ до всички останали върхове в графа.
+
+Сега да разгледаме случая на граф с отрицателен цикъл достижим от $s$, $c = (v_0,\dots,v_k)$ и $v_0 = v_k$, т.е.
+\[\sum^{k}_{i=1}c(v_{i-1},v_i) < 0.\]
+Да допуснем, че процедурата връща $TRUE$. Тогава $\delta(v_i) \leq \delta(v_{i-1}) + c(v_{i-1},v_i)$, за всяко $i=1,\dots,k$ и
+\[\sum^{k}_{i=1} \delta(v_i) \leq \sum^{k}_{i=1}\delta(v_{i-1}) + \sum^{k}_{i=1}c(v_{i-1},v_i).\]
+Тъй като $v_0 = v_k$, $\sum^{k}_{i=1} d(v_i) = \sum^{k}_{i=1}d(v_{i-1})$.
+Получаваме, че $0 \leq \sum^{k}_{i=1}c(v_{i-1},v_i)$, което е противоречие с отицателността на цикъла.
+Фигура \ref{fig:bellman-ford-negative-cycle} илюстрира този случай.
+Както забелязахме при алгоритъма на Дейкстра, и тук можем да намерим не само дължините на най-късите пътища, но
+и спъсъка на ребрата, участващи в тях. Фигура \ref{fig:bellman-ford-graph} илюстрира този проблем. 
+Останалите накрая оцветени в синьо ребра участват в най-късите пътища.
+
+
+
+\begin{figure}[!htbp]
+  \subfigure{
+  \begin{tikzpicture}
+    [nodedecorate/.style={shape=circle,inner sep=2pt,draw,thick},%
+    arrowdecorate/.style={->,>=stealth,thick}]
+    %% nodes or vertices
+    
+    \foreach \nodename/\x/\y/\direction/\navigate in { a/0/0/below/south,
+      b/6/0/below/south, c/4.5/0/below/south, d/3/0/below/south, e/1.5/0/below/south}
+    {
+      \node (\nodename) at (\x,\y) [nodedecorate] {};
+      \node [\direction] at (\nodename.\navigate) {$\nodename$};
+    }
+    %% edges or lines
+    \path
+    \foreach \startnode/\endnode/\direction/\angle/\weight in {
+      a/e/above/15/1, d/e/above/-25/-1, e/d/below/-15/1,  d/c/above/15/1, c/b/above/15/1, b/e/below/60/-4}
+    {
+      (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+    };
+    ;
+  \end{tikzpicture}
+}
+\quad
+\subfigure{
+      \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      $\delta(a)$ & $\delta(b)$ & $\delta(c)$ & $\delta(c)$ & $\delta(e)$ \\
+      \hline
+      0 & $\infty$ & $\infty$ & $\infty$ & {\bf \framebox{1}}\\
+      \hline
+      \hline
+      $\colon$ & \framebox{$\infty$} & $\infty$ & $\infty$ & 1\\
+      $\colon$ & $\infty$ & \framebox{$\infty$} & $\infty$ & 1\\
+      $\colon$ & $\infty$ & $\infty$ & {\bf \framebox{2}} & 1\\
+      $\colon$ & $\infty$ & $\infty$ & 2 & \framebox{1}\\
+      \hline\hline
+      $\colon$ & \framebox{$\infty$} & $\infty$ & 2 & 1\\
+      $\colon$ & $\infty$ & {\bf \framebox{3}} & 2 & 1\\
+      $\colon$ & $\infty$ & 3 & \framebox{2} & 1\\
+      $\colon$ & $\infty$ & $\infty$ & 2 & \framebox{1}\\
+      \hline\hline
+      $\colon$ & {\bf \framebox{4}} & 3 & 2 & 1\\
+      $\colon$ & 4 & \framebox{3} & 2 & 1\\
+      $\colon$ & 4 & 3 & \framebox{2} & 1\\
+      $\colon$ & 4 & 3 & 2 & {\bf \framebox{0}}\\
+      \hline\hline
+    \end{tabular}
+  }
+  \caption{Алгоритъм на Белман-Форд върху ориентиран граф с отрицателен цикъл}
+  \label{fig:bellman-ford-negative-cycle}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+  \input{bellman-ford-graph.tex}
+  \index{Белман-Форд!алгоритъм}
+  \caption{Алгоритъм на Белман-Форд запазващ минималните пътища}
+  \label{fig:bellman-ford-graph}
+\end{figure}
+
+
+%% стр. 654
+\begin{problem}
+  Променете алгоритъма на Белман-Форд, така че $\delta(v) = -\infty$ за всеки връх $v$, 
+  за който има отрицателен цикъл по някой път от началния връх $s$ до $v$.
+\end{problem}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "discrete-math"
+%%% End: 
