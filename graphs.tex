@@ -129,6 +129,69 @@
   то той със сигурност е свързан.
 \end{remark}
 
+Един прост граф $G$ се нарича {\bf самодопълнителен}, ако  $G\cong\overline{G}$.
+
+\begin{problem} % зад 1.20
+  \begin{enumerate}
+  \item
+    Покажете, че ако един граф е самодопълнителен, то броят на върховете в него е равнен или на $4l$ ($l\geq 1$), или на $4l+1$ ($l\geq 0$);
+  \item
+    Докажете, че измежду 4-връхните графи има точно един самодопълнителен, а измежду 5-връхните графи има точно два самодопълнителни;
+  \item
+    Покажете, че всеки самодопълнителен граф е свързан;
+  \item
+    Докажете, че диаметърът на самодопълнителен нетривиален граф $G$ удовлетворява неравенството $2\leq diam(G) \leq 3$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}
+  \item
+    Ние вече знаем, че максималният брой ребра в един прост граф е $I = \binom{\nu}{2}$.
+    \[\varepsilon(G) + \varepsilon(\overline{G}) = \binom{\nu}{2}\ \&\ \varepsilon(G) = \varepsilon(\overline{G}).\]
+    Следователно, $I$ е четно, което е възможно само ако $\nu = 4l,4l+1$.
+  \item
+  \item
+    Знаем, че поне един от $G$ и $\overline{G}$ е свързан.
+    Но тъй като те са изоморфни следва, че и двата са свързани.
+    Тогава със сигурност имаме, че $G$ е свързан.
+  \item
+    Очевидно, $diam(G)\geq 2$. Ако $diam(G) > 3$, то ние знаем, че $diam(\overline{G})\leq 3$.
+    Но тогава, имаме противоречие с $G\cong\overline{G}$.
+    Следователно, $diam(G)\leq 3$.
+  \end{enumerate}
+\end{proof}
+
+
+\begin{problem} % зад. 1.22
+  Да разгледаме графа $G$ (без примки и без кратни ребра) със $s$ компоненти на свързаност.
+  Докажете, че $\nu - s \leq \varepsilon \leq \binom{\nu-s+1}{2}$.
+\end{problem}
+\begin{proof}
+  За $s = 1$ е ясно.
+  Да разгледаме случая $s = 2$.
+  Нека $1 < x <\nu$. Искаме да докажем, че 
+  \[\binom{x}{2} + \binom{\nu-x}{2} \leq \binom{\nu-1}{2} = \binom{\nu-x}{2} + \binom{x-1}{2} + \binom{\nu-x}{1}\binom{x-1}{1}\]
+  \[\binom{x}{2} \leq \binom{x-1}{2} + (\nu-x)(x-1)\]
+  \[x-1 \leq (\nu-x)(x-1) \iff 1 \leq \nu - x \iff 1 < x < \nu\]
+  Следователно, точната горна граница за $\varepsilon$ е $\binom{\nu - 1}{2}$. 
+  Очевидно е, че точната долна граница за $\varepsilon$ е $\nu - 2$.
+  Сега лесно се доказва задачата с индукция.
+  Нека всяка компонента има по $n_i$ ребра. 
+  \[\sum^{s+1}_{i=1}\binom{n_i}{2} = \sum^{s}_{i=1}\binom{n_i}{2} + \binom{\nu - y}{2} \leq \binom{y-s+1}{2} + \binom{\nu - y}{2},\]
+  където $y = \sum^s_{i=1}n_i$. Ясно е, че $s+1\leq y + 1\leq\nu$.
+  Случаят $y = s$ е тривиален, нека $y > s$.
+  Искаме да докажем, че 
+  \[\binom{y-s+1}{2} + \binom{\nu - y}{2} \leq \binom{\nu - (s+1) + 1}{2} = \binom{\nu-y}{2} + \binom{y-s}{2} + \binom{\nu-y}{1}\binom{y-s}{1} \]
+  \[\binom{y-s+1}{2} \leq  \binom{y-s}{2} + (\nu-y)(y-s) \]
+  Като положим $x = y-s+1$, получаваме
+  \[\binom{x}{2} \leq  \binom{x-1}{2} + (\nu-y)(x-1) \]
+  \[x-1 \leq (\nu-y)(x-1) \iff 1 \leq \nu - y \iff y+1 \leq \nu\]
+\end{proof}
+
+\begin{remark}
+  Ако $G$ е свързан, то \[\nu-1\leq\varepsilon\leq\binom{\nu}{2}\]
+\end{remark}
+
 
 \section{Дървета}
 
