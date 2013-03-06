@@ -1,5 +1,30 @@
 \chapter{Езици и автомати}
 
+\begin{lemma}[за разрастването (регулярни езици)]
+  % \index{лема за разрастването!регулярни езици}
+  % \label{lem:pumping-reg}
+  % \marginpar{На англ.\\ Pumping Lemma}
+  Нека $\Ls$ да бъде безкраен регулярен език.
+  Съществува число $n\geq 1$, зависещо само от $\Ls$, 
+  за което за всяка дума $\alpha\in \Ls, \abs{\alpha}\geq n$ може да 
+  бъде записана във вида $\alpha = xyz$ и 
+  \begin{enumerate}
+  \item
+    $|y|\geq 1$;
+  \item
+    $|xy|\leq n$;
+  \item
+    % \marginpar{$i = 0\ \rightarrow\ xz \in \Ls$}
+    $(\forall i\in\N)[xy^iz \in \Ls]$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{crl}
+  Регулярният език $\Ls$, 
+  разпознаван от КДА $M$ е непразен тoчно тогава, когато съдържа дума $\alpha, \abs{\alpha} \leq \abs{Q}$.
+\end{crl}
+
+\section{Регулярни езици}
 \begin{problem}
   Нека $\Sigma = \{0,1\}$.  Проверете дали $L$ е регулярен, където
   \begin{enumerate}[1)]
@@ -30,6 +55,7 @@
   \end{enumerate}
 \end{problem}
 
+\section{Контекстно-свободни езици}
 
 \begin{problem}
   Проверете дали следните езици са контекстно-свободни:
