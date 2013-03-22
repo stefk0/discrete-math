@@ -14,16 +14,16 @@
 \usepackage{enumerate}
 \usepackage{makeidx}
 
-\usepackage{algorithm}
-\usepackage{algorithmic}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
 
 %%%%%%%%%%%%%%% TIKZ Package %%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{tikz}
-\usepackage{pgf}
-\usetikzlibrary{arrows,automata}
+% \usepackage{tikz}
+% \usepackage{pgf}
+% \usetikzlibrary{arrows,automata}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{subfigure}
+% \usepackage{subfigure}
 
 \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
 \setlength{\parindent}{0in}            % amount of indentation of paragraph
@@ -39,6 +39,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newtheorem{problem}{Задача}
 \newtheorem{example}{Пример}
 \newtheorem{remark}{Забележка}
+\renewenvironment{proof}{\noindent{\bf Док.}\hspace*{1em}}{\qed\par}
 
 \newcommand{\A}{\mathfrak{A}}
 \newcommand{\B}{\mathfrak{B}}
@@ -75,14 +76,14 @@ citecolor=green, urlcolor=blue]{hyperref}
 \tableofcontents
 \include{sets}
 \include{functions}
-\include{cardinality}
-\include{comb1}
-\include{comb2}
-\include{automata}
-\include{boolean1}
-\include{boolean2}
-\include{graphs}
-\include{graph-alg}
+%\include{cardinality}
+%\include{comb1}
+%\include{comb2}
+%\include{automata}
+%\include{boolean1}
+%\include{boolean2}
+%\include{graphs}
+%\include{graph-alg}
 
 % \backmatter
 
