@@ -1,0 +1,266 @@
+\chapter{Контекстно-свободни езици}
+
+\section{Контекстно-свободни граматики}
+% От Сипсер, същото е в слайдовете на Сашка
+% Малко е тъпо, че в Пападимитриу дефиницията е различна. Там \Sigma \subseteq V
+\begin{dfn}
+  Контекстно-свободна граматика e четворка $G = (V,\Sigma,R,S)$,
+  където
+  \begin{itemize}
+  \item
+    $V$ е крайно множество от {\em променливи};
+  \item
+    $\Sigma$ е крайно множество от {\em терминали}, $\Sigma \cap V = \emptyset$;
+  \item
+    $R \subseteq V\times (V\cup\Sigma)^\star$, крайно множество от {\em правила};
+  \item
+    $S \in V$ е началната променлива. 
+  \end{itemize}
+  Обикновено ще пишем $A \rightarrow_G v$ вместо $(A,v) \in R$.
+  Пишем $u \Rightarrow_G v$, ако съществуват думи $x,y\in (\Sigma\cup V)^\star$, $A\in V$,
+  правило $A\rightarrow_G v^\prime$ и $u = xAy$, $v = xv^\prime y$.
+  Езикът генериран от $G$, $L(G) = \{\alpha\in\Sigma^\star\mid S \Rightarrow^\star_G \alpha\}$.
+\end{dfn}
+
+\begin{thm}
+  Контекстно-свободните езици са затворени относно
+  операциите обединение, конкатенация и звезда на Клини.
+\end{thm}
+
+\begin{thm}
+  Сечение на контекстно-свободен език с регулярен език е контекстно-свободен език.
+\end{thm}
+
+\section{Езици, които не са контекстно-свободни}
+
+\begin{lemma}[за нарастването (контекстно-свободни езици)]
+  \index{лема за нарастването!контекстно-свободни езици}
+  \label{lem:pumping-context}
+  За всеки КСЕ $L\neq\{\epsilon\}$ съществува $n>0$ такова,
+  че ако $\alpha\in L, \abs{\alpha} \geq p$, то $\alpha=xyuvw$ и
+  \begin{enumerate}
+  \item
+    $\abs{yv}\geq 1$,
+  \item
+    $\abs{yuv}\leq p$, и
+  \item
+    $(\forall i\geq 0)[xy^iuv^iw\in L]$.
+\end{enumerate}
+\end{lemma}
+
+\begin{crl}
+  Нека $G$ е контекстно-свободна граматика и $n$ е константата за разрастването на $G$.
+  Тогава $\abs{L(G)} = \infty$ точно тогава, когато съществува $z \in L(G)$, за която $n \leq \abs{z} \leq 2n$.
+\end{crl}
+
+\begin{thm}
+  Контекстно-свободните езици {\bf не} са затворени относно сечение и допълнение.
+\end{thm}
+\begin{proof}
+  Езикът $\Ls_0 = \{a^nb^nc^n\mid n\in\N\}$ не е контекстно-свободен, докато езиците 
+  $\Ls_1 = \{a^nb^nc^m\mid n,m\in\N\}$ и $\Ls_2 = \{a^mb^nc^n\mid n,m\in\N\}$ 
+  са контекстно-свободни.
+  Понеже, $\Ls_0 = \Ls_1\cap\Ls_2$, то заключаваме, 
+  че контекстно-свободните езици не са затворени относно операцията сечение.
+  Понеже $\Ls_1\cap\Ls_2 = \ov{\ov{\Ls_1}\cup\ov{\Ls_2}}$,
+  контекстно-свободните езици не са затворени относно допълнение.
+\end{proof}
+
+
+\begin{problem}
+  Проверете дали следните езици са контекстно-свободни:
+  \begin{enumerate}
+  \item
+    $L_1 = \{a^nb^nc^n\ \mid\ n\in\N\}$;
+  \item
+    $L_2 = \{a^ib^jc^k\ \mid\ 0 \leq i \leq j \leq k\}$;
+  \item
+    $L_3 = \{ww\mid w\in \{a,b\}^\star\}$;
+  \item
+    $L_3 = \{a^ib^j\ \mid i = j^2\}$;
+  \item
+    $L_4 = \{a^p\ \mid\ p\mbox{ е просто }\}$;
+  \item
+    $L_5 = \{a^nb^na^nb^n\mid n\geq 0\}$;
+  \item
+    $L_6 = \{a^n\sharp a^{2n}\sharp a^{3n}\mid n\geq 0\}$;
+  \item
+    $L_7 = \{w c x\mid w,x\in \{a,b\}^\star\ \&\ w\mbox{ е подниз на }x\}$;
+  \item
+    $L_8 = \{x_1 c x_2 c \dots c x_k\mid k\geq 2\ \&\ x_i\in\{a,b\}^\star\ \&\ (\exists i\neq j)[x_i = x_j]\}$;
+  \end{enumerate}
+\end{problem}
+
+\section{Алгоритми}
+
+\subsection{Нормална Форма на Чомски}
+
+\begin{problem}
+Използвайте обща конструкция, за да намерите всички нетерминали, от които в $\Gamma$ се извежда празната дума.
+Принадлежи ли празната дума на езика на $\Gamma$? Обосновете се.
+
+\begin{enumerate}
+\item
+$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC,C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|aEb\}\rangle$;
+\item
+$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S \rightarrow aD, D\rightarrow \varepsilon|ABBA|ADD,A\rightarrow DEB|a,B\rightarrow DDD|DC|b,C\rightarrow CCE|a, E\rightarrow \varepsilon|bEa\}\rangle$;
+\item
+$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{ S\rightarrow D,D\rightarrow AD|b,A\rightarrow AB|BC|a, B\rightarrow AB|CC, C\rightarrow \varepsilon|CA|a, E\rightarrow a|EB\}\rangle$;
+\item
+$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{ S \rightarrow AD|a, D\rightarrow \varepsilon|BB|AD,A\rightarrow DB|a,  B\rightarrow DD|DC|b,C\rightarrow CE|a, E\rightarrow AB|b|EA\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AS|SB|SS,B\rightarrow CA|b, C\rightarrow AA|a|BA,A\rightarrow \varepsilon|BS\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AB|AC,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,
+C\rightarrow CS|a\}\rangle$;
+
+\item
+$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S\rightarrow DD,D\rightarrow AD|b,A\rightarrow BC|a,B\rightarrow AB|CC, C\rightarrow \varepsilon|AC|a, E\rightarrow a|EB\}\rangle$;
+
+\item
+$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S \rightarrow DA|a, D\rightarrow \varepsilon|BD|AB,A\rightarrow DD|a, B\rightarrow CC|DC|b, C\rightarrow EC|a, E\rightarrow BA|b|AE\}\rangle$;
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem} Нека множеството от терминали в $\Gamma$, което извежда празната дума е $\mathcal{E}$. Използвайте обща конструкция, за да намерите граматика $\Gamma_1$ без $\varepsilon$-правила, за която $L(\Gamma_1)=L(\Gamma)\setminus\{\varepsilon\}$. Принадлежи ли празната дума на $L(\Gamma)$? Обосновете се!
+
+\begin{enumerate}
+\item
+$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AS|SB|SS,B\rightarrow AC|b, C\rightarrow A|a|AB,A\rightarrow \varepsilon|BS\}\rangle$, $\mathcal{E}=\{A,B,C\}$;
+
+\item
+$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow BA|CA,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,
+C\rightarrow CS|a\}\rangle$, $\mathcal{E}=\{A,B,S\}$;
+
+\item
+$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AS|b,A\rightarrow AC|BC|a, B\rightarrow BC|CC,C\rightarrow \varepsilon|CA|a\}\rangle$, $\mathcal{E}=\{A,B,C\}$;
+
+\item
+$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow \varepsilon|BA|AS,A\rightarrow SB|a,B\rightarrow SS|SC|b,
+C\rightarrow CC|a\}\rangle$, $\mathcal{E}=\{A,B,S\}$; 
+
+\end{enumerate} 
+\end{problem}
+
+\begin{problem}
+Използвайте обща конструкция, за да премахнете "дългите" правила (т.е. с дължина поне 2, които не са в н.ф. на Чомски) от $ G_1$ като при това получите к.св. граматика $G$ с език $L(G)=L(G_1)$, където:
+\begin{enumerate}
+\item
+$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow aTTb\}\rangle$;
+\item
+$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BSB|a,B\rightarrow ba|BC,C\rightarrow BaSA|a|b,S\rightarrow CC|b\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BAS,B\rightarrow CB,C\rightarrow ab|ABbS,S\rightarrow CC|b\}\rangle$;
+\item
+$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow TabTT|a\}\rangle$;
+\item
+$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|bTba,T\rightarrow aTaTb|b\}\rangle$;
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+Използвайте обща конструкция, за да премахнете преименуващите правила от граматиката $\Gamma$ като при това запазите езика.
+
+\begin{enumerate}
+\item
+$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow B|S,B\rightarrow C|BC,C\rightarrow AB|a|b,S\rightarrow B|CC|b\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow B,B\rightarrow S|C|BC,C\rightarrow a|AB,S\rightarrow C|CC|b\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow B|CC|a,B\rightarrow S|AB,C\rightarrow SC|b,S\rightarrow A|CC|b\}\rangle$;
+\item
+$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BB|b,B\rightarrow S|SS|b,C\rightarrow B|a,S\rightarrow C|AB|a\}\rangle$;
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Построите к. св. г. $G$ в нормална форма на Чомски с език $L(G) = L(G_1)$, където:
+\begin{enumerate}
+\item
+$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow aTTb\}\rangle$;
+\item
+$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb\}\rangle$;
+\end{enumerate}
+\end{problem}
+
+
+\subsection{CYK алгоритъм}
+
+\begin{problem}
+Използвайте алгоритъма за динамично програмиране (CYK), за да проверите дали
+думата $\alpha$ принадлежи на езика, определен от граматиката $\Gamma$.
+
+\begin{enumerate}
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow a| AB|AC, C\rightarrow SB|AS,A\rightarrow a, B\rightarrow b\}\rangle$, $\alpha=aaabb$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow BA| CA|a, C\rightarrow BS|SA,A\rightarrow a, B\rightarrow b\}\rangle$, $\alpha=bbaaa$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow AB|BC, A\rightarrow BA|a,B\rightarrow CC|b, C\rightarrow AB|a\}\rangle$, $\alpha=baaba$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow AB, A\rightarrow AC|a|b,B\rightarrow CB|a, C\rightarrow a\}\rangle$, $\alpha=babaa$;
+\item
+$\Gamma=\langle \{S,A,B\}, \{a,b\},S,\{S\rightarrow BA|SS|b, A\rightarrow SA|a,B\rightarrow BS|b\}\rangle$, $bbbaa$;
+\item
+$\Gamma=\langle\{S,A,B\},\{a,b\},S,\{S\rightarrow AB|SS|a, A\rightarrow AS|a,B\rightarrow SB|b\}\rangle$, $aaabb$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB| BS|b, A\rightarrow SS|a,B\rightarrow BA|b\}\rangle$, $\alpha=babab$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow BA| AS|a, A\rightarrow AB|a,B\rightarrow SS|b\}\rangle$, $\alpha=ababa$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB| BS|b, A\rightarrow SS|a,B\rightarrow BA|b\}\rangle$, $\alpha=babab$;
+\item
+$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB|a, A\rightarrow BA|SS|a,B\rightarrow SS|b\}\rangle$, $\alpha=aabba$;
+\end{enumerate}
+\end{problem}
+
+
+\section{Недетерминирани стекови автомати}
+
+\index{автомат!недетерминиран стеков}
+% \marginpar{На англ. Push-down automaton}
+%Sipser p.102
+\begin{dfn}[стр. 102 от \cite{sipser}]
+  Недетерминиран краен стеков автомат е $P = \SA$, където 
+  \begin{itemize}
+  \item
+    $Q$ е крайно множество от състояния;
+  \item  
+    $\Sigma$ е крайна входна азбука;
+  \item
+    $\Gamma$ е крайна стекова азбука;
+  \item
+    $q_{0}\in Q$ е начално състояние;
+  \item
+    $\Delta:Q\times\Sigma_\varepsilon\times\Gamma_\varepsilon\rightarrow \Ps(Q\times\Gamma_\varepsilon)$ 
+    е {\em частична} функция на преходите;    
+  \item
+    $F\subseteq Q$ е множество от заключителни състояния.
+  \end{itemize}
+\end{dfn}
+
+Нека $P$ е стеков автомат. Тогава
+\begin{itemize}
+\item
+  $\Ls(P)$ е езика, който се разпознава от $P$ с финално състояние,
+  \[\Ls(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\alpha)\ \&\ q \in F\}.\]    
+\item
+  $\Ls_N(P)$ е езика, който се разпознава от $P$ с празен стек,
+  \[\Ls_N(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\varepsilon)\}.\]    
+\end{itemize}
+
+\begin{thm}
+  Класът на езиците, които се разпознават от краен стеков автомат, съвпада с
+  класа на контекстно-свободните езици.
+\end{thm}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "discrete-math"
+%%% End: 

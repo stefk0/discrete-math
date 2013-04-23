@@ -1,6 +1,5 @@
-\documentclass[a4paper]{book}
-\usepackage{geometry}
-\geometry{margin=1in}
+\documentclass[a4paper,twoside,openright]{book}
+\usepackage[margin=4cm]{geometry}
 \usepackage[english,bulgarian]{babel}
 %\usepackage{ucs}
 \usepackage[utf8]{inputenc}
@@ -68,22 +67,33 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\abs}[1]{\vert{#1}\vert}
 \newcommand{\pair}[1]{\langle{#1}\rangle}
 
+\newcommand{\SA}{\langle{Q,\Sigma,\Gamma,q_{0},\Delta,F}\rangle}
+\newcommand{\CFG}{\langle{V,\Sigma,R,S}\rangle}
+
+
+\setlength{\marginparwidth}{1.2in}
+\let\oldmarginpar\marginpar
+
+\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+{\raggedright\footnotesize #1}}
+
 \makeindex
 \begin{document}
 
 
-\author{Stefan Vatev}
+\author{Stefan Vatev\thanks{foo}}
 \tableofcontents
 \include{sets}
 \include{functions}
-%\include{cardinality}
-%\include{comb1}
-%\include{comb2}
-%\include{automata}
-%\include{boolean1}
-%\include{boolean2}
-%\include{graphs}
-%\include{graph-alg}
+\include{cardinality}
+\include{comb1}
+\include{comb2}
+\include{automata}
+\include{context-free}
+\include{boolean1}
+\include{boolean2}
+% \include{graphs}
+% \include{graph-alg}
 
 % \backmatter
 
