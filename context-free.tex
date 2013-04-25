@@ -77,35 +77,68 @@
   \item
     $L_3 = \{ww\mid w\in \{a,b\}^\star\}$;
   \item
-    $L_3 = \{a^ib^j\ \mid i = j^2\}$;
+    $L_3 = \{ww^R\mid w\in \{a,b\}^\star\}$;
   \item
-    $L_4 = \{a^p\ \mid\ p\mbox{ е просто }\}$;
+    $L_4 = \{a^ib^j\ \mid i = j^2\}$;
   \item
-    $L_5 = \{a^nb^na^nb^n\mid n\geq 0\}$;
+    $L_5 = \{a^p\ \mid\ p\mbox{ е просто }\}$;
   \item
-    $L_6 = \{a^n b a^{2n} b a^{3n}\mid n\geq 0\}$;
+    $L_6 = \{a^nb^na^nb^n\mid n\geq 0\}$;
   \item
-    $L_7 = \{w c x\mid w,x\in \{a,b\}^\star\ \&\ w\mbox{ е подниз на }x\}$;
+    $L_7 = \{a^n b a^{2n} b a^{3n}\mid n\geq 0\}$;
   \item
-    $L_8 = \{x_1 c x_2 c \dots c x_k\mid k\geq 2\ \&\ x_i\in\{a,b\}^\star\ \&\ (\exists i\neq j)[x_i = x_j]\}$;
+    $L_8 = \{w c x\mid w,x\in \{a,b\}^\star\ \&\ w\mbox{ е подниз на }x\}$;
+  \item
+    $L_9 = \{x_1 c x_2 c \dots c x_k\mid k\geq 2\ \&\ x_i\in\{a,b\}^\star\ \&\ (\exists i,j)[i \neq j\ \&\ x_i = x_j]\}$;
+  \item
+    $L_{10} = \{a^ib^jc^k\mid i,j,k\geq 0\ \&\ (i = j \vee j = k)\}$;
+  \item
+    $L_{11} = \{\alpha \in \{a,b,c\}^\star\mid n_a(\alpha) = n_b(\alpha) = n_c(\alpha)\}$;
   \end{enumerate}
 \end{problem}
 \begin{proof}
   \begin{enumerate}[1)]
   \item
-    Разгледайте $w = a^pb^pc^p$.
-    Тогава $w = xyuvw$.
-    Имаме два случая за $y,v$ - да се състоят от една и съща буква, или 
-    да съдържат различни букви.    
+    За думата $w = a^pb^pc^p = xyuvw$ разгледайте различните случаи за $y$ и $v$.
   \item
     Разгледайте $w = a^pb^pc^p$.
-    Имаме различни случай в зависимост от това от какви букви са съставени 
-    $y$ и $v$.
+    \begin{enumerate}[a)]
+    \item
+      Знаем, че поне една от $y$ и $v$ не е празната дума.
+      Имаме два случая за $y$, $v$.
+      \begin{enumerate}[i)]
+      \item
+        $a$ не се среща в $y$ и $v$.
+        Тогава $xy^0vu^0w$ съдържа повече $a$ от $b$ или $c$.
+      \item
+        $b$ не се среща в $y$ и $v$.
+        Ако $a$ се среща в $y$ или $v$, тогава $xy^2uv^2w$ съдържа повече $a$ от $b$
+        Ако $c$ се среща в $y$ или $v$, тогава $xy^0uv^0w$ съдържа по-малко $c$ от $b$.
+      \item
+        $c$ не се среща в $y$ и $v$.
+        Тогава $xy^2uv^2w$ съдържа повече $a$ или $b$ от $c$.
+      \end{enumerate}      
+    \item
+      $y$ или $v$ е съставена от две букви.
+      Тук разглеждаме $xy^2uv^2w$ и съобразяваме, че редът на буквите е нарушен.
+    \end{enumerate}
   \item
-    \marginpar{ $w = a^pba^pb$ ?}
-    Разгледайте $w = a^pb^pa^pb^p$.
+    \marginpar{Защо $\alpha = a^pba^pb$ не е добър кандидат?}
+    Разгледайте $\alpha = a^pb^pa^pb^p$.
+    \begin{enumerate}[a)]
+    \item
+      Ако $yuv$ е в първата част на думата, то 
+      $xy^0uv^0w = a^ib^ja^pb^p \not\in L_3$.
+      Аналогично ако $yuv$ е във втората част на думата.
+    \item
+      Ако $yuv$ е в двете части на думата, то 
+      Но $xy^0uv^0w = a^pb^ia^jb^p \not\in L_3$.
+    \end{enumerate}
   \item
-    
+  \item[10)]
+    Контекстно-свободен е. Лесно може да се напише контекстно-свободна граматика за този език.
+  \item[11)]
+    Разгледайте $L_{11} \cap a^\star b^\star c^\star$.
   \end{enumerate}
 \end{proof}
 
