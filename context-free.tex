@@ -56,15 +56,15 @@
 \begin{thm}
   Контекстно-свободните езици {\bf не} са затворени относно сечение и допълнение.
 \end{thm}
-\begin{proof}
-  Езикът $\Ls_0 = \{a^nb^nc^n\mid n\in\N\}$ не е контекстно-свободен, докато езиците 
-  $\Ls_1 = \{a^nb^nc^m\mid n,m\in\N\}$ и $\Ls_2 = \{a^mb^nc^n\mid n,m\in\N\}$ 
-  са контекстно-свободни.
-  Понеже, $\Ls_0 = \Ls_1\cap\Ls_2$, то заключаваме, 
-  че контекстно-свободните езици не са затворени относно операцията сечение.
-  Понеже $\Ls_1\cap\Ls_2 = \ov{\ov{\Ls_1}\cup\ov{\Ls_2}}$,
-  контекстно-свободните езици не са затворени относно допълнение.
-\end{proof}
+% \begin{proof}
+%   Езикът $\Ls_0 = \{a^nb^nc^n\mid n\in\N\}$ не е контекстно-свободен, докато езиците 
+%   $\Ls_1 = \{a^nb^nc^m\mid n,m\in\N\}$ и $\Ls_2 = \{a^mb^nc^n\mid n,m\in\N\}$ 
+%   са контекстно-свободни.
+%   Понеже, $\Ls_0 = \Ls_1\cap\Ls_2$, то заключаваме, 
+%   че контекстно-свободните езици не са затворени относно операцията сечение.
+%   Понеже $\Ls_1\cap\Ls_2 = \ov{\ov{\Ls_1}\cup\ov{\Ls_2}}$,
+%   контекстно-свободните езици не са затворени относно допълнение.
+% \end{proof}
 
 
 \begin{problem}
@@ -83,13 +83,32 @@
   \item
     $L_5 = \{a^nb^na^nb^n\mid n\geq 0\}$;
   \item
-    $L_6 = \{a^n\sharp a^{2n}\sharp a^{3n}\mid n\geq 0\}$;
+    $L_6 = \{a^n b a^{2n} b a^{3n}\mid n\geq 0\}$;
   \item
     $L_7 = \{w c x\mid w,x\in \{a,b\}^\star\ \&\ w\mbox{ е подниз на }x\}$;
   \item
     $L_8 = \{x_1 c x_2 c \dots c x_k\mid k\geq 2\ \&\ x_i\in\{a,b\}^\star\ \&\ (\exists i\neq j)[x_i = x_j]\}$;
   \end{enumerate}
 \end{problem}
+\begin{proof}
+  \begin{enumerate}[1)]
+  \item
+    Разгледайте $w = a^pb^pc^p$.
+    Тогава $w = xyuvw$.
+    Имаме два случая за $y,v$ - да се състоят от една и съща буква, или 
+    да съдържат различни букви.    
+  \item
+    Разгледайте $w = a^pb^pc^p$.
+    Имаме различни случай в зависимост от това от какви букви са съставени 
+    $y$ и $v$.
+  \item
+    \marginpar{ $w = a^pba^pb$ ?}
+    Разгледайте $w = a^pb^pa^pb^p$.
+  \item
+    
+  \end{enumerate}
+\end{proof}
+
 
 \section{Алгоритми}
 
@@ -188,7 +207,7 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
 \end{problem}
 
 
-\subsection{CYK алгоритъм}
+\subsection{Проблемът за принадлежност}
 
 \begin{problem}
 Използвайте алгоритъма за динамично програмиране (CYK), за да проверите дали
