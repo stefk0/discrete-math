@@ -4,6 +4,7 @@
 % От Сипсер, същото е в слайдовете на Сашка
 % Малко е тъпо, че в Пападимитриу дефиницията е различна. Там \Sigma \subseteq V
 \begin{dfn}
+  \marginpar{На англ. contect-free grammar}
   Контекстно-свободна граматика e четворка $G = (V,\Sigma,R,S)$,
   където
   \begin{itemize}
@@ -67,39 +68,18 @@
 % \end{proof}
 
 
-\begin{problem}
-  Проверете дали следните езици са контекстно-свободни:
-  \begin{enumerate}
+\begin{example}
+  Приложете лемата за нарастването за да докажете, че 
+  следните езици не са контекстно-свободни:
+  \begin{itemize}
   \item
-    $L_1 = \{a^nb^nc^n\ \mid\ n\in\N\}$;
+    $L_1 = \{a^ib^jc^k\ \mid\ 0 \leq i \leq j \leq k\}$;
   \item
-    $L_2 = \{a^ib^jc^k\ \mid\ 0 \leq i \leq j \leq k\}$;
-  \item
-    $L_3 = \{ww\mid w\in \{a,b\}^\star\}$;
-  \item
-    $L_3 = \{ww^R\mid w\in \{a,b\}^\star\}$;
-  \item
-    $L_4 = \{a^ib^j\ \mid i = j^2\}$;
-  \item
-    $L_5 = \{a^p\ \mid\ p\mbox{ е просто }\}$;
-  \item
-    $L_6 = \{a^nb^na^nb^n\mid n\geq 0\}$;
-  \item
-    $L_7 = \{a^n b a^{2n} b a^{3n}\mid n\geq 0\}$;
-  \item
-    $L_8 = \{w c x\mid w,x\in \{a,b\}^\star\ \&\ w\mbox{ е подниз на }x\}$;
-  \item
-    $L_9 = \{x_1 c x_2 c \dots c x_k\mid k\geq 2\ \&\ x_i\in\{a,b\}^\star\ \&\ (\exists i,j)[i \neq j\ \&\ x_i = x_j]\}$;
-  \item
-    $L_{10} = \{a^ib^jc^k\mid i,j,k\geq 0\ \&\ (i = j \vee j = k)\}$;
-  \item
-    $L_{11} = \{\alpha \in \{a,b,c\}^\star\mid n_a(\alpha) = n_b(\alpha) = n_c(\alpha)\}$;
-  \end{enumerate}
-\end{problem}
+    $L_2 = \{ww\mid w\in \{a,b\}^\star\}$;
+  \end{itemize}
+\end{example}
 \begin{proof}
   \begin{enumerate}[1)]
-  \item
-    За думата $w = a^pb^pc^p = xyuvw$ разгледайте различните случаи за $y$ и $v$.
   \item
     Разгледайте $w = a^pb^pc^p$.
     \begin{enumerate}[a)]
@@ -119,7 +99,7 @@
         Тогава $xy^2uv^2w$ съдържа повече $a$ или $b$ от $c$.
       \end{enumerate}      
     \item
-      $y$ или $v$ е съставена от две букви.
+      $y$ или $v$ е съставена от две букви.  Контекстно-свободните езици {\bf не} са затворени относно сечение и допълнение.
       Тук разглеждаме $xy^2uv^2w$ и съобразяваме, че редът на буквите е нарушен.
     \end{enumerate}
   \item
@@ -133,14 +113,101 @@
     \item
       Ако $yuv$ е в двете части на думата, то 
       Но $xy^0uv^0w = a^pb^ia^jb^p \not\in L_3$.
-    \end{enumerate}
-  \item
-  \item[10)]
-    Контекстно-свободен е. Лесно може да се напише контекстно-свободна граматика за този език.
-  \item[11)]
-    Разгледайте $L_{11} \cap a^\star b^\star c^\star$.
+    \end{enumerate}    
   \end{enumerate}
 \end{proof}
+
+
+\begin{problem}
+  Проверете дали следните езици са контекстно-свободни:
+  \begin{enumerate}[a)]
+  \item
+    $\{a^nb^{2n}c^{3n}\ \mid\ n\in\N\}$;
+  \item
+    $\{a^mb^n\mid\ m \neq n\}$;
+  \item
+    $\{www\mid w\in \{a,b\}^\star\}$;
+  \item
+    $\{ww^R\mid w\in \{a,b\}^\star\}$;
+  \item
+    $\{a^{n^2}b^n\ \mid n \in \Nat\}$;
+  \item
+    $\{a^p\ \mid\ p\mbox{ е просто }\}$;
+  \item
+    $\{a^nb^na^nb^n\mid n\geq 0\}$;
+  \item
+    $\{w \in \{a,b\}^\star \mid w = w^R\}$;
+  \item
+    % Дефиниция на подниз
+    $\{w c x\mid w,x\in \{a,b\}^\star\ \&\ w\mbox{ е подниз на }x\}$;
+  \item
+    $\{x_1 c x_2 c \dots c x_k\mid k\geq 2\ \&\ x_i\in\{a,b\}^\star\ \&\ (\exists i,j)[i \neq j\ \&\ x_i = x_j]\}$;
+  \item
+    $\{a^ib^jc^k\mid i,j,k\geq 0\ \&\ (i = j \vee j = k)\}$;
+  \item
+    $\{\alpha \in \{a,b,c\}^\star\mid n_a(\alpha) = n_b(\alpha) = n_c(\alpha)\}$;
+  \item
+    $\{a,b\}^\star \setminus \{a^nb^n\mid n\in \Nat\}$;
+  \end{enumerate}
+\end{problem}
+% \begin{proof}
+%   \begin{enumerate}
+  % \item
+    % За думата $w = a^pb^pc^p = xyuvw$ разгледайте различните случаи за $y$ и $v$.
+  % \item[2)]
+  %   Разгледайте $w = a^pb^pc^p$.
+  %   \begin{enumerate}[a)]
+  %   \item
+  %     Знаем, че поне една от $y$ и $v$ не е празната дума.
+  %     Имаме три случая за поддумите $y$ и $v$.
+  %     \begin{enumerate}[i)]
+  %     \item
+  %       $a$ не се среща в $y$ и $v$.
+  %       Тогава $xy^0vu^0w$ съдържа повече $a$ от $b$ или $c$.
+  %     \item
+  %       $b$ не се среща в $y$ и $v$.
+  %       Ако $a$ се среща в $y$ или $v$, тогава $xy^2uv^2w$ съдържа повече $a$ от $b$
+  %       Ако $c$ се среща в $y$ или $v$, тогава $xy^0uv^0w$ съдържа по-малко $c$ от $b$.
+  %     \item
+  %       $c$ не се среща в $y$ и $v$.
+  %       Тогава $xy^2uv^2w$ съдържа повече $a$ или $b$ от $c$.
+  %     \end{enumerate}      
+  %   \item
+  %     $y$ или $v$ е съставена от две букви.  Контекстно-свободните езици {\bf не} са затворени относно сечение и допълнение.
+  %     Тук разглеждаме $xy^2uv^2w$ и съобразяваме, че редът на буквите е нарушен.
+  %   \end{enumerate}
+  % \item[3)]
+  %   \marginpar{Защо $\alpha = a^pba^pb$ не е добър кандидат?}
+  %   Разгледайте $\alpha = a^pb^pa^pb^p$.
+  %   \begin{enumerate}[a)]
+  %   \item
+  %     Ако $yuv$ е в първата част на думата, то 
+  %     $xy^0uv^0w = a^ib^ja^pb^p \not\in L_3$.
+  %     Аналогично ако $yuv$ е във втората част на думата.
+  %   \item
+  %     Ако $yuv$ е в двете части на думата, то 
+  %     Но $xy^0uv^0w = a^pb^ia^jb^p \not\in L_3$.
+  %   \end{enumerate}
+%   \item[10)]
+%     Контекстно-свободен е. Лесно може да се напише контекстно-свободна граматика за този език.
+%   \item[12)]
+%     Разгледайте езика $L = L_{12} \cap a^\star b^\star c^\star$.
+%   \end{enumerate}
+% \end{proof}
+
+\begin{problem}
+  Проверете кои от следните езици са контекстно-свободни:
+  \begin{enumerate}[a)]
+  \item
+    $\{a^mb^nc^k\mid m = n \vee n = k \vee m = k\}$;
+  \item
+    $\{a^mb^nc^k\mid m \neq n \vee n \neq k \vee m \neq k\}$;
+  \item
+    $\{a^mb^nc^k\mid m = n \wedge n = k \wedge m = k\}$;
+  \item
+    $\{w \in \{a,b,c\}^\star\mid n_a(w) \neq n_b(w) \vee n_a(w) \neq n_c(w) \vee n_b(w) \neq n_c(w)\}$.
+  \end{enumerate}
+\end{problem}
 
 
 \section{Алгоритми}
