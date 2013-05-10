@@ -1,6 +1,8 @@
-\documentclass[a4paper,twoside,openright]{book}
-\usepackage[margin=4cm]{geometry}
+\documentclass[a4paper,twoside,openleft]{book}
+\usepackage[bindingoffset=1cm]{geometry}
 \usepackage[english,bulgarian]{babel}
+% \setlength{\oddsidemargin}{30pt}
+% \setlength{\evensidemargin}{30pt}
 %\usepackage{ucs}
 \usepackage[utf8]{inputenc}
 
@@ -12,6 +14,8 @@
 \usepackage{paralist}
 \usepackage{enumerate}
 \usepackage{makeidx}
+
+\usepackage{layout}
 
 % \usepackage{algorithm}
 % \usepackage{algorithmic}
@@ -58,6 +62,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\Ss}{\mathscr{S}}
 \newcommand{\xn}{x_{1},\dots,x_{n}}
 
+\newcommand{\Nat}{\mathbb{N}}
+
 \newcommand{\xs}{overline{x}}
 
 \newcommand{\ys}{overline{y}}
@@ -80,6 +86,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \makeindex
 \begin{document}
 
+\layout
 
 \author{Stefan Vatev\thanks{foo}}
 \tableofcontents
@@ -97,8 +104,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 
 % \backmatter
 
-% \bibliographystyle{plain}
-% \bibliography{discrete-math}
+\bibliographystyle{plain}
+\bibliography{discrete-math}
 
 \printindex
 
