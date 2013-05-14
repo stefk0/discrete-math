@@ -216,30 +216,27 @@
 \subsection{Нормална Форма на Чомски}
 
 \begin{problem}
-Използвайте обща конструкция, за да намерите всички нетерминали, от които в $\Gamma$ се извежда празната дума.
-Принадлежи ли празната дума на езика на $\Gamma$? Обосновете се.
-
-\begin{enumerate}
-\item
-$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC,C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|aEb\}\rangle$;
-\item
-$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S \rightarrow aD, D\rightarrow \varepsilon|ABBA|ADD,A\rightarrow DEB|a,B\rightarrow DDD|DC|b,C\rightarrow CCE|a, E\rightarrow \varepsilon|bEa\}\rangle$;
-\item
-$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{ S\rightarrow D,D\rightarrow AD|b,A\rightarrow AB|BC|a, B\rightarrow AB|CC, C\rightarrow \varepsilon|CA|a, E\rightarrow a|EB\}\rangle$;
-\item
-$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{ S \rightarrow AD|a, D\rightarrow \varepsilon|BB|AD,A\rightarrow DB|a,  B\rightarrow DD|DC|b,C\rightarrow CE|a, E\rightarrow AB|b|EA\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AS|SB|SS,B\rightarrow CA|b, C\rightarrow AA|a|BA,A\rightarrow \varepsilon|BS\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AB|AC,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,
-C\rightarrow CS|a\}\rangle$;
-
-\item
-$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S\rightarrow DD,D\rightarrow AD|b,A\rightarrow BC|a,B\rightarrow AB|CC, C\rightarrow \varepsilon|AC|a, E\rightarrow a|EB\}\rangle$;
-
-\item
-$\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,\{S \rightarrow DA|a, D\rightarrow \varepsilon|BD|AB,A\rightarrow DD|a, B\rightarrow CC|DC|b, C\rightarrow EC|a, E\rightarrow BA|b|AE\}\rangle$;
-\end{enumerate}
+  Нека е дадена граматиката  $G = \pair{\{S,A,B,C,D,E\}, \{a,b\},S, R}$.
+  Използвайте обща конструкция, за да намерите всички нетерминали, от които в $G$ се извежда празната дума.
+  Принадлежи ли празната дума на $L(G)$? Обосновете се.
+  \begin{enumerate}
+  \item
+    $R = \{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC,C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|aEb\}$;
+  \item
+    $R = \{S \rightarrow aD, D\rightarrow \varepsilon|ABBA|ADD,A\rightarrow DEB|a,B\rightarrow DDD|DC|b,C\rightarrow CCE|a, E\rightarrow \varepsilon|bEa\}$;
+  \item
+    $R = \{ S\rightarrow D,D\rightarrow AD|b,A\rightarrow AB|BC|a, B\rightarrow AB|CC, C\rightarrow \varepsilon|CA|a, E\rightarrow a|EB\}$;
+  \item
+    $R = \{ S \rightarrow AD|a, D\rightarrow \varepsilon|BB|AD,A\rightarrow DB|a,B\rightarrow DD|DC|b,C\rightarrow CE|a, E\rightarrow AB|b|EA\}$;
+  \item
+    $R =\{S\rightarrow AS|SB|SS,B\rightarrow CA|b, C\rightarrow AA|a|BA,A\rightarrow \varepsilon|BS\}$;
+  \item
+    $R = \{S\rightarrow AB|AC,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,C\rightarrow CS|a\}$;
+  \item
+    $R=\{S\rightarrow DD,D\rightarrow AD|b,A\rightarrow BC|a,B\rightarrow AB|CC, C\rightarrow \varepsilon|AC|a, E\rightarrow a|EB\}$;
+  \item
+    $R = \{S \rightarrow DA|a, D\rightarrow \varepsilon|BD|AB,A\rightarrow DD|a, B\rightarrow CC|DC|b, C\rightarrow EC|a, E\rightarrow BA|b|AE\}$.
+  \end{enumerate}
 \end{problem}
 
 
@@ -264,37 +261,45 @@ C\rightarrow CC|a\}\rangle$, $\mathcal{E}=\{A,B,S\}$;
 \end{problem}
 
 \begin{problem}
-Използвайте обща конструкция, за да премахнете "дългите" правила (т.е. с дължина поне 2, които не са в н.ф. на Чомски) от $ G_1$ като при това получите к.св. граматика $G$ с език $L(G)=L(G_1)$, където:
-\begin{enumerate}
-\item
-$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow aTTb\}\rangle$;
-\item
-$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BSB|a,B\rightarrow ba|BC,C\rightarrow BaSA|a|b,S\rightarrow CC|b\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BAS,B\rightarrow CB,C\rightarrow ab|ABbS,S\rightarrow CC|b\}\rangle$;
-\item
-$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow TabTT|a\}\rangle$;
-\item
-$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|bTba,T\rightarrow aTaTb|b\}\rangle$;
-\end{enumerate}
+  Използвайте обща конструкция, за да премахнете "дългите" правила 
+  (т.е. с дължина поне 2, които не са в н.ф. на Чомски) от $ G$ като при това получите к.св. граматика $G_1$ 
+  с език $L(G)=L(G_1)$, където:
+  \begin{enumerate}
+  \item
+    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow aTTb\}\rangle$;
+  \item
+    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb\}\rangle$;
+  \item
+    $\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BSB|a,B\rightarrow ba|BC,C\rightarrow BaSA|a|b,S\rightarrow CC|b\}\rangle$;
+  \item
+    $\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BAS,B\rightarrow CB,C\rightarrow ab|ABbS,S\rightarrow CC|b\}\rangle$;
+  \item
+    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow TabTT|a\}\rangle$;
+  \item
+    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|bTba,T\rightarrow aTaTb|b\}\rangle$;
+  \end{enumerate}
 \end{problem}
 
 
 \begin{problem}
-Използвайте обща конструкция, за да премахнете преименуващите правила от граматиката $\Gamma$ като при това запазите езика.
-
-\begin{enumerate}
-\item
-$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow B|S,B\rightarrow C|BC,C\rightarrow AB|a|b,S\rightarrow B|CC|b\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow B,B\rightarrow S|C|BC,C\rightarrow a|AB,S\rightarrow C|CC|b\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow B|CC|a,B\rightarrow S|AB,C\rightarrow SC|b,S\rightarrow A|CC|b\}\rangle$;
-\item
-$\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BB|b,B\rightarrow S|SS|b,C\rightarrow B|a,S\rightarrow C|AB|a\}\rangle$;
-\end{enumerate}
+  Използвайте обща конструкция, за да премахнете преименуващите правила от граматиката $G$ като при това запазите езика,
+  където $G = \pair{\{A,B,C,S\},\{a,b\}, S, R}$ и
+  \begin{enumerate}
+  \item
+    $R = \{A\rightarrow B|S,B\rightarrow C|BC,C\rightarrow AB|a|b,S\rightarrow B|CC|b\}$;
+  \item
+    $R = \{A\rightarrow B,B\rightarrow S|C|BC,C\rightarrow a|AB,S\rightarrow C|CC|b\}$;
+  \item
+    $R = \{A\rightarrow B|CC|a,B\rightarrow S|AB,C\rightarrow SC|b,S\rightarrow A|CC|b\}$;
+  \item
+    $R = \{A\rightarrow BB|b,B\rightarrow S|SS|b,C\rightarrow B|a,S\rightarrow C|AB|a\}$;
+  \item
+    $R = \{S\rightarrow A|a,A\rightarrow B|C|b, B\rightarrow AB, C\rightarrow CC|a\}$;
+  \item
+    $R = \{S\rightarrow A|B, A\rightarrow a|C|AB, B\rightarrow b|C, C\rightarrow CS|a|b\}$;
+  \item
+    $R = \{S\rightarrow A|B|BC, A\rightarrow C|a, B\rightarrow AB|b, C\rightarrow AS\}$. 
+  \end{enumerate}
 \end{problem}
 
 \begin{problem}
@@ -311,31 +316,30 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
 \subsection{Проблемът за принадлежност}
 
 \begin{problem}
-Използвайте алгоритъма за динамично програмиране (CYK), за да проверите дали
-думата $\alpha$ принадлежи на езика, определен от граматиката $\Gamma$.
-
-\begin{enumerate}
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow a| AB|AC, C\rightarrow SB|AS,A\rightarrow a, B\rightarrow b\}\rangle$, $\alpha=aaabb$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow BA| CA|a, C\rightarrow BS|SA,A\rightarrow a, B\rightarrow b\}\rangle$, $\alpha=bbaaa$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow AB|BC, A\rightarrow BA|a,B\rightarrow CC|b, C\rightarrow AB|a\}\rangle$, $\alpha=baaba$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B,C\},S,\{S\rightarrow AB, A\rightarrow AC|a|b,B\rightarrow CB|a, C\rightarrow a\}\rangle$, $\alpha=babaa$;
-\item
-$\Gamma=\langle \{S,A,B\}, \{a,b\},S,\{S\rightarrow BA|SS|b, A\rightarrow SA|a,B\rightarrow BS|b\}\rangle$, $bbbaa$;
-\item
-$\Gamma=\langle\{S,A,B\},\{a,b\},S,\{S\rightarrow AB|SS|a, A\rightarrow AS|a,B\rightarrow SB|b\}\rangle$, $aaabb$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB| BS|b, A\rightarrow SS|a,B\rightarrow BA|b\}\rangle$, $\alpha=babab$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow BA| AS|a, A\rightarrow AB|a,B\rightarrow SS|b\}\rangle$, $\alpha=ababa$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB| BS|b, A\rightarrow SS|a,B\rightarrow BA|b\}\rangle$, $\alpha=babab$;
-\item
-$\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB|a, A\rightarrow BA|SS|a,B\rightarrow SS|b\}\rangle$, $\alpha=aabba$;
-\end{enumerate}
+  Нека е дадена граматиката $\Gamma=\pair{\{a,b\}, \{S,A,B,C\},S,R}$.
+  Използвайте алгоритъма за динамично програмиране (CYK), за да проверите дали
+  думата $\alpha$ принадлежи на $L(G)$, където правилата на граматиката $R$ и думата $\alpha$
+  са зададени като:
+  \begin{enumerate}
+  \item
+    $R =\{S\rightarrow a| AB|AC, C\rightarrow SB|AS,A\rightarrow a, B\rightarrow b\}$, $\alpha=aaabb$;
+  \item
+    $R = \{S\rightarrow BA| CA|a, C\rightarrow BS|SA,A\rightarrow a, B\rightarrow b\}$, $\alpha=bbaaa$;
+  \item
+    $R =\{S\rightarrow AB|BC, A\rightarrow BA|a,B\rightarrow CC|b, C\rightarrow AB|a\}$, $\alpha=baaba$;
+  \item
+    $R = \{S\rightarrow AB, A\rightarrow AC|a|b,B\rightarrow CB|a, C\rightarrow a\}$, $\alpha=babaa$;
+  \item
+    $R = \{S\rightarrow BA|SS|b, A\rightarrow SA|a,B\rightarrow BS|b\}$, $\alpha = bbbaa$;
+  \item
+    $R = \{S\rightarrow AB|SS|a, A\rightarrow AS|a,B\rightarrow SB|b\}$, $\alpha = aaabb$;
+  \item
+    $R = \{S\rightarrow AB| BS|b, A\rightarrow SS|a,B\rightarrow BA|b\}$, $\alpha = babab$;
+  \item
+    $R = \{S\rightarrow BA| AS|a, A\rightarrow AB|a,B\rightarrow SS|b\}$, $\alpha = ababa$;
+  \item
+    $R = \{S\rightarrow AB|a, A\rightarrow BA|SS|a,B\rightarrow SS|b\}$, $\alpha = aabba$.
+  \end{enumerate}
 \end{problem}
 
 
@@ -366,11 +370,11 @@ $\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB|a, A\rightarrow BA|SS|a,B
 Нека $P$ е стеков автомат. Тогава
 \begin{itemize}
 \item
-  $\Ls(P)$ е езика, който се разпознава от $P$ с финално състояние,
-  \[\Ls(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\alpha)\ \&\ q \in F\}.\]    
+  $\Ls_F(P)$ е езика, който се разпознава от $P$ с финално състояние,
+  \[\Ls_F(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\alpha)\ \&\ q \in F\}.\]    
 \item
-  $\Ls_N(P)$ е езика, който се разпознава от $P$ с празен стек,
-  \[\Ls_N(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\varepsilon)\}.\]    
+  $\Ls_S(P)$ е езика, който се разпознава от $P$ с празен стек,
+  \[\Ls_S(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\varepsilon)\}.\]    
 \end{itemize}
 
 \begin{thm}
@@ -378,7 +382,41 @@ $\Gamma=\langle \{a,b\}, \{S,A,B\},S,\{S\rightarrow AB|a, A\rightarrow BA|SS|a,B
   класа на контекстно-свободните езици.
 \end{thm}
 
+\begin{problem}
+  Нека е дадена граматиката $G = \pair{\{S,A,B\},\{a,b\},S,R\}}$.
+  Постройте стеков автомат $\A$, който разпознава с празен стек
+  и такъв, че $L(\A) = L(G)$, където правилата $R$ на граматиката са зададени като:
+  \begin{enumerate} 
+    % За едно тези двете да се даде пример как става 
+  \item
+    $R = \{S\rightarrow ASB\vert \varepsilon, A\rightarrow aAa\vert a, B\rightarrow bBb\vert b\}$;
+  \item
+    $R = \{S\rightarrow ASB\vert \varepsilon, A\rightarrow aA\vert a, B\rightarrow Bb\vert b\}$;
+  \item
+    $R =\{S\rightarrow SA|\varepsilon,A\rightarrow BSa|B, B\rightarrow b|BS|ab\}$;
+  \item
+    $R = \{S\rightarrow AS|\varepsilon,A\rightarrow SaBB|A, B\rightarrow b|BBbS|AA\}$;
+  % \item
+  %   $\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,$\\
+  %   $\{S \rightarrow aD, D\rightarrow ab|ABBA|ADD,A\rightarrow DEB|a,B\rightarrow DDD|DC|b,C\rightarrow CCE|a, E\rightarrow ba|bEa\}\rangle$;
+  % \item
+  %   $\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,$\\
+  %   $\{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC, C\rightarrow \varepsilon|CA|a, E\rightarrow ab|aEb\}\rangle$;
+  % \item
+  %   $\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,$\\
+  %   $\{S \rightarrow aD, D\rightarrow \varepsilon|ABBA|ADD,A\rightarrow DEB|a,B\rightarrow DDD|DC|b,C\rightarrow CCE|a, E\rightarrow \varepsilon|bEa\}\rangle$;
+  % \item
+  %   $\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,$\\
+  %   $\{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC, C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|aEb\}\rangle$;
 
+  % \item
+  %   $\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,$\\
+  %   $\{S\rightarrow DD,D\rightarrow DDA|b,A\rightarrow CAB|a, B\rightarrow BCA|CCE, C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|EaE\}\rangle$;
+  % \item
+  %   $\Gamma=\langle\{S,A,B,C,D,E\},\{a,b\},S,$\\
+  %   $\{S\rightarrow DD,D\rightarrow DA|b,A\rightarrow CAB|a, B\rightarrow BCA|CCE, C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|EaE\}\rangle$;
+  \end{enumerate}
+\end{problem}
 
 %%% Local Variables: 
 %%% mode: latex
