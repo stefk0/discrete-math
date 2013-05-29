@@ -25,6 +25,13 @@
   разпознаван от КДА $M$ е непразен тoчно тогава, когато съдържа дума $\alpha, \abs{\alpha} \leq \abs{Q}$.
 \end{crl}
 
+\begin{problem}
+  \marginpar{$c^+\{a^nb^n\mid n\in\N\}\cup (a\vert b)^\star$}
+  Да се даде пример за език $L$, който {\bf не} е регулярен, но удовлетворява
+  лемата за разрастването.
+\end{problem}
+
+
 % \section{Регулярни езици}
 % \begin{problem}
 %   Нека $\Sigma = \{0,1\}$.  Проверете дали $L$ е регулярен, където
@@ -158,8 +165,23 @@
 % \end{proof}
 
 
+\begin{problem}
+  Да означим $\mbox{Half}(L) = \{w\mid (\exists x \in \Sigma^\star)[wx \in L\ \&\ \abs{w} = \abs{x}]\}$.
+  Докажете, че ако $L$ е регулярен език, то $\mbox{Half}(L)$ също е регулярен език.
+\end{problem}
+
+\begin{problem}
+  Да означим $\mbox{Pref}(L) = \{\alpha \mid (\exists \beta \in \Sigma^\star)[\alpha\beta \in L]\}$.
+  Докажете, че ако $L$ е регулярен език, то $\mbox{Pref}(L)$ също е регулярен език.
+\end{problem}
+\begin{proof}
+  Две доказателства. Едното е с индукция по построението регулярния израз за $L$.
+  Другото е по автомата за $L$.
+\end{proof}
+
+
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "discrete-math"
 %%% End: 
-?

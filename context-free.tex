@@ -24,6 +24,48 @@
   Езикът генериран от $G$, $L(G) = \{\alpha\in\Sigma^\star\mid S \Rightarrow^\star_G \alpha\}$.
 \end{dfn}
 
+\begin{problem}
+  Да се докаже, че езикът $\{\alpha \in \{a,b\}^\star\mid n_a(\alpha) = n_b(\alpha)\}$ 
+  е контекстно свободен.
+\end{problem}
+\begin{proof}
+  $S \rightarrow aSbS\vert bSaS \vert\varepsilon$  и да се докаже, че
+  ако $\alpha = a\alpha^\prime$ и $n_a(\alpha) = n_b(\alpha)$,
+  то съществуват $\alpha_1, \alpha_2$, $\alpha = a\alpha_1b\alpha_2$ и
+  $n_a(\alpha_1) = n_b(\alpha_1)$, $n_a(\alpha_2) = n_b(\alpha_2)$.
+  Аналогично е, ако $\alpha = b\alpha^\prime$.
+
+  Алтернативна граматика е $S\rightarrow aB\vert bA, A\rightarrow a\vert aS\vert bAA, B\rightarrow b\vert bS\vert aBB$.
+  
+  Да се обясни защо граматиката $S\rightarrow aB\vert Ba\vert \varepsilon, B\rightarrow bS\vert Sb$ не работи.
+\end{proof}
+
+\begin{problem}
+  Докажете, че следните езици са контекстно-свободни:
+  \begin{enumerate}[1)]
+  \item
+    $\{ww^R \mid w \in \{a,b\}^\star\}$;
+  \item
+    $\{w \in \{a,b\}^\star \mid w = w^R\}$;
+  \item
+    $\{a^nb^{2n} \mid n \in \Nat\}$;
+  \item
+    $\{a^nb^k \mid n > k\}$;
+  \item
+    $\{a^nb^k \mid n \geq 2k\}$;
+  \item
+    $\{a^mb^nc^k\mid m+n \geq k\}$;
+  \item
+    $\{a^nb^mc^{n+m}\mid n,m \in \Nat\}$;
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  За 2), $S \rightarrow aSa \vert bSb \vert a\vert b \vert \varepsilon$.
+  Докажете, че ако $w = w^R$, то $\abs{w} = 2n$, $w = w_1w^R_1$ и ако $\abs{w} = 2n+1$, то $w = w_1aw^R_1$, $w = w_1bw^R_1$.
+  За 6), $S \rightarrow aSc\vert aS \vert B, B\vert bSc\vert bS\vert\varepsilon$.
+\end{proof}
+
+
 \begin{thm}
   Контекстно-свободните езици са затворени относно
   операциите обединение, конкатенация и звезда на Клини.
@@ -54,6 +96,12 @@
   Нека $G$ е контекстно-свободна граматика и $n$ е константата за разрастването на $G$.
   Тогава $\abs{L(G)} = \infty$ точно тогава, когато съществува $z \in L(G)$, за която $n \leq \abs{z} \leq 2n$.
 \end{crl}
+
+\begin{problem}
+  Да се даде пример за език $L$, който {\bf не} е контекстно-свободен, но удовлетворява
+  лемата за разрастването.
+\end{problem}
+
 
 \begin{thm}
   Контекстно-свободните езици {\bf не} са затворени относно сечение и допълнение.
@@ -349,7 +397,7 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
 % \marginpar{На англ. Push-down automaton}
 %Sipser p.102
 \begin{dfn}[стр. 102 от \cite{sipser}]
-  Недетерминиран краен стеков автомат е $P = \SA$, където 
+  Недетерминиран краен стеков автомат е \[P = \PDA,\] където 
   \begin{itemize}
   \item
     $Q$ е крайно множество от състояния;
@@ -357,6 +405,8 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
     $\Sigma$ е крайна входна азбука;
   \item
     $\Gamma$ е крайна стекова азбука;
+  \item
+    $\# \in \Gamma$ е символ за дъно на стека;
   \item
     $q_{0}\in Q$ е начално състояние;
   \item
@@ -370,11 +420,11 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
 Нека $P$ е стеков автомат. Тогава
 \begin{itemize}
 \item
-  $\Ls_F(P)$ е езика, който се разпознава от $P$ с финално състояние,
-  \[\Ls_F(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\alpha)\ \&\ q \in F\}.\]    
+  $\Ls_F(P)$ е езика, който се разпознава от $P$ {\bfс финално състояние},
+  \[\Ls_F(P) = \{w\mid (q_0,w,\#) \vdash^\star_P (q,\varepsilon,\alpha)\ \&\ q \in F\}.\]    
 \item
-  $\Ls_S(P)$ е езика, който се разпознава от $P$ с празен стек,
-  \[\Ls_S(P) = \{w\mid (q_0,w,\varepsilon) \vdash^\star_P (q,\varepsilon,\varepsilon)\}.\]    
+  $\Ls_S(P)$ е езика, който се разпознава от $P$  {\bf с празен стек},
+  \[\Ls_S(P) = \{w\mid (q_0,w,\#) \vdash^\star_P (q,\varepsilon,\varepsilon)\}.\]    
 \end{itemize}
 
 \begin{thm}
@@ -384,8 +434,7 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
 
 \begin{problem}
   Нека е дадена граматиката $G = \pair{\{S,A,B\},\{a,b\},S,R\}}$.
-  Постройте стеков автомат $\A$, който разпознава с празен стек
-  и такъв, че $L(\A) = L(G)$, където правилата $R$ на граматиката са зададени като:
+  Постройте стеков автомат $P = \PDA$, такъв че $L_S(P) = L(G)$, където правилата $R$ на граматиката $G$ са зададени като:
   \begin{enumerate} 
     % За едно тези двете да се даде пример как става 
   \item
