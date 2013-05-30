@@ -1,5 +1,21 @@
 \chapter{Езици и автомати}
 
+\section{Свойства}
+
+Някои свойства на регулярните езици:
+\begin{itemize}
+\item 
+  те са затворени относно хомоморфизми, т.е.
+  ако $L \subseteq \Sigma^\star_1$ е регулярен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
+  то езикът $h(L) = \{h(\alpha) \in \Sigma^\star_2 \mid \alpha \in L\}$
+  е регулярен.
+\item
+  те са затворени относно обратни хомоморфизми, т.е.
+  ако $L\subseteq \Sigma^\star_2$ е регулярен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
+  то езикът $h^{-1}(L) = \{\alpha \in \Sigma^\star_1 \mid h(\alpha) \in L\}$
+  е регулярен.
+\end{itemize}
+
 \section{Езици, които не са регулярни}
 \begin{lemma}[за разрастването (регулярни езици)]
   % \index{лема за разрастването!регулярни езици}
@@ -180,7 +196,38 @@
 \end{proof}
 
 
+\section{Въпроси}
 
+Вярно ли е, че:
+\begin{itemize}
+\item
+  \marginpar{Не}
+  езикът $\{a^nb^n\mid n \in \Nat \}$ е регулярен?
+\item
+  \marginpar{Не}
+  езикът $\{a^nb^k\mid n > k\}$ е регулярен?
+\item
+  \marginpar{Не}
+  езикът $\{a^{n^2}\mid n \in \Nat\}$ е регулярен?
+\item
+  \marginpar{Да}
+  за всеки два регулярни езика $R_1, R_2$, то $R_1 \setminus R_2$ е регулярен ?
+\item
+  \marginpar{Да}
+  за всеки краен език $F$ и всеки регулярен език $R$, то $R\setminus F$ е регулярен ?
+\item
+  \marginpar{Да}
+  за всеки краен език $F$ и всеки регулярен език $R$, то $R\cup (\Sigma^\star \setminus F)$ е регулярен ?
+\item
+  \marginpar{Да}
+  съществува регулярен език $R$ и нерегулярен език $K$, за които $R\cap K$ не е регулярен ?
+\item
+  \marginpar{Да}
+  съществува регулярен език $R$ и нерегулярен език $K$, за които $R\setminus K$ не е регулярен ?
+\item
+  \marginpar{Не}
+  за всеки регулярен език $R$ и всеки език $K \subseteq R$, то $R\setminus K$ е регулярен ?
+\end{itemize}
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "discrete-math"

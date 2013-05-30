@@ -1,12 +1,46 @@
 
 \chapter{Контекстно-свободни езици}
 
+\section{Свойства}
+
+Някои свойства на контекстно-свободните езици:
+\begin{itemize}
+\item 
+  те са затворени относно операцията обединение, т.е.
+  ако $L_1, L_2$ са контекстно-свободни, то езикът $L_1 \cup L_2$ е контекстно-свободен; 
+\item
+  те са затворени относно операцията конкатенация, т.е.
+  ако $L_1, L_2$ са контекстно-свободни, то езикът $L_1 \cdot L_2$ е контекстно-свободен; 
+\item
+  те са затворени относно операцията звезда на Клини, т.е.
+  ако $L$ е контекстно-свободен, то езикът $L^\star = \bigcup_{n\in\Nat} L^n$ е контекстно-свободен; 
+\item
+  те {\bf не} са затворени относно операцията сечение, т.е.
+  съществуват контекстно-свободни езици $L_1, L_2$, за които езикът $L_1 \cap L_2$ {\bf не} е контекстно-свободен; 
+\item
+  те са затворени относно сечение с регулярен език, т.е.
+  ако $L$ е контекстно-свободен език и $R$ е регулярен език, то езикът $L = L \cap R$ е контекстно-свободен; 
+\item
+  те {\bf не} са затворени относно операцията допълнение, т.е.
+  съществува контекстно-свободен език $L$, за който езикът $\Sigma^\star\setminus L$ {\bf не} е контекстно-свободен; 
+\item
+  те са затворени относно хомоморфизми, т.е.
+  ако $L \subseteq \Sigma^\star_1$ е контекстно-свободен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
+  то езикът $h(L) = \{h(\alpha) \in \Sigma^\star_2 \mid \alpha \in L\}$
+  е контекстно-свободен.
+\item
+  те са затворени относно обратни хомоморфизми, т.е.
+  ако $L\subseteq \Sigma^\star_2$ е контекстно-свободен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
+  то езикът $h^{-1}(L) = \{\alpha \in \Sigma^\star_1 \mid h(\alpha) \in L\}$
+  е контекстно-свободен.
+\end{itemize}
+
 \section{Контекстно-свободни граматики}
 % От Сипсер, същото е в слайдовете на Сашка
 % Малко е тъпо, че в Пападимитриу дефиницията е различна. Там \Sigma \subseteq V
 \begin{dfn}
-  \marginpar{На англ. contect-free grammar}
-  Контекстно-свободна граматика e четворка $G = (V,\Sigma,R,S)$,
+  \marginpar{На англ. context-free grammar}
+  Контекстно-свободна граматика e четворка \[G = (V,\Sigma,R,S),\]
   където
   \begin{itemize}
   \item
@@ -66,20 +100,11 @@
 \end{proof}
 
 
-\begin{thm}
-  Контекстно-свободните езици са затворени относно
-  операциите обединение, конкатенация и звезда на Клини.
-\end{thm}
-
-\begin{thm}
-  Сечение на контекстно-свободен език с регулярен език е контекстно-свободен език.
-\end{thm}
-
 \section{Езици, които не са контекстно-свободни}
 
 \begin{lemma}[за нарастването (контекстно-свободни езици)]
   \index{лема за нарастването!контекстно-свободни езици}
-  \label{lem:pumping-context}
+  \label{lem:pumping-context} 
   За всеки КСЕ $L\neq\{\epsilon\}$ съществува $n>0$ такова,
   че ако $\alpha\in L, \abs{\alpha} \geq p$, то $\alpha=xyuvw$ и
   \begin{enumerate}
@@ -103,9 +128,6 @@
 \end{problem}
 
 
-\begin{thm}
-  Контекстно-свободните езици {\bf не} са затворени относно сечение и допълнение.
-\end{thm}
 % \begin{proof}
 %   Езикът $\Ls_0 = \{a^nb^nc^n\mid n\in\N\}$ не е контекстно-свободен, докато езиците 
 %   $\Ls_1 = \{a^nb^nc^m\mid n,m\in\N\}$ и $\Ls_2 = \{a^mb^nc^n\mid n,m\in\N\}$ 
@@ -265,8 +287,15 @@
 
 \begin{problem}
   Нека е дадена граматиката  $G = \pair{\{S,A,B,C,D,E\}, \{a,b\},S, R}$.
-  Използвайте обща конструкция, за да намерите всички нетерминали, от които в $G$ се извежда празната дума.
-  Принадлежи ли празната дума на $L(G)$? Обосновете се.
+  \begin{enumerate}[a)]
+  \item
+    Намерете всички нетерминали, от които в $G$ се извежда празната дума.
+  \item
+    Принадлежи ли празната дума на $L(G)$?
+  \item
+    Използвайте обща конструкция, за да намерите граматика $G_1$ без $\varepsilon$-правила, за която $L(G_1)=L(G)\setminus\{\varepsilon\}$.
+  \end{enumerate}
+  Множеството от правила $R$ на граматиката $G$ е зададено като:
   \begin{enumerate}
   \item
     $R = \{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC,C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|aEb\}$;
@@ -283,48 +312,32 @@
   \item
     $R=\{S\rightarrow DD,D\rightarrow AD|b,A\rightarrow BC|a,B\rightarrow AB|CC, C\rightarrow \varepsilon|AC|a, E\rightarrow a|EB\}$;
   \item
-    $R = \{S \rightarrow DA|a, D\rightarrow \varepsilon|BD|AB,A\rightarrow DD|a, B\rightarrow CC|DC|b, C\rightarrow EC|a, E\rightarrow BA|b|AE\}$.
+    $R = \{S\rightarrow AS|SB|SS,B\rightarrow AC|b, C\rightarrow A|a|AB,A\rightarrow \varepsilon|BS\}$;
+  \item
+    $R = \{S\rightarrow BA|CA,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,
+    C\rightarrow CS|a\}$;
+  \item
+    $R = \{S\rightarrow AS|b,A\rightarrow AC|BC|a, B\rightarrow BC|CC,C\rightarrow \varepsilon|CA|a\}$;
+  \item
+    $R = \{S\rightarrow \varepsilon|BA|AS,A\rightarrow SB|a,B\rightarrow SS|SC|b,
+    C\rightarrow CC|a\}$; 
   \end{enumerate}
 \end{problem}
 
-
-\begin{problem} Нека множеството от терминали в $\Gamma$, което извежда празната дума е $\mathcal{E}$. Използвайте обща конструкция, за да намерите граматика $\Gamma_1$ без $\varepsilon$-правила, за която $L(\Gamma_1)=L(\Gamma)\setminus\{\varepsilon\}$. Принадлежи ли празната дума на $L(\Gamma)$? Обосновете се!
-
-\begin{enumerate}
-\item
-$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AS|SB|SS,B\rightarrow AC|b, C\rightarrow A|a|AB,A\rightarrow \varepsilon|BS\}\rangle$, $\mathcal{E}=\{A,B,C\}$;
-
-\item
-$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow BA|CA,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,
-C\rightarrow CS|a\}\rangle$, $\mathcal{E}=\{A,B,S\}$;
-
-\item
-$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow AS|b,A\rightarrow AC|BC|a, B\rightarrow BC|CC,C\rightarrow \varepsilon|CA|a\}\rangle$, $\mathcal{E}=\{A,B,C\}$;
-
-\item
-$\Gamma=\langle\{a,b\},\{S,A,B,C\},S,\{S\rightarrow \varepsilon|BA|AS,A\rightarrow SB|a,B\rightarrow SS|SC|b,
-C\rightarrow CC|a\}\rangle$, $\mathcal{E}=\{A,B,S\}$; 
-
-\end{enumerate} 
-\end{problem}
-
 \begin{problem}
+  Нека е дадена граматиката  $G = \pair{\{S,A,B,C\}, \{a,b\}, S, R}$.
   Използвайте обща конструкция, за да премахнете "дългите" правила 
   (т.е. с дължина поне 2, които не са в н.ф. на Чомски) от $ G$ като при това получите к.св. граматика $G_1$ 
   с език $L(G)=L(G_1)$, където:
   \begin{enumerate}
   \item
-    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow aTTb\}\rangle$;
+    $R = \{S \rightarrow \varepsilon|ab|aAba, A\rightarrow aBCb, B\rightarrow bbb, C\rightarrow aC\vert aCaC\}\rangle$;
   \item
-    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb\}\rangle$;
+    $R = \{S \rightarrow \epsilon|ab|baAb, A\rightarrow BaBb,B\rightarrow b,C\rightarrow AbA\vert aCCa\}$;
   \item
-    $\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BSB|a,B\rightarrow ba|BC,C\rightarrow BaSA|a|b,S\rightarrow CC|b\}\rangle$;
+    $R = \{A\rightarrow BSB|a,B\rightarrow ba|BC,C\rightarrow BaSA|a|b,S\rightarrow CC|b\}$;
   \item
-    $\Gamma=\langle\{a,b\},\{A,B,C,S\},S,\{A\rightarrow BAS,B\rightarrow CB,C\rightarrow ab|ABbS,S\rightarrow CC|b\}\rangle$;
-  \item
-    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow TabTT|a\}\rangle$;
-  \item
-    $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|bTba,T\rightarrow aTaTb|b\}\rangle$;
+    $R = \{A\rightarrow BAS,B\rightarrow CB,C\rightarrow ab|ABbS,S\rightarrow CC|b\}$;
   \end{enumerate}
 \end{problem}
 
@@ -351,13 +364,8 @@ C\rightarrow CC|a\}\rangle$, $\mathcal{E}=\{A,B,S\}$;
 \end{problem}
 
 \begin{problem}
-Построите к. св. г. $G$ в нормална форма на Чомски с език $L(G) = L(G_1)$, където:
-\begin{enumerate}
-\item
-$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|aTba,T\rightarrow aTTb\}\rangle$;
-\item
-$G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb\}\rangle$;
-\end{enumerate}
+  Намерете контекстно-свободна граматика в нормална форма на Чомски за езиците от задача 6.
+  
 \end{problem}
 
 
@@ -394,7 +402,7 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
 \section{Недетерминирани стекови автомати}
 
 \index{автомат!недетерминиран стеков}
-% \marginpar{На англ. Push-down automaton}
+\marginpar{На англ. Push-down automaton}
 %Sipser p.102
 \begin{dfn}[стр. 102 от \cite{sipser}]
   Недетерминиран краен стеков автомат е \[P = \PDA,\] където 
@@ -408,9 +416,9 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
   \item
     $\# \in \Gamma$ е символ за дъно на стека;
   \item
-    $q_{0}\in Q$ е начално състояние;
+    $s\in Q$ е начално състояние;
   \item
-    $\Delta:Q\times\Sigma_\varepsilon\times\Gamma_\varepsilon\rightarrow \Ps(Q\times\Gamma_\varepsilon)$ 
+    $\Delta:Q\times\Sigma_\varepsilon\times\Gamma\rightarrow \Ps_{fin}(Q\times\Gamma^\star)$ 
     е {\em частична} функция на преходите;    
   \item
     $F\subseteq Q$ е множество от заключителни състояния.
@@ -466,6 +474,74 @@ $G_1=\langle\{S,T\},\{a,b\},S,\{S \rightarrow \epsilon|ab|baTb,T\rightarrow TaTb
   %   $\{S\rightarrow DD,D\rightarrow DA|b,A\rightarrow CAB|a, B\rightarrow BCA|CCE, C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|EaE\}\rangle$;
   \end{enumerate}
 \end{problem}
+
+\section{Въпроси}
+Вярно ли е, че:
+\begin{itemize}
+\item
+  \marginpar{Да} 
+  ако $L$ е контекстно-свободен език, то езикът $L \cap \{a^{2n}b^{2k}\mid n,k\in\Nat\}$ е контекстно-свободен ?
+\item
+  \marginpar{Да}
+  ако $L$ е безкраен контекстно-свободен език, то съществува безкрайна редица от регулярни езици $L_1,L_2,\dots$,
+  за които $L = \bigcup_{i\in\Nat}L_i$ ?
+\item
+  \marginpar{Не}
+  за всяка безкрайна редица от регулярни езици $L_1,L_2,\dots$, то 
+  езикът $L = \bigcup_{i\in\Nat}L_i$ е контекстно-свободен ?
+\item
+  \marginpar{Да}
+  за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $L \cap R$ е контекстно-свободен ?
+\item
+  \marginpar{Да}
+  за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $L \cup R$ е контекстно-свободен ?
+\item
+  \marginpar{Да}
+  за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $L \setminus R$ е контекстно-свободен ?
+\item
+  \marginpar{Не}
+  за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $R \setminus L$ е контекстно-свободен ?
+\item
+  \marginpar{Не}
+  същесвува регулярен език $R$ и контекстно-свободен език $L$, за които $L \cap R$ не е контекстно-свободен ?
+\item
+  
+  същесвува регулярен език $R$ и нерегулярен, но контекстно-свободен език $L$, за които $L \cap R$ е регулярен ?
+\item
+  за всеки два нерегулярни, но контекстно-свободни езика $L_1,L_2$, то $L_1\cup L_2$ е регулярен ?
+\item
+  съществуват два нерегулярни, но контекстно-свободни езика $L_1,L_2$, за които $L_1\setminus L_2$ е регулярен ?
+\item
+  съществуват два нерегулярни, но контекстно-свободни езика $L_1,L_2$, за които $L_1\cap L_2$ е регулярен ?
+\item
+  съществуват два нерегулярни, но контекстно-свободни езика $L_1,L_2$, за които $L_1\cap L_2$ е регулярен ?
+\item
+  съществува регулярен език $R$, който може да се представи като $R = L_1 \cup L_2$, където
+  $L_1 \cap L_2 = \emptyset$, $L_1,L_2$ са нерегулярни, но контекстно-свободни ?
+\item
+  \marginpar{Не}
+  езикът $\{a,b\}^\star \setminus \{a^nb^n \mid n\in\Nat\}$ е регулярен ?
+\item
+  \marginpar{Да}
+  езикът $\{a,b\}^\star \setminus \{a^nb^n \mid n\in\Nat\}$ е контекстно-свободен ?
+\end{itemize}
+
+Нека е дадена контекстно-свободната граматика $G$ с правила \[S\rightarrow a\vert AB \vert AC, A \rightarrow a, B\rightarrow b, C\rightarrow SB.\]
+Вярно ли е, че ако приложим CYK алгоритъма върху думата $\alpha$, където
+\begin{itemize}
+\item 
+  $\alpha = aabb$, то $N[1,1] = \{S\}$.
+\item 
+  $\alpha = aabb$, то $N[3,3] = \{B\}$.
+\item 
+  $\alpha = aabb$, то $N[1,4] = \{\}$.
+\item
+  $\alpha = baab$, то $N[2,4] = \{\}$.
+\item
+  $\alpha = baab$, то $N[1,3] = \{\}$.
+\end{itemize}
+
+
 
 %%% Local Variables: 
 %%% mode: latex
