@@ -127,18 +127,6 @@
   лемата за разрастването.
 \end{problem}
 
-
-% \begin{proof}
-%   Езикът $\Ls_0 = \{a^nb^nc^n\mid n\in\N\}$ не е контекстно-свободен, докато езиците 
-%   $\Ls_1 = \{a^nb^nc^m\mid n,m\in\N\}$ и $\Ls_2 = \{a^mb^nc^n\mid n,m\in\N\}$ 
-%   са контекстно-свободни.
-%   Понеже, $\Ls_0 = \Ls_1\cap\Ls_2$, то заключаваме, 
-%   че контекстно-свободните езици не са затворени относно операцията сечение.
-%   Понеже $\Ls_1\cap\Ls_2 = \ov{\ov{\Ls_1}\cup\ov{\Ls_2}}$,
-%   контекстно-свободните езици не са затворени относно допълнение.
-% \end{proof}
-
-
 \begin{example}
   Приложете лемата за нарастването за да докажете, че 
   следните езици не са контекстно-свободни:
@@ -293,7 +281,7 @@
   \item
     Принадлежи ли празната дума на $L(G)$?
   \item
-    Използвайте обща конструкция, за да намерите граматика $G_1$ без $\varepsilon$-правила, за която $L(G_1)=L(G)\setminus\{\varepsilon\}$.
+    Постройте граматика $G_1$ без $\varepsilon$-правила, за която $L(G_1)=L(G)\setminus\{\varepsilon\}$.
   \end{enumerate}
   Множеството от правила $R$ на граматиката $G$ е зададено като:
   \begin{enumerate}
@@ -310,12 +298,9 @@
   \item
     $R = \{S\rightarrow AB|AC,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,C\rightarrow CS|a\}$;
   \item
-    $R=\{S\rightarrow DD,D\rightarrow AD|b,A\rightarrow BC|a,B\rightarrow AB|CC, C\rightarrow \varepsilon|AC|a, E\rightarrow a|EB\}$;
-  \item
     $R = \{S\rightarrow AS|SB|SS,B\rightarrow AC|b, C\rightarrow A|a|AB,A\rightarrow \varepsilon|BS\}$;
   \item
-    $R = \{S\rightarrow BA|CA,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a,
-    C\rightarrow CS|a\}$;
+    $R = \{S\rightarrow BA|CA,B\rightarrow \varepsilon |BC|b,A\rightarrow BB|CC|a, C\rightarrow CS|a\}$;
   \item
     $R = \{S\rightarrow AS|b,A\rightarrow AC|BC|a, B\rightarrow BC|CC,C\rightarrow \varepsilon|CA|a\}$;
   \item
@@ -358,8 +343,6 @@
     $R = \{S\rightarrow A|a,A\rightarrow B|C|b, B\rightarrow AB, C\rightarrow CC|a\}$;
   \item
     $R = \{S\rightarrow A|B, A\rightarrow a|C|AB, B\rightarrow b|C, C\rightarrow CS|a|b\}$;
-  \item
-    $R = \{S\rightarrow A|B|BC, A\rightarrow C|a, B\rightarrow AB|b, C\rightarrow AS\}$. 
   \end{enumerate}
 \end{problem}
 
@@ -387,8 +370,6 @@
     $R = \{S\rightarrow AB, A\rightarrow AC|a|b,B\rightarrow CB|a, C\rightarrow a\}$, $\alpha=babaa$;
   \item
     $R = \{S\rightarrow BA|SS|b, A\rightarrow SA|a,B\rightarrow BS|b\}$, $\alpha = bbbaa$;
-  \item
-    $R = \{S\rightarrow AB|SS|a, A\rightarrow AS|a,B\rightarrow SB|b\}$, $\alpha = aaabb$;
   \item
     $R = \{S\rightarrow AB| BS|b, A\rightarrow SS|a,B\rightarrow BA|b\}$, $\alpha = babab$;
   \item
@@ -490,23 +471,17 @@
   за всяка безкрайна редица от регулярни езици $L_1,L_2,\dots$, то 
   езикът $L = \bigcup_{i\in\Nat}L_i$ е контекстно-свободен ?
 \item
-  \marginpar{Да}
   за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $L \cap R$ е контекстно-свободен ?
 \item
-  \marginpar{Да}
   за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $L \cup R$ е контекстно-свободен ?
 \item
-  \marginpar{Да}
   за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $L \setminus R$ е контекстно-свободен ?
 \item
-  \marginpar{Не}
   за всеки регулярен език $R$ и всеки контекстно-свободен език $L$, то $R \setminus L$ е контекстно-свободен ?
 \item
-  \marginpar{Не}
-  същесвува регулярен език $R$ и контекстно-свободен език $L$, за които $L \cap R$ не е контекстно-свободен ?
+  съществува регулярен език $R$ и контекстно-свободен език $L$, за които $L \cap R$ не е контекстно-свободен ?
 \item
-  
-  същесвува регулярен език $R$ и нерегулярен, но контекстно-свободен език $L$, за които $L \cap R$ е регулярен ?
+  съществува регулярен език $R$ и нерегулярен, но контекстно-свободен език $L$, за които $L \cap R$ е регулярен ?
 \item
   за всеки два нерегулярни, но контекстно-свободни езика $L_1,L_2$, то $L_1\cup L_2$ е регулярен ?
 \item
@@ -514,16 +489,22 @@
 \item
   съществуват два нерегулярни, но контекстно-свободни езика $L_1,L_2$, за които $L_1\cap L_2$ е регулярен ?
 \item
-  съществуват два нерегулярни, но контекстно-свободни езика $L_1,L_2$, за които $L_1\cap L_2$ е регулярен ?
+  съществуват два нерегулярни, но контекстно-свободни езика $L_1,L_2$, за които $L_1\cup L_2$ е регулярен ?
 \item
   съществува регулярен език $R$, който може да се представи като $R = L_1 \cup L_2$, където
   $L_1 \cap L_2 = \emptyset$, $L_1,L_2$ са нерегулярни, но контекстно-свободни ?
 \item
-  \marginpar{Не}
   езикът $\{a,b\}^\star \setminus \{a^nb^n \mid n\in\Nat\}$ е регулярен ?
 \item
-  \marginpar{Да}
+  езикът $\{a,b\}^\star \setminus \{a^nb^{2k+1} \mid n,k\in\Nat\}$ е регулярен ?
+\item
+  езикът $\{a,b\}^\star \setminus \{a^nb^{k} \mid n > k\}$ е регулярен ?
+\item
+  езикът $\{a,b\}^\star \setminus \{a^nbba^{n} \mid n \in \Nat\}$ е регулярен ?
+\item
   езикът $\{a,b\}^\star \setminus \{a^nb^n \mid n\in\Nat\}$ е контекстно-свободен ?
+\item
+  езикът $\{a,b,c\}^\star \setminus \{a^nb^mc^k \mid m < n\ \&\ m < k\}$ е контекстно-свободен ?
 \end{itemize}
 
 Нека е дадена контекстно-свободната граматика $G$ с правила \[S\rightarrow a\vert AB \vert AC, A \rightarrow a, B\rightarrow b, C\rightarrow SB.\]
