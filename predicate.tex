@@ -1,0 +1,109 @@
+\section*{Предикатно смятане}
+
+\subsection*{Закони на предикатното смятане}
+
+\begin{enumerate}[(I)]
+  \item
+    $\neg\forall x P(x) \iff \exists x \neg P(x)$
+  \item
+    $\neg\exists x P(x) \iff \forall x \neg P(x)$
+  \item
+    $\forall x P(x) \iff \neg\exists x \neg P(x)$
+  \item
+    $\exists x P(x) \iff \neg\forall x \neg P(x)$
+  \item
+    $\forall x \forall y P(x) \iff \forall y\forall x P(x)$
+  \item
+    $\exists x\exists y P(x,y) \iff \exists y \exists x P(x)$  
+  \item
+    $\exists x\forall y P(x,y) \rightarrow \forall y \exists x P(x,y)$
+\end{enumerate}
+
+
+\begin{problem}
+  Като използвате символа $<$, логическите връзки и квантори, 
+  изразете като формула следните твърдения.
+  \begin{enumerate}[1)]
+  \item
+    $x$ е по-малко от $y$.
+  \item
+    За всяко число има по-голямо от него.
+  \item
+    За всяко число има по-малко от него.
+  \item
+    Всяко число е по-голямо от някое число.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Нека $G(x)$ означава, че човекът $x$ е добър.
+  \begin{enumerate}[1)]
+  \item
+    Изразете с формула твърдението, че всички хора са добри {\em без}
+    да използвате квантора $\forall$, а само квантора $\exists$ и логическите връзки.
+  \item
+    Изразете с формула твърдението, че {\em поне един} човек е добър {\em без}
+    да използвате квантора $\exists$, а само квантора $\forall$ и логическите връзки.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  На един остров живеели два вида обитатели - благородници и негодници.
+  Благородниците винаги казвали истината, а негодниците винаги лъжели.
+  Един пътешественик попаднал на този остров и искал да разбере повече за
+  неговите обитатели.
+  Всеки обитател на острова му казал:
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow (\forall xK(x)\vee\forall x\neg K(x)))\rightarrow\ ?$}
+    ``Всички тук сме от един и същ вид''.
+    Какви жителите на острова?
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow (\exists xK(x)\wedge\exists x\neg K(x)))\rightarrow\ ?$}
+    ``Някои от  нас са благородници и някои от нас са негодници''.
+    Какви жителите на острова?
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  След това пътешественикът попаднал на друг остров, на който
+  той силно се интересувал от това дали обитателите пушат.
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow \forall y(K(y)\rightarrow S(y))) \rightarrow\ ?$}
+    ``Всички благородници пушат.''
+    Какви са жителите на острова и пушат ли ?
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow \exists y(\neg K(y)\wedge S(y))) \rightarrow\ ?$}
+    ``Някои негодници пушат.''
+    Какви са жителите на острова и пушат ли ?
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Пътешественикът отишъл и на трети остров, на който всички обитатели били от един и същ вид.
+  \marginpar{Добавяме $\forall xK(x) \vee \forall x\neg K(x)$}
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow (S(x) \rightarrow \forall yS(y)))$}
+    ``Ако аз пуша, то всички пушат.''
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow (\exists yS(y) \rightarrow S(x)))$}
+    ``Ако някой обитател на острова пуше, то и аз пуша.''
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow (\exists yS(y) \wedge \neg S(x)))$}
+    ``Някои пушат, но аз не.''
+  \item
+    \marginpar{$\forall x(K(x) \leftrightarrow \exists yS(y))\ \wedge$ $\forall x(K(x) \iff \neg S(x))$}
+    На първия ден всеки му казал, ``Някои пушат.'', 
+    а на втория ден, ``Аз не пуша.''.
+  \end{enumerate}
+  Какво можем да кажем за обитателите на този остров?
+\end{problem}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "discrete-math"
+%%% End: 
