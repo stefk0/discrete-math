@@ -1,5 +1,28 @@
 % \chapter{Теория на множествата}
 
+\begin{dfn}
+  Множество е колекция от обекти.
+  Използваме означението $x \in A$, 
+  че обектът $x$ принадлежи на множеството $A$.
+\end{dfn}
+
+{\bf Празното множество} означаваме с $\emptyset$.
+То има следното свойство:
+\[(\forall x)[x \not \in \emptyset]\]
+или еквивалентно,
+\[\neg (\exists x)[x \in \emptyset].\]
+
+\begin{example}
+  Ето няколко примера за множества, които ще използваме често:
+  \begin{align*}
+    \Nat = & \{0,1,2,\dots\},\\
+    \mathbb{Z} = & \{\dots,-2,-1,0,1,2,\dots\},\\
+    \mathbb{Q} = & \{\frac{m}{n} \mid m,n \in \mathbb{Z}\ \&\ n \neq 0\}.
+  \end{align*}
+
+\end{example}
+
+
 % Не му е  мястото на това тук! Да се премести.
 % \section{Декартово произведение}
 %   Въвеждаме операция наредена двойка $\langle{x,y}\rangle$, която искаме да има следните свойства:
@@ -60,33 +83,119 @@
 %   \end{enumerate}
 % \end{problem}
 
+\subsection*{Сравняване на множества}
+
+Казваме, че едно множество $A$ {\bf се включва в} множеството $B$, което означаваме с $A \subseteq B$, 
+ако всеки елемент, който принадлежи на $A$, принадлежи и на $B$, т.е.
+\[(\forall x)[x \in A\ \rightarrow\ x \in B].\]
+Обикновено ще казваме, че $A$ е {\bf подмножество} на $B$.
+Ето няколко примера:
+\begin{itemize}
+\item 
+  $\emptyset \subseteq A$, за всяко множество $A$.
+\item
+  $\{1,2\} \subseteq \{1,2,3\}$.
+\item
+  $\{\{\emptyset\}\} \subseteq \{\{\emptyset\},\emptyset\}$.
+\item
+  $\Nat \subseteq \mathbb{Z}$ и $\mathbb{Z} \subseteq \mathbb{Q}$.
+\end{itemize}
+Две множества $A$ и $B$ са {\bf равни}, ако
+\[A = B \iff A \subseteq B\ \&\ B\subseteq A.\]
+
 \section*{Операции върху множества}
 
 \begin{dfn}
   Определяме следните операции върху произволни множества $A$ и $B$.
-  \begin{enumerate}[(i)]
+  \begin{enumerate}[{\bf (I)}]
   \item
-    Сечение, $A\cap B = \{x\ \mid\ x\in A\ \&\ x\in B\}$;
+    {\bf Сечение}
+    \[A\cap B = \{x\ \mid\ x\in A\ \&\ x\in B\}.\]
+    Казано малко по-формално, $A\cap B$ е множеството, за което е изпълнена формулата
+    \[(\forall x)[x \in A\cap B \iff (x\in A\ \wedge\ x \in B)].\]
+    Примери:
+    \begin{itemize}
+    \item 
+      $A \cap \emptyset = \emptyset$, за всяко множество $A$.
+    \item
+      $\{1,2,\emptyset\} \cap \{\emptyset\} = \{\emptyset\}$.
+    \item
+      $\{1,2,\{1,2\}\} \cap \{1,\{1\}\} = \{1\}$.
+    \end{itemize}
   \item
-    Обединение, $A\cup B = \{x\ \mid x\in A\ \vee\ x\in B\}$
+    {\bf Обединение}
+    \[A\cup B = \{x\ \mid x\in A\ \vee\ x\in B\}.\]
+    \[(\forall x)[x \in A\cup B \iff (x\in A\ \vee\ x \in B)].\]
+    $A\cup B$ е множеството, за което е изпълнена формулата
+    Примери:
+    \begin{itemize}
+    \item 
+      $A \cup \emptyset = A$, за всяко множество $A$.
+    \item
+      $\{1,2,\emptyset\} \cup \{1,2,\{\emptyset\}\} = \{1,2,\emptyset,\{\emptyset\}\}$.
+    \item
+      $\{1,2,\{1,2\}\} \cup \{1,\{1\}\} = \{1,2,\{1\},\{1,2\}\}$.
+    \end{itemize}
   \item
-    Разлика, $A\setminus B = \{x\ \mid\ x\in A\ \&\ x\not\in B\}$;
+    {\bf Разлика}
+    \[A\setminus B = \{x\ \mid\ x\in A\ \&\ x\not\in B\}.\]
+    $A\setminus B$ е множеството, за което е изпълнена формулата
+    \[(\forall x)[x \in A\setminus B \iff (x\in A\ \wedge\ x \not\in B)].\]
+    Примери:
+    \begin{itemize}
+    \item 
+      $A \setminus \emptyset = A$, за всяко множество $A$.
+    \item 
+      $\emptyset \setminus A = \emptyset$, за всяко множество $A$.
+    \item
+      $\{1,2,\emptyset\} \setminus \{1,2,\{\emptyset\}\} = \{\emptyset\}$.
+    \item
+      $\{1,2,\{1,2\}\} \setminus \{1,\{1\}\} = \{2,\{1,2\}\}$.
+    \end{itemize}
   \item
-    Симетрична разлика, $A\triangle B = (A\backslash B)\cup (B\backslash A)$;
-    % \item
-    %   $\bigcup A = \{x\mid (\exists y\in A)[x\in y]\}$;
-    % \item
-    %   $\bigcap A = \{x\mid (\forall y\in A)[x\in y]\}$;
+    {\bf Симетрична разлика}
+    \[A\triangle B = (A\backslash B)\cup (B\backslash A).\]
+    $A\triangle B$ е множеството, за което е изпълнена формулата
+    \[(\forall x)[x \in A\triangle B \iff [(x\in A\ \wedge\ x \not\in B) \vee (x \in B\ \wedge\ x\not\in A)]].\]
+    Примери:
+    \begin{itemize}
+    \item 
+      $A \triangle \emptyset = A$, за всяко множество $A$.
+    \item
+      $A \triangle A = \emptyset$, за всяко множество $A$.
+    \item
+      $A\triangle B = B \triangle A$, за всеки две множества $A$ и $B$.
+    \item
+      $\{1,2,\emptyset\} \triangle \{1,2,\{\emptyset\}\} = \{\emptyset\} \cup \{\{\emptyset\}\} = \{\emptyset,\{\emptyset\}\}$.
+    \item
+      $\{1,2,\{1,2\}\} \triangle \{1,\{1\}\} = \{2,\{1,2\}\} \cup \{\{1\}\} = \{2,\{1\},\{1,2\}\}$.
+    \end{itemize}
   \item
-    Степенно множество, $\Ps(A) = \{x\mid x\subseteq A\}$.
+    {\bf Степенно множество}
+    \[\Ps(A) = \{x\mid x\subseteq A\}.\]
+    $\Ps(A)$ е множеството, за което е изпълнена формулата
+    \[(\forall x)[x \in \Ps(A) \iff (\forall y)[y\in x\rightarrow y \in A]].\]
+    Примери:
+    \begin{itemize}
+    \item 
+      $\Ps(\emptyset) = \{\emptyset\}$, $\Ps(\{\emptyset\}) = \{\emptyset,\{\emptyset\}\}$.
+    \item
+      $\Ps(\{\emptyset,\{\emptyset\}\}) = \{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\emptyset,\{\emptyset\}\}\}$.
+    \item
+      $\Ps(\{1,2\}) = \{\emptyset,\{1\},\{2\},\{1,2\}\}$.
+    \end{itemize}
   \end{enumerate}
   Нека имаме редица от множества $\{A_1,A_2,\dots,A_n\}$.
   Тогава имаме следните операции:
-  \begin{enumerate}[i)]
+  \begin{enumerate}[{\bf (I)}]
   \item
-    $\bigcup^{n}_{i=1} A_i = \{x \mid \exists i (1\leq i\leq n\ \&\ x\in A_i \}$;
+    {\bf Обединение на редица от множества}
+    \[\bigcup^{n}_{i=1} A_i = \{x \mid \exists i (1\leq i\leq n\ \&\ x\in A_i)\}.\]
+    \[(\forall x)[x \in \bigcup^n_{i=1}A_i \iff (\exists i)[1 \leq i \leq n\ \wedge\ x \in A_i]].\]
   \item
-    $\bigcap^{n}_{i=1} A_i = \{x \mid \forall i (1\leq i\leq n \rightarrow x\in A_i)\}$;    
+    {\bf Сечение на редица от множества}
+    \[\bigcap^{n}_{i=1} A_i = \{x \mid \forall i (1\leq i\leq n \rightarrow x\in A_i)\}.\]
+    \[(\forall x)[x \in \bigcap^n_{i=1}A_i \iff (\forall i)[1 \leq i \leq n\ \rightarrow\ x \in A_i]].\]
   \end{enumerate}
 \end{dfn}
 
@@ -131,20 +240,9 @@
 %   Намерете $\bigcup{B}$, $\bigcap{B}$, $\bigcap\bigcup{B}$ и $\bigcup\bigcap{B}$.
 % \end{problem}
 
-\begin{example}
+% \begin{example}
   % Ето няколко примера, които показват действието на някои от операциите
-  \begin{enumerate}[1)]
-    % \item
-    %   \begin{enumerate}[]
-  \item
-    $\Ps\emptyset = \{\emptyset\}$
-  \item
-    $\Ps\{\emptyset\} = \{\emptyset,\{\emptyset\}\}$
-  \item
-    $\Ps\{\emptyset,\{\emptyset\}\} = \{\emptyset,\{\emptyset\},\{\{\emptyset\}\}, \{\emptyset,\{\emptyset\}\}\}$
-  \end{enumerate}
-  % \item
-%     \begin{enumerate}[]
+  % \begin{enumerate}[]
 %     \item
 %       $\bigcup\{\emptyset\} = \emptyset$
 %     \item
@@ -155,7 +253,7 @@
 %   \item
 %     $\bigcap\{\emptyset,\{\emptyset\}\} = \emptyset$
 % \end{enumerate}
-\end{example}
+% \end{example}
 
 
 
@@ -211,44 +309,37 @@
   Проверете:
   \begin{enumerate}[a)]
   \item
-    $A\setminus \emptyset = A$. 
+    $A\subseteq B \iff A\setminus B = \emptyset \iff A\cup B = B \iff A\cap B = A$;
   \item
-    $\emptyset\setminus A=\emptyset$. 
+    $A\setminus \emptyset = A$, $\emptyset\setminus A=\emptyset$, $A\setminus B = B\setminus A$.
   \item
-    $A\cup(B\cap C) = (A\cup B)\cap(A\cup C)$
+    $A\cap (B\cup A) = A \cap B$;
   \item
-    $C\subseteq A\ \&\ C\subseteq B \rightarrow C\subseteq A\cap B$
+    $A\cup(B\cap C) = (A\cup B)\cap(A\cup C)$ и $A \cap (B \cup C) = (A \cup B) \cap (A \cup C)$;
   \item
-    $A\subseteq C\ \&\ B\subseteq C \rightarrow A\cup B\subseteq C$
+    $C\subseteq A\ \&\ C\subseteq B \rightarrow C\subseteq A\cap B$;
   \item
-    $(\bigcup^{n}_{i=1} A_i) \cap B = \bigcup^{n}_{i=1} (A_i \cap B)$
+    $A\subseteq C\ \&\ B\subseteq C \rightarrow A\cup B\subseteq C$;
   \item
-    $(\bigcap^{n}_{i=1} A_i) \cup B = \bigcap^{n}_{i=1} (A_i \cup B)$
+    $(\bigcup^{n}_{i=1} A_i) \cap B = \bigcup^{n}_{i=1} (A_i \cap B)$;
   \item
-    $A\subseteq B \iff A\setminus B = \emptyset \iff A\cup B = B \iff A\cap B = A$
+    $(\bigcap^{n}_{i=1} A_i) \cup B = \bigcap^{n}_{i=1} (A_i \cup B)$;
   \item
-    $A\backslash B = A \iff A\cap B = \emptyset$
+    $A\backslash B = A \iff A\cap B = \emptyset$;
   \item
-    $A\backslash B = A\backslash (A\cap B)$
+    $A\backslash B = A\backslash (A\cap B)$ и $A\backslash B = A\backslash (A\cup B)$;
   \item
-    $(A\cup B)\setminus C = (A\setminus C) \cup (B\setminus C)$
+    $(A\cup B)\setminus C = (A\setminus C) \cup (B\setminus C)$;
   \item
-    \marginpar{Правила на де Морган}
-    $C\backslash (A\cup B) = (C\backslash A)\cap(C\backslash B)$
+    $C\backslash (A\cup B) = (C\backslash A)\cap(C\backslash B)$ и $C \backslash (A\cap B) = (C\backslash A)\cup(C\backslash B)$
   \item
-    $C \backslash (A\cap B) = (C\backslash A)\cup(C\backslash B)$
-  \item
-    $C\backslash(\bigcup^{n}_{i=1} A_i) = \bigcap^{n}_{i=1} (C\backslash A_i)$
-  \item
-    $C \backslash(\bigcap^{n}_{i=1} A_i) = \bigcup^{n}_{i=1} (C\backslash A_i)$
+    $C\backslash(\bigcup^{n}_{i=1} A_i) = \bigcap^{n}_{i=1} (C\backslash A_i)$ и $C \backslash(\bigcap^{n}_{i=1} A_i) = \bigcup^{n}_{i=1} (C\backslash A_i)$;
   % \item
   %   $A\cup\bigcap B = \{A\cup X\mid X\in B\}$, за $B\neq\emptyset$
   % \item
   %   $A\cap\bigcup B = \{A\cap X\mid X\in B\}$
   \item
-    $(A\backslash B)\backslash C = (A\backslash C)\backslash(B \backslash C)$
-  \item
-    $A\backslash (B\backslash C) = (A\backslash B) \cup (A\cap C)$
+    $(A\backslash B)\backslash C = (A\backslash C)\backslash(B \backslash C)$ и $A\backslash (B\backslash C) = (A\backslash B) \cup (A\cap C)$;
   \item
     $A\triangle B = B\triangle A$
   \item
@@ -260,15 +351,13 @@
   \item
     $A\cup B = (A\triangle B)\cup(A\cap B)$
   \item
-    $A\triangle B = \emptyset \iff A = B$
+    $A\triangle A = A$ и $A\triangle B = \emptyset \iff A = B$;
   \item
     $A\triangle B = C \iff B\triangle C = A \iff C\triangle A = B$;
   \item 
     $A\subseteq B \Rightarrow \Ps(A) \subseteq \Ps(B)$;
   \item
-    $\Ps(A\cap B) = \Ps(A) \cap \Ps(B)$;
-  \item
-    $\Ps(A\cup B) = \Ps(A) \cup \Ps(B)$.
+    $\Ps(A\cap B) = \Ps(A) \cap \Ps(B)$ и $\Ps(A\cup B) = \Ps(A) \cup \Ps(B)$;
   \end{enumerate}
 \end{problem}
 
@@ -298,6 +387,18 @@
     където са дадени множествата $A,B,C$ и $B\subseteq A\subseteq C$.
   \end{enumerate}
 \end{problem}
+
+\begin{example}
+  Нека съвкупността от обекти $D$ е определена като
+  \[D = \{A\mid A\mbox{ е множество и } A\not\in A\}.\]
+  Тогава:
+  \begin{enumerate}[a)]
+  \item
+    Ако $D \in D$, то $D \not\in D$. Противоречие.
+  \item
+    Ако $D \not\in D$, то $D \in D$. Противоречие.
+  \end{enumerate}
+\end{example}
 
 
 % \begin{problem}

@@ -1,13 +1,15 @@
-\documentclass[a4paper]{book}
-\usepackage[bindingoffset=2cm]{geometry}
-\usepackage[english,bulgarian]{babel}
-\setlength{\marginparsep}{0.5cm}
+\documentclass[a4paper,10pt]{report}
 
 % \setlength{\oddsidemargin}{4cm}
 % \setlength{\evensidemargin}{4cm}
 %\usepackage{ucs}
 
+
+% \usepackage[bindingoffset=2cm]{geometry}
+\usepackage[english,bulgarian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -17,7 +19,6 @@
 \usepackage{paralist}
 \usepackage{enumerate}
 \usepackage{makeidx}
-
 \usepackage{layout}
 
 % \usepackage{algorithm}
@@ -34,14 +35,12 @@
 % \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
 % \setlength{\parindent}{0.5cm}            % amount of indentation of paragraph
 %this package allows for hyperlinks within the pdf document
-\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
-citecolor=green, urlcolor=blue]{hyperref}
 
-
+\theoremstyle{definition}
 \newtheorem{thm}{Теорема}
 \newtheorem{crl}{Следствие}
 \newtheorem{lemma}{Лема}
-\newtheorem{dfn}{Дефиниция}
+\newtheorem{dfn}{Определение}
 \newtheorem{problem}{Задача}
 \newtheorem{example}{Пример}
 \newtheorem{remark}{Забележка}
@@ -79,12 +78,16 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\PDA}{\langle{Q,\Sigma,\Gamma,\#,s,\Delta,F}\rangle}
 \newcommand{\CFG}{\langle{V,\Sigma,R,S}\rangle}
 
+\renewcommand{\iff}{\ \leftrightarrow\ }
 
-\setlength{\marginparwidth}{1.2in}
+\setlength{\marginparsep}{0.5cm}
+\setlength{\marginparwidth}{110pt}
 \let\oldmarginpar\marginpar
 
-\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
-{\raggedright\footnotesize #1}}
+% \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+% {\raggedright\footnotesize #1}}
+\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
+{\raggedright\scriptsize #1}}
 
 \makeindex
 \begin{document}
@@ -93,13 +96,16 @@ citecolor=green, urlcolor=blue]{hyperref}
 
 \author{Stefan Vatev\thanks{foo}}
 \tableofcontents
-% \include{sets}
+\include{propositional}
+\include{predicate}
+\include{sets}
+\include{relations}
 % \include{functions}
 % \include{cardinality}
 % \include{comb1}
 % \include{comb2}
-\include{automata}
-\include{context-free}
+% \include{automata}
+% \include{context-free}
 % \include{boolean1}
 % \include{boolean2}
 % \include{graphs}
