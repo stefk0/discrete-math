@@ -1,10 +1,9 @@
 % \chapter{Теория на множествата}
 
-\begin{dfn}
-  Множество е колекция от обекти.
-  Използваме означението $x \in A$, 
-  че обектът $x$ принадлежи на множеството $A$.
-\end{dfn}
+{\bf Множество} е съвкупност от обекти (елементи).
+Едно множество може също така да бъде елемент на някое друго множество.
+Използваме означението $x \in A$, 
+че обектът $x$ принадлежи на множеството $A$.
 
 {\bf Празното множество} означаваме с $\emptyset$.
 То има следното свойство:
@@ -100,25 +99,24 @@
 \item
   $\Nat \subseteq \mathbb{Z}$ и $\mathbb{Z} \subseteq \mathbb{Q}$.
 \end{itemize}
-Две множества $A$ и $B$ са {\bf равни}, ако
+Две множества $A$ и $B$ са {\bf равни},
 \[A = B \iff A \subseteq B\ \&\ B\subseteq A.\]
 
 \section*{Операции върху множества}
 
-\begin{dfn}
-  Определяме следните операции върху произволни множества $A$ и $B$.
-  \begin{enumerate}[{\bf (I)}]
+Определяме следните операции върху произволни множества $A$ и $B$.
+\begin{enumerate}[{\bf (I)}]
+\item
+  {\bf Сечение}
+  \[A\cap B = \{x\ \mid\ x\in A\ \&\ x\in B\}.\]
+  Казано малко по-формално, $A\cap B$ е множеството, за което е изпълнена формулата
+  \[(\forall x)[x \in A\cap B \iff (x\in A\ \wedge\ x \in B)].\]
+  Примери:
+  \begin{itemize}
+  \item 
+    $A \cap \emptyset = \emptyset$, за всяко множество $A$.
   \item
-    {\bf Сечение}
-    \[A\cap B = \{x\ \mid\ x\in A\ \&\ x\in B\}.\]
-    Казано малко по-формално, $A\cap B$ е множеството, за което е изпълнена формулата
-    \[(\forall x)[x \in A\cap B \iff (x\in A\ \wedge\ x \in B)].\]
-    Примери:
-    \begin{itemize}
-    \item 
-      $A \cap \emptyset = \emptyset$, за всяко множество $A$.
-    \item
-      $\{1,2,\emptyset\} \cap \{\emptyset\} = \{\emptyset\}$.
+    $\{1,2,\emptyset\} \cap \{\emptyset\} = \{\emptyset\}$.
     \item
       $\{1,2,\{1,2\}\} \cap \{1,\{1\}\} = \{1\}$.
     \end{itemize}
@@ -197,7 +195,6 @@
     \[\bigcap^{n}_{i=1} A_i = \{x \mid \forall i (1\leq i\leq n \rightarrow x\in A_i)\}.\]
     \[(\forall x)[x \in \bigcap^n_{i=1}A_i \iff (\forall i)[1 \leq i \leq n\ \rightarrow\ x \in A_i]].\]
   \end{enumerate}
-\end{dfn}
 
 % Това е много сложно!
 % Тук имаме проблем с значението на $\bigcap\emptyset$.
@@ -331,7 +328,10 @@
   \item
     $(A\cup B)\setminus C = (A\setminus C) \cup (B\setminus C)$;
   \item
-    $C\backslash (A\cup B) = (C\backslash A)\cap(C\backslash B)$ и $C \backslash (A\cap B) = (C\backslash A)\cup(C\backslash B)$
+%    \marginpar{Намерете контра-пример!}
+    $A\setminus (B\setminus C) = (A\setminus B)\setminus C$;
+  \item
+    $C\setminus (A\cup B) = (C\backslash A)\cap(C\backslash B)$ и $C \backslash (A\cap B) = (C\backslash A)\cup(C\backslash B)$
   \item
     $C\backslash(\bigcup^{n}_{i=1} A_i) = \bigcap^{n}_{i=1} (C\backslash A_i)$ и $C \backslash(\bigcap^{n}_{i=1} A_i) = \bigcup^{n}_{i=1} (C\backslash A_i)$;
   % \item
@@ -341,7 +341,7 @@
   \item
     $(A\backslash B)\backslash C = (A\backslash C)\backslash(B \backslash C)$ и $A\backslash (B\backslash C) = (A\backslash B) \cup (A\cap C)$;
   \item
-    $A\triangle B = B\triangle A$
+    $A\triangle B = B\triangle A$ и $A \triangle B = (A \cup B)\setminus (A\cap B)$;
   \item
     $A\triangle(B\triangle C) = (A\triangle B)\triangle C$
   \item
