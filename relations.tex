@@ -1,50 +1,202 @@
-\section*{Релации}
+\chapter{Релации}
+\index{релация}
 
-\begin{dfn}
-  Една релация $R\ \subseteq\ A\times A$ е:
+\subsection{Декартово произведение}
+\marginpar{На англ. cartesian product}
+\index{декартово произведение}
+За две множества $A$ и $B$, определяме тяхното декартово произведение като
+\[A\times B = \{\pair{a,b}\mid a\in A\ \&\ b\in B\}.\]
+За краен брой множества $A_1,A_2,\dots,A_n$, определяме
+\[A_1\times A_2\times\cdots\times A_n = \{\pair{a_1,a_2,\dots,a_n}\mid a_1 \in A_1\ \&\ a_2\in A_2\ \&\ \dots\ \&\ a_n \in A_n\}.\]
+
+Подмножествата $R$ от вида $R \subseteq A_1\times A_2\times\cdots\times A_n$ се наричат релации.
+
+\begin{problem}
+  Вярно ли е, че:
   \begin{enumerate}[1)]
-  \item
-    антирефлексивна, ако
-    $(\forall x\in A)[(x,x)\not\in R]$
-  \item
-    рефликсивна, ако
-    $(\forall x\in A)((x,x)\in R)$;
-  \item
-    транзитивна, ако
-    $(\forall x,y,z\in A)((x,y)\in R\ \&\ (y,z)\in R \rightarrow (x,z)\in R)$;
-  \item
-    симетрична, ако
-    $(\forall x,y\in A)((x,y)\in R \rightarrow (y,x)\in R)$;
-  \item
-    антисиметрична, ако
-    $(\forall x,y\in A)((x,y)\in R\ \&\ (y,x)\in R \rightarrow x = y)$;
-  \item
-    асиметрична, ако
-    $(\forall x,y)[(x,y)\in R \rightarrow (y,x)\not\in R]$.
+  \item 
+    $A\times(B\cup C) = (A\times B) \cup (A\times C)$ ?
+  \item 
+    $A\times(B\cap C) = (A\times B) \cap (A\times C)$ ?
+  \item 
+    $A\times(B\setminus C) = (A\times B) \setminus (A\times C)$ ?
+  \end{enumerate}
+\end{problem}
+
+\marginpar{Бинарни релации}
+Релациите от вида $R\ \subseteq\ A\times A$ са важен клас, който ще срещаме често.
+Да разгледаме няколко основни вида релации от този клас:
+\begin{enumerate}[I)]
+\item
+  {\bf рефликсивна}, ако
+  \[(\forall x\in A)[\pair{x,x}\in R].\]
+  Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е рефлексивна, защото
+  \[(\forall x\in \Nat)[x \leq x].\]
+\item
+  {\bf антирефлексивна}, ако
+  \[(\forall x\in A)[\pair{x,x}\not\in R].\]
+  Например, релацията $<\ \subseteq\ \Nat\times\Nat$ е антирефлексивна, защото
+  \[(\forall x\in \Nat)[x \not< x].\]
+\item
+  {\bf транзитивна}, ако
+  \[(\forall x,y,z\in A)[\pair{x,y}\in R\ \&\ \pair{y,z}\in R \rightarrow \pair{x,z}\in R].\]
+  Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е транзитивна, защото
+  \[(\forall x,y,z\in A)[x \leq y\ \&\ y \leq z\ \rightarrow\ x\leq z].\]
+\item
+  {\bf симетрична}, ако
+  \[(\forall x,y\in A)[\pair{x,y}\in R \rightarrow \pair{y,x}\in R].\]
+  Например, релацията $=\ \subseteq\ \Nat\times\Nat$ е рефлексивна, защото
+  \[(\forall x,y\in \Nat)[x = y\ \rightarrow\ y = x].\]
+\item
+  {\bf антисиметрична}, ако
+  \[(\forall x,y\in A)[\pair{x,y}\in R\ \&\ \pair{y,x}\in R \rightarrow x = y].\]
+  Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е антисиметрична, защото
+  \[(\forall x,y,z\in A)[x \leq y\ \&\ y \leq x\ \rightarrow\ x = y].\]
+\item
+  {\bf асиметрична}, ако
+  \[(\forall x,y)[\pair{x,y}\in R \rightarrow \pair{y,x}\not\in R].\]
+  Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е асиметрична, защото
+  \[(\forall x,y\in \Nat)[x < y\ \rightarrow\ y \not< x].\]
 \end{enumerate}
-\end{dfn}
+
+\begin{remark}
+  Добре е да запомните как се наричат тези основни видове релации,
+  защото ще ги използваме често.
+\end{remark}
 
 \begin{example}
-  \begin{enumerate}[1)]
+  Да обобщим примерите от по-горе.
+  \begin{enumerate}[a)]
   \item
     Релацията $\leq\ \subseteq\ \Nat\times\Nat$ е рефлексивна, транзитивна и антисиметрична.
   \item
-    Релацията $<\ \subseteq\ \Nat\times\Nat$ е рефлексивна, транзитивна и асиметрична.
+    Релацията $<\ \subseteq\ \Nat\times\Nat$ е антирефлексивна, транзитивна и асиметрична.
   \item
     Релацията $=\ \subseteq\ \Nat\times\Nat$ е рефлексивна, транзитивна и симетрична.
   \end{enumerate}
 \end{example}
 
+\begin{problem}
+  Кои от изброените по-горе свойства има релацията $R$, където:
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{$x\vert y \iff (\exists z)(y = x\cdot z)$}
+    $R \subseteq \Z\times \Z$ е определена като
+    \[\pair{x,y} \in R \iff x \vert y.\]
+  \item
+    \marginpar{$gcd$ - greatest common divisor}
+    $R \subseteq \Z\times \Z$ е определена като
+    \[\pair{x,y}\in R \iff gcd(x,y) = 1 \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
+  \item
+    \marginpar{$\R$ - реални, $\Q$ - рационални}
+    $R \subseteq \R\times\R$ е определена като
+    \[\pair{x,y} \in R\ \iff\ x\cdot y \in \Q.\]
+  \item
+    Нека $S$ да бъде произволно множество и $T \subseteq S$.
+    Определяме релацията $R \subseteq \Ps(S)\times\Ps(S)$ като:
+    \[\pair{A,B}\in R\ \iff\ (A\cup B)\setminus(A\cap B) \subseteq T.\]
+  \end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+  Нека $R$ е релация върху $A$.
+  Да определим релациите:
+  \begin{itemize}
+  \item 
+    $S = \{\pair{x,y}\mid \pair{x,y} \in R\ \wedge\ \pair{y,x} \in R\}$;
+  \item
+    $T = \{\pair{x,y} \mid \pair{x,y}\in R\ \wedge\ \pair{y,x}\not\in R\}$.
+  \end{itemize}
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item 
+    $S$ е симетрична и $T$ е антисиметрична.
+  \item
+    $\pair{x,y} \in R\ \iff\ (\pair{x,y}\in S \vee \pair{x,y} \in T)$;
+  \item
+    ако $R$ е транзитивна, то $S$ и $T$ са също транзитивни, но обратната посока не е вярна.
+  \end{enumerate}
+\end{problem}
+
+
+Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
+Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
+Релацията $R \subseteq A\times A$ се нарича:
+\begin{itemize}
+\item
+  \marginpar{На англ. partial order}
+  {\bf частична наредба}, ако тя е рефлексивна, транзитивна и антисиметрична.
+  Например, $\leq$ е частична наредба.
+  Също така, релацията $\subseteq$ между множества е частична наредба.
+\item 
+  \marginpar{На англ. equivalence relation}
+  {\bf релация на еквивалентност}, ако тя е рефлексивна, транзитивна и симетрична.
+  Например, $=$ е релация на еквивалентност.
+\item
+  \marginpar{На англ. linear order}
+  {\bf линейна наредба}\index{наредба!линейна}, ако $R$ е частична наредба, 
+  и за всеки два елемента $x,y$ точно едно от $\pair{x,y} \in R$, $x = y$, $\pair{y,x}\in R$ е изпълнено.
+\item
+  \marginpar{На англ. well-founded relation}
+  {\bf фундирана наредба}\index{наредба!фундирана}, 
+  ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
+  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)\neg(\exists y\in X)[\pair{y,m} \in R]].\]
+\item
+  \marginpar{На англ. well-ordered relation}
+  {\bf добра наредба}\index{наредба!добра}, ако всяко непразно подмножество $X\subseteq A$ има {\em най-малък} елемент , т.е.
+  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)(\forall y\in X)[\pair{m,y}\in R \vee m = y]].\]
+\end{itemize}
+
+\begin{remark}
+  Обърнете внимание на разликата между понятията {\em минимален} и {\em най-малък} елемент относно релацията $R$.
+  \begin{itemize}
+  \item $x_0$ е минимален елемент за множеството $X \subseteq A$ относно $R$,
+    ако {\em не съществуват елементи} $y \in X$, за които $\pair{y,x}\in R$, т.е.
+    \[(\forall y \in X)[\pair{y,x} \not\in R].\]
+  \item $x_0$ е най-малък елемент за множеството $X \subseteq A$ относно $R$,
+    ако за {\em всеки друг елемент} $y \in X$ е изпълнено $\pair{x,y}\in R$, т.е.
+    \[(\forall y \in X)[x\neq y \rightarrow \pair{x,y} \in R].\]
+  \end{itemize}
+\end{remark}
+
+\begin{problem}
+  Нека $R$ и $S$ са релации на еквивалентност върху множеството $A$.
+  Определете кои от свойствата а) - г) притежават тези релации.
+  След това, нека $R$ и $S$ да бъдат частични наредби върху $A$
+  и отново определете кои от свойствата а) - г) притежават тези релации.
+  \begin{enumerate}[a)]
+  \item
+    $R \cap S$;
+  \item
+    $R \cup S$;
+  \item
+    $R \setminus S$;
+  \item
+    $R \circ S$.
+  \end{enumerate}
+\end{problem}
+
+
 \subsection*{Операции върху релации}
-\begin{enumerate}[(i)]
+\begin{enumerate}[I)]
 \item
-  Композиция на релации
-  $S\circ T = \{\langle{x,y}\rangle \mid (\exists z)[\langle{x,z}\rangle\in T\ \&\ \langle{z,y}\rangle \in S]\}$;
+  {\bf Композиция} на две релации $S \subseteq A\times B$ и $T \subseteq B\times C$ е релацията $S\circ T \subseteq A\times C$,
+  определена като:
+  \[S\circ T = \{\langle{x,y}\rangle \mid (\exists z)[\pair{x,z}\in T\ \&\ \pair{z,y} \in S]\}.\]
 \item
-  $R^{-1} = \{\langle{x,y}\rangle \mid \langle{y,x}\rangle \in R\}$;
-\item
-  $\overline{R} = \{\langle{x,y}\rangle \in A\times B \mid\langle{x,y}\rangle\not\in R\}$;
+  {\bf Обръщане} на релацията $R \subseteq A\times B$ е релацията $R^{-1}\subseteq B\times A$, 
+  определена като:
+  \[R^{-1} = \{\pair{x,y} \mid \pair{y,x} \in R\}.\]
+% \item
+  
+%   $\overline{R} = \{\langle{x,y}\rangle \in A\times B \mid\langle{x,y}\rangle\not\in R\}$;
 \end{enumerate}
+
+\begin{problem}
+  Дайте пример за релации $R$ и $S$, за които
+  \[R\circ S \neq S\circ R.\]
+\end{problem}
 
   
 \begin{problem}
@@ -65,107 +217,138 @@
     \begin{enumerate}[(i)]
     \item
       Нека $R$ да бъде симетрична. Ще докажем, че $R^{-1}\subseteq R$, т.е.
-      \[(\forall x\forall y)[(x,y)\in R^{-1} \rightarrow (y,x)\in R].\]
-      Нека $(x,y)\in R^{-1}$. Тогава имаме, че $(y,x)\in R$ и следователно $(x,y)\in R$,
+      \[(\forall x\forall y)[(x,y)\in R^{-1} \rightarrow (x,y)\in R].\]
+      Нека $(x,y)\in R^{-1}$. Тогава по определение имаме, че $(y,x)\in R$ и следователно $(x,y)\in R$,
       защото $R$ е симетрична.
     \item
       Нека $R^{-1}\subseteq R$. Щe докажем, че $R$ е симетрична, т.е.
       \[(\forall x\forall y)[(x,y)\in R \rightarrow (y,x)\in R].\]
-      Нека $(x,y)\in R$, следователно $(y,x)\in R^{-1}$.
+      Нека $(x,y)\in R$, следователно по определение $(y,x)\in R^{-1}$.
       Тогава от $R^{-1}\subseteq R$ следва, че $(y,x)\in R$.
     \end{enumerate}
   \end{enumerate}
 \end{proof}
 
-
 \begin{problem}
-  Нека $R$ да бъде релация на еквивалентност върху $B$ и $f:A\to B$.
-  Дефинираме множеството \[Q = \{((x,y)\in A\times A\mid (f(x),f(y))\in R\}.\]
-  Докажете, че $Q$ е релация на еквивалентност.
-\end{problem}
-
-\begin{problem}
-  Нека $\{(a,b)\}\subseteq R$, за някои $a\neq b$.
+  Нека $\{\pair{a,b}\}\subseteq R$, за някои $a\neq b$.
   Докажете, че ако $R$ е симетрична, то $R$ не е антисиметрична.
 \end{problem}
-\begin{proof}
-  Нека $R$ е симетрична.
-\end{proof}
-
-
+% \begin{proof}
+%   Нека $R$ е симетрична.
+% \end{proof}
 
 \begin{problem}
-  Проверете за $R$ дали е рефлексивна, транзитивна, симетрична, антисиметрична или асиметрична релация.
+  Проверете дали релацията $R$ е рефлексивна, транзитивна, симетрична, антисиметрична или асиметрична.
   \begin{enumerate}[a)]
   \item
-    $R\subsetneq \mathbb{N}^2, aRb \iff a | b$ 
+    \marginpar{Озн. $\Nat^2 = \Nat\times\Nat$}
+    $R\subsetneq \Nat^2$ и е определна като 
+    \marginpar{$a\vert b \iff (\exists k\in\Nat)(b = k\cdot a)$}
+    \[(a,b) \in R \iff a | b.\]
   \item
-    $R\subseteq \R^2 , aRb \iff a.b > 0$ 
+    \marginpar{Озн. $\R$ - реалните числа}
+    $R\subseteq \R^2$ и е определена като
+    \[(a,b) \in R \iff a.b > 0.\]
   \item
-    $R\subseteq \R^2, aRb \iff a+b = 0$
+    $R\subseteq \R^2$ и е определена като 
+    \[(a,b) \in R \iff a+b = 0.\]
   \item
-    $R\subseteq \R^2, aRb \iff a+b = 5$ 
+    $R\subseteq \R^2$ и е определена като
+    \[(a,b) \in R \iff a+b = 5.\]
   \item
-    $R\subseteq \R^2, aRb \iff a+b\mbox{ е четно }$ 
+    $R\subseteq \R^2$ и е определена като 
+    \[(a,b) \in R \iff a+b\mbox{ е четно}.\]
   \item
-    $R\subseteq (\R^2)^2, \langle{a,b}\rangle R \langle{c,d}\rangle \iff a+d = b+c$ 
+    $R\subseteq (\R^2)^2$ и е определена като
+    \[(\langle{a,b}\rangle, \langle{c,d}\rangle) \in R \iff a+d = b+c.\]
   \item
-    $R\subseteq (\R^2)^2, \langle{a,b}\rangle R \langle{c,d}\rangle \iff a.d = b.c$ 
+    $R\subseteq (\R^2)^2$ и е определена като
+    \[(\langle{a,b}\rangle,\langle{c,d}\rangle) \in R \iff a\cdot d = b\cdot c.\]
   \item
-    $R_{m}\subseteq \Z^2, m\in \Z, m>0, aR_{m}b \iff m\mid (a - b)$ 
+    \marginpar{Озн. $\Z$ - целите числа}
+    $R_{m}\subseteq \Z^2, m\in \Z, m>0$ и е определена като
+    \[(a,b) \in R_m \iff m\mid (a - b).\]
   \item
-    $R\subseteq \R^2, xRy \iff (x-y)\mbox{ е рационално число}$ 
+    $R\subseteq \R^2$ и е определена като 
+    \[(x,y) \in R \iff (x-y)\mbox{ е рационално число}.\]
   \item
-    $aRb \iff a,b\in\N\ \&\ (a = b \vee a+1 = b)$ 
+    \marginpar{Озн. $\Q$ - рационалните числа}
+    $R \subseteq \Q^2$ и е определена като
+    \[(p,r) \in R\ \iff\ p-r \mbox{ е цяло число}.\]
   \item
-    $aRb \iff a,b\in\N\ \&\ (\exists k\in\N)(a+k = b)$
+    $R \subseteq \Nat^2$ и е определена като
+    \[(a,b) \in R \iff a = b \vee a+1 = b.\]
   \item
-    Нека $\leq_1$ е частична наредба върху $A$, $\leq_2$ е частична наредба върху $B$.
-    $\langle{a,b}\rangle R\langle{c,d}\rangle \iff a\leq_{1}c\ \&\ b\leq_{2}d$ 
+    $R \subseteq \Nat^2$ и е определена като
+    \[\pair{a,b}\in R \iff (\exists k\in\N)[a+k = b].\]
   \item
-    Нека $\leq_1$ е частична наредба върху $A$, $\leq_2$ е частична наредба върху $B$.
-    $\langle{a,b}\rangle R\langle{c,d}\rangle \iff a\leq_{1}c\ \vee\ b\leq_{2}d$
+    Нека $\leq_1\ \subseteq\ A^2$ и $\leq_2\ \subseteq\ B^2$ са частични наредби.
+    $R \subseteq A^2\times B^2$ е определена като
+    \[(\pair{a,b}, \pair{c,d}) \in R \iff a\leq_{1}c\ \wedge\ b\leq_{2}d .\]
+  \item
+    Нека $\leq_1\ \subseteq\ A^2$ и $\leq_2\ \subseteq\ B^2$ са частични наредби.
+    $R \subseteq A^2\times B^2$ е определена като
+    \[(\pair{a,b}, \pair{c,d}) \in R \iff a\leq_{1}c\ \vee\ b\leq_{2}d .\]
   \item
     $f:X\rightarrow Y$ е функция, $R\ \subseteq\ \Ps(X)\times\Ps(X)$ и 
     \[(A,B)\in R \iff f(A) = f(B).\]
   \end{enumerate}
 \end{problem}
 
+\begin{problem}
+  Нека $R$ да бъде релация на еквивалентност върху $B$ и $f:A\to B$.
+  Дефинираме множеството 
+  \[Q = \{((x,y)\in A\times A\mid (f(x),f(y))\in R\}.\]
+  Докажете, че $Q$ е релация на еквивалентност.
+\end{problem}
 
-\begin{dfn}
-  \begin{enumerate}
+
+\subsection*{Азбуки и думи}
+
+\begin{itemize}
+\item
+  Азбука е крайно множество $X = \{a_1,\dots,a_n\}$ като елементите $a_i$ на $X$ наричаме {\bf букви}.
+\item
+  Нека да фиксираме един елемент $\varepsilon \not\in X$.
+  Сега ще определим {\bf думите} над азбуката $X$. Това са:
+  \begin{enumerate}[1)]
   \item
-    Азбука е крайно множество $X = \{a_1,\dots,a_n\}, \varepsilon\not\in X$.
-    Елементите на $X$ наричаме букви.
+    \marginpar{наричаме $\varepsilon$ празната дума}
+    $\varepsilon$ е дума над $X$;
   \item
-    Думи над азбуката $X$ са:
-    \begin{enumerate}
-    \item
-      $\varepsilon$ е дума над $X$, наричаме я празната дума.
-    \item
-      Нека $\alpha$ е дума над $X$. 
-      Тогава за всяко $i\leq n$ имаме, че $\alpha a_i$ е дума над $X$;
-    \item
-      няма други думи над $X$.
-    \end{enumerate}
+    \marginpar{т.е. думите са крайни последователности от букви}
+    Нека $\alpha$ е дума над $X$ и $a \in X$ е буква.
+    Тогава $\alpha a$ е дума над $X$;
   \item
-    Нека $\alpha=a_{i_1}\dots a_{i_m}$ и $\beta=b_{j_1}\dots b_{j_n}$ са думи над $X$.
-    $\alpha$ е начало на $\beta$, ако $m\leq n$ и $(\forall k\leq m)(a_{i_k} = b_{j_k})$.
-    $\alpha$ е край на $\beta$, ако $m\leq n$ и $(\forall k\leq m)(a_{i_{(m-k)}} = b_{j_{(n-k)}})$.
+    \marginpar{Защо е важно условие 3) ?}
+    няма други думи над $X$.
   \end{enumerate}
-  Означаваме с $X^n$ множеството от всички думи с дължина $n$ над азбуката $X$, $X^0 = \{\varepsilon\}$.
-  С $X^{*}$ означаваме множеството от всички думи над азбуката $X$, т.е. $X^{*} = \bigcup_{0\leq n} X^{n}$.
-\end{dfn}
+\item
+  Нека $\beta=b_{1}\cdots b_{n}$ и $\gamma=c_{1}\cdots c_{m}$ са думи над $X$.
+  Тогава казваме, че 
+  $\beta$ е {\bf начало} на $\gamma$, ако $n\leq m$ и $(\forall k\leq n)(b_{k} = c_{k})$;
+  $\beta$ е {\bf край} на $\gamma$, ако $n \leq m$ и $(\forall k\leq n)(b_{n-k} = c_{m-k})$.
+\end{itemize}
+Означаваме с $X^n$ множеството от всички думи с дължина $n$ над азбуката $X$, $X^0 = \{\varepsilon\}$.
+С $X^{*}$ означаваме множеството от всички думи над азбуката $X$, т.е.
+\marginpar{$0 \in \Nat$}
+\[X^{*} = \bigcup_{n\in\Nat} X^{n}.\]
 
-Дефинираме дължината $|\alpha|$ на думите $\alpha \in X^*$ с индукция по построението на $\alpha$.
+Сега ще определим функцията {\bf дължина}\index{дума!дължина} на дума.
+\marginpar{Функцията $\abs{\cdot}:X^\star\to\Nat$ е винаги сюрективна. Кога е биективна?}
+Дължината $|\alpha|$ на думите $\alpha \in X^*$ се определя с индукция по построението на $\alpha$.
 \begin{enumerate}[(i)]
   \item
-    Ако $\alpha = \varepsilon$, то $|\alpha| = 0$;
+    Нека $\alpha = \varepsilon$. Тогава $|\alpha| = 0$.
   \item
-    Ако $\alpha = \beta a$, за някоя дума $\beta\in X^*$ и някоя буква $a\in X$. Тогава \[|\alpha| = |\beta| + 1.\]
+    Нека $\alpha = \beta a$, за някоя дума $\beta\in X^*$ и някоя буква $a\in X$.
+    Тогава \[|\alpha| = |\beta| + 1.\]
 \end{enumerate}
 
-Дефинираме операцията {\em конкатенация}\index{конкатенация} $\cdot$ на две думи $\alpha$ и $\beta$ от $X^*$ с индукция по дължината $\beta$:
+Определяме функцията {\bf конкатенация}\index{дума!конкатенация} $\cdot$, т.е.
+слепване на две думи.
+За всеки две думи $\alpha$ и $\beta$ от $X^*$ определяме тяхната конкатенация с индукция по дължината $\beta$:
+\marginpar{$\cdot:X^\star\times X^\star \to X^\star$ е винаги сюрективна. Може ли да бъде биективна?}
 \begin{enumerate}[(i)]
   \item
     $|\beta| = 0$, т.е. $\beta = \varepsilon$.
@@ -176,13 +359,13 @@
 \end{enumerate}
 
 Сега можем да даден алтернативни дефиниции на понятията начало и край на дума.
-Казваме, че думата $\alpha$ е начало на думата $\beta$, ако съществува дума $\gamma$ такава, че
+Казваме, че думата $\alpha$ е {\bf начало} на думата $\beta$, ако съществува дума $\gamma \in X^\star$ такава, че
 $\beta = \alpha\cdot\gamma$.
-Аналогично дефинираме $\alpha$ да бъде край на думата $\beta$.
-
+Аналогично дефинираме $\alpha$ да бъде {\bf край} на думата $\beta$, ако съществува $\gamma \in X^\star$ такава, че
+$\beta = \gamma \cdot \alpha$.
 
 \begin{problem}
-  Определете релациите:
+  Какви свойства имат следните релации?
   \begin{enumerate}[a)]
   \item
     $\alpha R \beta \iff \alpha \mbox{ е начало на }\beta$ 
@@ -191,10 +374,12 @@ $\beta = \alpha\cdot\gamma$.
   \item
     $\alpha R \beta \iff \alpha \mbox{ е начало на }\beta \vee (\exists\alpha_1\in X^{*})(\exists a,b\in X)(\alpha_1 a \mbox{ е начало на }\alpha\ \&\ \alpha_1 b \mbox{ е начало на } \beta)$
   \item
-    $R\subseteq (\{0,1\}^{n})^{2}, \langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff a_1\leq b_1\ \&\dots\ \&\ a_n\leq b_n$
-    Забележете, че това не е лексикографската наредба.
+    \marginpar{това не е лексикографската наредба}
+    $R\subseteq (\{0,1\}^{n})^{2}$ е определена като
+    \[\langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff a_1\leq b_1\ \&\dots\ \&\ a_n\leq b_n\]
   \item
-    $R\subseteq (\{0,1\}^{n})^{2}, \langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff (\exists i : 1\leq i\leq n)((\forall j < i)(a_j = b_j)\ \&\ a_i \leq b_i)$
+    $R\subseteq (\{0,1\}^{n})^{2}$ е определена като
+    \[\langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff (\exists i : 1\leq i\leq n)((\forall j < i)(a_j = b_j)\ \&\ a_i \leq b_i)\]
 \end{enumerate}
 \end{problem}
 \begin{proof}
@@ -264,62 +449,59 @@ $\beta = \alpha\cdot\gamma$.
   Докажете, че $R$ е релация на еквивалентност.
 \end{problem}
 
-
-
-\begin{dfn}
-  Нека $R$ е релация.
-  Множеството $[x]_R$ се дефинира като
-  \[[x]_R = \{t\mid xRt\}.\]
-  Ако $R$ е релация на еквивалентност и $x\in Field(R)$, то $[x]_R$ клас на еквивалентност за $x$ (по модул $R$).
-\end{dfn}
+Нека $R \subseteq A\times A$ е бинарна релация.
+Да определим множеството $[x]_R$ като
+\[[x]_R = \{y\in A\mid \pair{x,y} \in R\}.\]
+Ако $R$ е релация на еквивалентност и $x\in Field(R)$, то наричаме множеството $[x]_R$ {\bf клас на еквивалентност} за $x$ относно релацията $R$.
 
 \begin{example}
-  Нека $\sim$ е бинарна релация върху $\N$, дефинирана като
-  \[x\sim y \iff x\equiv y\ (\mod\ 4).\]
-  $\sim$ е релация на еквивалентност и има четири класове на еквивалентност
-  \[[0]_\sim, [1]_\sim, [2]_\sim, [3]_\sim.\]
+  \marginpar{$x \equiv y \mod 4 \iff (\exists k \in \Z)(x = y + 4\cdot k)$}
+  Нека $\sim_4\ \subseteq\ \Nat\times \Nat$ е бинарна релация, дефинирана като
+  \[x\sim_4 y \iff x\equiv y \mod 4.\]
+  $\sim_4$ е релация на еквивалентност и има четири класа на еквивалентност
+  \[[0]_{\sim_4}, [1]_{\sim_4}, [2]_{\sim_4}, [3]_{\sim_4}.\]
 \end{example}
 
 \begin{problem}
-  Да дефинираме релацията $R$ върху реалните числа, като:
-  \[xRy \iff (x-y)\in\Z.\]
-  Намерете $[1]_R$ и $[\frac{1}{2}]_R$.
+  Да дефинираме релацията $R \subseteq \R\times \R$ като:
+  \[\pair{x,y}\in R \iff (x-y)\in\Z.\]
+  Намерете множествата $[1]_R$ и $[\frac{1}{2}]_R$.
 \end{problem}
 
-
 \begin{lemma}
-  Нека $R$ е релация на еквивалентност върху $A$ и $x,y\in A$. Тогава \[[x]_R = [y]_R \iff xRy.\]
+  Нека $R\subseteq A\times A$ е релация на еквивалентност и $x,y\in A$. 
+  Тогава \[[x]_R = [y]_R \iff xRy.\]
 \end{lemma}
 
 
-\begin{problem}
-  Покажете, че за всяка релация $R$ и $x$, $[x]_R = R[\{x\}]$.
-\end{problem}
+% \begin{problem}
+%   Покажете, че за всяка релация $R$ и $x$, $[x]_R = R[\{x\}]$.
+% \end{problem}
 
 %% Rosen Textbook
 \begin{problem}
-  Кои от следните релации върху множеството от функциите от $\Z$ в $\Z$.
+  Кои от следните релации върху множеството от функциите от $\Z$ в $\Z$
+  са релации на еквивалентност?
   \begin{enumerate}[a)]
   \item
-    $\{(f,g)\mid f(1) = g(1)\}$.
+    $R = \{(f,g)\mid f(1) = g(1)\}$.
   \item
-    $\{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
+    $R = \{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
   \item
-    $\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
+    $R =\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
   \item
-    $\{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
+    $R = \{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
   \item
-    $\{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
+    $R = \{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
   \end{enumerate}
 \end{problem}
 
-
 \begin{problem}
-  Нека $A$ е непразно множество и $f$ е функция с $Domain(f) = A$.
-  Дефинираме $R$ върху $A$ като:
-  \[\{(x,y)\mid x,y\in A\wedge f(x) = f(y)\}.\]
+  Нека $A$ е непразно множество и $f$ е функция с $Dom(f) = A$.
+  Дефинираме релацията $R\subseteq A\times A$ като:
+  \[R = \{(x,y)\mid x,y\in A\wedge f(x) = f(y)\}.\]
   Докажете, че
-  \begin{enumerate}[(i)]
+  \begin{enumerate}[a)]
   \item
     $R$ е релация на еквивалентност.
   \item
