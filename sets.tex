@@ -1,5 +1,5 @@
-% \chapter{Теория на множествата}
-
+\chapter{Множествата}
+\index{множество}
 {\bf Множество} е съвкупност от обекти (елементи).
 Едно множество може също така да бъде елемент на някое друго множество.
 Използваме означението $x \in A$, 
@@ -113,7 +113,9 @@
   \[(\forall x)[x \in A\cap B \iff (x\in A\ \wedge\ x \in B)].\]
   Примери:
   \begin{itemize}
-  \item 
+  \item
+    $A \cap A = A$, за всяко множество $A$.
+  \item
     $A \cap \emptyset = \emptyset$, за всяко множество $A$.
   \item
     $\{1,2,\emptyset\} \cap \{\emptyset\} = \{\emptyset\}$.
@@ -123,10 +125,12 @@
   \item
     {\bf Обединение}
     \[A\cup B = \{x\ \mid x\in A\ \vee\ x\in B\}.\]
-    \[(\forall x)[x \in A\cup B \iff (x\in A\ \vee\ x \in B)].\]
     $A\cup B$ е множеството, за което е изпълнена формулата
+    \[(\forall x)[x \in A\cup B \iff (x\in A\ \vee\ x \in B)].\]
     Примери:
     \begin{itemize}
+    \item
+      $A \cup A = A$, за всяко множество $A$.
     \item 
       $A \cup \emptyset = A$, за всяко множество $A$.
     \item
@@ -141,6 +145,8 @@
     \[(\forall x)[x \in A\setminus B \iff (x\in A\ \wedge\ x \not\in B)].\]
     Примери:
     \begin{itemize}
+    \item
+      $A \setminus A = \emptyset$, за всяко множество $A$.
     \item 
       $A \setminus \emptyset = A$, за всяко множество $A$.
     \item 
@@ -176,7 +182,9 @@
     Примери:
     \begin{itemize}
     \item 
-      $\Ps(\emptyset) = \{\emptyset\}$, $\Ps(\{\emptyset\}) = \{\emptyset,\{\emptyset\}\}$.
+      $\Ps(\emptyset) = \{\emptyset\}$.
+    \item
+      $\Ps(\{\emptyset\}) = \{\emptyset,\{\emptyset\}\}$.
     \item
       $\Ps(\{\emptyset,\{\emptyset\}\}) = \{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\emptyset,\{\emptyset\}\}\}$.
     \item
