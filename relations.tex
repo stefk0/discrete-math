@@ -1,7 +1,44 @@
 \chapter{Релации}
 \index{релация}
 
-\subsection{Декартово произведение}
+За да дадем определение на понятието релация, трябва първо 
+да въведем понятието декартово произведение на множества,
+което пък от своя страна се основава на понятието наредена двойка.
+
+\subsection*{Наредена двойка}
+
+За два елемента $a$ и $b$ въвеждаме опрецията {\bf наредена двойка} $\pair{a,b}$.
+Наредената двойка $\pair{a,b}$ има следното характеристичното свойство:
+\[a_1 = a_2\ \wedge\ b_1 = b_2\ \iff\ \pair{a_1,b_1} = \pair{a_2,b_2}.\]
+Понятието наредена двойка може да се дефинира по много начини, стига да изпълнява харектеристичното свойство.
+Ето примери как това може да стане:
+\begin{enumerate}[1)]
+\item
+  \marginpar{Norbert Wiener (1914)}
+  Първото теоретико-множествено определение на понятите наредена двойка е
+  дадено от Норберт Винер:
+  \[\pair{a,b} = \{\{\{a\},\emptyset\},\{\{b\}\}\}.\]
+\item
+  \marginpar{Kazimierz Kuratowski (1921)}
+  Определението на Куратовски се приема за ``стандартно'' в наши дни:
+  \[\pair{a,b} = \{\{a\},\{a,b\}\}.\]
+\end{enumerate}
+
+\begin{prb}
+  Докажете, че горните дефиниции наистина изпълняват харектеристичното свойство за наредени двойки.
+\end{prb}
+
+\begin{remark}
+  \marginpar{Пример за рекурсивна дефиниция}
+  Сега можем да въведем понятието наредена $n$-орка \[\pair{a_1,\dots,a_n}\] за всяко $n \geq 1$:
+  \begin{align*}
+    & \pair{a_1} = a_1,\\
+    & \pair{a_1,a_2,\dots,a_n} = \pair{a_1,\pair{a_2,\dots,a_n}}
+  \end{align*}
+\end{remark}
+
+ 
+\subsection*{Декартово произведение}
 \marginpar{На англ. cartesian product}
 \index{декартово произведение}
 За две множества $A$ и $B$, определяме тяхното декартово произведение като
@@ -9,17 +46,23 @@
 За краен брой множества $A_1,A_2,\dots,A_n$, определяме
 \[A_1\times A_2\times\cdots\times A_n = \{\pair{a_1,a_2,\dots,a_n}\mid a_1 \in A_1\ \&\ a_2\in A_2\ \&\ \dots\ \&\ a_n \in A_n\}.\]
 
-Подмножествата $R$ от вида $R \subseteq A_1\times A_2\times\cdots\times A_n$ се наричат релации.
+Подмножествата $R$ от вида $R \subseteq A\times A\times\cdots\times A$ се наричат релации.
 
 \begin{problem}
-  Вярно ли е, че:
+  Преверете, че:
   \begin{enumerate}[1)]
   \item 
-    $A\times(B\cup C) = (A\times B) \cup (A\times C)$ ?
+    $A\times(B\cup C) = (A\times B) \cup (A\times C)$.
+  \item
+    $(A\cup B)\times C = (A\times C)\cup (B\times C)$.
   \item 
-    $A\times(B\cap C) = (A\times B) \cap (A\times C)$ ?
+    $A\times(B\cap C) = (A\times B) \cap (A\times C)$.
+  \item
+    $(A \cap B)\times C = (A \times C)\cap(B\times C)$.
   \item 
-    $A\times(B\setminus C) = (A\times B) \setminus (A\times C)$ ?
+    $A\times(B\setminus C) = (A\times B) \setminus (A\times C)$.
+  \item
+    $(A\setminus B)\times C = (A\times C)\setminus (B\times C)$.
   \end{enumerate}
 \end{problem}
 
@@ -76,27 +119,27 @@
   \end{enumerate}
 \end{example}
 
-\begin{problem}
-  Кои от изброените по-горе свойства има релацията $R$, където:
-  \begin{enumerate}[a)]
-  \item
-    \marginpar{$x\vert y \iff (\exists z)(y = x\cdot z)$}
-    $R \subseteq \Z\times \Z$ е определена като
-    \[\pair{x,y} \in R \iff x \vert y.\]
-  \item
-    \marginpar{$gcd$ - greatest common divisor}
-    $R \subseteq \Z\times \Z$ е определена като
-    \[\pair{x,y}\in R \iff gcd(x,y) = 1 \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
-  \item
-    \marginpar{$\R$ - реални, $\Q$ - рационални}
-    $R \subseteq \R\times\R$ е определена като
-    \[\pair{x,y} \in R\ \iff\ x\cdot y \in \Q.\]
-  \item
-    Нека $S$ да бъде произволно множество и $T \subseteq S$.
-    Определяме релацията $R \subseteq \Ps(S)\times\Ps(S)$ като:
-    \[\pair{A,B}\in R\ \iff\ (A\cup B)\setminus(A\cap B) \subseteq T.\]
-  \end{enumerate}
-\end{problem}
+% \begin{problem}
+%   Кои от изброените по-горе свойства има релацията $R$, където:
+%   \begin{enumerate}[a)]
+%   \item
+%     \marginpar{$x\vert y \iff (\exists z)(y = x\cdot z)$}
+%     $R \subseteq \Z\times \Z$ е определена като
+%     \[\pair{x,y} \in R \iff x \vert y.\]
+%   % \item
+%   %   \marginpar{$gcd$ - greatest common divisor (най-голям общ делител)}
+%   %   $R \subseteq \Z\times \Z$ е определена като
+%   %   \[\pair{x,y}\in R \iff gcd(x,y) = 1 \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
+%   % \item
+%   %   \marginpar{$\R$ - реални, $\Q$ - рационални}
+%   %   $R \subseteq \R\times\R$ е определена като
+%   %   \[\pair{x,y} \in R\ \iff\ x\cdot y \in \Q.\]
+%   \item
+%     Нека $S$ да бъде произволно множество и $T \subseteq S$.
+%     Определяме релацията $R \subseteq \Ps(S)\times\Ps(S)$ като:
+%     \[\pair{A,B}\in R\ \iff\ (A\cup B)\setminus(A\cap B) \subseteq T.\]
+%   \end{enumerate}
+% \end{problem}
 
 
 \begin{problem}
@@ -119,132 +162,18 @@
   \end{enumerate}
 \end{problem}
 
-
-Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
-Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
-Релацията $R \subseteq A\times A$ се нарича:
-\begin{itemize}
-\item
-  \marginpar{На англ. partial order}
-  {\bf частична наредба}, ако тя е рефлексивна, транзитивна и антисиметрична.
-  Например, $\leq$ е частична наредба.
-  Също така, релацията $\subseteq$ между множества е частична наредба.
-\item 
-  \marginpar{На англ. equivalence relation}
-  {\bf релация на еквивалентност}, ако тя е рефлексивна, транзитивна и симетрична.
-  Например, $=$ е релация на еквивалентност.
-\item
-  \marginpar{На англ. linear order}
-  {\bf линейна наредба}\index{наредба!линейна}, ако $R$ е частична наредба, 
-  и за всеки два елемента $x,y$ точно едно от $\pair{x,y} \in R$, $x = y$, $\pair{y,x}\in R$ е изпълнено.
-\item
-  \marginpar{На англ. well-founded relation}
-  {\bf фундирана наредба}\index{наредба!фундирана}, 
-  ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
-  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)\neg(\exists y\in X)[\pair{y,m} \in R]].\]
-\item
-  \marginpar{На англ. well-ordered relation}
-  {\bf добра наредба}\index{наредба!добра}, ако всяко непразно подмножество $X\subseteq A$ има {\em най-малък} елемент , т.е.
-  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)(\forall y\in X)[\pair{m,y}\in R \vee m = y]].\]
-\end{itemize}
-
-\begin{remark}
-  Обърнете внимание на разликата между понятията {\em минимален} и {\em най-малък} елемент относно релацията $R$.
-  \begin{itemize}
-  \item $x_0$ е минимален елемент за множеството $X \subseteq A$ относно $R$,
-    ако {\em не съществуват елементи} $y \in X$, за които $\pair{y,x}\in R$, т.е.
-    \[(\forall y \in X)[\pair{y,x} \not\in R].\]
-  \item $x_0$ е най-малък елемент за множеството $X \subseteq A$ относно $R$,
-    ако за {\em всеки друг елемент} $y \in X$ е изпълнено $\pair{x,y}\in R$, т.е.
-    \[(\forall y \in X)[x\neq y \rightarrow \pair{x,y} \in R].\]
-  \end{itemize}
-\end{remark}
-
-\begin{problem}
-  Нека $R$ и $S$ са релации на еквивалентност върху множеството $A$.
-  Определете кои от свойствата а) - г) притежават тези релации.
-  След това, нека $R$ и $S$ да бъдат частични наредби върху $A$
-  и отново определете кои от свойствата а) - г) притежават тези релации.
-  \begin{enumerate}[a)]
-  \item
-    $R \cap S$;
-  \item
-    $R \cup S$;
-  \item
-    $R \setminus S$;
-  \item
-    $R \circ S$.
-  \end{enumerate}
-\end{problem}
-
-
-\subsection*{Операции върху релации}
-\begin{enumerate}[I)]
-\item
-  {\bf Композиция} на две релации $S \subseteq A\times B$ и $T \subseteq B\times C$ е релацията $S\circ T \subseteq A\times C$,
-  определена като:
-  \[S\circ T = \{\langle{x,y}\rangle \mid (\exists z)[\pair{x,z}\in T\ \&\ \pair{z,y} \in S]\}.\]
-\item
-  {\bf Обръщане} на релацията $R \subseteq A\times B$ е релацията $R^{-1}\subseteq B\times A$, 
-  определена като:
-  \[R^{-1} = \{\pair{x,y} \mid \pair{y,x} \in R\}.\]
-% \item
-  
-%   $\overline{R} = \{\langle{x,y}\rangle \in A\times B \mid\langle{x,y}\rangle\not\in R\}$;
-\end{enumerate}
-
-\begin{problem}
-  Дайте пример за релации $R$ и $S$, за които
-  \[R\circ S \neq S\circ R.\]
-\end{problem}
-
-  
-\begin{problem}
-  Докажете, че:
-  \begin{enumerate}[a)]
-  \item
-    $R$ е симетрична тогава и само тогава, когато $R^{-1}\subseteq R$;
-  \item
-    $R$ е транзитивна тогава и само тогава, когато $R\circ R\subseteq R$;
-  \item
-    $R$ е транзитивна и симетрична тогава и само тогава, когато $R = R^{-1}\circ R$.
-\end{enumerate}
-\end{problem}
-\begin{proof}
-  \begin{enumerate}[a)]
-  \item
-    Задачата се разделя на две подзадачи.
-    \begin{enumerate}[(i)]
-    \item
-      Нека $R$ да бъде симетрична. Ще докажем, че $R^{-1}\subseteq R$, т.е.
-      \[(\forall x\forall y)[(x,y)\in R^{-1} \rightarrow (x,y)\in R].\]
-      Нека $(x,y)\in R^{-1}$. Тогава по определение имаме, че $(y,x)\in R$ и следователно $(x,y)\in R$,
-      защото $R$ е симетрична.
-    \item
-      Нека $R^{-1}\subseteq R$. Щe докажем, че $R$ е симетрична, т.е.
-      \[(\forall x\forall y)[(x,y)\in R \rightarrow (y,x)\in R].\]
-      Нека $(x,y)\in R$, следователно по определение $(y,x)\in R^{-1}$.
-      Тогава от $R^{-1}\subseteq R$ следва, че $(y,x)\in R$.
-    \end{enumerate}
-  \end{enumerate}
-\end{proof}
-
-\begin{problem}
-  Нека $\{\pair{a,b}\}\subseteq R$, за някои $a\neq b$.
-  Докажете, че ако $R$ е симетрична, то $R$ не е антисиметрична.
-\end{problem}
-% \begin{proof}
-%   Нека $R$ е симетрична.
-% \end{proof}
-
 \begin{problem}
   Проверете дали релацията $R$ е рефлексивна, транзитивна, симетрична, антисиметрична или асиметрична.
   \begin{enumerate}[a)]
   \item
     \marginpar{Озн. $\Nat^2 = \Nat\times\Nat$}
-    $R\subsetneq \Nat^2$ и е определна като 
+    $R\subseteq \Nat^2$ и е определна като 
     \marginpar{$a\vert b \iff (\exists k\in\Nat)(b = k\cdot a)$}
     \[(a,b) \in R \iff a | b.\]
+  \item
+    \marginpar{$gcd$ - greatest common divisor (най-голям общ делител)}
+    $R \subseteq \Z\times \Z$ е определена като
+    \[\pair{x,y}\in R \iff gcd(x,y) = 1 \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
   \item
     \marginpar{Озн. $\R$ - реалните числа}
     $R\subseteq \R^2$ и е определена като
@@ -295,12 +224,259 @@
   \end{enumerate}
 \end{problem}
 
+\subsection*{Операции върху релации}
+\begin{enumerate}[I)]
+\item
+  {\bf Композиция} на две релации $S \subseteq B\times C$ и $T \subseteq A\times B$ е релацията $S\circ T \subseteq A\times C$,
+  определена като:
+  \[S\circ T = \{\langle{a,c}\rangle \mid (\exists b \in B)[\pair{a,b}\in T\ \&\ \pair{b,c} \in S]\}.\]
+\item
+  {\bf Обръщане} на релацията $R \subseteq A\times B$ е релацията $R^{-1}\subseteq B\times A$, 
+  определена като:
+  \[R^{-1} = \{\pair{x,y} \mid \pair{y,x} \in R\}.\]
+% \item
+  
+%   $\overline{R} = \{\langle{x,y}\rangle \in A\times B \mid\langle{x,y}\rangle\not\in R\}$;
+\end{enumerate}
+
+\begin{problem}
+  Дайте пример за релации $R$ и $S$, за които
+  \[R\circ S \neq S\circ R.\]
+\end{problem}
+
+  
+\begin{problem}
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item
+    $R$ е симетрична тогава и само тогава, когато $R^{-1}\subseteq R$;
+  \item
+    $R$ е транзитивна тогава и само тогава, когато $R\circ R\subseteq R$;
+  \item
+    $R$ е транзитивна и симетрична тогава и само тогава, когато $R = R^{-1}\circ R$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    Задачата се разделя на две подзадачи.
+    \begin{enumerate}[(i)]
+    \item
+      Нека $R$ да бъде симетрична. Ще докажем, че $R^{-1}\subseteq R$, т.е.
+      \[(\forall x\forall y)[(x,y)\in R^{-1} \rightarrow (x,y)\in R].\]
+      Нека $(x,y)\in R^{-1}$. Тогава по определение имаме, че $(y,x)\in R$ и следователно $(x,y)\in R$,
+      защото $R$ е симетрична.
+    \item
+      Нека $R^{-1}\subseteq R$. Щe докажем, че $R$ е симетрична, т.е.
+      \[(\forall x\forall y)[(x,y)\in R \rightarrow (y,x)\in R].\]
+      Нека $(x,y)\in R$, следователно по определение $(y,x)\in R^{-1}$.
+      Тогава от $R^{-1}\subseteq R$ следва, че $(y,x)\in R$.
+    \end{enumerate}
+  \item
+  \item
+    Нека $R^{-1}\circ R = R$. Ще докажем, че $R$
+    е симетрична и транзитивна.
+    \begin{enumerate}[(i)]
+    \item
+      Ще докажем, че $R$ e симетрична.
+      За целта е достатъчно да вземем произволна двойка $\pair{x,y} \in R$
+      и да покажем, че $\pair{y,x} \in R$.
+      Нека 
+      
+      \AxiomC{$\pair{x,y} \in R$}
+      % \AxiomC{$\psi\rightarrow\phi$}
+      \LeftLabel{$R^{-1}\circ R = R$:}
+      \UnaryInfC{$(\exists z)[\pair{x,z} \in R\ \wedge\ \pair{z,y} \in R^{-1}]$}
+      \UnaryInfC{$(\exists z)[\pair{z,x} \in R^{-1}\ \wedge\ \pair{y,z} \in R]$}
+      \UnaryInfC{$(\exists z)[\pair{y,z} \in R\ \wedge\ \pair{z,x} \in R^{-1}]$}
+      \UnaryInfC{$\pair{y,x} \in R^{-1}\circ R$}
+      \LeftLabel{$R^{-1}\circ R = R$: }
+      \UnaryInfC{$\pair{y,x} \in R$}
+      \DisplayProof
+      
+      Следователно,
+      \[(\forall x,y \in A)[\pair{x,y} \in R\ \rightarrow\ \pair{y,x} \in R].\]
+    \item
+      Ще докажем, че $R$ e транзитивна.
+      За целта е достатъчно да вземем произволни двойки $\pair{x,y} \in R$
+      и $\pair{y,z} \in R$, то $\pair{x,z} \in R$.
+      
+      \begin{prooftree}
+      \AxiomC{$\pair{x,y} \in R$}
+      \AxiomC{$\pair{y,z} \in R$}
+      \RightLabel{($R$ е симетрична)}
+      \UnaryInfC{$\pair{z,y} \in R$}
+      \UnaryInfC{$\pair{y,z} \in R^{-1}$}
+      \BinaryInfC{$\pair{x,z} \in R^{-1}\circ R$}
+      \RightLabel{($R^{-1}\circ R = R$)}
+      \UnaryInfC{$\pair{x,z} \in R$}
+      \end{prooftree}
+      Следователно,
+      \[(\forall x,y,z \in A)[(\pair{x,y} \in R\ \wedge\ \pair{y,z} \in R) \rightarrow\ \pair{x,z} \in R].\]
+    \end{enumerate}
+    Нека сега $R$ е транзитивна и симетрична.
+    Ще докажем, че $R^{-1}\circ R = R$.
+    
+    \begin{enumerate}[(i)]
+    \item 
+      Първо да отбележим, че
+      \begin{prooftree}
+        \AxiomC{$\pair{x,y} \in R$}
+        \AxiomC{$\pair{x,y} \in R$}
+        \RightLabel{($R$ е симетрична) }
+        \UnaryInfC{$\pair{y,x} \in R$}
+        \RightLabel{($R$ е транзитивна) }
+        \BinaryInfC{$\pair{x,x} \in R\ \wedge \pair{y,y}\in R$}
+      \end{prooftree}
+      Следователно,
+      \[(\forall x \in Dom(R))[\pair{x,x} \in R].\]
+    \item
+      Ще докажем, че $R^{-1}\circ R \subseteq R$.
+      
+      \begin{prooftree}
+        \AxiomC{$\pair{x,z}\in R$}
+        \AxiomC{$\pair{x,y} \in R^{-1}\circ R$}
+        \RightLabel{(Съществува $z$)}
+        \UnaryInfC{$\pair{z,y} \in R^{-1}$}
+        \UnaryInfC{$\pair{y,z} \in R$}
+        \RightLabel{($R$ е симетрична)}
+        \UnaryInfC{$\pair{z,y} \in R$}
+        \RightLabel{($R$ е транзитивна)}
+        \BinaryInfC{$\pair{x,y} \in R$}
+      \end{prooftree}
+    \item
+      Ще докажем, че $R \subseteq R^{-1}\circ R$.
+      \begin{prooftree}
+        \AxiomC{$\pair{x,y}\in R$}
+        \AxiomC{$\pair{x,y}\in R$}
+        \RightLabel{(От (i))}
+        \UnaryInfC{$\pair{y,y} \in R$}
+        \UnaryInfC{$\pair{y,y} \in R^{-1}$}
+        \RightLabel{(по деф.)}
+        \BinaryInfC{$\pair{x,y} \in R^{-1}\circ R$}
+      \end{prooftree}
+    \end{enumerate}
+  \end{enumerate}
+  
+\end{proof}
+
+\begin{problem}
+  Нека $\{\pair{a,b}\}\subseteq R$, за някои $a\neq b$.
+  Докажете, че ако $R$ е симетрична, то $R$ не е антисиметрична.
+\end{problem}
+% \begin{proof}
+%   Нека $R$ е симетрична.
+% \end{proof}
+
 \begin{problem}
   Нека $R$ да бъде релация на еквивалентност върху $B$ и $f:A\to B$.
   Дефинираме множеството 
   \[Q = \{((x,y)\in A\times A\mid (f(x),f(y))\in R\}.\]
   Докажете, че $Q$ е релация на еквивалентност.
 \end{problem}
+
+\newpage
+
+Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
+Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
+Релацията $R \subseteq A\times A$ се нарича:
+\begin{itemize}
+\item
+  \marginpar{На англ. partial order}
+  {\bf частична наредба}, ако тя е рефлексивна, транзитивна и антисиметрична.
+  Например, $\leq$ е частична наредба.
+  Също така, релацията $\subseteq$ между множества е частична наредба.
+\item 
+  \marginpar{На англ. equivalence relation}
+  {\bf релация на еквивалентност}, ако тя е рефлексивна, транзитивна и симетрична.
+  Например, $=$ е релация на еквивалентност.
+\item
+  \marginpar{На англ. linear order}
+  {\bf линейна наредба}\index{наредба!линейна}, ако $R$ е частична наредба, 
+  и за всеки два елемента $x,y$ точно едно от $\pair{x,y} \in R$, $x = y$, $\pair{y,x}\in R$ е изпълнено.
+\item
+  \marginpar{На англ. well-founded relation}
+  {\bf фундирана наредба}\index{наредба!фундирана}, 
+  ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
+  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)\neg(\exists y\in X)[\pair{y,m} \in R]].\]
+\item
+  \marginpar{На англ. well-ordered relation}
+  {\bf добра наредба}\index{наредба!добра}, ако всяко непразно подмножество $X\subseteq A$ има {\em най-малък} елемент , т.е.
+  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)(\forall y\in X)[\pair{m,y}\in R \vee m = y]].\]
+\item
+  \marginpar{lexicographical order}
+  {\bf лексикографска наредба} върху частичната наредба $(X,<)$ ще наричаме 
+  наредбата $(X\times X,\prec)$, където
+  \[\pair{x,y}\prec\pair{x^\prime,y^\prime}\ \iff\ x<x^\prime\ \vee\ (x = x^\prime\ \wedge\ y < y^\prime).\]
+\end{itemize}
+
+\begin{remark}
+  Обърнете внимание на разликата между понятията {\em минимален} и {\em най-малък} елемент относно релацията $R$.
+  \begin{itemize}
+  \item $x_0$ е {\em минимален} елемент за множеството $X \subseteq A$ относно $R$,
+    ако не съществуват елементи $y \in X$, за които $\pair{y,x}\in R$, т.е.
+    \[(\forall y \in X)[\pair{y,x} \not\in R].\]
+  \item $x_0$ е {\em най-малък} елемент за множеството $X \subseteq A$ относно $R$,
+    ако за всеки друг елемент $y \in X$ е изпълнено $\pair{x,y}\in R$, т.е.
+    \[(\forall y \in X)[x\neq y \rightarrow \pair{x,y} \in R].\]
+  \end{itemize}
+\end{remark}
+
+\begin{problem}
+  Да се докаже, че $(\N^2,\prec)$ е добре наредено множество.
+\end{problem}
+
+\begin{problem}
+  Докажете, че следните две условия за частично наредено множество $(X,<)$ са еквивалентни:
+  \begin{enumerate}[a)]
+  \item
+    всяко непразно подмножество на $X$ има минимален елемент;
+  \item
+    не съществува строго намаляваща редица $x_1>x_2>x_3>\dots$ то елементи на $X$.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Да се докаже, че частично нареденото множество $(X,<)$ е добре наредено тогава и само тогава, когато 
+  $(X,<)$ е фундирано и $<$ е линейна наредба върху $X$.
+\end{problem}
+
+\begin{problem}% от СЕП
+  Кои от изброените множества са фундирани? Кои са добре наредени?
+  \begin{enumerate}[a)]
+  \item
+    $(\N,<)$;
+  \item
+    $(\Z,<)$;
+  \item
+    $(X^*, <)$, където за $\alpha,\beta\in X^*$, $\alpha < \beta \iff \alpha\mbox{ е поддума на }\beta$;
+  \item
+    $(2^\N,\subsetneq)$;
+  \item
+    $(Fin(\N),\subsetneq)$, където $Fin(\N)$ е съвкупността от всички крайни подмножества на $\N$;
+  \item
+    $(\N^+,|)$, където $m|n \iff m\neq n\ \&\ m\mbox{ дели }n$.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Нека $R$ и $S$ са релации на еквивалентност върху множеството $A$.
+  Определете кои от свойствата а) - г) притежават тези релации.
+  След това, нека $R$ и $S$ да бъдат частични наредби върху $A$
+  и отново определете кои от свойствата а) - г) притежават тези релации.
+  \begin{enumerate}[a)]
+  \item
+    $R \cap S$;
+  \item
+    $R \cup S$;
+  \item
+    $R \setminus S$;
+  \item
+    $R \circ S$.
+  \end{enumerate}
+\end{problem}
+
+
 
 
 \subsection*{Азбуки и думи}
