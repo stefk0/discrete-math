@@ -1,25 +1,46 @@
-\section{Функции}
+\section*{Функции}
+\index{функция}
 
+Релацията $R \subseteq A\times B$ се нарича {\bf функция}\index{функция} от $A$ в $B$, ако
+\begin{enumerate}[i)]
+  \item
+    $Dom(R) = A$, т.е.
+    \[(\forall a\in A)(\exists b\in B)[(a,b)\in R].\]
+  \item
+    За всеки елемент $a\in A$ съотвества {\em точно един} елемент $b \in B$, т.е.
+    \[(\forall x\in A)(\forall y_1,y_2 \in B)(\langle{x,y_1}\rangle\in R\ \wedge\ \langle{x,y_2}\rangle\in R \rightarrow y_1 = y_2).\]
+\end{enumerate}
+Обикновено означаваме функциите като $f:A\to B$ и
+вместо $(a,b)\in f$ пишем $f(a) = b$.
+Казваме, че функцията $f$ e
+\begin{itemize}
+\item
+  \marginpar{също казваме, че $f$ е обратима}
+  {\bf инекция}\index{функция!инекция}, ако 
+  \[(\forall x_1,x_2\in A)[x_1\neq x_2 \rightarrow f(x_1)\neq f(x_2)],\]
+  или еквивалентно,
+  \[(\forall x_1,x_2\in A)[f(x_1) = f(x_2) \rightarrow x_1 = x_2].\]
+\item
+  \marginpar{също казваме, че $f$ е върху $B$}
+  {\bf сюрекция}\index{функция!сюрекция}, ако 
+  \[(\forall y\in B)(\exists x\in A)[f(x) = y].\]
+\item
+  {\bf биекция}\index{функция!биекция}, ако е инекция и сюрекция.
+\end{itemize}
 
-\begin{dfn}
-  Релацията $f$ се нарича функция\index{функция} от $A$ в $B$, ако
-  $Dom(f)\subseteq A$, $Range(f)\subseteq B$ и 
-  \[(\forall x,y_1,y_2)(\langle{x,y_1}\rangle\in f\ \&\ \langle{x,y_2}\rangle\in f \rightarrow y_1 = y_2)\]
-\end{dfn}
-
-
-\begin{dfn}
-  Нека $f:A\rightarrow B$ е функция. Казваме, че $f$ e
+\begin{problem}
+  Дайте примери за функция $f:\mathbb{N}\rightarrow\Z$, която е:
   \begin{enumerate}
-    \item
-      инекция\index{функция!инекция}, ако $(\forall x\in A)(\forall y\in A)[x\neq y \rightarrow f(x)\neq f(y)]$;
-    \item
-      сюрекция\index{функция!сюрекция}, ако $(\forall y\in B)(\exists x\in A)[f(x) = y]$;
-    \item
-      биекция\index{функция!биекция}, ако е инекция и сюрекция.
+  \item
+    нито инективна, нито сюрективна;
+  \item
+    инективна, но не е сюрективна;
+  \item
+    сюрективна, но не е инективна;
+  \item
+    сюрективна и инективна.
   \end{enumerate}
-\end{dfn}
-
+\end{problem}
 
 \begin{problem}
   Докажете:
@@ -27,101 +48,257 @@
   \item
     Ако $f,g$ са функции, то $f\cap g$ е функция;
   \item
-    Нека $f,g$ са функции и $(\forall x)[x\in Domain(f)\cap Domain(g)\rightarrow f(x) = g(x)]$.
+    Нека $f,g$ са функции и $(\forall x)[x\in Dom(f)\cap Dom(g)\rightarrow f(x) = g(x)]$.
     Докажете, че $f\cup g$ е функция.
   \end{enumerate}
 \end{problem}
 
-
-\begin{dfn}
-  Дефинираме следните операции върху релацията $R\subseteq A\times{B}$:
-  \begin{enumerate}
+\begin{prb}
+  За всяка от следните  функции $f$ определете дали $f$ е
+  инекция, сюрекция или биекция.
+  \begin{enumerate}[a)]
   \item
-    Дефиниционна област
-    $Domain(R) = \{x\mid (\exists y)\langle{x,y}\rangle\in R \}$;
+    $f: \mathbb{R}\rightarrow \mathbb{R}$, $f(x) = 2x+3$.
   \item
-    Област от стойности
-    $Range(R) = \{y\mid (\exists x)[\langle{x,y}\rangle\in R]\}$;
+    $f: \mathbb{R}\rightarrow \mathbb{R}$, $f(x) = x^2 - 4x +2$.
+  \item 
+    $f: \mathbb{R}\rightarrow \mathbb{R}$, $f(x) = x^3+7$.    
   \item
-    Поле
-    $Field(R) = Domain(R) \cup Range(R)$;
+    $f: \mathbb{N}\rightarrow \mathbb{N}$, 
+    \begin{align*}
+      f(x) = 
+      \begin{cases}
+        x+1, & \mbox{ ако }x\mbox{ е четно}\\
+        x-1, & \mbox{ ако }x\mbox{ е нечетно}\\
+      \end{cases}
+    \end{align*}
   \item
-    Рестрикция
-    $R\upharpoonright{C} = \{\langle{x,y}\rangle\mid \langle{x,y}\rangle\in R\ \&\ x\in C\}$;
+    \marginpar{$rem(x,3)$ - остатък при деление на $3$}
+    $f: \mathbb{N}\rightarrow \mathbb{N}$, $f(x) = rem(x,3)$.
+  \item 
+    \marginpar{НОД - най-голям общ делител}
+    $f: \mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}$,
+    $f(x, y) = \mbox{ НОД}(x,y)$.
+  \item 
+    $f: \mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}$,
+    $f(x, y) = 3x+2y$.
+  \item 
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2^x(2y+1)-1$.
+  \item 
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2x(2y+1)$.
   \item
-    Образ
-    $R[C] = \{ y \mid (\exists x)[ x\in C\ \&\ \langle{x,y}\rangle\in R]\} = Range(R\upharpoonright{C})$.
-
-
-\end{enumerate}
-\end{dfn}
-
-
-
-\begin{example}
-  Нека да разгледаме релацията \[F = \{\langle{\emptyset, a}\rangle,\langle{\{\emptyset\}, b}\rangle\}.\]
-  Лесно се вижда, че $F$ е функция.
-  Имаме, че \[F^{-1} = \{\langle{a,\emptyset}\rangle,\langle{b, \{\emptyset\}}\rangle\}\] е функция тогава и само тогава, когато  $a\neq b$.
-  Обърнете внимание, че
-  \[F\upharpoonright{\emptyset} = \emptyset \mbox{, но } F\upharpoonright\{\emptyset\} = \{\langle{\emptyset,a}\rangle\}.\]
-  Освен това, $F[\{\emptyset\}] = \{a\}$ и $F(\{\emptyset\}) = b$.
-\end{example}
-
-  Нека $f$ е функция и $A$ е множество.
-  \begin{enumerate}[(i)]
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2x(2^y+1)$.
   \item
-    $f(A) = \{y \mid (\exists x\in A)(f(x) = y)\}$
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2^x3^y$.
   \item
-    $f^{-1}(A) = \{x \mid f(x)\in A\}$
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2^x6^y$.
+  \item 
+    $f: \mathbb{R} \times \mathbb{R}\rightarrow \mathbb{R}$,
+    $f(x, y) = x^2+y^2$.
+  \item
+    
   \end{enumerate}
-  
+\end{prb}
 
-Ще означаваме с $id_A:A\to A$ фунцкията, за която $id_A(a) = a$, за всяко $a\in A$.
+
+% \item 
+%   $f: \mathbb{Q}\rightarrow \mathbb{Q}$, $f(x) =
+%   \cstwo{0}{$x=0$}{\frac{1}{x}}{$x\neq 0$}$.
+% \item
+%   $f: \mathbb{R} \rightarrow \mathbb{R}$, $f(x) = |x|+1$.
+% \item 
+%   $f: (-\frac{\pi}{2}, \frac{\pi}{2})\rightarrow \mathbb{R}$,
+%   $f(x) = tg x$.
+% \item 
+%   $f: \mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}$,
+%   $f(x, y) = 3^x.5^y$.
+% \item
+%   $f: \mathbb{R}^+ \rightarrow \mathbb{N}$, $f(x) = \lfloor x
+%   \rfloor$. (най-голямото естествено  число, по-малко или равно на
+%   $x$. )
+% \item
+%   $f: \mathbb{N} \rightarrow \mathbb{N}$, $f(x) = (x+1)$-вото
+%   просто число.
+% \end{enumerate}
+
+
+\subsection*{Операции върху функции}
+
+Нека е дадена функцията $f:A\to B$.
+Ще разгледаме няколко основни операции върху функции.
+\begin{enumerate}[I)]
+\item
+  {\bf Образ}
+  
+  Нека $X\subseteq A$. {\em Образ на множеството} $X$ под действието на функцията $f$, наричаме
+  множеството: \[f(X) = \{b\in B \mid f(a) = b\ \wedge\ a \in X\}.\]
+\item
+  {\bf Първообраз}
+
+  Нека $Y\subseteq B$. {\em Първообраз на множеството} $Y$ под действието на функцията $f$, наричаме
+  множеството: \[f^{-1}(Y) = \{a\in A \mid f(a) = b\ \wedge\ b \in Y\}.\]
+\item
+  {\bf Обратна функция}
+  За всяка биективна функция $f:A\to B$, определяме нейната обратна функция $g:B \to  A$ като:
+  \[(\forall a \in A)(\forall b \in Ran(f))[g(b) = a\ \iff\ f(a) = b].\]
+  Обикновено означаваме $g$ като $f^{-1}$.
+% \item 
+%   {\bf Рестрикция}
+
+%   Нека $X\subseteq A$. {\em Рестрикция} на $f$ до множеството $X$, наричаме
+%   множеството: \[f\upharpoonright X = \{\langle{x,y}\rangle\mid f(x) = y\ \wedge\ x\in X\} =  f\cap X\times B.\]
+% \item
+%   {\bf Затваряне}
+  
+%   Нека в този случай $f:A\to A$ и нека $X\subseteq A$.
+%   За всяко $n \geq 0$ определяме $X_0 = X$ и $X_{n+1} = X_n \cup f(X_n)$.
+%   {\em Затваряне} на множеството $X$ относно функцията $f$ е множеството
+%   \[f[X] = \bigcup_{n\in\Nat} X_n. \]
+  
+\item
+  {\bf Композиция}
+
+  Нека са дадени функциите $f:A\to B$ и $g:C\to A$.
+  {\em Композиция} на $f$ и $g$ е функцията $f\circ g: C \to B$ определена като
+  \[f\circ g = \{\pair{c,b}\mid (\exists a\in A)[g(c) = a\ \wedge\ f(a) = b]\}.\]
+  \marginpar{Най-напред прилагаме $g$ и след това $f$}
+  Композицията на $f$ и $g$ може да се запише и така:
+  \[(\forall c\in C)[(f\circ g)(c) = f(g(c))]\]
+\end{enumerate}
+
+\begin{prb}
+  Нека $f: A\to B$, $g: B\to C$ са функции.
+  Вярно ли е, че:
+  \begin{enumerate}
+  \item 
+    Ако $f$  не е инекция, то $g\circ f$ не е инекция?
+  \item
+    Ако $g$  не е инекция, то $g\circ f$ не е инекция?
+  \item 
+    Ако $f$  не е сюрекция, то $g\circ f$ не е сюрекция?
+  \item
+    Ако $g$  не е сюрекция, то $g\circ f$ не е сюрекция?
+  \end{enumerate}
+\end{prb}
+
+\begin{prb}
+  Нека $f: A\to B$, $g: B\to C$ са функции.
+  Вярно ли е, че:
+  \begin{enumerate}[1)]
+  \item
+    $f,g$ са инективни, то $g\circ f$ е инективна?
+  \item
+    $f,g$ са сюрективни, то $g\circ f$ е сюрективна?
+  \item
+    $f,g$ са биективни, то $g\circ f$ е биективна?
+  \item
+    $g\circ f$ е сюрективна,  то $f,g$ са сюрективни ?
+  \item
+    $g\circ f$ е инективна, то $f,g$ са инективни ?
+  \end{enumerate}
+\end{prb}
+
+\begin{prb}
+  Нека $f: A\to B$, $g: B\to C$ са {\em биективни} функции.
+  Докажете, че
+  \[(g\circ f)^{-1} = f^{-1}\circ g^{-1}.\]
+\end{prb}
+
+\begin{prb}
+  $f(x) = \pair{g(x),h(x)}$.
+\end{prb}
+
+
+% \begin{dfn}
+%   Дефинираме следните операции върху релацията $R\subseteq A\times{B}$:
+%   \begin{enumerate}
+%   \item
+%     Дефиниционна област
+%     $Domain(R) = \{x\mid (\exists y)\langle{x,y}\rangle\in R \}$;
+%   \item
+%     Област от стойности
+%     $Range(R) = \{y\mid (\exists x)[\langle{x,y}\rangle\in R]\}$;
+%   \item
+%     Поле
+%     $Field(R) = Domain(R) \cup Range(R)$;
+%   \item
+%     Рестрикция
+%     $R\upharpoonright{C} = \{\langle{x,y}\rangle\mid \langle{x,y}\rangle\in R\ \&\ x\in C\}$;
+%   \item
+%     Образ
+%     $R[C] = \{ y \mid (\exists x)[ x\in C\ \&\ \langle{x,y}\rangle\in R]\} = Range(R\upharpoonright{C})$.
+
+
+% \end{enumerate}
+% \end{dfn}
+
+% \begin{example}
+%   Нека да разгледаме релацията \[F = \{\langle{\emptyset, a}\rangle,\langle{\{\emptyset\}, b}\rangle\}.\]
+%   Лесно се вижда, че $F$ е функция.
+%   Имаме, че \[F^{-1} = \{\langle{a,\emptyset}\rangle,\langle{b, \{\emptyset\}}\rangle\}\] е функция тогава и само тогава, когато  $a\neq b$.
+%   Обърнете внимание, че
+%   \[F\upharpoonright{\emptyset} = \emptyset \mbox{, но } F\upharpoonright\{\emptyset\} = \{\langle{\emptyset,a}\rangle\}.\]
+%   Освен това, $F(\{\emptyset\}) = \{a\}$ и $F(\{\emptyset\}) = b$.
+% \end{example}
+
+% Нека $f$ е функция и $A$ е множество.
+% \begin{enumerate}[(i)]
+% \item
+%   $f(A) = \{y \mid (\exists x\in A)(f(x) = y)\}$
+% \item
+%   $f^{-1}(A) = \{x \mid f(x)\in A\}$
+% \end{enumerate}
+
+
 \begin{problem}
-  Нека $f$ е функция и $A\subseteq Dom(f), B\subseteq Range(f)$.
+  Нека а дадена произволна функция $f:A \to B$.
   Проверете:
   \begin{enumerate}[a)]
   \item
-    $f(A)\cup f(B) = f(A\cup B)$
+    $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
   \item
-    $f(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}(A_i)$
+    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$
   \item
-    $f(A\cap B)\subseteq f(A)\cap f(B)$
+    при какви условия за $f$,
+    $(\forall X,Y \subseteq A)[f(X\cap Y) = f(X)\cap f(Y)]$.
+  % \item
+  %   $f(\bigcap_{i\in I}A_i) \subseteq \bigcap_{i\in I}f(A_i)$
   \item
-    $f(\bigcap_{i\in I}A_i) \subseteq \bigcap_{i\in I}f(A_i)$
+    при какви условия за $f$,
+    $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
   \item
-    За всяко $A,B$ : $f(A)\cap f(B) = f(A\cap B) \iff$
-    $f$ е инекция
+    \marginpar{Опр. $(\forall x\in X)\ id_X(x) = x$}
+    при какви условия за $f$, $f\circ f^{-1} = id_{B}$.
   \item
-    $f(A)\backslash f(B)\subseteq f(A\backslash B)$
+     при какви условия за $f$, $f^{-1}\circ f = id_{A}$.
+   % \item
+     % $Dom(f\circ g) = g^{-1}(Dom(f))$, където $g$ е функция.
   \item
-    $f(A)\backslash f(B) = f(A\backslash B) \iff$
-    $f$ е инекция.
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)$.
   \item
-    Проверете при какви условия за $f$, $f\circ f^{-1} = id_{Range(f)}$.
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)$.
   \item
-    Проверете при какви условия за $f$, $f^{-1}\circ f = id_{Dom(f)}$.
+    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$.
   \item
-    Докажете, че $Domain(f\circ g) = g^{-1}[Domain(f)]$, където $g$ е функция.
+    при какви условия за $f$,
+    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$.
   \item
-    $f^{-1}(A\cap B) = f^{-1}(A)\cap f^{-1}(B)$
+    при какви условия за $f$,
+    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$.
   \item
-    $f^{-1}(A\backslash B) = f^{-1}(A)\backslash f^{-1}(B)$
+    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$.
   \item
-    $A\subseteq f^{-1}(f(A))$
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$.
   \item
-    $B = f(f^{-1}(B))$
-  \item
-    $f(A)\cap B = f(A\cap f^{-1}(B))$
-  \item
-    $f(A)\cap B = \emptyset \iff A\cap f^{-1}(B) = \emptyset$
-  \item
-    $f(A)\subseteq B \iff A\subseteq f^{-1}(B)$
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$.
   \end{enumerate}
 \end{problem}
-
-
-
+\newpage
 \begin{problem}%Л.М. 18 / 23
   Нека $f,g$ са функции. При какви условия :
   \begin{enumerate}
@@ -129,7 +306,7 @@
     $f^{-1}$ е функция?
   \item
     $f\circ g$ е инективна функция?
-\end{enumerate}
+  \end{enumerate}
 \end{problem}
 
 % \begin{problem}
@@ -153,17 +330,19 @@
 \end{problem}
 
 \begin{problem}
-  Нека $f$ е инективна функция от $A$ в $B$ и $g:\Ps A \rightarrow \Ps B$, дефинирана като $g(X) = f[X]$.
+  Нека $f$ е инективна функция от $A$ в $B$ и $g:\Ps(A) \rightarrow \Ps(B)$, дефинирана като 
+  \[(\forall X \subseteq A)[g(X) = f(X)].\]
   Докажете, че $g$ е инективна.
 \end{problem}
 
 \begin{problem}
-  Нека $f:A\rightarrow B$ и $g:B\rightarrow\Ps A$, дефинирана като $g(b) = \{x\in A\mid f(x) = b\}$.
+  Нека $f:A\rightarrow B$ и $g:B\rightarrow\Ps(A)$, дефинирана като 
+  \[(\forall b \in B)[g(b) = \{x\in A\mid f(x) = b\}].\]
   Докажете, че ако $f$ е сюрективна, то $g$ е инективна.
-  Вярно ли е обратната посока?
+  Вярна ли е обратната посока?
 \end{problem}
 
-
+\cite{hein}
 
 %%% Local Variables: 
 %%% mode: latex
