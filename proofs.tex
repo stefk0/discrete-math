@@ -1,0 +1,661 @@
+\subsection*{Допускане на противното}
+
+\begin{prb}
+  За всяко $a \in \Z$, ако $a^2$ е четно, то $a$ е четно.
+\end{prb}
+\begin{proof}
+  Твърдението може да се запише като
+  \[(\forall a\in\Z)[a^2\mbox{ е четно}\ \rightarrow\ a\mbox{ е четно}].\]
+  Да допуснем противното, т.е.
+  \[(\exists a\in\Z)[a^2\mbox{ е четно}\ \wedge\ a\mbox{ не е четно}].\]
+  Да вземем едно такова $a$.
+  Тогава $a = 2k+1$, за някое $k \in \Z$
+  и \[a^2 = (2k+1)^2 = 4k^2 + 4k + 1,\]
+  което очевидно е нечетно число.
+  Но ние допуснахме, че $a^2$ е четно.
+  Така достигаме до противоречие, следователно нашето допускане е грешно 
+  и 
+  \[(\forall a\in\Z)[a^2\mbox{ е четно}\ \rightarrow\ a\mbox{ е четно}].\]
+\end{proof}
+
+\begin{prb}
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item
+    $\sqrt{2},\sqrt{3},\sqrt{6}$ не са рационални числа.
+  \item
+    $\sqrt{pq}$ и $\sqrt{\frac{p}{q}}$ не са рационални числа, където
+    $p$ и $q$ са прости числа.
+  \item
+    $log_23$ не е рационално.
+  \end{enumerate}
+\end{prb}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    Да допуснем, че $\sqrt{2}$ е рационално число. Тогава  съществуват $a,b \in \Z$, такива че:
+    \[\sqrt{2} = \frac{a}{b}.\]
+    Без ограничение, можем да приемем, че $a$ и $b$ са естествени числа,
+    които нямат общи делители, т.е. не можем да съкратим дробта $\frac{a}{b}$.
+    Получаваме, че \[2b^2 = a^2.\]
+    Тогава $a^2$ е четно число и следователно $a$ е четно число, защото 
+    произведение на две нечетни числа е нечетно число.
+    Нека $a = 2k$. Получаваме, че
+    \[2b^2 = 4k^2,\]
+    от което следва, че
+    \[b^2 = 2k^2.\]
+    Това означава, че $b$ също е четно число, $b = 2n$.
+    Следователно, $a$ и $b$ са четни числа и имат общ делител $2$,
+    което е противоречие с нашето допускане. Така достигаме до
+    противоречие.
+    Накрая заключаваме, че $\sqrt{2}$ не е рационално число.
+  \end{enumerate}
+\end{proof}
+
+\subsection*{Индукция върху $\Nat$}
+
+Доказателството с индукция по $\Nat$ представлява следната схема:
+\begin{prooftree}
+  \AxiomC{$P(0)$}
+  \AxiomC{$(\forall x\in\Nat)[P(x)\rightarrow P(x+1)]$}
+  \BinaryInfC{$(\forall x\in\Nat) P(x)$}
+\end{prooftree}
+
+Това означава, че ако искаме да докажем, че свойството $P(x)$ е вярно за всяко $x\in\Nat$,
+то трябва да докажем първо, че $P(0)$ и след това ако $P(x)$ вярно, то също така е вярно $P(x+1)$.
+
+\begin{prb}
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item
+    $3^n$ е нечетно;
+  \item
+    $n < 2^n$;
+  \item
+    $2^n < n!$ за $n \geq 4$;
+  \item
+    \marginpar{$a\vert b\ \iff\ (\exists c\in\Nat)(b = c\cdot a)$}
+    $3 \vert (n^3 - n)$;
+  \item
+    $6 \vert (n^3 + 11n)$;
+  \item
+    $9 \vert (2^{2n} + 15n - 1)$;
+  \item
+    $57 \vert (7^{n+2} + 8^{2n+1})$;
+  \item
+    \marginpar{$\Ps(A) = \{B\mid B\subseteq A\}$}
+    \marginpar{$\abs{A}$ - брой елементи на $A$}
+    \marginpar{$\abs{\Ps(A)}$ - брой на подмножествата на $A$}
+    за всяко крайно множество $A$,
+    ако $\abs{A} = n$, то $\abs{\Ps(A)} = 2^n$;
+  \item
+    $C\setminus \bigcup^n_{i=0}A_i = \bigcap^n_{i=0}(C\setminus A_i)$;
+  \item
+    $C\setminus \bigcap^n_{i=0}A_i = \bigcup^n_{i=0}(C\setminus A_i)$;
+  \item
+    ако $(\forall i \leq n)[A_i \subseteq B_i]$, то
+    $\bigcap^n_{i=0}A_i \subseteq \bigcap^n_{i=0}B_i$;
+  \item
+    ако $(\forall i \leq n)[A_i \subseteq B_i]$, то
+    $\bigcup^n_{i=0}A_i \subseteq \bigcup^n_{i=0}B_i$;
+  \item
+    $(\bigcap^n_{i=0} A_i)\cup B = \bigcap^n_{i=0} (A_i\cup B)$;
+  \item
+    $(\bigcup^n_{i=0} A_i)\cap B = \bigcup^n_{i=0} (A_i\cap B)$;
+  \item
+    $\bigcap^n_{i=0} (A_i\setminus B) = (\bigcap^n_{i=0} A_i) \setminus B$;
+  \item
+    $\neg (p_1\vee p_2\vee\dots\vee p_n) \iff (\neg p_1 \wedge \neg p_2 \wedge\dots\wedge \neg p_n)$;
+  \item
+    $\neg (p_1\wedge p_2\wedge\dots\wedge p_n) \iff (\neg p_1 \vee \neg p_2 \vee \dots \vee \neg p_n)$;
+  \item
+    $\sum^n_{i=0} 2^i = 2^{n+1} - 1$;
+  \item
+    $\sum^n_{i=0} ar^i = \frac{ar^{n+1}-a}{r-1}$ за $r \neq 1$;
+  \item
+    $\sum^n_{i=1}i = \frac{n(n+1)}{2}$;
+  \item
+    $\sum^n_{i=1}i^2 = \frac{n(n+1)(2n+1)}{6}$;
+  \item
+    $\sum^n_{i=1}i^3 = \frac{n^2(n+1)^2}{4}$;
+  \item
+    $\sum^n_{i=1}i^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}$;
+  \item
+    $\sum^n_{i=0}(2i+1)^2 = \frac{(n+1)(2n+1)(2n+3)}{3}$;
+  \item
+    $\sum^n_{i=1}\frac{1}{i(i+1)} = \frac{n}{n+1}$;
+  \item
+    $\sum^n_{i=0}(-\frac{1}{2})^i = \frac{2^{n+1}+(-1)^n}{3\cdot 2^n}$;
+
+  \end{enumerate}
+\end{prb}
+
+% \begin{prb}
+%   \begin{enumerate}
+%   \item
+%     за $n > 1$ е изпълнено
+%     \[\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \cdots \frac{1}{2n} > \frac{13}{24};\]
+%   \item
+%     за произволни реални числа $a_1,\dots,a_k \geq 0$,
+%     \[\sqrt[k]{a_1\cdots a_k}\leq \frac{a_1+\cdots +a_k}{k};\]
+%   \item
+%     за произволни реални числа $a_1,\dots,a_n \geq 0$,
+%     \[(1+a_1)\cdots (1+a_n) \geq (1+ \sqrt[n]{a_1\cdots a_n}).\]
+%   \item
+%     $\sum^n_{i=1}\frac{1}{\sqrt{i}} > 2(\sqrt{n+1} - 1)$;
+%   \end{enumerate}
+% \end{prb}
+% \begin{proof}
+%   \begin{enumerate}[]
+%   \item
+%     Първо, доказва се с индукция, че твърдението е вярно за $n = 2k$.
+%     Очевидно е вярно за $n = 2$.
+%     Да допуснем, че $\sqrt[k]{\prod^{k}_{i=1} a_i}\leq \frac{\sum^{k}_{i=1} a_i}{k}$.
+%     Ще докажем, че $\sqrt[2k]{\prod^{2k}_{i=1} a_i}\leq \frac{\sum^{2k}_{i=1} a_i}{2k}$.
+%     \[
+%     \begin{array}{lll}
+%       \sqrt[2k]{\prod^{2k}_{i=1} a_i} & = & \sqrt[2]{\sqrt[k]{\prod^{k}_{i=1} a_i}\sqrt[k]{\prod^{2k}_{i=k+1} a_i}}\\
+%       & \leq & \frac{\sqrt[k]{\prod^{k}_{i=1} a_i} + \sqrt[k]{\prod^{2k}_{i=k+1} a_i}}{2} \\
+%       & \leq & \frac{\frac{\sum^{k}_{i=1} a_i}{k} + \frac{\sum^{2k}_{i=k+1} a_i}{k}}{2}\\
+%       & = & \frac{\sum^{2k}_{i=1} a_i}{2k}\\
+%     \end{array}
+%     \]
+    
+%     Сега, ще докажем, че ако твърдението е вярно за $n = k$, то е вярно и за $n = k-1$.
+%     Нека \[\sqrt[k]{\prod^{k}_{i=1}a_i} \leq \frac{\sum^{k}_{i=1} a_i}{k}.\]
+%     Това е вярно за произволни $a_1,\dots,a_k$.
+%     Нека да изберем $a_k$, така че
+%     \[\frac{\sum^{k}_{i=1} a_i}{k} = \frac{\sum^{k-1}_{i=1} a_i}{k-1},\] т.е.
+%     \[a_k = \frac{\sum^{k-1}_{i=1} a_i}{k-1}.\]
+%     Получаваме, че:
+%     \[
+%     \begin{array}{rll}
+%       \sqrt[k]{\prod^{k}_{i=1}a_i} & \leq & \frac{\sum^{k}_{i=1} a_i}{k}\\
+%       \frac{(\prod^{k-1}_{i=1}a_i)(\sum^{k-1}_{i=1}a_i)}{k-1} & \leq & (\frac{\sum^{k-1}_{i=1}a_i}{k-1})^{k} \\
+%       \prod^{k-1}_{i=1}a_i & \leq & (\frac{\sum^{k-1}_{i=1}a_i}{k-1})^{k-1}\\
+%       \sqrt[k-1]{\prod^{k-1}_{i=1}a_i} & \leq & \frac{\sum^{k-1}_{i=1}a_i}{k-1}\\
+%     \end{array}
+%     \]
+%   \end{enumerate}
+% \end{proof}
+
+% \begin{prb}
+%   \marginpar{Нютонов бином}
+%   Нека положим 
+%   \[\binom{n}{m} = \frac{n!}{(n-i)!i!}\]
+%   Проверете:
+%   \begin{enumerate}[a)]
+%   \item 
+%     $2^n = \sum^n_{i=0}\binom{n}{i}$;
+%   \item
+%     $(x+y)^n = \sum^n_{i=0} \binom{n}{i}x^{n-i}y^{i}$;
+%   \item
+%     $\binom{n+1}{m+1} = \binom{n}{m} + \binom{n}{m+1}$;
+%   \end{enumerate}
+% \end{prb}
+
+\begin{prb}
+  \marginpar{Наричат се хармонични числа}
+  Нека да положим
+  $H_n = \sum^n_{i=1}\frac{1}{i}$.
+  Проверете:
+  \begin{enumerate}[a)]
+  \item
+    $\sum^n_{i=1}H_i = (n+1)H_n - n$.
+  \item
+    $H_{2^k} \geq 1+ k/2$, за всяко $k \geq 0$.
+  \end{enumerate}
+\end{prb}
+
+\subsection*{Пълна индукция върху $\Nat$}
+
+Доказателство с пълна индукция по $\Nat$ за свойството $P$ представлява следната схема:
+\begin{prooftree}
+  \AxiomC{$(\forall x\in\Nat)[(\forall y\in \Nat)[y < x\ \rightarrow P(y)]\rightarrow P(x)]$}
+  \UnaryInfC{$(\forall x\in\Nat) P(x)$}
+\end{prooftree}
+Нека да проверим принципа за пълна индукция.
+Да допуснем, че принципът не е верен, т.е. за някое свойство $P$ е изпълнено, че
+\[(\forall x\in\Nat)[(\forall y\in \Nat)[y < x\ \rightarrow P(y)]\rightarrow P(x)]\ \wedge\ (\exists x\in\Nat) \neg P(x).\]
+Да вземем най-малкия елемент $x_0$, за който $\neg P(x_0)$.
+Тогава \[(\forall y\in \Nat)[y < x_0\ \rightarrow P(y)]\]
+и следователно:
+\begin{prooftree}
+  \AxiomC{$(\forall y\in \Nat)[y < x_0\ \rightarrow P(y)]$}
+  \AxiomC{$(\forall x\in\Nat)[(\forall y\in \Nat)[y < x\ \rightarrow P(y)]\rightarrow P(x)]$}
+  \UnaryInfC{$(\forall y\in \Nat)[y < x_0\ \rightarrow P(y)]\rightarrow P(x_0)$}
+  \BinaryInfC{$P(x_0)$}
+\end{prooftree}
+Така достигаме до противоречие, защото получаваме, че $P(x_0)\wedge \neg P(x_0)$.
+% \begin{prop}
+%   Двете форми на индукция са еквивалентни.
+% \end{prop}
+% \begin{proof}
+%   \begin{enumerate}
+%   \item 
+%     Нека имаме схемата за ``обикновена'' индукция.
+%     Ще докажем, че тогава имаме схемата за пълна индукция.
+%     Нека \[(\forall x\in\Nat)[(\forall y\in \Nat)[y < x\ \rightarrow P(y)]\rightarrow P(x)].\]
+%     Ще докажем с ``обикновена'' индукция, че $(\forall x\in\Nat)P(x)$.
+    
+%     Нека да положим $Q(x) = (\forall y\in\Nat)[y<x \rightarrow P(y)]$.
+%     Очевидно е, че $Q(0)$ е изпълнено.
+%     Освен това, 
+%     \begin{prooftree}
+%       \AxiomC{$(\forall x\in\Nat)[(\forall y\in \Nat)[y < x\ \rightarrow P(y)]\rightarrow P(x)]$}
+%       \UnaryInfC{$(\forall x\in\Nat)[Q(x)\rightarrow P(x)]$}
+%       \UnaryInfC{$(\forall x\in\Nat)[Q(x)\rightarrow Q(x)\wedge P(x)]$}
+%       \AxiomC{$(\forall x\in\Nat)[Q(x)\wedge P(x)\ \rightarrow\ Q(x+1)]$}
+%       \BinaryInfC{$(\forall x\in\Nat)[Q(x)\rightarrow Q(x+1)]$}
+%     \end{prooftree}
+%     Получаваме, че 
+%     \begin{prooftree}
+%       \AxiomC{$Q(0)$}
+%       \AxiomC{$(\forall x\in\Nat)[Q(x)\rightarrow Q(x+1)]$}
+%       \BinaryInfC{$(\forall x\in\Nat)Q(x)$}
+%       \AxiomC{$(\forall x\in\Nat)Q(x)\ \rightarrow\ (\forall x\in\Nat)P(x)$}
+%       \BinaryInfC{$(\forall x\in\Nat)P(x)$}
+%     \end{prooftree}
+%   \item
+%     Нека сега имаме схемата за пълна индукция.
+%     Ще докажем, че имаме и схемата за ``обикновена'' индукция.
+%     За тази цел, нека имаме, че $P(0)$ и $(\forall x\in\Nat)[P(x) \rightarrow P(x+1)]$.
+%     Достатъчно е да докажем, че
+%     \[(\forall x\in\Nat)[(\forall y\in \Nat)[y < x \rightarrow P(y)] \rightarrow P(x)],\]
+%     защото тогава ще приложим пълна индукция и ще получим, че \[(\forall x\in\Nat)P(x).\]
+    
+%     Да допуснем противното, т.е.
+%     \[(\exists x\in\Nat)[(\forall y\in \Nat)[y < x \rightarrow P(y)] \wedge \neg P(x)].\]
+%     Да разгледаме едно такова $x_0$, за което
+%     \[(\forall y\in \Nat)[y < x_0 \rightarrow P(y)] \wedge \neg P(x_0).\]
+%     \begin{itemize}
+%     \item 
+%       Ако $x_0 = 0$, то очевидно е изпълнено, че $(\forall y\in\Nat)[y < 0 \rightarrow P(y)]$.
+%       Тогава $\neg P(0)$, което е противоречие.
+%     \item
+%       Ако $x_0 > 0$, тогава от
+%       $(\forall y\in\Nat)[y < x_0 \rightarrow P(y)]\ \rightarrow\ P(x_0-1)$
+%       следва, че $P(x_0-1)$.
+%       Тогава 
+%       \begin{prooftree}
+%         \AxiomC{$(\forall x)[P(x)\rightarrow P(x+1)]$}
+%         \AxiomC{$P(x_0-1)$}
+%         \BinaryInfC{$P(x_0)$}
+%       \end{prooftree}
+%       Отново достигаме до противоречие.
+%     \end{itemize}
+%     Следователно нашето допускане е невярно и
+%     \[(\forall x\in\Nat)[(\forall y\in \Nat)[y < x \rightarrow P(y)] \rightarrow P(x)].\]
+%   \end{enumerate}
+% \end{proof}
+
+\begin{prb}
+  Докажете, че за всяко $x,y\in\Nat$
+  \[f(x,y) = x^y,\]
+  където
+  \begin{align*}
+    f(x,y) = 
+    \begin{cases}
+      1, & x\neq 0\ \wedge\ y = 0\\
+      f(x,y-1) * x, & x\neq 0\ \wedge y\mbox{ е нечетно}\\
+      f(x,y/2) * f(x,y/2), & x\neq 0\ \wedge y\mbox{ е четно}
+    \end{cases}
+  \end{align*}
+\end{prb}
+
+\begin{prb}
+  Всяко естествено число $n \geq 2$ може да се запише като произведение на прости числа.
+\end{prb}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item 
+    За $n = 2$  е ясно.
+  \item
+    Ако $n+1$ е просто число, то всичко е ясно.
+    Ако $n+1$ е съставно, то \[n + 1 = n_1\cdot n_2.\]
+    Тогава $n_1 = p^{n_1}_1\cdots p^{n_k}_k$ и $n_2 = q^{m_1}_1\cdots q^{m_r}_r$,
+    където $p_1,\dots,p_k$ и $q_1,\dots,q_r$ са прости числа.
+    Тогава е ясно, че $n$ също е произведение на прости числа.
+  \end{enumerate}
+\end{proof}
+
+\begin{prb}
+  Нека фунцкията $f:\Nat\to\Nat$ е определена като
+  \begin{align*}
+    f(x) = x-10, & x > 100\\
+    f(x) = f(f(x+11)), & x < 100.
+  \end{align*}
+  Докажете, че $(\forall x \leq 100)[f(x) = 91]$.
+\end{prb}
+
+\subsection*{Индукция върху $\Nat\times\Nat$}
+
+\begin{dfn}
+  Определяме лексикографската наредба $\prec$ върху $\Nat\times\Nat$ като
+  \[\pair{x,y} \prec \pair{x^\prime,y^\prime}\ \iff\ x < x^\prime \vee (x = x^\prime\ \wedge\ y < y^\prime).\]
+  Наричаме двойката $\pair{x_0,y_0}$ {\em минимална} за множеството $A \subseteq \Nat\times\Nat$, ако
+  \[\pair{x_0,y_0}\in A\ \wedge\ (\forall \pair{x,y}\in A)[\pair{x,y}\not\prec\pair{x_0,y_0}].\]
+\end{dfn}
+
+\begin{prop}
+  Всяко непразно подмножество $A\subseteq \Nat\times \Nat$ притежава поне един {\em минимален} елемент.
+\end{prop}
+
+\begin{prop}
+  Не съществуват безкрайни строго намаляващи редици относно $\succ$ в $\Nat\times\Nat$, т.е.
+  не съществува 
+  \[\pair{x_0,y_0} \succ \pair{x_1,y_1}\succ \pair{x_2,y_2} \succ \dots \succ \pair{x_n,y_n}\succ\dots\]
+\end{prop}
+
+\begin{dfn}
+  Доказателството с индукция върху $\Nat\times\Nat$ представлява следната схема:
+  \begin{prooftree}
+    \AxiomC{$(\forall\pair{x,y})[(\forall \pair{x^\prime,y^\prime})[\pair{x^\prime,y^\prime} \prec \pair{x,y}\ \rightarrow\ P(x^\prime,y^\prime)]\ \rightarrow P(x,y)]$}
+    \UnaryInfC{$\forall \pair{x,y} P(x,y)$}
+  \end{prooftree}  
+\end{dfn}
+
+Да проверим схемата.
+Да допуснем, че тя не е вярна, т.е. за някое свойство $P$ е изпълнено, че
+\[(\forall\pair{x,y})[(\forall \pair{x^\prime,y^\prime})[\pair{x^\prime,y^\prime} \prec \pair{x,y}\ \rightarrow\ P(x^\prime,y^\prime)]\ \rightarrow P(x,y)],\]
+но \[\exists \pair{x,y} \neg P(x,y),\]
+т.е. съществува $\pair{x,y} \in \Nat\times\Nat$, за което $\neg P(x,y)$.
+Да разгледаме
+\[A = \{\pair{x,y}\in \Nat\times\Nat\mid \neg P(x,y)\}.\]
+Щом $A$ е непразно, то $A$ има минимален елемент $\pair{x_0,y_0}$.
+Тогава
+\[(\forall \pair{x^\prime,y^\prime})[\pair{x^\prime,y^\prime} \prec\pair{x_0,y_0}\ \rightarrow P(x^\prime,y^\prime)].\]
+Но ние имаме, че 
+\[(\forall \pair{x^\prime,y^\prime})[\pair{x^\prime,y^\prime} \prec \pair{x_0,y_0}\ \rightarrow\ P(x^\prime,y^\prime)]\ \rightarrow P(x_0,y_0).\]
+Това означава, че $P(x_0,y_0)$, което е противоречие.
+
+\begin{remark}
+  За да докажем едно свойство $P$ с индукция по лексикографската наредба върху $\Nat\times\Nat$,
+  първо доказваме $P$ за минималната двойка $\pair{0,0}$.
+  След това доказваме, че ако $P$ е вярно за всички двойки $\pair{x^\prime,y^\prime}\prec \pair{x,y}$,
+  то $P$ е вярно и за $\pair{x,y}$.
+\end{remark}
+
+\begin{prb}
+  Докажете,  че $f(x,y) = \abs{x-y}$, където
+  \begin{align*}
+    f(x,y) = 
+    \begin{cases}
+      y, & x = 0\\
+      x, & y = 0\\
+      f(x-1,y-1), & \mbox{ иначе}
+    \end{cases}
+  \end{align*}
+\end{prb}
+\begin{proof}
+  Индукция по $(\Nat^2,\prec)$, където $\prec$ е лексикографската наредба.
+  Имаме един минимален елемент $(0,0)$.
+  \[f(0,0) = 0 = \abs{0 - 0}.\]
+  Да допуснем, че за всяко $(u,v) \prec (x,y)$, 
+  \[f(u,v) = \abs{u - v}.\]
+  Тогава ако $x > 0, y = 0$, то
+  \[f(x,0) = x = \abs{x - 0}.\]
+  Ако $x> 0, y > 0$, то
+  \[f(x,y) = f(x-1,y-1) = \abs{x-1-y+1} =\abs{x-y}.\]
+\end{proof}
+
+\begin{prb}
+  Докажете, че $f(x,y) = \mbox{НОД}(x,y)$, където
+  за $x,y \in \Nat$,
+  \begin{align*}
+    f(x,y) = 
+    \begin{cases}
+      f(x-y,y), & x > y\\
+      f(y,x), & x < y\\
+      x, & x = y.
+    \end{cases}
+  \end{align*}
+\end{prb}
+
+\begin{prb}
+  \marginpar{Числа на Фибоначи}
+  Да определим следната редица:
+  \[F_0 = 0,F_1 = 1,\dots,F_{n+2} = F_{n} + F_{n+1}.\]
+  Проверете:
+  \begin{enumerate}[a)]
+  \item
+    $\sum^n_{i=0} F^2_i = F_{n}F_{n+1}$;
+  \item
+    $\sum^n_{i=1} F_{2i-1} = F_{2n}$;
+  \item
+    $\sum^{2n}_{i=1}F_{i-1}F_{i} = F^2_{2n}$;
+  \item
+    единствено членовете от вида $F_{3n}$ са четни;
+  \item
+    за $n > 0$, $F_{n+1}F_{n-1} - F^2_n = (-1)^n$;
+  \item
+    $F_{m+n} = F_{m-1}\cdot F_{n} + F_m \cdot F_{n-1}$;
+  \item
+    ако $m\vert n$, то $F_m \vert F_n$.
+  \item
+    \marginpar{Използвайте, че $\phi^2 = \phi + 1$}
+    ако $n\geq 3$, то $F_n > \phi^{n-2}$,
+    където $\phi = \frac{1+\sqrt{5}}{2}$.
+  \end{enumerate}
+\end{prb}
+
+\begin{prb}
+  \marginpar{Нютонов бином}
+  Нека положим $\binom{n}{m} = \frac{n!}{(n-i)!i!}$.
+  Проверете:
+  \begin{enumerate}[a)]
+  \item 
+    $2^n = \sum^n_{i=0}\binom{n}{i}$;
+  \item
+    $(x+y)^n = \sum^n_{i=0} \binom{n}{i}x^{n-i}y^{i}$;
+  \item
+    $\binom{n+1}{m+1} = \binom{n}{m} + \binom{n}{m+1}$;
+  \end{enumerate}
+\end{prb}
+
+\begin{prb}
+  Докажете, че за всеки $m,n\in\Nat$
+  съществуват $p,q\in\Z$, такива че
+  \[p\cdot m +  q\cdot n = \mbox{НОД}(m,n).\]
+\end{prb}
+
+\newpage
+\subsection*{Фундирани множества}
+\marginpar{Англ. well-founded sets}
+
+Понякога се налага да правим индукция по по-сложни множества от това на естествените
+числа.
+
+\begin{dfn}
+  Нека е дадена двойката $(A,R)$, където $A$ е множество, а $R\subseteq A^2$.
+  Казваме, че $A$ е фундирано множество относно $R$, ако 
+  \begin{itemize}
+  \item 
+    \marginpar{$R$ задава строга частична наредба върху $A$}
+    $R$ е антирефлексивна, транзитивна, асиметрична.
+  \item
+    ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
+    \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)\neg(\exists y\in X)[\pair{y,m} \in R]].\]
+  \end{itemize}
+\end{dfn}
+
+Обърнете внимание, че минималният елемент може да не е уникален.
+\begin{example}
+  Нека да определим $\prec$ върху $\N$ като
+  \[\pair{x,y}\prec\pair{x^\prime,y^\prime}\ \iff\ x < y\ \wedge\ x^\prime < y^\prime.\]
+  Тогава например $X = \{\pair{1,2},\pair{2,1},\pair{2,2},\pair{2,3}\}$
+  има два минимални елемента - $\pair{1,2}$ и $\pair{2,1}$.
+\end{example}
+
+
+\begin{prop}
+  Нека $\prec$ е строга частична наредба върху $A$.
+  Следните твърдения са  еквивалентни:
+  \begin{enumerate}[a)]
+  \item
+    ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
+    \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists x\in X)\neg(\exists y\in X)[y \prec x]];\]
+  \item
+    не съществуват безкрайни редици от вида
+    \[x_0 \succ x_1 \succ x_2 \succ \cdots \succ x_n \succ \cdots\]
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item[а)$\ \to\ $б)]
+    Да допуснем, че съществува безкрайно-намаляваща редица
+    \[x_0 \succ x_1 \succ x_2 \succ \cdots \succ x_n \succ \cdots\]
+    Нека $X = \{x_i\mid i \in \Nat\}$.
+    Тогава лесно се вижда, че в $X$ няма минимален елемент, което е противоречие.
+  \item[б)$\ \to\ $а)]
+    Да допуснем, че съществува непразно множество $X \subseteq A$, което не притежава минимален елемент, т.е.
+    \[(\forall x\in X)(\exists y\in X)[y \prec x].\]
+    Ще построим безкрайно-намаляваща редица относно $\prec$.
+    Да вземем произволен $x_0 \in X$. 
+    Знаем, че съществува $y \in X, x_0 \prec y$.
+    Нека да изберем едно такова $y\in X$ и да означим $x_1 = y$.
+    По този начим можем да построим
+    \[x_0 \prec x_1 \prec x_2 \prec \cdots \]
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}
+  Нека $(A_1,\prec_1)$ и $(A_2,\prec_2)$ са фундирани.
+  Тогава \[(A_1\times A_2, \prec)\]
+  е фундирано множество, където
+  \[\pair{a_1,a_2}\prec \pair{a^\prime_1,a^\prime_2}\ \iff\ a_1\prec_1 a^\prime_1\ \vee\ (a_1 = a^\prime_1\ \wedge\ a_2\prec_2 a^\prime_2)\]
+\end{prop}
+\begin{proof}
+  Да допуснем, че съществува
+  безкрайно намаляваща редица относно $\prec$:
+  \[(x_0,y_0)\succ(x_1,y_1) \succ \cdots \succ (x_n,y_n)\succ\cdots\]
+  Да разгледаме редицата само от първите компоненти :
+  \[x_0 \succeq x_1 \succeq \cdots \succeq x_n \succeq \cdots\]
+  Това означава, че съществува число $n_1$, такова че 
+  \[(\forall k \geq n_1)[x_{n_1} = x_k].\]
+  В противен случай ще получим безкрайно намаляваща редица, което ще бъде
+  противоречие с фундираността на $A_1$.
+  Аналогично, съществува $n_2$, такова че
+  \[(\forall k \geq n_2)[y_{n_2} = y_k].\]
+  В противен случай ще получим безкрайно намаляваща редица, което ще бъде
+  противоречие с фундираността на $A_2$.
+  Нека \[n = \max(n_1,n_2).\]
+  Тогава 
+  \[(\forall k\geq n)[(x_n,y_n) = (x_k,y_k)].\]
+  Така достигаме до противоречие с 
+  \[(\forall k \geq n)[(x_n,y_n) \succ (x_k,y_k)].\]
+  Следователно $\prec$ задава фундирана наредба върху $A_1\times A_2$.
+\end{proof}
+
+
+
+\subsection*{Индукция по фундирани наредби}
+
+Доказателството с индукция по фундираното множество $(A,\prec)$ представлява следната схема:
+\begin{prooftree}
+  \AxiomC{$(\forall x \in A)[(\forall y\in A)[y \prec x\ \rightarrow\ P(y)]\ \rightarrow P(x)]$}
+  \UnaryInfC{$(\forall x \in A) P(x)$}
+\end{prooftree}
+Ако допуснем, че съществува $x \in A$, за което $\neg P(x)$, то да разгледаме
+\[X = \{x\in A\mid \neg P(x)\}.\]
+Щом това множество е непразно, то $X$ има поне един минимален елемент $x_0$.
+Тогава
+\[(\forall y\in A)[y \prec x_0\ \rightarrow P(y)].\]
+Но това означава, че $P(x_0)$, което е противоречие.
+
+\begin{prb}
+  Докажете,  че $f(x,y) = \abs{x-y}$, където
+  \begin{align*}
+    f(x,y) = 
+    \begin{cases}
+      y, & x = 0\\
+      x, & y = 0\\
+      f(x-1,y-1), & \mbox{ иначе}
+    \end{cases}
+  \end{align*}
+\end{prb}
+\begin{proof}
+  Индукция по $(\Nat^2,\prec)$, където $\prec$ е лексикографската наредба.
+  Имаме един минимален елемент $(0,0)$.
+  \[f(0,0) = 0 = \abs{0 - 0}.\]
+  Да допуснем, че за всяко $(u,v) \prec (x,y)$, 
+  \[f(u,v) = \abs{u - v}.\]
+  Тогава ако $x > 0, y = 0$, то
+  \[f(x,0) = x = \abs{x - 0}.\]
+  Ако $x> 0, y > 0$, то
+  \[f(x,y) = f(x-1,y-1) = \abs{x-1-y+1} =\abs{x-y}.\]
+\end{proof}
+
+\begin{prb}
+  Докажете, че $f(x,y) = \mbox{НОД}(x,y)$, където
+  за $x,y \in \Nat$,
+  \begin{align*}
+    f(x,y) = 
+    \begin{cases}
+      f(x-y,y), & x > y\\
+      f(y,x), & x < y\\
+      x, & x = y.
+    \end{cases}
+  \end{align*}
+\end{prb}
+
+\begin{prb}
+  Докажете, че $f(x,y) = \binom{x}{y}$, където
+  за $x \geq y, x,y\in\Nat$,
+  \begin{align*}
+    f(x,y) = 
+    \begin{cases}
+      1, & x = 0\ \vee\ y = 0\ \vee\ x = y\\
+      f(x-1,y) + f(x-1,y-1), & \mbox{ иначе}
+    \end{cases}
+  \end{align*}
+\end{prb}
+
+% \begin{prb}
+%   \begin{align*}
+%     f(x,y) = 
+%     \begin{cases}
+%       y+1, & x = 0\\
+%       f(x-1,1), & x > 0\ \wedge\ y = 0\\
+%       f(x-1,f(x,y-1), & x > 0\ \wedge\ y > 0.
+%     \end{cases}
+%   \end{align*}
+%   Докажете, че $f$ е тотална функция.
+
+% \end{prb}
+
+\begin{dfn}
+  Да определим следната редица:
+  \[F_0 = 0,F_1 = 1,\dots,F_{n+2} = F_{n} + F_{n+1}.\]
+  Числата $F_n$ се наричат {\em числа на Фибоначи}.
+\end{dfn}
+
+\begin{prb}
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item
+    единствено членовете от вида $F_{3n}$ са четни;
+  \item
+    за $n > 0$, $F_{n+1}F_{n-1} - F^2_n = (-1)^n$;
+  \item
+    $F_{m+n} = F_{m-1}\cdot F_{n} + F_m \cdot F_{n-1}$;
+  \item
+    ако $m\vert n$, то $F_m \vert F_n$.
+  \item
+    ако $n\geq 3$, то $F_n > \phi^{n-2}$,
+    където $\phi = \frac{1+\sqrt{5}}{2}$.
+  \end{enumerate}
+\end{prb}
+
+
+\begin{prb}
+  Докажете, че за всеки $m,n\in\Nat$
+  съществуват $p,q\in\Z$, такива че
+  \[p\cdot m +  q\cdot n = \mbox{НОД}(m,n).\]
+\end{prb}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "discrete-math"
+%%% End: 
