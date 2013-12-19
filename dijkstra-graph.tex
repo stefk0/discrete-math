@@ -1,6 +1,6 @@
 
 
-\subfigure[Започваме от съседите на $a$]{
+\begin{subfigure}[b]{0.3\textwidth}
   \begin{tikzpicture}[scale=0.9]
     % nodes
     \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -28,8 +28,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[$b$ е най-близко до $a$]{
+    \caption{Започваме от $a$. Инциализираме $\delta(v) = \infty$ за $v\neq a$. }
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -61,8 +63,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[Най-къс път до $f$]{
+    \caption{$b$ е с най-ниска цена от достижимите от $a$. Тогава $\delta(b) = 2$, $\pi(b) = a$.}
+  \end{subfigure}
+  \qquad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -101,8 +105,9 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[По-къс път до $d$ и $c$]{
+    \caption{Избираме $f$ измежду $\{g,f,d\}$. $\delta(f) = 3$, $\pi(f) = b$.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       % nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -142,8 +147,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[По-къс път до $d$ и $h$]{
+    \caption{Избираме $c$ измежду $\{c,d,g\}$, $\delta(c) = 4$, $\pi(c) = f$}
+  \end{subfigure}
+  \qquad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       % nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -184,8 +191,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[По-къс път до $g$]{
+    \caption{Вече $\delta(d) = 5$, $\pi(d) = c$. Избираме $d$ измежду $\{d,h,g\}$,}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -227,8 +236,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[$h$ е задънена улица]{
+    \caption{Избираме $h$ измежду $\{g,h\}$. Вече $\delta(g) = 7$, $\pi(g) = d$}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -271,8 +282,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[$e$ не е достижим]{
+    \caption{Избираме $g$ измежду $\{g\}$.}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -316,8 +329,10 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
-  \subfigure[Краен резултат]{
+    \caption{$e$ не е достижим. Остава $\delta(e) = \infty$, $\pi(e) = \infty$}
+  \end{subfigure}
+  \qquad
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %nodes
       \foreach \nodename/\x/\y/\value/\direction/\navigate/\color in { 
@@ -357,7 +372,8 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-  }
+    \caption{Краен резултат}
+  \end{subfigure}
 
 %%% Local Variables: 
 %%% mode: latex

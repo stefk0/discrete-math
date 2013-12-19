@@ -1,5 +1,5 @@
 
-  \subfigure[Начален връх е $s$]{
+\begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       %% nodes or vertices
       
@@ -24,9 +24,10 @@
       };
       ;
     \end{tikzpicture}
-  }
+    \caption{Начален връх е $s$}
+  \end{subfigure}
   \quad
-  \subfigure[Започваме със съседите на $s$]{
+  \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[scale=0.9]
       \foreach \nodename/\value/\x/\y/\direction/\navigate/\color in { 
         s/0/0/0/left/west/green, 
@@ -57,12 +58,13 @@
     
 
   \end{tikzpicture}
-}
-\quad
-\subfigure[Продължаваме с $x$ и $z$]{
-  \begin{tikzpicture}[scale=0.9]
-
-    \foreach \nodename/\value/\x/\y/\direction/\navigate/\color in { 
+  \caption{Започваме със съседите на $s$}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.3\textwidth}
+    \begin{tikzpicture}[scale=0.9]
+      
+      \foreach \nodename/\value/\x/\y/\direction/\navigate/\color in { 
         s/0/0/0/left/west/green, 
         x/4/3.5/1.5/above/north/red,
         y/7/1/-1.5/below/south/blue,
@@ -97,9 +99,10 @@
     ;
 
   \end{tikzpicture}
-}
+  \caption{Продължаваме с $x$ и $z$}
+  \end{subfigure}
 \quad
-\subfigure[По-кратък път до $t$]{
+\begin{subfigure}[b]{0.3\textwidth}
   \begin{tikzpicture}[scale=0.9]
     
     \foreach \nodename/\value/\x/\y/\direction/\navigate/\color in { 
@@ -138,9 +141,10 @@
     };
     ;
   \end{tikzpicture}
-}
+  \caption{По-кратък път до $t$}
+\end{subfigure}
 \quad
-\subfigure[По-кратък път до $z$]{
+\begin{subfigure}[b]{0.3\textwidth}
   \begin{tikzpicture}[scale=0.9]
     %% nodes or vertices
     \foreach \nodename/\value/\x/\y/\direction/\navigate/\color in { 
@@ -176,9 +180,10 @@
       (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
     };
   \end{tikzpicture}
-}
+  \caption{По-кратък път до $z$}
+  \end{subfigure}
 \quad
-\subfigure[край на процедурата]{
+\begin{subfigure}[b]{0.3\textwidth}
   \begin{tikzpicture}[scale=0.9]
     %% nodes or vertices
     \foreach \nodename/\value/\x/\y/\direction/\navigate/\color in { 
@@ -207,7 +212,8 @@
       (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
     };
   \end{tikzpicture}
-}
+  \caption{Край на процедурата.}
+\end{subfigure}
 
 
 %%% Local Variables: 

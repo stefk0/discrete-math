@@ -21,16 +21,18 @@ citecolor=green, urlcolor=blue]{hyperref}
 \usepackage{makeidx}
 \usepackage{layout}
 
-% \usepackage{algorithm}
-% \usepackage{algorithmic}
+\usepackage{bussproofs}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 %%%%%%%%%%%%%%% TIKZ Package %%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{tikz}
-% \usepackage{pgf}
-% \usetikzlibrary{arrows,automata}
+\usepackage{tikz}
+\usepackage{pgf}
+\usetikzlibrary{arrows,automata}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \usepackage{subfigure}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
 % \setlength{\parindent}{0.5cm}            % amount of indentation of paragraph
@@ -40,10 +42,12 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newtheorem{thm}{Теорема}
 \newtheorem{crl}{Следствие}
 \newtheorem{lemma}{Лема}
+\newtheorem{prop}{Твърдение}
 \newtheorem{dfn}{Определение}
 \newtheorem{problem}{Задача}
+\newtheorem{prb}{Задача}
 \newtheorem{example}{Пример}
-\newtheorem{remark}{Забележка}
+\newtheorem*{remark}{Забележка}
 \renewenvironment{proof}{\noindent{\bf Док.}\hspace*{1em}}{\qed\par}
 
 \newcommand{\A}{\mathfrak{A}}
@@ -81,6 +85,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 \renewcommand{\iff}{\ \leftrightarrow\ }
 
 \setlength{\marginparsep}{0.5cm}
+\setlength{\oddsidemargin}{0.3cm}
+\setlength{\hoffset}{0cm}
 \setlength{\marginparwidth}{110pt}
 \let\oldmarginpar\marginpar
 
@@ -100,16 +106,16 @@ citecolor=green, urlcolor=blue]{hyperref}
 \include{predicate}
 \include{sets}
 \include{relations}
-% \include{functions}
-% \include{cardinality}
-% \include{comb1}
-% \include{comb2}
-% \include{automata}
-% \include{context-free}
-% \include{boolean1}
-% \include{boolean2}
-% \include{graphs}
-% \include{graph-alg}
+\include{functions}
+\include{proofs}
+\include{cardinality}
+\include{comb}
+\include{automata}
+\include{context-free}
+\include{boolean1}
+\include{boolean2}
+\include{graphs}
+\include{graph-alg}
 
 % \backmatter
 
