@@ -2,44 +2,175 @@
 
 \section{Обхождане на граф}
 
-\subsection{Обхождане в дълбочина}
-
 \subsection{Обхождане в широчина}
 
+Всеки връх може да бъде в едно от три състояния, или както сме ги означили тук, в един от три цвята.
+Ако един връх $v$ е
 \begin{itemize}
+\item 
+  бял, то той още не е срещнат.
 \item
-  
+  сив, то той е срещнат, но още не е напълно обработен.
+\item
+  черен, то той е напълно обработен.
+\end{itemize}
+
+\begin{algorithm}
+  \caption{Инициализация}
+  \label{alg:bfs-init}
+  \begin{algorithmic}[1]
+    \Procedure{BFS-INIT}{s}
+    \ForAll{$v \in V \setminus \{s\}$}
+    \State $color[v] := \mbox{WHITE}$
+    \State $dist[v] := \infty$
+    \State $pred[v] := NIL$
+    \EndFor
+    \State $color[s]:=GRAY$
+    \State $dist[s]:=0$
+    \State $pred[s]:=NIL$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+За този алгоритъм най-удобно е да имаме масив $Adj$ с дължина $\abs{V}$,
+като $Adj[u]$ дава списък с наследниците на $u$, т.е.
+\[Adj[u] = \{u \in V \mid (u,v) \in E\}.\]
+
+\begin{algorithm}
+  \caption{Алгоритъм за обхожданев широчина}
+  \label{alg:bfs}
+  \begin{algorithmic}[1]
+    \Procedure{BFS}{$s$}
+    \State \Call{BFS-INIT}{$s$}
+    \State $Q := \emptyset$
+    \State put($Q$,$s$)
+    \While {$Q \neq \emptyset$}
+    \State $u := get(Q)$
+    \ForAll{$v \in Adj[u]$}
+    \If{$WHITE == color[v]$}
+    \State $put(Q,v)$
+    \State $color[v] := GRAY$
+    \State $pred[v] := u$
+    \State $dist[v] := dist[u] + 1$
+    \EndIf
+    \EndFor
+    \State $color[u] := BLACK$
+    \EndWhile
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{itemize}
 \item 
   Алгоритъмът работи както за ориентирани, така и за неориентирани графи.
+\item
+  Дължина на път (без цикли) е броят на ребрата, които участват в пътя.
+  Например, за пътя $p = (v_0,\dots,v_k)$ в графа $G$,
+  неговата дължина е $k$, защото ребрата, които участват в $p$
+  са $\{(v_0,v_1),(v_1,v_2),\dots,(v_{k-1},v_k)\}$ и са общо $k$ на брой.
+  Обикновено ще означаваме дължината на пътя $p$ с $\abs{p}$.
+\item
+  Нека да означим за всеки два върха $u,v \in V$,
+  \[
+  \delta(u,v) =
+  \begin{cases}
+    \min\{\abs{p} \mid u\stackrel{p}{\leadsto}v\}, \mbox{ ако има път между }u, v \\
+    \infty, \mbox{ ако няма път}
+  \end{cases}\]
+\item
+  Имаме свойството, че за (не)ориентиран граф $G = (V,E)$ и един връх $s \in V$,
+  ако $(u,v) \in E$, то
+  \[\delta(s,v) \leq \delta(s,u) + 1.\]
+\item
+  За (не)ориентиран граф $G = (V,E)$, и фиксиран връх $s\in V$, означаваме $G_{pred} = (V_{pred},E_{pred})$ да бъде
+  \begin{align*}
+    V_{pred} & = \{v \in V\mid pred[v] \neq NIL\} \cup \{s\},
+    E_{pred} & = \{(u,v) \in E \mid pred[v] = u\}.
+  \end{align*}
+  След изпълнение на BFS($s$), $G_{pred}$ представлява дърво с корен $s$, 
+  за всеки достижим в $G$ от $s$ връх $v$, $G_{pred}$ съдържа единствен прост път $s \stackrel{p}{\leadsto} v$, 
+  като $p$ е най-къс измежду всички пътища свързващи $s$ с $v$ в $G$.
 \end{itemize}
+
+\begin{thm}
+  Нека е даден (не)ориентиран граф $G = (V,E)$ и един връх $s \in V$.
+  След изпълнение на BFS($s$) получаваме, че
+  \[(\forall v \in V)[dist[v] = \delta(s,v)].\]
+\end{thm}
+
+\subsection{Обхождане в дълбочина}
+
+\begin{algorithm}
+  \caption{Обхождане в дълбочина}
+  \label{alg:dfs-visit}
+  \begin{algorithmic}[1]
+    \Procedure{DFS}{$u$}
+    \State $t := t+1$
+    \State $in[u] := t$
+    \State $color[u] := GRAY$
+    \ForAll{$v \in Adj[u]$}
+    \If {$WHITE = color[v]$}
+    \State $pred[v] := u$
+    \State \Call{DFS-VISIT}{v}
+    \EndIf
+    \EndFor
+    \State $t := t+1$
+    \State $out[u] := t$
+    \State $color[u] := BLACK$
+    \EndProcedure
+    \Statex
+    \Procedure{DFS}{}
+    \ForAll{$v \in V$}
+    \State $color[v] := WHITE$
+    \State $pred[v] := NIL$
+    \EndFor    
+    \State $t := 0$
+    \ForAll{$v \in V$}
+    \If{$WHITE = color[v]$}
+    \State\Call{DFS-VISIT}{v}
+    \EndIf
+    \EndFor
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
 
 \section{Минимално покриващо дърво на граф}
 
+
 \begin{itemize}
+\item
+  Тук ще разглеждаме само {\bf неориентирани} графи $G = (V,E,w)$ с тегла по ребрата
+  зададени с функцията $w:E\to\R$.
 \item
   Един граф $G = (V,E)$ се нарича {\bf свързан}, ако има път между всеки два $v,v^\prime \in V$.
 \item 
-  Един граф $G$ се нарича {\bf дърво}, ако $G$ е свързан неориентиран граф без цикли.
+  Един неориентиран граф $G$ се нарича {\bf дърво}, ако $G$ е свързан и без цикли.
 \item
   {\bf Покриващо дърво} за свъзан неориентиран граф $G = (V,E)$,
-  е дърво $T = (V,E^\prime)$, $Е^\prime \subseteq E$.
+  е дърво $T = (V,E^\prime)$, $E^\prime \subseteq E$.
 \item
-  {\bf Минимално покриващо дърво} свъзан неориентиран граф $G = (V,E,c)$
-  е покриващо дърво $T$, за което числото $r = \sum_{e\in T} c(e)$ е минимално.
+  Тегло на едно подмножество от $U \subseteq E$ е числото
+  \[w(U) = \sum_{e \in U} w(e).\]
+\item
+  {\bf Минимално покриващо дърво} свъзан неориентиран граф $G = (V,E,w)$
+  е покриващо дърво $T$, за което 
+  \[w(T) = \min\{w(T^\prime) \mid T^\prime\mbox{ е покриващо дърво за }G\}.\]
 \end{itemize}
 
 \subsection{Алгоритъм на Прим}
 
-Нека е даден неориентиран свързан претеглен граф $G = (V,E,c)$
-и да фиксираме един връх $r \in V$, който ще бъден корен покриващото дърво.
+Нека е даден неориентиран {\bf свързан} граф $G = (V,E,w)$ и да фиксираме един връх $r \in V$, който искаме да бъде корен на покриващото дърво $T$
+Ще построим $T$ на стъпки като на стъпка $i+1$ ще построим дърво $T_{i+1}$, което се получава от $T_i$
+с добавяне на нов връх и ново ребро.
 
 \begin{enumerate}
 \item 
   Започваме от дървото $T_0 = (\{r\},\emptyset)$.
 \item
   Нека сме построили дървото $T_i = (V_i,E_i)$.
-  Търси реброто $(v,v^\prime)$ с минимално тегло, за което
-  $v \in V_i$ и $v^\prime \in V \setminus V_i$.
+  Избираме ребро $(v,v^\prime) \in E$ такова ,че
+  \[w(v,v^\prime) = \min\{w(x,y) \mid x\in V_i\ \&\ y \in V\setminus V_i\ \&\ (x,y) \in E\}.\]
   Образуваме \[T_{i+1} = (V_i\cup\{v^\prime\}, E_i \cup \{(v,v^\prime)\}).\]
 \item
   Алгоритъмът завършва когато $V_i = V$.
@@ -47,15 +178,17 @@
 
 \subsection{Алгоритъм на Крускал}
 
-Нека е даден неориентиран свързан претеглен граф $G = (V,E,c)$.
+Нека е даден неориентиран свързан претеглен граф $G = (V,E,w)$.
 \begin{enumerate}
 \item
   Нека $V = \{v_0,\dots,v_n\}$.
   Строим редица от дървета $\{T_i\}_{i \leq n}$, като
-  $T_i = (\{v_i\},\emptyset)$, т.е. дърветата са съставени само от един връх и нямат ребра.
+  \[T_i = (\{v_i\},\emptyset),\]
+  т.е. дърветата са съставени само от един връх и нямат ребра.
   Ще се стремим да обединяваме тези дървете и най-накрая да получим само едно дърво.
 \item
-  Сортираме ребрата $E$ на графа $G$ във възходящ ред относно тяхната цена.
+  Сортираме ребрата $E$ на графа $G$ във възходящ ред относно тяхната цена
+  и започваме да ги обхождаме във възходящ ред.
 \item
   За всяко ребро $(v,v^\prime) \in E$, нека $v$ принадлежи на върховете на $T$, а $v^\prime$ 
   принадлежи на върховете на $T^\prime$.
@@ -77,7 +210,7 @@
 \item
   С $u \stackrel{p}{\leadsto} v$ означаваме, че $p$ е път от $u$ до $v$.
 \item
-  Тук ще разглеждаме ориентирани графи $G = (V,E)$, като имаме и 
+  Тук ще разглеждаме {\bf ориентирани} графи $G = (V,E)$, като имаме и 
   функция $w: E\to \R$, която задава {\bf тегла} на ребрата на графа.
 \item 
   {\bf Цена на път} $p = (v_0,\dots,v_k)$ в графа означаваме 
@@ -150,14 +283,14 @@
   $pred[v]$ - дава предшественика на $v$ по този минимален път, т.е.
   ако $pred[v] = u$, то $s \leadsto u \to v$.
   Ако $pred[v] = NIL$, то не е намерен път $s \leadsto v$.
-\item
-  Сега като имаме масива $pred$, можем да образуваме графа на предшествениците $G_{pred} = (V_{pred},E_{pred})$, където
-  \begin{enumerate}[]
-  \item 
-    $V_{pred} = \{u \in V \mid pred[u] \neq NIL \} \cup \{s\}$,
-  \item
-    $E_{pred} = \{(u,v) \in V\times V \mid pred[v] = u\}$.
-  \end{enumerate}
+% \item
+%   Сега като имаме масива $pred$, можем да образуваме графа на предшествениците $G_{pred} = (V_{pred},E_{pred})$, където
+%   \begin{enumerate}[]
+%   \item 
+%     $V_{pred} = \{u \in V \mid pred[u] \neq NIL \} \cup \{s\}$,
+%   \item
+%     $E_{pred} = \{(u,v) \in V\times V \mid pred[v] = u\}$.
+%   \end{enumerate}
 \end{itemize}
 
 % \begin{figure}[!ht]
@@ -168,11 +301,11 @@
 %   % \caption{INIT(s)}
 %   % \label{alg:init}
 %   \begin{algorithmic}[1]
-%     \FORALL{$v \in V$}
-%     \STATE $dist[v] := \infty$
-%     \STATE $pred[v] := NIL$
-%     \ENDFOR
-%     \STATE $dist[s] := 0$
+%     \ForAll{$v \in V$}
+%     \State $dist[v] := \infty$
+%     \State $pred[v] := NIL$
+%     \EndFor
+%     \State $dist[s] := 0$
 %   \end{algorithmic}
 % % \end{algorithm}
 % \end{subfigure}
@@ -183,35 +316,39 @@
 %   % \caption{UPDATE(u,v)}
 %   % \label{alg:update}
 %   \begin{algorithmic}[1]
-%     \IF{$dist[v] > dist[u] + w(u,v)$}
-%     \STATE $dist[v] := dist[u] + w(u,v)$
-%     \STATE $pred[v] := u$
-%     \ENDIF
+%     \If{$dist[v] > dist[u] + w(u,v)$}
+%     \State $dist[v] := dist[u] + w(u,v)$
+%     \State $pred[v] := u$
+%     \EndIf
 %   \end{algorithmic}
 % % \end{algorithm}
 % \end{subfigure}
 % \end{figure}
 
 \begin{algorithm}
-  \caption{INIT(s)}
+  \caption{Инициализация}
   \label{alg:init}
   \begin{algorithmic}[1]
-    \FORALL{$v \in V$}
-    \STATE $dist[v] := \infty$
-    \STATE $pred[v] := NIL$
-    \ENDFOR
-    \STATE $dist[s] := 0$
+    \Procedure{INIT}{$s$}
+    \ForAll{$v \in V$}
+    \State $dist[v] := \infty$
+    \State $pred[v] := NIL$
+    \EndFor
+    \State $dist[s] := 0$
+    \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
 \begin{algorithm}
-  \caption{UPDATE(u,v)}
+  \caption{Търсене на по-добър кандидат}
   \label{alg:update}
   \begin{algorithmic}[1]
-    \IF{$dist[v] > dist[u] + w(u,v)$}
-    \STATE $dist[v] := dist[u] + w(u,v)$
-    \STATE $pred[v] := u$
-    \ENDIF
+    \Procedure{UPDATE}{$u$,$v$}
+    \If{$dist[v] > dist[u] + w(u,v)$}
+    \State $dist[v] := dist[u] + w(u,v)$
+    \State $pred[v] := u$
+    \EndIf
+    \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
@@ -228,8 +365,7 @@
   Нека сме изпълнили INIT(s).
   Тогава имаме свойството \[(\forall v\in V)[dist[v] \geq \delta(s,v)].\]
   То се запазва и след прозволен брой изпълнения на UPDATE върху ребра на графа.
-  
-  Освен това, ако веднъж $dist[v] = \delta(s,v)$, то $dist[v]$
+  Освен това, ако веднъж $dist[v] = \delta(s,v)$, то стойността на $dist[v]$
   повече не се променя.
 \end{prop}
 \begin{proof}
@@ -294,7 +430,7 @@
 \begin{prop}
   \label{prop:converge}
   Нека $s\leadsto u \to v$ е път с минимално тегло.
-  Нека сме изпълнили INIT(s) и няколко на брой UPDATE, като измежду тях и UPDATE(u,v).
+  Нека сме изпълнили INIT(s) и няколко на брой UPDATE, като измежду тях и UPDATE($u$,$v$).
   Ако по някое време преди изпълнение на UPDATE(u,v) 
   имаме, че $dist[u] = \delta(s,u)$, то след това изпълнение
   $dist[v] = \delta(s,v)$ и повече не се променя.
@@ -417,41 +553,43 @@
 \subsection{Алгоритъм на Дейкстра}
 \index{Дейкстра!алгоритъм}
 
-В този алгоритъм, разглеждаме ориентирани графи $G = (V,E,c)$ с {\em положителни} тегла (или цени) по ребрата, т.е. 
-имаме функция $c:E\to\R^+$. 
-Целта на алгоритъма е да построим следните функции:
-\begin{itemize}
-\item 
-  $\delta: V\to\R\cup\{\infty\}$, 
-  която да дава минималната цена на път от $s$ до $v$. Ако няма път от $s$ до $v$, то $\delta(v)$
-  ще приема стойност $\infty$.
-\item
-  $\pi:V\to V\cup\{\infty\}$, която да дава предшественика на $v$ по път с минимална цена от $s$ до $v$,
-  ако такъв път съществува, иначе ще дава като резултат $\infty$.
-\end{itemize}
+В този алгоритъм, разглеждаме ориентирани графи $G = (V,E,w)$ с {\em положителни} тегла (или цени) по ребрата, т.е. 
+имаме функция $w:E\to\R^+$. 
+% Целта на алгоритъма е да построим следните функции:
+% \begin{itemize}
+% \item 
+%   $\delta: V\to\R\cup\{\infty\}$, 
+%   която да дава минималната цена на път от $s$ до $v$. Ако няма път от $s$ до $v$, то $\delta(v)$
+%   ще приема стойност $\infty$.
+% \item
+%   $\pi:V\to V\cup\{\infty\}$, която да дава предшественика на $v$ по път с минимална цена от $s$ до $v$,
+%   ако такъв път съществува, иначе ще дава като резултат $\infty$.
+% \end{itemize}
 
 \begin{algorithm}
 \caption{Алгоритъм на Дейкстра}
 \label{alg:dijkstra}
 
 \begin{algorithmic}[1]
-  \REQUIRE{$w:E\to \R^+$}
-  \STATE INIT(s)
-  \STATE $V^\prime := V$
-  \WHILE{$V^\prime\neq\emptyset$}
+  \Require{$w:E\to \R^+$}
+  \Procedure{DIJKSTRA}{$s$}
+  \State \Call{INIT}{$s$}
+  \State $V^\prime := V$
+  \While{$V^\prime\neq\emptyset$}
   % \AND $(\exists u\in V^\prime)[dist[u] < \infty]$}
-  \STATE Избираме $u_0\in V^\prime$, за който $ dist[u_0] = min\{dist[v] \mid v\in V^\prime\} $
-  \STATE $V^\prime := V^\prime\setminus\{u_0\}$
-  \FORALL{ $v\in V^\prime $ }
-  \IF{$(u_0,v)\in E$}
-  \STATE UPDATE($u_0$,$v$)
+  \State Избираме $u_0\in V^\prime$, за който $ dist[u_0] = min\{dist[v] \mid v\in V^\prime\} $
+  \State $V^\prime := V^\prime\setminus\{u_0\}$
+  \ForAll{ $v\in Adj[u_0]$ }
+  % \If{$(u_0,v)\in E$}
+  \State\Call{UPDATE}{$u_0$,$v$}
     % \AND $\delta(v) > \delta(u_0) + c(u_0,v)$}
-  % \STATE $\delta(v):= \delta(u_0)+c(u_0,v)$
-  % \STATE $\pi(v) := u_0$
-  \ENDIF
-  \ENDFOR
-  \ENDWHILE
-  % \RETURN $\delta$
+  % \State $\delta(v):= \delta(u_0)+c(u_0,v)$
+  % \State $\pi(v) := u_0$
+  % \EndIf
+  \EndFor
+  \EndWhile
+  \EndProcedure
+  % \Return $\delta$
 \end{algorithmic}
 \end{algorithm}
 
@@ -591,9 +729,29 @@
   \label{fig:dijkstra-graph}
 \end{figure}
 
-\begin{problem}
-  Дайте пример за насочен граф с отрицателен цикъл, при който алгоритъмът на Дейкстра не дава правилния резултат.
-\end{problem}
+
+Ще завършим с един прост пример, който показва, че алгоритъмът на Дейкстра не работи
+при наличието на ребра с отрицателни тегла.
+
+\begin{figure}[!htbp]
+  \begin{tikzpicture}[]
+    
+    \foreach \nodename/\x/\y/\direction/\navigate in { a/1/1/above/north,
+      s/0/0/left/west, b/1/-1.5/below/south}
+      {
+        \node (\nodename) at (\x,\y) [nodedecorate] {};
+        \node [\direction] at (\nodename.\navigate) {$\nodename$};
+      }
+      %% edges or lines
+      \path
+      \foreach \startnode/\endnode/\direction/\weight in {s/a/above/3,
+        s/b/below/2, a/b/right/-2}
+      {
+        (\startnode) edge[arrowdecorate] node[\direction] {$\weight$} (\endnode)
+      };
+    \end{tikzpicture}
+    \caption{Пример, за който алгоритъмът на Дейкстра не дава верен резултат}
+\end{figure}
 
 \newpage
 \subsection{Алгоритъм на Белман-Форд}\index{Белман-Форд!алгоритъм}
@@ -612,22 +770,23 @@
   \label{alg:belman-ford}
   
   \begin{algorithmic}[1]
-    \STATE INIT(s)
-    \FOR{$i:=1$ to $\abs{V}-1$}
-    \FORALL{$(u,v)\in E$}
-    \STATE UPDATE(u,v)
+    \Procedure{Bellman-Ford}{$s$}
+    \State\Call{INIT}{$s$}
+    \For{$i:=1$ to $\abs{V}-1$}
+    \ForAll{$(u,v)\in E$}
+    \State\Call{UPDATE}{$u$,$v$}
     % \ENSURE{$dist[v] \geq \delta(s,v)$}
-    \ENDFOR
-    \ENDFOR
+    \EndFor
+    \EndFor
     
-    \COMMENT{Проверка за отрицателен цикъл}
-    \FORALL{$(u,v)\in E$}
-    \IF {$dist[v] > dist[u] + w(u,v)$}
-    \RETURN \FALSE
-    \ENDIF
-    \ENDFOR
-    \RETURN \TRUE
-    
+    \Comment{Проверка за отрицателен цикъл}
+    \ForAll{$(u,v)\in E$}
+    \If {$dist[v] > dist[u] + w(u,v)$}
+    \State Return False
+    \EndIf
+    \EndFor
+    \State Return True
+    \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
