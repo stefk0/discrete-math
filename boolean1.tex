@@ -1,23 +1,43 @@
-\chapter{Булева алгебра}
+\chapter{Булеви функции}
 
+Да припомним таблицата за истинност за някои от основните булеви функции на два аргумента.
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+  \hline
+  $x$ & $y$ & $\overline{x}$ & $x \vee y$ & $xy$ & $x \rightarrow y$ & $\overline{x}\vee y$ & $x \iff y$ & $x \oplus y$\\
+  \hline
+  0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0\\
+  \hline
+  0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1\\
+  \hline
+  1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\
+  \hline
+  1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0\\
+  \hline
+\end{tabular}
+
+\section{Основни свойства}
+
+\marginpar{Често вместо $x\wedge y$ пишем $x\cdot y$ или $xy$. Също така, вместо $\neg x$ пишем $\overline{x}$}
 \begin{enumerate}[1)]%% ДА се напишат всичките от Манев, стр. 189
 \item
-  Комутативни свойства\\
-  $xy = yx$, $x\vee y = y\vee x$, $x\oplus y = y\oplus x$;
+  Комутативни свойства
+  \[xy = yx,\quad x\vee y = y\vee x,\quad x\oplus y = y\oplus x\]
 \item
-  Асоциативни свойства\\
-  $(xy)z = x(yz)$, $(x\vee y)\vee z = x\vee (y\vee z)$, $(x\oplus y)\oplus z = x\oplus (y\oplus z)$;
+  Асоциативни свойства
+  \[(xy)z = x(yz),\quad (x\vee y)\vee z = x\vee (y\vee z),\quad (x\oplus y)\oplus z = x\oplus (y\oplus z)\]
 \item
-  $x\oplus y = x.\ov{y}\vee \ov{x}.y = (x\vee y).(\ov{x}\vee\ov{y})$;
+  Лесно се проверява с таблиците за истинност, че:
+  \[x\oplus y = x\ov{y}\vee \ov{x}y = (x\vee y)(\ov{x}\vee\ov{y})\]
 \item
-  Свойства на отрицанието\\
-  $x\ov{x} = 0$, $x\vee\ov{x} = x\vee 1$, $x\oplus\ov{x} = 1$;
+  Свойства на отрицанието
+  \[x\ov{x} = 0, \quad x\vee\ov{x} = x\vee 1,\quad x\oplus\ov{x} = 1\]
 \item
-  Закон за двойното отрицание\\
-  $\ov{\ov{x}} = x$;
+  Закон за двойното отрицание
+  \[\ov{\ov{x}} = x\]
 \item
-  Свойства на константите\\
-  $x.0 = 0$,$x.1 = x$, $x\vee 0 = x$, $x\vee 1 = 1$, $x\oplus 0 = x$, $x\oplus 1 = \ov{x}$;
+  Свойства на константите
+  \[x\cdot 0 = 0, \quad x\cdot 1 = x,\quad x\vee 0 = x,\quad x\vee 1 = 1,\quad x\oplus 0 = x, \quad x\oplus 1 = \ov{x}\]
 \item
   Дистрибутивни свойства
   \begin{enumerate}[]
@@ -29,14 +49,14 @@
     $(x\oplus y)z = xz \oplus yz$.
   \end{enumerate}
 \item
-  Идемпотентентни свойства\\
-  $xx = x$, $x\vee x = x$.
+  Идемпотентентни свойства
+  \[xx = x, \quad x\vee x = x\]
 \item
-  Свойства на отрицанието\\
-  $x\ov{x} = 0$, $x\vee\ov{x} = 1$, $x\oplus\ov{x} = 1$;
+  Свойства на отрицанието
+  \[x\ov{x} = 0, \quad x\vee\ov{x} = 1, \quad x\oplus\ov{x} = 1\]
 \item
-  Закони на Де Морган\\
-  $\ov{xy} = \ov{x}\vee\ov{y}$, $\ov{x\vee y} = \ov{x}.\ov{y}$;
+  Закони на Де Морган
+  \[\ov{xy} = \ov{x}\vee\ov{y}, \quad \ov{x\vee y} = \ov{x}\cdot\ov{y}\]
 \end{enumerate}
 
 \begin{problem} %% Гаврилов, стр. 30
@@ -59,6 +79,81 @@
     $\psi = (x\rightarrow y)\vee z$.
   \end{enumerate}
 \end{problem}
+\begin{proof}
+  \begin{itemize}
+  \item
+    $\psi = \overline{x}\vee ((\overline{y\rightarrow z})\vee x) = 1$.
+    
+    \begin{tabular}{l c l}
+      $\varphi $ & $ =$ & $ \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
+      & $=$ & $\overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
+      & $=$ & $\overline{x}.\overline{yz} \vee xyz \vee x\vee \overline{y}\vee z$\\
+      & $=$ & $\overline{x}(\overline{y}\vee\overline{z}) \vee x\vee \overline{y}\vee z$\\
+      & $=$ & $\overline{x}.\overline{y} \vee \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z$\\
+      & $=$ & $\overline{x}.\overline{z} \vee x\vee \overline{y}\vee z$\\
+      & $=$ & $\overline{(x\vee z)} \vee (x\vee z)\vee \overline{y} = 1$.
+    \end{tabular}
+  \item
+    $\psi = (x\rightarrow y)\rightarrow(\overline{y}\rightarrow\overline{x}) = 
+    \ov{\ov{x}\vee y} \vee y \vee \ov{x} = x\ov{y} \vee y \vee \ov{x} = x \vee y \vee \ov{x} = 1$
+    
+    \begin{tabular}{l c l}
+      $\varphi $ & $=$ & $(\overline{x}\vee \overline{y}.z)\rightarrow ((x\rightarrow y)\rightarrow (y\vee z)\rightarrow\overline{x}) $\\
+      & $ = $ & $\ov{\overline{x}\vee \overline{y}.z} \vee \ov{x\rightarrow y} \vee \ov{y\vee z} \vee \ov{x}$ \\
+      & $=$ & $x(y\vee \ov{z})\vee \ov{\ov{x}\vee y} \vee \ov{y}.\ov{z} \vee \ov{x} = $\\
+      & $=$ & $xy \vee x\ov{z} \vee x.\ov{y} \vee \ov{y}.\ov{z} \vee \ov{x} =$ \\
+      & $=$ & $x(y\vee\ov{y}) \vee x\ov{z} \vee \ov{y}.\ov{z} \vee \ov{x} = $\\
+      & $=$ & $x \vee \ov{x} \vee x\ov{z} \vee \ov{y}.\ov{z} = 1$
+    \end{tabular}
+    
+  \item
+    $\psi = (x.(\overline{y}.\overline{z})\oplus y)\oplus z = x(y\oplus 1)(z\oplus 1) \oplus y \oplus z = xyz \oplus xy \oplus xz \oplus x \oplus y \oplus z$
+    
+    \begin{tabular}{l c l}
+      $\varphi$ & $=$ & $(x\overline{y}\vee \overline{x}z)\oplus ((y\rightarrow z)\rightarrow \overline{x}y)$\\
+      & $=$ & $(x\ov{y}\vee \ov{x}z) \oplus (\ov{\ov{y}\vee z} \vee \ov{x}y)$ \\
+      & $=$ & $x\ov{y}\oplus \ov{x}z \oplus (y\ov{z} \oplus \ov{x}y)$ \\
+      & $=$ & $x\ov{y}\oplus \ov{x}z\oplus \ov{x}y\ov{z} \oplus y\ov{z} \oplus \ov{x}y$ \\
+      & $=$ & $xy \oplus x \oplus xz \oplus z \oplus (x\oplus 1)y(z\oplus 1) \oplus yz\oplus y \oplus xy \oplus y$ \\
+      & $=$ & $x \oplus xz \oplus z \oplus (x\oplus 1)y(z\oplus 1) \oplus yz\oplus $ \\
+      & $=$ & $x \oplus xz \oplus z \oplus xyz \oplus yz \oplus xy \oplus y \oplus yz\oplus $ \\
+      & $=$ & $x \oplus y\oplus z \oplus xz \oplus xy \oplus xyz$ \\
+     \end{tabular}
+     
+   \item
+     $\psi = \ov{x.(y\rightarrow\ov{z})} = \ov{x}\vee yz$.
+     
+     \begin{tabular}{l c l}
+       $\varphi$ & $ = $ & $x\rightarrow ((\ov{x}.\ov{y}\rightarrow(\ov{x}.\ov{z}\rightarrow y))\rightarrow y).z$\\
+       & $=$ & $\ov{x} \vee ((\ov{\ov{x}.\ov{y}} \vee \ov{\ov{x}.\ov{z}}\vee y)\rightarrow y).z$\\
+       & $=$ & $\ov{x} \vee ((x\vee y \vee x\vee z \vee y)\rightarrow y).z$\\
+       & $=$ & $\ov{x} \vee ((x\vee y \vee z)\rightarrow y).z$\\
+       & $=$ & $\ov{x} \vee (\ov{x\vee y \vee z}\vee y).z$\\
+       & $=$ & $\ov{x} \vee yz$
+     \end{tabular}
+
+     
+  \item
+    $\psi = (x\rightarrow y)\vee z = \ov{x}\vee y \vee z$.
+    
+    \begin{tabular}{l c l}
+      $\varphi $ & $ = $ & $\ov{((x\vee y) \rightarrow y.z)\vee (y\rightarrow x.z)} \vee (x\rightarrow (\ov{y}\rightarrow z)) $\\
+      & $=$ & $\ov{\ov{x}.\ov{y}\vee yz \vee \ov{y}\vee xz} \vee \ov{x}\vee y \vee z$\\
+      & $=$& $\ov{\ov{y}\vee yz \vee xz} \vee \ov{x}\vee y \vee z$ \\
+      & $=$ & $\ov{\ov{y}\vee z \vee xz} \vee \ov{x}\vee y \vee z$\\
+      & $=$ & $\ov{\ov{y}\vee z} \vee \ov{x}\vee y \vee z$ \\
+      & $=$ & $y\ov{z} \vee \ov{x}\vee y \vee z$ \\
+      & $=$ & $\ov{x}\vee y \vee z$.
+    \end{tabular}
+\end{itemize}
+\end{proof}
+
+\section{Полином на Жегалкин}
+
+\begin{thm}
+  Всяка булева функция има единствен полином на Жегалкин.
+\end{thm}
+
 
 \begin{problem}
   По метода на неопределените коефициенти, намерете полинома на Жегалкин на функцията 
@@ -73,10 +168,24 @@
     $f(x,y,z) = x(y\vee\overline{z})$.
   \end{enumerate}
 \end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    \[
+    \begin{array}{c c c}
+      a_0\oplus a_1 0 \oplus a_2 0 \oplus a_3 0 & = 0 \vee 0  &  = 0\\
+      a_0\oplus a_1 1 \oplus a_2 0 \oplus a_3 0 & = 1 \vee 0  &  = 1\\
+      a_0\oplus a_1 0 \oplus a_2 1 \oplus a_3 0 & = 0 \vee 1  &  = 1\\
+      a_0\oplus a_1 1 \oplus a_2 1 \oplus a_3 1 & = 1 \vee 1  &  = 1\\
+    \end{array}
+    \]
+    Следователно, $x\vee y = x\oplus y\oplus xy$.
+  \end{enumerate}
+\end{proof}
 
 \begin{problem}
   Използвайки еквивалентности от вида $\overline{A} = A\oplus 1$ и $A\vee B = AB\oplus A\oplus B$, 
-  намерете полинома на Жегалкин на 
+  намерете полинома на Жегалкин на функцията:
   \begin{enumerate}[a)]
   \item
     $f(x,y) = x\rightarrow y$;
@@ -94,7 +203,21 @@
     $f(x,y,z,t) = (x\vee y\vee z)t \vee xyz$.
   \end{enumerate}
 \end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    $x\rightarrow y = \overline{x}\vee y = \overline{x}\oplus y \oplus \overline{x}y = x\oplus 1 \oplus y \oplus (x\oplus 1)y = 
+    x\oplus 1 \oplus y \oplus xy \oplus y = 1 \oplus x \oplus xy$.
+  \item
+    $1 \oplus xy \oplus xyz$
+  \item
+    $x\oplus z\oplus xy\oplus xz \oplus xyz$
+  \item
+    $x\oplus z\oplus xy\oplus xz \oplus xyz$
+  \end{enumerate}
+\end{proof}
 
+\section{ДНФ}
 
 \begin{problem} %% Гаврилов стр. 50
   С помощта на еквивалентни преобразования постройте ДНФ на булевите функции
@@ -130,7 +253,6 @@
   \end{enumerate}
 \end{problem}
 
-
 \begin{problem}
   Представете в СДНФ следните булеви функции:
   \begin{enumerate}[1)]
@@ -147,6 +269,10 @@
   \end{enumerate}
 \end{problem}
 
+\section{Функции запазващи константите}
+
+\section{Самодвойнствени функции}
+
 Нека е дадена булевата функция $f(\xn)$. Дефинираме булевата функция $f^\star(\xn)$ като
 \[f^\star(\xn) = \overline{f}(\overline{x_1},\dots,\overline{x_n}).\]
 Ще наричаме $f^\star$ двойнствена функция на $f$.
@@ -155,10 +281,13 @@
   Проверете дали функцията $g$ е двойнствена на $f$.
   \begin{enumerate}[1)]
   \item
+    \marginpar{Да}
     $f = x\rightarrow y$, $g = \overline{x}.y$;
   \item
+    \marginpar{Не}
     $f = (\overline{x}\rightarrow\overline{y})\rightarrow(y\rightarrow x)$, $g = (x\rightarrow y).(\overline{y}\rightarrow\overline{x})$;
   \item
+    \marginpar{Да}
     $f = x.y \rightarrow z$, $g = \overline{x}.\overline{y}.z$;
   \item
     $f = (x\vee y\vee z).t\vee x.y.z$, $g = (x\vee y\vee z).t\vee x.y.z$;
@@ -173,25 +302,79 @@
   Проверете самодвойнствена ли е $f$.
   \begin{enumerate}[1)]
   \item
+    \marginpar{Не}
     $f(x,y) = x\vee y$;
   \item
+    \marginpar{Не}
     $f(x,y) = x\rightarrow y$;
   \item
+    \marginpar{Не}
     $f(x,y) = x\oplus y$;
   \item
+    \marginpar{Да}
     $f_4(x,y,z) = xy\vee yz\vee zx$;
   \item
+    \marginpar{Да}
     $f_5(x,y,z) = x\oplus y\oplus z\oplus 1$;
   \item
+    \marginpar{Да}
     $f_6(x,y,z) = xyz\oplus xy\ov{z}\oplus yz\oplus xz$.
   \item
+    \marginpar{Не}
     $f_7(x,y,z) = xyz\oplus xy\oplus yz\oplus xz$;
   \item
+    \marginpar{Не}
     $f(x,y,z) = (x\rightarrow y)\oplus (y\rightarrow z)\oplus (y\rightarrow x)$;
   \item
+    \marginpar{Не}
     $f(x,y,z) = (x\rightarrow y)\oplus (y\rightarrow z)\oplus (z\rightarrow x)\oplus z$;
   \end{enumerate}
 \end{problem}
+\begin{proof}
+  \begin{table}[H]
+    \begin{subtable}{0.5\textwidth}
+      \begin{tabular}[b]{|c||c|c|c|}
+        \hline
+        $xz$ & а) & б) & в)\\
+        \hline
+        $00$ & $0$ & $1$ & $0$ \\
+        \hline
+        $01$ & $1$ & $1$ & $1$\\
+        \hline
+        \hline
+        $10$ & $1$ & $0$ & $1$\\
+        \hline
+        $11$ & $1$ & $1$ & $0$\\
+        \hline
+      \end{tabular}
+    \end{subtable}
+    \begin{subtable}{0.5\textwidth}
+      \begin{tabular}[b]{|c||c|c|c|c|c|}
+        \hline
+        $xyz$ & г) & д) & е) & ж) & з)\\
+        \hline
+        $000$ & $0$ & $1$ & $0$ & $0$ & $1$\\
+        \hline
+        $001$ & $0$ & $0$ & $0$ & $0$ & $1$\\
+        \hline
+        $010$ & $0$ & $0$ & $0$ & $0$ & $1$\\
+        \hline
+        $011$ & $1$ & $1$ & $1$ & $1$ & $0$\\
+        \hline
+        \hline
+        $100$ & $0$ & $0$ & $0$ & $0$ & $0$\\
+        \hline
+        $101$ & $1$ & $1$ & $1$ & $1$ & $0$\\
+        \hline
+        $110$ & $1$ & $1$ & $1$ & $1$ & $0$\\
+        \hline
+        $111$ & $1$ & $0$ & $1$ & $0$ & $1$\\
+        \hline
+      \end{tabular}
+    \end{subtable}
+  \end{table}
+\end{proof}
+
 
 \begin{problem}
   Проверете дали функцията $f$ е самодвойнствена, ако е зададена векторно:
@@ -212,6 +395,266 @@
     $\alpha_f = (1100 0011 1010 0101)$;
   \end{enumerate}
 \end{problem}
+
+\begin{problem}
+  Заменете $-$ в $\chi_f$ с $0$ или $1$ за да получите характеристичен вектор на самодвойнствена функция.\\
+  \begin{inparaenum}[a)]
+  \item
+    $\chi_f = (1-0-)$;
+  \item
+    $\chi_f = (01-0-0--)$;
+  \item
+    $\chi_f = (--01--11)$;
+  \end{inparaenum}
+\end{problem}
+
+\section{Линейни функции}
+
+Всяка булева функция $f(\xn)$ с полином на Жегалкин от вида 
+$a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n$ наричаме {\em линейна}.\index{линейна!булева функция}
+Ще означаваме с $L$ множеството от всички линейни булеви функции, а с $L^n$ тези на $n$ променливи.
+
+\begin{problem}
+  Линейна ли е функцията $f$ с характеристичен вектор $\chi_f = (1001011010010110)$ ?
+\end{problem}
+
+\begin{problem}
+  Заменете $-$ в $\chi_f = (-110---0)$ с $0$ или $1$, така че да получите $f$ линейна.
+\end{problem}
+
+
+\begin{problem}
+  Проверете дали $f$ е линейна функция.
+  \begin{enumerate}
+  \item
+    \marginpar{Не}
+    $f = x\rightarrow y$;
+  \item
+    \marginpar{Да}
+    $f = \ov{x\rightarrow y}\oplus \ov{x}y$;
+  \item
+    \marginpar{Не}
+    $f = xy\vee \ov{x}.\ov{y}\vee z$;
+  \item
+    \marginpar{Не}
+    $f = xy\ov{z}\vee x\ov{y}$;
+  \item
+    \marginpar{Да}
+    $f = (x\vee yz)\oplus xyz$;
+  \item
+    $f = (x\vee yz)\oplus \ov{x}yz$;
+  \item
+    $\chi_f = (1100 0011)$;
+  \item
+    $\chi_f = (1001 0110 0110 1001)$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Заменете $-$ в $\chi_f$ с $0$ или $1$, така че да получите $f$ линейна.
+  \begin{enumerate}[a)]
+  \item
+    $\chi_f = (10-1)$;
+  \item
+    $\chi_f = (100-0---)$;
+  \item
+    $\chi_f = (-001--1-)$;
+  \item
+    $\chi_f = (11-0---1)$;
+  \item
+    $\chi_f = (-0-1--00)$;
+  \item
+    $\chi_f = (--10----0--1-110)$;
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  а) $(1001)$; б) $f = 1\oplus x \oplus y\oplus z$; в) $f = 1\oplus x\oplus y\oplus z$ ;
+  г) $f = 1\oplus x\oplus y$; д) $f = x\oplus y$;
+\end{proof}
+
+
+\section{Монотонни функции}
+
+Нека $\alpha$ и $\beta$ са два бинарни вектора с равна дължина.
+Дефинираме релацията $\preceq$ между тях по следния начин.
+\[\alpha \preceq \beta \iff \abs{\alpha} = \abs{\beta}\wedge (\forall i \leq \abs{\alpha})[a_i \leq b_i].\]
+Булевата фунция $f(\xn)$ наричаме {\em монотонна}\index{монотонна!функция}, ако 
+\[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]
+Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
+
+\begin{problem}
+  Проверете монотонни ли са функциите:\\
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{Да}
+    $f = x\rightarrow (y\rightarrow x)$;
+  \item
+    \marginpar{Не}
+    $f = x\rightarrow (x\rightarrow y)$;
+  \item
+    \marginpar{Да}
+    $f = (x\oplus y)xy$;
+  \item
+    \marginpar{Да}
+    $f = xy\oplus yz \oplus zx$;
+  \item
+    \marginpar{Не}
+    $f = xy\oplus yz \oplus zx \oplus x$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  За немонотонните функции $f$, намерете съседни $\alpha$, $\beta$, такива че
+  $\alpha \prec \beta$ и $f(\alpha) > f(\beta)$.\\
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{Отг. $\alpha = (010)$, $\beta = (110)$}
+    $f = xyz \vee \ov{x}y$;
+  \item
+    \marginpar{Отг. $\alpha = (010)$, $\beta = (110)$}
+    $f = x\oplus y\oplus z$;
+  \item
+    \marginpar{Отг. $\alpha = (110)$, $\beta = (111)$}
+    $f = xy\oplus z$;
+  \item
+    \marginpar{Отг. $\alpha = (010)$, $\beta = (011)$}
+    $f = x\vee y\ov{z}$;
+  \item
+    \marginpar{Отг. $\alpha = (0111)$, $\beta = (1111)$}
+    $f = xz\oplus yt$;
+  \item
+    \marginpar{Отг. $\alpha = (1110)$, $\beta = (1111)$}
+    $f(x,y,z,t) = (xyt\rightarrow yz)\oplus t$;
+  \end{enumerate}
+\end{problem}
+% \begin{proof}
+%   \begin{enumerate}[a)]
+%   \item
+%     $\alpha = (010)$, $\beta = (110)$;
+%   \item
+%     $\alpha = (010)$, $\beta = (110)$;
+%   \item
+%     $\alpha = (110)$, $\beta = (111)$;
+%   \item
+%     $\alpha = (010)$, $\beta = (011)$;
+%   \item
+%     $\alpha = (0111)$, $\beta = (1111)$;
+%   \item
+%     $\alpha = (1110)$, $\beta = (1111)$;
+%   \end{enumerate}
+% \end{proof}
+
+
+\section{Пълнота и затворени класове}
+
+\begin{thm}[Критерий за пълнота на Пост-Яблонский]
+  Нека $P\subseteq F_2$. Множеството $P$ е пълно тогава и само тогава, когато то {\em не} е подмножество на 
+  нито едно от множествата $T_0,T_1,S,M,L$.
+\end{thm}
+
+
+\begin{problem} %Гаврилов, стр. 83, зад. 6.1
+  Пълна ли е системата от функции?
+  \begin{enumerate}[1)]
+  \item
+    $A = \{xy, x\vee y, x\oplus y\oplus z\oplus 1\}$;
+  \item
+    $A = \{1, xy(x\oplus z)\}$;
+  \item
+    $A = \{x\rightarrow y, x\oplus y\}$;
+  \item
+    $A = \{0, \ov{x}, x(y\oplus z)\oplus yz\}$;
+  \item
+    $A = \{x\rightarrow y, \ov{x}\rightarrow \ov{y}x, x\oplus y\oplus z, 1\}$;
+  \item
+    $A = \{\chi_{f_1} = (0110), \chi_{f_2} = (1100 0011), \chi_{f_3} = (1001 0110)\}$;
+  \item
+    $A = \{\chi_{f_1} = (11), \chi_{f_2} = (00), \chi_{f_3} = (0011 0101)\}$;
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[1)]
+  \item
+    \begin{tabular}[b]{|c|c|c|c|c|c|}
+      \hline
+      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+      \hline
+      $xy$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+      \hline
+      $x\vee y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+      \hline
+      $x\oplus y\oplus z\oplus 1$ & $-$ & $-$ & $+$ & $+$ & $-$ \\
+      \hline
+    \end{tabular}
+  \item
+    \begin{tabular}[b]{|c|c|c|c|c|c|}
+      \hline
+      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+      \hline
+      $1$ & $-$ & $+$ & $+$ & $-$ & $+$\\
+      \hline
+      $xy(x\oplus z)$ & $+$ & $-$ & $-$ & $-$ & $-$\\
+      \hline
+    \end{tabular}
+  \item
+    \begin{tabular}[b]{|c|c|c|c|c|c|}
+      \hline
+      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+      \hline
+      $x\rightarrow y$ & $-$ & $+$ & $-$ & $-$ & $+$\\
+      \hline
+      $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
+      \hline
+    \end{tabular}
+  \item
+    \begin{tabular}[b]{|c|c|c|c|c|c|}
+      \hline
+      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+      \hline
+      $0$ & $+$ & $-$ & $+$ & $-$ & $+$\\
+      \hline
+      $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
+      \hline
+      $x\rightarrow y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+      \hline
+      $xy \sim xz$ & $-$ & $+$ & $-$ & $-$ & $-$\\
+      \hline
+    \end{tabular}
+  \end{enumerate}
+\end{proof}
+
+
+\begin{problem} % Гаврилов, стр. 84
+  Проверете пълно ли е множеството от булеви функции:
+  \begin{enumerate}[a)]
+  \item
+    $A = (S\cap M)\cup(L\setminus M)$;
+  \item
+    $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$.
+  \item
+    $A = (L\cap M)\cup (S\setminus T_0)$;
+  \item
+    $A = (L\cap T_1)\cup (S\cap M)$;
+  \item
+    $A = (M\setminus S)\cup(L\cap S)$;
+  \item
+    $A = (M\setminus T_0)\cup (L\setminus S)$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Проверете дали системата от функции $A$ е базис?
+  \begin{enumerate}[a)]
+  \item
+    $A = \{x\rightarrow y, x\oplus y, x\vee y\}$;
+  \item
+    $A = \{x\oplus y\oplus z, x\vee y, 0, 1\}$;
+  \item
+    $A = \{xy\oplus yz\oplus zx, 0, 1, x\vee y\}$;
+  \end{enumerate}
+\end{problem}
+
+
 
 
 %%% Local Variables: 

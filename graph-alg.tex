@@ -2,9 +2,8 @@
 
 \section{Обхождане на граф}
 
-\subsection{Обхождане в широчина}
-
-Всеки връх може да бъде в едно от три състояния, или както сме ги означили тук, в един от три цвята.
+Нека е даден ориентирания граф $G = (V,E)$.
+При обхождането на граф, всеки връх може да бъде в едно от три състояния, или както сме ги означили тук, в един от три цвята.
 Ако един връх $v$ е
 \begin{itemize}
 \item 
@@ -14,6 +13,10 @@
 \item
   черен, то той е напълно обработен.
 \end{itemize}
+
+
+\subsection{Обхождане в широчина}
+
 
 \begin{algorithm}
   \caption{Инициализация}
@@ -42,12 +45,12 @@
   \begin{algorithmic}[1]
     \Procedure{BFS}{$s$}
     \State \Call{BFS-INIT}{$s$}
-    \State $Q := \emptyset$
+    \State $Q := \emptyset$\Comment{Опашката $Q$ съдържа точно сивите върхове}
     \State put($Q$,$s$)
     \While {$Q \neq \emptyset$}
-    \State $u := get(Q)$
+    \State $u := get(Q)$\Comment{$u$ е премахнат от опашката}
     \ForAll{$v \in Adj[u]$}
-    \If{$WHITE == color[v]$}
+    \If{$WHITE = color[v]$}
     \State $put(Q,v)$
     \State $color[v] := GRAY$
     \State $pred[v] := u$
@@ -104,30 +107,30 @@
   \caption{Обхождане в дълбочина}
   \label{alg:dfs-visit}
   \begin{algorithmic}[1]
-    \Procedure{DFS}{$u$}
-    \State $t := t+1$
-    \State $in[u] := t$
-    \State $color[u] := GRAY$
+    \Procedure{DFS-VISIT}{$u$}
+    % \State $t := t+1$
+    % \State $in[u] := t$
+    \State $color[u] := GRAY$\Comment{Върхът $u$ е посетен, но не е обработен}
     \ForAll{$v \in Adj[u]$}
     \If {$WHITE = color[v]$}
     \State $pred[v] := u$
-    \State \Call{DFS-VISIT}{v}
+    \State \Call{DFS-VISIT}{$v$}
     \EndIf
     \EndFor
-    \State $t := t+1$
-    \State $out[u] := t$
-    \State $color[u] := BLACK$
+    % \State $t := t+1$
+    % \State $out[u] := t$
+    \State $color[u] := BLACK$\Comment{Приключили сме с $u$}
     \EndProcedure
     \Statex
     \Procedure{DFS}{}
-    \ForAll{$v \in V$}
+    \ForAll{$v \in V$}\Comment{Инициализация}
     \State $color[v] := WHITE$
     \State $pred[v] := NIL$
     \EndFor    
-    \State $t := 0$
+    % \State $t := 0$
     \ForAll{$v \in V$}
     \If{$WHITE = color[v]$}
-    \State\Call{DFS-VISIT}{v}
+    \State\Call{DFS-VISIT}{$v$}
     \EndIf
     \EndFor
     \EndProcedure
@@ -160,49 +163,94 @@
 
 \subsection{Алгоритъм на Прим}
 
-Нека е даден неориентиран {\bf свързан} граф $G = (V,E,w)$ и да фиксираме един връх $r \in V$, който искаме да бъде корен на покриващото дърво $T$
-Ще построим $T$ на стъпки като на стъпка $i+1$ ще построим дърво $T_{i+1}$, което се получава от $T_i$
-с добавяне на нов връх и ново ребро.
+Нека е даден неориентиран граф $G = (V,E,w)$ с тегла по ребрата.
 
-\begin{enumerate}
-\item 
-  Започваме от дървото $T_0 = (\{r\},\emptyset)$.
-\item
-  Нека сме построили дървото $T_i = (V_i,E_i)$.
-  Избираме ребро $(v,v^\prime) \in E$ такова ,че
-  \[w(v,v^\prime) = \min\{w(x,y) \mid x\in V_i\ \&\ y \in V\setminus V_i\ \&\ (x,y) \in E\}.\]
-  Образуваме \[T_{i+1} = (V_i\cup\{v^\prime\}, E_i \cup \{(v,v^\prime)\}).\]
-\item
-  Алгоритъмът завършва когато $V_i = V$.
-\end{enumerate}
+\begin{algorithm}[h!]
+  \caption{Алгоритъм на Прим}
+
+  \begin{algorithmic}[1]
+    \Procedure{PRIM}{$r$}
+    \State $U := \{r\}$\Comment{Започваме от дърво с корен $r$ и без ребра}
+    \State $S := \emptyset$
+    \While{$(\exists (x,y)\in E)[x\in U\ \&\ y \in V\setminus U]$}
+    \State Избираме $(u,v) \in E$, за което
+    \State $w(u,v) = \min\{w(x,y) \mid x\in U\ \&\ y \in V\setminus U\ \&\ (x,y) \in E\}$
+    \State $U := U\cup\{v\}$
+    \State $S := S \cup\{(u,v)\}$
+    \EndWhile
+    \State \textbf{return} $(U,S)$\Comment{Връщаме като резултат полученото дърво}
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+% \begin{enumerate}
+% \item 
+%   Започваме от дървото $T_0 = (\{r\},\emptyset)$.
+% \item
+%   Нека сме построили дървото $T_i = (V_i,E_i)$.
+%   Избираме ребро $(v,v^\prime) \in E$ такова ,че
+%   \[w(v,v^\prime) = \min\{w(x,y) \mid x\in V_i\ \&\ y \in V\setminus V_i\ \&\ (x,y) \in E\}.\]
+%   Образуваме \[T_{i+1} = (V_i\cup\{v^\prime\}, E_i \cup \{(v,v^\prime)\}).\]
+% \item
+%   Алгоритъмът завършва когато $V_i = V$.
+% \end{enumerate}
 
 \subsection{Алгоритъм на Крускал}
 
-Нека е даден неориентиран свързан претеглен граф $G = (V,E,w)$.
-\begin{enumerate}
-\item
-  Нека $V = \{v_0,\dots,v_n\}$.
-  Строим редица от дървета $\{T_i\}_{i \leq n}$, като
-  \[T_i = (\{v_i\},\emptyset),\]
-  т.е. дърветата са съставени само от един връх и нямат ребра.
-  Ще се стремим да обединяваме тези дървете и най-накрая да получим само едно дърво.
-\item
-  Сортираме ребрата $E$ на графа $G$ във възходящ ред относно тяхната цена
-  и започваме да ги обхождаме във възходящ ред.
-\item
-  За всяко ребро $(v,v^\prime) \in E$, нека $v$ принадлежи на върховете на $T$, а $v^\prime$ 
-  принадлежи на върховете на $T^\prime$.
-  \begin{itemize}
-  \item 
-    Ако $T \neq T^\prime$, то обединяваме $T$ и $T^\prime$ като добавяме към техните ребра $(v,v^\prime)$.
-    Така получаваме с единица по-къса редица от дървета.
-  \item
-    Ако $T = T^\prime$, то не правим нищо.    
-  \end{itemize}  
-\item
-  Алгоритъмът завършва или когато сме обходили всички ребра, или
-  когато сме получили редица от дървета с дължина 1.
-\end{enumerate}
+Нека е даден неориентиран {\bf свързан} претеглен граф $G = (V,E,w)$.
+
+\begin{algorithm}[h!]
+  \caption{Алгоритъм на Крускал}
+
+  \begin{algorithmic}[1]
+    \Procedure{KRUSKAL}{}
+    \State $X = \emptyset$\Comment{$X$ ще бъде списък с дървета}
+    \For{$v \in V$}
+    \State Добавяме дървото $T = (\{v\},\emptyset)$ към списъка $X$
+    \EndFor
+    \State$E^\prime := $\Call{Sort}{$E$,$w$}\Comment{Сортираме $E$ във възходящ ред относно тегла им}
+    \Statex
+    \ForAll{$(u,v) \in E^\prime$}
+    \State Нека $u$ принадлежи на върховете на дървото $T_u \in X$
+    \State Нека $v$ принадлежи на върховете на дървото $T_v \in X$
+    \If{$T_u \neq T_v$}
+    \State $V := V_u\cup V_v$
+    \State $E := E_u\cup E_v\cup\{(u,v)\}$
+    \State $T := (V,E)$
+    \State Премахваме $T_u$ и $T_v$ от  списъка $X$
+    \State Добавяме дървото $T$ към $X$
+    \EndIf
+    \EndFor
+    \State \Return единственото дърво останало в $X$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+
+% \begin{enumerate}
+% \item
+%   Нека $V = \{v_0,\dots,v_n\}$.
+%   Строим редица от дървета $\{T_i\}_{i \leq n}$, като
+%   \[T_i = (\{v_i\},\emptyset),\]
+%   т.е. дърветата са съставени само от един връх и нямат ребра.
+%   Ще се стремим да обединяваме тези дървете и най-накрая да получим само едно дърво.
+% \item
+%   Сортираме ребрата $E$ на графа $G$ във възходящ ред относно тяхната цена
+%   и започваме да ги обхождаме във възходящ ред.
+% \item
+%   За всяко ребро $(v,v^\prime) \in E$, нека $v$ принадлежи на върховете на $T$, а $v^\prime$ 
+%   принадлежи на върховете на $T^\prime$.
+%   \begin{itemize}
+%   \item 
+%     Ако $T \neq T^\prime$, то обединяваме $T$ и $T^\prime$ като добавяме към техните ребра $(v,v^\prime)$.
+%     Така получаваме с единица по-къса редица от дървета.
+%   \item
+%     Ако $T = T^\prime$, то не правим нищо.    
+%   \end{itemize}  
+% \item
+%   Алгоритъмът завършва или когато сме обходили всички ребра, или
+%   когато сме получили редица от дървета с дължина 1.
+% \end{enumerate}
 
 \section{Минимални пътища от даден връх}
 
@@ -325,7 +373,7 @@
 % \end{subfigure}
 % \end{figure}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
   \caption{Инициализация}
   \label{alg:init}
   \begin{algorithmic}[1]
@@ -339,7 +387,7 @@
   \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[h!]
   \caption{Търсене на по-добър кандидат}
   \label{alg:update}
   \begin{algorithmic}[1]
