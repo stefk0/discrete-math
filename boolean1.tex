@@ -1,18 +1,19 @@
 \chapter{Булеви функции}
 
 Да припомним таблицата за истинност за някои от основните булеви функции на два аргумента.
+\marginpar{$x\oplus y$ - симетрична разлика}
 
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
   \hline
-  $x$ & $y$ & $\overline{x}$ & $x \vee y$ & $xy$ & $x \rightarrow y$ & $\overline{x}\vee y$ & $x \iff y$ & $x \oplus y$\\
+  $x$ & $y$ & $\overline{x}$ & $x \vee y$ & $xy$ & $x \rightarrow y$ & $\overline{x}\vee y$ & $x \iff y$ & $x \oplus y$ & $x\overline{y} \vee \overline{x}y$\\
   \hline
-  0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0\\
+  0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 \\
   \hline
-  0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1\\
+  0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
   \hline
-  1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1\\
+  1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
   \hline
-  1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0\\
+  1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
   \hline
 \end{tabular}
 
@@ -63,7 +64,7 @@
   Проверете еквивалентни ли са формулите $\varphi$ и $\psi$ като използвате еквивалентни преобразования на формулите.
   \begin{enumerate}[a)]
   \item
-    $\varphi = (x\oplus y.z)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))$,
+    $\varphi = (x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))$,
     $\psi = x\rightarrow ((y\rightarrow z)\rightarrow x)$;
   \item
     $\varphi = (\overline{x}\vee \overline{y}.z)\rightarrow ((x\rightarrow y)\rightarrow (y\vee z)\rightarrow\overline{x})$,
@@ -82,10 +83,15 @@
 \begin{proof}
   \begin{itemize}
   \item
-    $\psi = \overline{x}\vee ((\overline{y\rightarrow z})\vee x) = 1$.
+    \begin{align*}
+      \psi\ =\ & x\rightarrow ((y\rightarrow z)\rightarrow x)\\ 
+      =\ & \overline{x}\vee (\overline{y\rightarrow z}\vee x) \\
+      =\ & 1.
+    \end{align*}
     
     \begin{tabular}{l c l}
-      $\varphi $ & $ =$ & $ \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
+      $\varphi $ & $ =$ & $(x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))$\\
+      & $=$ & $ \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
       & $=$ & $\overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
       & $=$ & $\overline{x}.\overline{yz} \vee xyz \vee x\vee \overline{y}\vee z$\\
       & $=$ & $\overline{x}(\overline{y}\vee\overline{z}) \vee x\vee \overline{y}\vee z$\\
@@ -150,6 +156,20 @@
 
 \section{Полином на Жегалкин}
 
+\begin{itemize}
+\item 
+  Полином на Жегалкин на 2 променливи е формула от вида:
+  \[a_0\oplus a_1x_1\oplus a_2x_2  \oplus a_{12}x_1x_2  ,\]
+  където $a_0,a_1,a_2,a_{12}$ приемат стойности 0 или 1.
+\item
+  Полином на Жегалкин на 3 променливи е формула от вида:
+  \[a_0\oplus a_1x_1\oplus a_2x_2 \oplus a_3x_3 \oplus a_{12}x_1x_2 \oplus a_{13}x_1x_3 \oplus a_{23} x_2x_3 \oplus a_{123}x_1x_2x_3,\]  
+  където $a_0,a_1\dots,a_{123}$ приемат стойности 0 или 1.
+\item
+  Полином на Жегалкин на $n$ променливи е формула от вида:
+  \[a_0 \oplus \bigoplus_{1\leq i\leq n}a_i x_i\oplus \bigoplus_{1\leq i<j \leq n}a_{ij} x_ix_j\oplus\dots  \oplus a_{12\dots n} x_1x_2\dots x_n,\]
+\end{itemize}
+
 \begin{thm}
   Всяка булева функция има единствен полином на Жегалкин.
 \end{thm}
@@ -188,12 +208,16 @@
   намерете полинома на Жегалкин на функцията:
   \begin{enumerate}[a)]
   \item
+    \marginpar{$1 \oplus x \oplus xy$}
     $f(x,y) = x\rightarrow y$;
   \item
+    \marginpar{$1 \oplus xy \oplus xyz$}
     $f(x,y,z) = (x\rightarrow (y\rightarrow z))$;
   \item
+    \marginpar{$x\oplus z\oplus xy\oplus xz \oplus xyz$}
     $f(x,y,z) = ((x\rightarrow y)\rightarrow z)$;
   \item
+    \marginpar{$x\oplus z\oplus xy\oplus xz \oplus xyz$}
     $f(x,y,z) = (x\rightarrow (y\rightarrow z)).((x\rightarrow y)\rightarrow z)$;
   \item
     $f(x,y,z,t) = (x\rightarrow y)\rightarrow (z\rightarrow xt)$;
@@ -203,33 +227,44 @@
     $f(x,y,z,t) = (x\vee y\vee z)t \vee xyz$.
   \end{enumerate}
 \end{problem}
-\begin{proof}
-  \begin{enumerate}[a)]
-  \item
-    $x\rightarrow y = \overline{x}\vee y = \overline{x}\oplus y \oplus \overline{x}y = x\oplus 1 \oplus y \oplus (x\oplus 1)y = 
-    x\oplus 1 \oplus y \oplus xy \oplus y = 1 \oplus x \oplus xy$.
-  \item
-    $1 \oplus xy \oplus xyz$
-  \item
-    $x\oplus z\oplus xy\oplus xz \oplus xyz$
-  \item
-    $x\oplus z\oplus xy\oplus xz \oplus xyz$
-  \end{enumerate}
-\end{proof}
+% \begin{proof}
+%   \begin{enumerate}[a)]
+%   \item
+%     $x\rightarrow y = \overline{x}\vee y = \overline{x}\oplus y \oplus \overline{x}y = x\oplus 1 \oplus y \oplus (x\oplus 1)y = 
+%     x\oplus 1 \oplus y \oplus xy \oplus y = 1 \oplus x \oplus xy$.
+%   \item
+%     $1 \oplus xy \oplus xyz$
+%   \item
+%     $x\oplus z\oplus xy\oplus xz \oplus xyz$
+%   \item
+%     $x\oplus z\oplus xy\oplus xz \oplus xyz$
+
+%   \end{enumerate}
+% \end{proof}
 
 \section{ДНФ}
 
+Нека е дадена булевата функция $f(x_1,\dots,x_n)$.
+\begin{itemize}
+\item
+  Дизюнктивна нормална форма на $f$ е формулата
+  \[\bigvee_{\stackrel{(\sigma_1\dots \sigma_n) \in \{0,1\}^n}{f(\sigma_1, \dots \sigma_n) = 1}}x_1^{\sigma_1}x_2^{\sigma_2}\dots x_n^{\sigma_n},\]
+  където $x^{\sigma_i}_i = x_i$, ако $\sigma_i = 1$ и $x^{\sigma_i}_i = \overline{x}_i$, ако $\sigma_i = 0$.
+\end{itemize}
+
 \begin{problem} %% Гаврилов стр. 50
-  С помощта на еквивалентни преобразования постройте ДНФ на булевите функции
+  С помощта на еквивалентни преобразувания постройте ДНФ на булевите функции
   \begin{enumerate}[a)]
   \item
-    $f(x,y,z) = (\ov{x}\vee\ov{y}\vee\ov{z}).(xy\vee z)$;
+    \marginpar{$xy\overline{z} \vee \overline{x}z \vee \overline{y}z$}
+    $f(x,y,z) = (\ov{x}\vee\ov{y}\vee\ov{z})\cdot(xy\vee z)$;
   \item
-    $f(x,y,z) = (\overline{x}y\oplus z).(xz\rightarrow y)$;
+    \marginpar{$\overline{x}y\overline{z} \vee xyz \vee x\overline{y}z$}
+    $f(x,y,z) = (\overline{x}y\oplus z)\cdot(xz\rightarrow y)$;
   \item
-    $f(x,y,z) = (x\vee y\overline{z}).(x\ov{y}\vee\ov{z}).(\ov{xy}\vee z)$;
+    $f(x,y,z) = (x\vee y\overline{z})\cdot(x\ov{y}\vee\ov{z})\cdot(\ov{xy}\vee z)$;
   \item
-    $f(x,y,z,t) = (x\vee y\ov{z}.\ov{t})((\ov{x}\vee t)\oplus yz)\vee \ov{y}.(z\vee \ov{x\ov{t}})$;
+    $f(x,y,z,t) = (x\vee y\ov{z}.\ov{t})((\ov{x}\vee t)\oplus yz)\vee \ov{y}\cdot(z\vee \ov{x\ov{t}})$;
   \item
     $f(x,y,z,t) = (x\rightarrow y).(y\rightarrow \ov{z}).(z\rightarrow x\ov{t})$;
   \end{enumerate}
@@ -239,8 +274,10 @@
   По дадена ДНФ на булевата функция $f$ постройте нейната СДНФ.
   \begin{enumerate}[1)]
   \item
+    \marginpar{}
     $f(x,y,z) = xy\vee\ov{z}$;
   \item
+    \marginpar{}
     $f(x,y,z) = \ov{x}.\ov{y} \vee y\ov{z} \vee z\ov{z}$;
   \item
     $f(x,y,z) = x\vee yz \vee \ov{x}.\ov{z}$;
@@ -271,11 +308,48 @@
 
 \section{Функции запазващи константите}
 
+Нека $c\in\{0,1\}$. Казваме, че булевата функция $f(\xn)$ запазва константата $c$, ако $f(c,c,\dots,c) = c$.
+Означаваме с $T_0$ функциите, които запазват константата $0$ и с $T_1$ тези, които запазват константата $1$.
+С $T^n_0$ и $T^n_1$ означаваме тези функции, които са на $n$ променливи и принадлежат на $T_0$ или $T_1$ съответно.
+
+\begin{problem}% Гаврилов, стр. 73
+  Принадлежи ли функцията $f$ на множеството $T_1 \setminus T_0$ ?
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{Да}
+    $f = (x\rightarrow y)(y\rightarrow z)(z\rightarrow x)$;
+  \item
+    \marginpar{Да}
+    $f = x\rightarrow(y\rightarrow (z\rightarrow x))$;
+  \item
+    \marginpar{Да}
+    $f = xyz \vee \ov{x}y \vee \ov{y}$;
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  При какви $n$ функцията $f(x_1,\dots, x_n)$ принадлежи на $T_0\setminus T_1$?
+  \begin{enumerate}[1)]
+  \item
+    $f = x_1\oplus x_2 \oplus\dots\oplus x_n$;
+  \item
+    $f = (\bigoplus^{n-1}_{i=1} x_ix_{i+1})\oplus x_nx_1$;
+  \end{enumerate}
+\end{problem}
+
 \section{Самодвойнствени функции}
 
-Нека е дадена булевата функция $f(\xn)$. Дефинираме булевата функция $f^\star(\xn)$ като
-\[f^\star(\xn) = \overline{f}(\overline{x_1},\dots,\overline{x_n}).\]
-Ще наричаме $f^\star$ двойнствена функция на $f$.
+\begin{itemize}
+\item 
+  Нека е дадена булевата функция $f(\xn)$. Дефинираме булевата функция $f^\star(\xn)$ като
+  \[f^\star(\xn) = \overline{f}(\overline{x}_1,\dots,\overline{x}_n).\]
+\item
+  Ще наричаме $f^\star$ {\bf двойнствена} функция на $f$.
+\item
+  Ако $f = f^\star$, то ще наричаме $f$ {\bf самодвойнствена} функция.
+\item
+  Ще означаваме с $S$ множеството от всички самодвойнствени булеви функции, а с $S^n$ тези на $n$ променливи.
+\end{itemize}
 
 \begin{problem} %% Гаврилов, стр. 31, зад. 1.25
   Проверете дали функцията $g$ е двойнствена на $f$.
@@ -300,7 +374,7 @@
 
 \begin{problem}
   Проверете самодвойнствена ли е $f$.
-  \begin{enumerate}[1)]
+  \begin{enumerate}[a)]
   \item
     \marginpar{Не}
     $f(x,y) = x\vee y$;
@@ -380,8 +454,10 @@
   Проверете дали функцията $f$ е самодвойнствена, ако е зададена векторно:
   \begin{enumerate}[1)]
   \item
+    \marginpar{Да}
     $\alpha_f = (01001101)$;
   \item
+    \marginpar{Не}
     $\alpha_f = (01100110)$;
   \item
     $\alpha_f = (1100 1001 0110 1100)$;
@@ -409,13 +485,13 @@
 \end{problem}
 
 \section{Линейни функции}
-
+\index{линейна!булева функция}
 Всяка булева функция $f(\xn)$ с полином на Жегалкин от вида 
-$a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n$ наричаме {\em линейна}.\index{линейна!булева функция}
+\[a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n\] наричаме {\em линейна}.
 Ще означаваме с $L$ множеството от всички линейни булеви функции, а с $L^n$ тези на $n$ променливи.
 
 \begin{problem}
-  Линейна ли е функцията $f$ с характеристичен вектор $\chi_f = (1001011010010110)$ ?
+  Линейна ли е функцията $f$ с характеристичен вектор $\chi_f = (1001011010010110)$?
 \end{problem}
 
 \begin{problem}
@@ -483,29 +559,29 @@ $a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n$ наричаме {\em лин
 Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
 
 \begin{problem}
-  Проверете монотонни ли са функциите:\\
+  Проверете монотонни ли са функциите:
   \begin{enumerate}[a)]
   \item
     \marginpar{Да}
-    $f = x\rightarrow (y\rightarrow x)$;
+    $f(x,y) = x\rightarrow (y\rightarrow x)$;
   \item
     \marginpar{Не}
-    $f = x\rightarrow (x\rightarrow y)$;
+    $f(x,y) = x\rightarrow (x\rightarrow y)$;
   \item
     \marginpar{Да}
-    $f = (x\oplus y)xy$;
+    $f(x,y) = (x\oplus y)xy$;
   \item
     \marginpar{Да}
-    $f = xy\oplus yz \oplus zx$;
+    $f(x,y,z) = xy\oplus yz \oplus zx$;
   \item
     \marginpar{Не}
-    $f = xy\oplus yz \oplus zx \oplus x$;
+    $f(x,y,z) = xy\oplus yz \oplus zx \oplus x$;
   \end{enumerate}
 \end{problem}
 
 \begin{problem}
   За немонотонните функции $f$, намерете съседни $\alpha$, $\beta$, такива че
-  $\alpha \prec \beta$ и $f(\alpha) > f(\beta)$.\\
+  $\alpha \prec \beta$ и $f(\alpha) > f(\beta)$.
   \begin{enumerate}[a)]
   \item
     \marginpar{Отг. $\alpha = (010)$, $\beta = (110)$}
@@ -653,7 +729,22 @@ $a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n$ наричаме {\em лин
     $A = \{xy\oplus yz\oplus zx, 0, 1, x\vee y\}$;
   \end{enumerate}
 \end{problem}
-
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    $\{xy\oplus yz\oplus zx, x\oplus y\oplus 1, x\oplus 1\} \subseteq A$.
+  \item
+    $\{xy\oplus yz\oplus zx\oplus 1, 0\} \subseteq A$
+  \item
+    $\{xy\oplus yz\oplus zx\oplus 1, 0, 1\} \subseteq A$
+  \item
+    Не, защото $A \subseteq T_1$.
+  \item
+    $\{\ov{x}, xy\} \subseteq A$, следователно $A$ е пълно.
+  \item
+    Не, защото $A\subseteq L$.
+  \end{enumerate}
+\end{proof}
 
 
 
