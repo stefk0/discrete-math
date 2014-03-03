@@ -20,7 +20,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \usepackage{enumerate}
 \usepackage{makeidx}
 \usepackage{layout}
-
+\usepackage{framed}
 \usepackage{bussproofs}
 
 \usepackage{algorithm}
@@ -52,10 +52,10 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newtheorem*{remark}{Забележка}
 \renewenvironment{proof}{\noindent{\bf Док.}\hspace*{1em}}{\qed\par}
 
-\newcommand{\A}{\mathfrak{A}}
-\newcommand{\B}{\mathfrak{B}}
-\renewcommand{\C}{\mathfrak{C}}
-\newcommand{\D}{\mathfrak{D}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\renewcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -81,6 +81,10 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\abs}[1]{\vert{#1}\vert}
 \newcommand{\pair}[1]{\langle{#1}\rangle}
 
+\newcommand{\FA}{\langle{Q,\Sigma,s,\delta,F}\rangle}
+\newcommand{\FAn}[1]{\langle{Q_#1,\Sigma_#1,s_#1,\delta_#1,F_#1}\rangle}
+\newcommand{\NFA}{\langle{Q,\Sigma,s,\Delta,F}\rangle}
+\newcommand{\NFAn}[1]{\langle{Q_#1,\Sigma_#1,s_#1,\Delta_#1,F_#1}\rangle}
 \newcommand{\PDA}{\langle{Q,\Sigma,\Gamma,\#,s,\Delta,F}\rangle}
 \newcommand{\CFG}{\langle{V,\Sigma,R,S}\rangle}
 
@@ -106,6 +110,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \tableofcontents
 \include{propositional}
 \include{predicate}
+\include{induction}
 \include{sets}
 \include{relations}
 \include{functions}
@@ -115,8 +120,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 \include{automata}
 \include{context-free}
 \include{boolean1}
-% \include{graphs}
-% \include{graph-alg}
+% \include{graph}
+\include{graph-alg}
 
 % \backmatter
 
