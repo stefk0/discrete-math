@@ -1,5 +1,365 @@
 \chapter{Езици и автомати}
 
+\section{Автоматни езици}
+
+Един от източниците е втора и трета глава от книгата на Сипсер, \cite{sipser}.
+Друг основен източник е книгата на Пападимитриу и Люис, \cite{papadimitriou}.
+%По Сипсер, стр. 35
+\begin{dfn}
+  Краен автомат е петорка $\A = \FA$, където
+  \begin{enumerate}[1)]
+  \item
+    $Q$ е крайно множество, наречено състояния;
+  \item
+    $\Sigma$ е крайно множество, наречено азбука;
+  \item
+    \marginpar{Тук нямаме $\varepsilon$-преходи}
+    $\delta:Q\times\Sigma\to Q$ е (частична) функция на преходите;
+  \item
+    $s\in Q$ е начално състояние;
+  \item
+    $F\subseteq Q$ е множеството от финални състояния.
+  \end{enumerate}
+\end{dfn}
+
+Нека имаме една дума $\alpha \in \Sigma^\star$, $\alpha = a_1a_2\cdots a_n$.
+Казваме, че $\alpha$ се {\bf разпознава} от автомата $\A$, ако
+съществува редица от състояния $q_0,q_1,q_2,\dots,q_n$, такива че:
+\begin{enumerate}[1)]
+\item 
+  $q_0 = s$;
+\item
+  $\delta(q_i,a_{i+1}) = q_{i+1}$, за всяко $i < n$;
+\item
+  $q_n \in F$.
+\end{enumerate}
+
+Казваме, че $\A$ {\bf разпознава} езика $L$, ако $\A$ разпознава точно думите от $L$, т.е.
+$L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
+Обикновено означаваме езика, който се разпознава от даден автомат $\A$ с $L(\A)$.
+
+\begin{dfn}
+  \index{език!автоматен}
+  Един език $L$ се нарича автоматен, ако съществува автомат $\A$, който разпознава $L$, т.е.
+  \[L = L(\A).\]
+\end{dfn}
+
+Удобно е да разгледаме транзитивното затваряне на $\delta$:
+\begin{enumerate}
+\item 
+  $\delta^\star(q,\varepsilon) = q$;
+\item
+  $\delta^\star(q,a\alpha) = \delta^\star(\delta(q,a),\alpha)$;
+\end{enumerate}
+Тогава \[L(\A) = \{\alpha\in\Sigma^\star \mid \delta^\star(s,\alpha) \in F\}.\]
+
+\begin{prop}
+  \[(\forall q\in Q)(\forall\alpha,\beta\in\Sigma^\star)[\delta^\star(q,\alpha\beta) = \delta^\star(\delta^\star(q,\alpha),\beta)].\]
+\end{prop}
+\begin{proof}
+  Индукция по дължината на $\alpha$.
+\end{proof}
+
+\begin{thm}
+  Класът на автоматните езици е затворен относно операцията обединение.
+  Това означава, че ако $L_1$ и $L_2$ са два произволни автоматни езика над азбуката $\Sigma$, то $L_1\cup L_2$
+  също е автоматен език.
+\end{thm}
+\begin{proof}
+  Нека $L_1 = L(\A_1)$ и $L_2 = L(\A_2)$, 
+  където $\A_1 = \FAn{1}$ и $\A_2 = \FAn{2}$ са тотални.
+  Определяме автомата $\A = \FA$, който разпознава $L_1\cup L_2$.
+  \begin{enumerate}[1)]
+  \item
+    $Q = Q_1\times Q_2$;
+  % \item
+  %   $\Sigma = \Sigma_1\cup \Sigma_2$;
+  \item
+    Определяме за всяко $\pair{r_1,r_2} \in Q$ и всяко $a \in \Sigma$,
+    \[\delta(\pair{r_1,r_2},a) = \pair{\delta_1(r_1,a),\delta_2(r_2,a)};\]
+  \item
+    $s_0 = \pair{s_1,s_2}$;
+  \item
+    $F = \{\pair{r_1,r_2}\mid r_1\in F_1\vee r_2 \in F_2\} = (F_1\times Q_2)\cup (Q_1\times F_2)$.
+  \end{enumerate}
+  Проверете, че $L(\A) = L(\A_1)\cup L(\A_2)$.
+\end{proof}
+
+\begin{cor}
+  Класът на автоматните езици е затворен относно операцията сечение.
+  Това означава, че ако $L_1$ и $L_2$ са два произволни автоматни езика над азбуката $\Sigma$, то $L_1\cap L_2$
+  също е автоматен език.
+\end{cor}
+\begin{proof}
+  Същата конструкция на автомата $\A = \FA$, 
+  с единствената разлика, че тук 
+  \[F = \{\pair{q_1,q_2} \mid q_1 \in F_1\ \&\ q_2 \in F_2\} = F_1\times F_2.\]
+\end{proof}
+
+\begin{lemma}
+  Нека $L$ е автоматен език.
+  Тогава $\Sigma^\star\setminus L$ също е автоматен език.
+\end{lemma}
+\begin{proof}
+  Нека $L = L(\A)$, където $\A$ е тотален.
+  Тогава $\Sigma^\star\setminus L = L(\A^\prime)$,
+  където $\A^\prime$ е същия като $\A$, само $F^\prime = Q\setminus F$.
+\end{proof}
+
+
+\begin{prb}
+  Докажете, че езикът $L$ е автоматен.
+  \begin{enumerate}[a)]
+  \item 
+    $L = \{a^nb\mid n \geq 0\}$;
+  \item
+    $L = \{a^nb\mid n \geq 1\}$;
+  \item
+    $L = \{a^nb^m\mid n,m \geq 0\}$;
+  \item
+    $L = \{a^nb^m\mid n,m \geq 1\}$;
+  \item
+    $L = \{a^nb^mc^k\mid n,m,k \geq 1\}$;
+  \item
+    $L = \{a,b\}^\star \setminus \{a\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star\mid \abs{w} \leq 3\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w \mbox{ започва с }ab\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w \mbox{ завършва с }ab\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w \mbox{ съдържа }bab\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w \mbox{ не съдържа }bab\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w \mbox{ няма две последователни }a\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w \mbox{ съдържа точно едно }a\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid \mbox{ всяко }a\mbox{ в }w\mbox{ се следва от поне едно }b\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid \abs{w} \equiv 0 \mod 3\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid N_a(w) \equiv 0 \mod 3\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid N_b(w) \equiv 1 \mod 2\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid N_a(w) \equiv 0 \mod 3\ \&\ N_b(w) \equiv 1 \mod 2\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid w\mbox{ започва и завършва с една и съща буква}\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid N_a(w) \equiv 0 \mod 2\ \&\ N_b(w) \equiv 1 \mod 2\}$;
+  \item
+    $L = \{w \in \{a,b\}^\star \mid N_a(w) \equiv 0 \mod 2\ \vee\ w \mbox{ съдържа точно две }b\}$;
+  \end{enumerate}
+\end{prb}
+
+В повечето от горните задачи е на практика очевидно да се съобрази, че построения автомат разпознава дадения език.
+При по-сложни задачи обаче, ще се наложи да дадем доказателство.
+Ще дадем няколко такива примера.
+
+\begin{prb}
+  Докажете, че езикът
+  \[L = \{\alpha \in \{a,b\}^\star\ \mid\ \alpha\mbox{ не съдържа две поредни срещания на }a\}\]
+  е автоматен.
+\end{prb}
+\begin{proof}
+  Ето картинка на автомата $\A = \FA$:
+  \begin{figure}[h!]
+    \begin{subfigure}[b]{0.3\textwidth}% [$L_1 = L(M_1)$]{
+      \begin{tikzpicture}[->,>=stealth,thick,node distance=45pt]
+        \tikzstyle{every state}=[circle,minimum size=15pt,auto]
+        
+        \node[initial, accepting, state] (0) {$s$};
+        \node[accepting, state]   (1) [right of=0]{$q_1$};
+        \node[state]   (2) [right of=1]{$q_2$};
+        
+        \path 
+        (0) edge [loop above]   node [above] {$b$}   (0)
+        (0) edge [bend left=15] node [above] {$a$}   (1)
+        (1) edge [bend left=15] node [below] {$b$}   (0)
+        (1) edge [bend left=15] node [above] {$a$}   (2)
+        (2) edge [loop above]   node [above] {$a,b$} (2);
+      \end{tikzpicture}
+    \end{subfigure}
+ \end{figure}
+
+ Трябва да докажем, че наистина $L = L(\A)$.
+ Първо ще се концентрираме върху доказателството на $L(\A) \subseteq L$.
+ Ще докажем с индукция по дължината на думата $\alpha$, че:
+ \begin{enumerate}[(1)]
+ \item 
+   ако $\delta^\star(s,\alpha) = s$, то
+   $\alpha$ не съдържа две поредни срещания на $a$
+   и завършва на $b$;
+ \item
+   ако $\delta^\star(s,\alpha) = q_1$, то
+   $\alpha$ не съдържа две поредни срещания на $a$
+   и завършва на $a$.
+ \end{enumerate}
+
+ За $\abs{\alpha} = 0$, то твърдението е ясно (Защо?).
+ 
+ Нека $\abs{\alpha} = n+1$, т.е. $\alpha = \beta x$, където $\abs{\beta} = n$.
+ \begin{enumerate}[(i)]
+ \item 
+   Нека $\delta^\star(s,\beta x) = s = \delta(\delta^\star(s,\beta),x)$.
+   Според дефиницията на $\delta$, $x = b$ и $\delta^\star(s,\beta) \in F$.
+   Тогава по {\bf И.П.} за (1), $\beta$ не съдържа две поредни срещания на $a$.
+   Тогава е очевидно, че $\beta b$ не  съдържа две поредни срещания на $a$.
+ \item
+   Нека $\delta^\star(s,\beta x) = q_1 = \delta(\delta^\star(s,\beta),x)$.
+   Според дефиницията на $\delta$, $x = a$ и $\delta^\star(s,\beta) = s$.
+   Тогава по {\bf И.П.} за (2), $\beta$ не съдържа две поредни срещания на $a$
+   и завършва на $b$.
+   Тогава е очевидно, че $\beta a$ не съдържа две поредни срещания на $a$.
+ \end{enumerate}
+ 
+ Така доказахме, че $L(\A) \subseteq L$.
+
+ Сега ще докажем другата посока, т.е. $L \subseteq L(\A)$.
+ Това означава да докажем, че
+ \[(\forall \alpha \in \Sigma^\star)[\alpha \in L\ \Rightarrow\ \delta^\star(s,\alpha) \in F],\]
+ което е еквивалентно на
+ \[(\forall \alpha \in \Sigma^\star)[\delta^\star(s,\alpha) \not\in F\ \Rightarrow\ \alpha\not\in L].\]
+ Ще докажем това твърдение отново с индукция по дължината на $\alpha$.
+ Нека $\abs{\alpha} = 0$. Тогава твърдението е очевидно. (Защо?)
+ Нека $\abs{\alpha} = n+1$. В този случай 
+ да обърнем внимание, че щом $\delta^\star(s,\alpha) \not\in F$, то
+ $\delta^\star(s,\alpha) = q_2$ и думата $\alpha$ може да се разбие по следния начин:
+ \[\alpha = \beta a \gamma\ \&\ \delta^\star(s,\beta) = q_1.\]
+ 
+ Сега по свойство (2) от по-горе, че щом $\delta^\star(s,\beta) = q_1$, то
+ $\beta$ не съдържа две поредни срещания на $a$, но завършва на $a$.
+ Сега е очевидно, че $\beta a$ съдържа две поредни срещания на $a$ и 
+ щом $\beta a$ е префикс на $\alpha$, то думата $\alpha \not\in L$.
+ С това доказахме и посоката $L\subseteq L(\A)$.
+\end{proof}
+
+
+
+\begin{framed}
+  За една дума $\alpha \in \{0,1\}^\star$, 
+  нека с $\alpha_{(2)}$ да означим числото в десетична бройна система, което се представя в двоична бройна система като $\alpha$.
+  Например, $1101_{(2)} = 1 \cdot 2^3+1\cdot 2^2+0\cdot 2^1+1\cdot 2^0 = 13$.
+  Тогава имаме следните свойства:
+  \begin{itemize}
+  \item
+    $\varepsilon_{(2)} = 0$,
+  \item
+    $(\alpha0)_{(2)} = 2\cdot(\alpha)_{(2)}$,
+  \item
+    $(\alpha1)_{(2)} = 2\cdot(\alpha)_{(2)} + 1$.
+  \end{itemize}
+\end{framed}
+
+\begin{prb}
+  Докажете, че езикът
+  $L = \{w \in \{0,1\}^\star \mid w_{(2)} \equiv 1 \mod 3\}$
+  е автоматен.
+\end{prb}
+\begin{proof}
+  Нашият автомат ще има три състояния $\{q_0,q_1,q_2\}$, като началното състояние ще бъде $q_0$.
+  Нашата цел е да дефинираме така автомата, че да имаме следното свойство:
+  \[(\forall\alpha\in\Sigma^\star)(\forall i < 3)[\alpha_{(2)} \equiv i\mod 3\ \Leftrightarrow\ \delta^\star(q_0,\alpha) = q_i].\]
+  Понеже искаме нашия автомат да разпознава тези думи $\alpha$,
+  за които $\alpha_{(2)} \equiv 2\mod 3$, финалното състояние ще бъде $q_2$.
+  Дефинираме функцията $\delta$ следвайки следните свойства:
+  \begin{enumerate}[(1)]
+  \item
+    $\alpha_{(2)} \equiv 0 \mod 3\ \Rightarrow\ (\alpha0)_{(2)} \equiv 0 \mod 3$; тогава $\delta(q_0,0) = q_0$.
+  \item 
+    $\alpha_{(2)} \equiv 0 \mod 3\ \Rightarrow\ (\alpha1)_{(2)} \equiv 1 \mod 3$; тогава $\delta(q_0,1) = q_1$.
+  \item
+    $\alpha_{(2)} \equiv 1 \mod 3\ \Rightarrow\ (\alpha0)_{(2)} \equiv 2 \mod 3$; тогава $\delta(q_1,0) = q_2$.
+  \item 
+    $\alpha_{(2)} \equiv 1 \mod 3\ \Rightarrow\ (\alpha1)_{(2)} \equiv 0 \mod 3$; тогава $\delta(q_1,1) = q_0$.
+  \item
+    $\alpha_{(2)} \equiv 2 \mod 3\ \Rightarrow\ (\alpha0)_{(2)} \equiv 1 \mod 3$; тогава $\delta(q_2,0) = q_1$.
+  \item 
+    $\alpha_{(2)} \equiv 1 \mod 3\ \Rightarrow\ (\alpha1)_{(2)} \equiv 2 \mod 3$; тогава $\delta(q_2,1) = q_2$.
+  \end{enumerate}
+  
+  Ето и картинка на автомата:
+  \begin{figure}[h!]
+    \begin{subfigure}[b]{0.3\textwidth}% [$L_1 = L(M_1)$]{
+      \begin{tikzpicture}[->,>=stealth,thick,node distance=45pt]
+        \tikzstyle{every state}=[circle,minimum size=15pt,auto]
+        
+        \node[initial,state] (0) {$q_0$};
+        \node[state]   (1) [right of=0]{$q_1$};
+        \node[accepting, state]   (2) [below of=1]{$q_2$};
+        
+        \path 
+        (0) edge [loop above]  node [above] {$0$} (0)
+        (0) edge [bend left=15] node [above] {$1$} (1)
+        (1) edge [bend right=15] node [left] {$0$} (2)
+        (1) edge  [bend left=15] node [below] {$1$} (0)
+        (2) edge  [bend right=15] node [right] {$0$} (1)
+        (2) edge [loop right] node [right] {$1$} (2);
+      \end{tikzpicture}
+    \end{subfigure}
+ \end{figure}
+
+
+  Ще докажем едновременно с индукция по дължината на думата $\alpha$, че
+  \begin{enumerate}[(1)]
+  \item 
+    $\delta^\star(q_0,\alpha) = q_0\ \Rightarrow\ \alpha_{(2)} \equiv 0 \mod 3$,
+  \item 
+    $\delta^\star(q_0,\alpha) = q_1\ \Rightarrow\ \alpha_{(2)} \equiv 1 \mod 3$,
+  \item 
+    $\delta^\star(q_0,\alpha) = q_2\ \Rightarrow\ \alpha_{(2)} \equiv 2 \mod 3$,
+  \end{enumerate}
+  
+  За $\abs{\alpha} = 0$, всички условия са изпълнени. (Защо?)
+  
+  Нека $\abs{\alpha} = n+1$, т.е. $\alpha = \beta x$, $\abs{\beta} = n$.
+  За да приложим индукционното предположение, ще използваме следното свойство:
+  \[\delta^\star(q_0,\beta x) = \delta(\delta^\star(q_0,\beta),x).\]
+  
+  Ще докажем подробно само (3).
+  Нека $\delta^\star(q_0,\beta x) = q_2$. 
+  Имаме два случая:
+  \begin{itemize}
+  \item 
+    $x = 0$. 
+    Тогава, по дефиницията на $\delta$, 
+    $\delta(q_1,0) = q_2$ и следователно, $\delta^\star(q_0,\beta) = q_1$.
+    По {\bf И.П.} за (2) с $\beta$,
+    \[\delta^\star(q_0,\beta) = q_1\ \Rightarrow\ \beta_{(2)} \equiv 1 \mod 3\]
+    Тогава, $(\beta0)_{(2)} \equiv 2 \mod 3$. Така доказахме, че
+    \[\delta^\star(q_0,\beta 0) = q_2\ \Rightarrow\ (\beta 0)_{(2)} \equiv 2 \mod 3.\]
+  \item
+    $x = 1$.
+    Тогава, по дефиницията на $\delta$, $\delta(q_2,1) = q_2$ и следователно,
+    $\delta^\star(q_0,\beta) = q_2$.
+    По {\bf И.П.} за (3) с $\beta$,
+    \[\delta^\star(q_0,\beta) = q_2\ \Rightarrow\ \beta_{(2)} \equiv 2 \mod 3.\]
+    Тогава, $(\beta1)_{(2)} \equiv 2 \mod 3$. Така доказахме, че
+    \[\delta^\star(q_0,\beta 1) = q_2\ \Rightarrow\ (\beta 1)_{(2)} \equiv 2 \mod 3.\]
+  \end{itemize}
+  
+  За да докажем (1), нека $\delta^\star(q_0,\beta x) = q_0$. 
+  \begin{itemize}
+  \item 
+    $x = 0$. Разсъжденията са аналогични, като използваме {\bf И.П.} за (1).
+  \item
+    $x = 1$. Разсъжденията са аналогични, като използваме {\bf И.П.} за (2).
+  \end{itemize}
+  
+  По същия начин доказваме и (2). Нека $\delta^\star(q_0,\beta x) = q_1$. 
+  \begin{itemize}
+  \item 
+    При $x = 0$, използваме {\bf И.П.} за (3).
+  \item
+    При $x = 1$, използваме {\bf И.П.} за (1).
+  \end{itemize}
+
+  От (1), (2) и (3) следва, че също така имаме $L = L(\A)$. (Защо?)
+\end{proof}
+
 \section{Свойства}
 
 Някои свойства на регулярните езици:
