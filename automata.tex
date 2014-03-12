@@ -361,6 +361,149 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{proof}
 
 
+\section{Недетерминирани крайни автомати}
+
+\begin{itemize}
+\item
+  Ще означаваме $\Sigma_\varepsilon = \Sigma\cup\{\varepsilon\}$.
+\item
+  Казваме, че два автомата са {\bf еквивалентни}, ако разпознават едни и същи езици.  
+\end{itemize}
+
+\begin{dfn}
+  \marginpar{Въведени от Рабин и Скот \cite{rabin-scott}}
+  Недетерминиран краен автомат е 5-орка $\N = \NFA$, където
+  \begin{enumerate}[1)]
+  \item
+    $Q$ е крайно множество от състояния;
+  \item
+    $\Sigma$ е крайна азбука;
+  \item
+    \marginpar{Тук имаме $\varepsilon$-преходи}
+    $\Delta: Q\times\Sigma_\varepsilon \to \Ps(Q)$ е функцията на преходите.
+    Обърнете внимание, че тя е тотална.
+  \item
+    $q_0\in Q$ е началното състояние;
+  \item
+    $F\subseteq Q$ е множеството от финални състояния.
+  \end{enumerate}
+\end{dfn}
+
+\begin{thm}
+  За всеки НKА $\N$ съществува еквивалентен на него ДКА $\D$, т.е. $L(\N) = L(\D)$.
+\end{thm}
+\begin{proof}
+  Нека $\N = \NFA$. Ще построим ДКА $\D = (Q^\prime,\Sigma,\delta,s^\prime,F^\prime)$.
+  Ще разгледаме два случая, в зависимост от това дали в $\N$ има $\varepsilon$-преходи.
+  Ако в $\N$ няма $\varepsilon$-преходи, то конструкцията е следната:
+  \begin{itemize}
+  \item
+    \marginpar{Да напомним, че $\Ps(Q) = \{R\mid R\subseteq Q\}$, $\abs{\Ps(Q)} = 2^{\abs{Q}}$}
+    $Q^\prime = \Ps(Q)$;
+  \item
+    $\delta(R,a) = \{q\in Q\mid (\exists r\in R)[q\in\Delta(r,a)]\} = \bigcup_{r\in R}\Delta(r,a)$;
+  \item
+    $s^\prime = \{s\}$;
+  \item
+    $F^\prime = \{R \subseteq Q \mid R\cap F \neq \emptyset\}$.
+  \end{itemize}
+  
+  Сега да разгледаме случая, когато в $\N$ има $\varepsilon$-преходи.
+  Да положим за всяко $q \in Q$, 
+  \[\Es(q) = \{p \in Q \mid \mbox{ има }\varepsilon\mbox{-път от }q\mbox{ до }p]\}.\]
+  Множеството $\Es(q)$ се нарича $\varepsilon$-затваряне на състоянието $q$.
+  Аналогично дефинираме и $\varepsilon$-затварянето $\Es(R)$ на едно подмножество $R \subseteq Q$. Нека 
+  \[\Es(R) = \{p\in Q\mid (\exists r\in R)[\mbox{ има }\varepsilon\mbox{-път от }r\mbox{ до }p]\} = \bigcup_{r\in R}\Es(r).\]
+  Сега вече сме готови да дадем конструкцията на $\D$ в този случай.
+  \begin{itemize}
+  \item
+    $Q^\prime = \Ps(Q)$;
+  \item
+    Ще покажем как намираме $\delta(R,a)$.
+    \begin{itemize}
+    \item 
+      Нека $R = \{r_1,\dots,r_n\}$. 
+      Намираме множеството $P = \bigcup^n_{i = 1}\Delta(r_i,a)$.
+    \item
+      Нека $P = \{p_1,\dots,p_k\}$.
+      Тогава $\delta(R,a) = \bigcup^k_{i = 1}\Es(p_i)$.
+    \end{itemize}
+    Написано по-формално, това означава, че 
+    \[\delta(R,a) = \bigcup_{r \in R}\Es(\Delta(r,a)).\]
+    % $\delta(R,a) = \{q\in Q\mid (\exists r\in R)[q\in \Es(\Delta(r,a))]\} = \bigcup_{r\in R}\Es(\Delta(r,a)) = \Es(\bigcup_{r\in R}\Delta(r,a))$;
+  \item
+    $s^\prime = \Es(s)$;
+  \item
+    $F = \{R\in Q^\prime\mid R\cap F \neq \emptyset\}$.
+  \end{itemize}
+  На практика, не се интересуваме от тези състояния $R\subseteq Q$, които не са достижими от $\Es(s)$.
+  ДКА $\D$ има не повече от $2^{\abs{Q}}$ на брой състояния.
+\end{proof}
+
+Сега можем да дадем много по-лесна конструкция за обединение на два автоматни езика
+- с ново състояние и $\varepsilon$-преходи към началните състояния на старите
+автомати.
+
+\begin{lemma}
+  Класът на автоматните езици е затворен относно операцията конкатенация.
+  Това означава, че ако $L_1$ и $L_2$ са два произволни автоматни езика, то $L_1\cdot L_2$
+  също е автоматен език.
+\end{lemma}
+\begin{proof}
+  $\N_1 = \NFAn{1}$ и $\N_2 = \NFAn{2}$.
+  Ще построим $\N = \NFA$.
+  \begin{itemize}
+  \item
+    $Q = Q_1\cup Q_2$;
+  \item
+    $s = s_1$;
+  \item
+    $F = F_2$;
+  \item
+    Функцията на преходите $\Delta$ е на практика обединение на $\Delta_1$ и $\Delta_2$,
+    като имаме $\varepsilon$-преход от финалните състояния на $\N_1$ към началното състояние $s_2$ на $\N_2$.
+    Определяме $\Delta$ по следния начин:
+    \begin{eqnarray*}
+      \Delta(q,a) = 
+      \begin{cases}
+        \Delta_1(q,a), & q\in Q_1\wedge q\not\in F_1\\
+        \Delta_1(q,a), & q\in F_1\wedge a \neq \varepsilon\\
+        \Delta_1(q,a)\cup\{s_2\}, & q\in F_1\wedge a = \varepsilon\\
+        \Delta_2(q,a), & q\in Q_2
+      \end{cases}
+    \end{eqnarray*}
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}
+  Класът от автоматните езици е затворен относно операцията звезда.
+\end{lemma}
+\begin{proof}
+  $\N_1 = \NFAn{1}$.
+  Ще построим $\N = \NFA$.
+  \begin{itemize}
+  \item
+    $Q = Q_1\cup \{s\}$;
+  \item
+    $s$ е новото начално състояние, $s \not\in Q$;
+  \item
+    $F = F_1\cup \{s\}$;
+  \item
+    Функцията на преходите я определяме по следния начин:
+    \begin{eqnarray*}
+      \Delta(q,a) = 
+      \begin{cases}
+        \Delta_1(q,a),            & q\in Q_1\wedge q\not\in F_1\\
+        \Delta_1(q,a),            & q\in F_1\wedge a\neq \varepsilon\\
+        \Delta_1(q,a)\cup\{s_1\}, & q\in F_1\wedge a = \varepsilon\\
+        \{s_1\},                  & q = s\wedge a = \varepsilon\\
+        \emptyset,                & q = s\wedge a\neq \varepsilon
+      \end{cases}
+    \end{eqnarray*}
+  \end{itemize}
+\end{proof}
+
+
 \section{Регулярни езици}
 
 \begin{dfn}
@@ -425,7 +568,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \begin{lemma}
   Ако един език е автоматен, то той се описва с регулярен израз.
 \end{lemma}
-\begin{proof}% [\cite{papadimitriou}, стр. 79]
+\begin{proof}
   \marginpar{От \cite{papadimitriou}, стр. 79}
   Нека  $L = L(M)$, за някой автомат $M$.
   Да фиксираме едно изброяване на състоянията $Q = \{q_1,\dots,q_n\}$,
@@ -556,7 +699,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
     $|xy|\leq n$;
   \item
     % \marginpar{$i = 0\ \rightarrow\ xz \in \Ls$}
-    $(\forall i\in\N)[xy^iz \in \Ls]$.
+    $(\forall i\in\Nat)[xy^iz \in \Ls]$.
   \end{enumerate}
 \end{lemma}
 
@@ -566,7 +709,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{crl}
 
 \begin{problem}
-  \marginpar{$c^+\{a^nb^n\mid n\in\N\}\cup (a\vert b)^\star$}
+  \marginpar{$c^+\{a^nb^n\mid n\in\Nat\}\cup (a\vert b)^\star$}
   Да се даде пример за език $L$, който {\bf не} е регулярен, но удовлетворява
   лемата за разрастването.
 \end{problem}
@@ -651,7 +794,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \item
     $L = \{c^ka^nb^n \mid k > 0\ \&\ n \geq 0\}\cup\{a,b\}^\star$;
   \item
-    $L = \{c^ka^nb^m\mid k,n,m \in \N\ \&\ k = 1\implies m = n\}$; % p \geq 2, не става с p = 1
+    $L = \{c^ka^nb^m\mid k,n,m \in \Nat\ \&\ k = 1\implies m = n\}$; % p \geq 2, не става с p = 1
   \end{enumerate}
 \end{problem}
 % \begin{proof}
