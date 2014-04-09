@@ -141,6 +141,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \item
     $L = \{w \in \{a,b\}^\star \mid \abs{w} \equiv 0 \mod 3\}$;
   \item
+    \marginpar{$N_a(w)$ - броят на срещанията на буквата $a$ в думата $w$}
     $L = \{w \in \{a,b\}^\star \mid N_a(w) \equiv 0 \mod 3\}$;
   \item
     $L = \{w \in \{a,b\}^\star \mid N_b(w) \equiv 1 \mod 2\}$;
@@ -623,8 +624,8 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 
 Нека $R(i,j,k)$ да бъде регулярният израз, който описва езика $L(i,j,k)$.
 Това означава, че за да намерим регулярния език за автомата от Фигура \ref{subf:a1}, 
-трабва да намерим $R(1,2,2)$, защото началното състояние е $1$, финалното е $2$ и 
-броят на състоянията в автомате е $2$.
+трябва да намерим $R(1,2,2)$, защото началното състояние е $1$, финалното е $2$ и 
+броят на състоянията в автомата е $2$.
 За упражнение, само за този пример ще намерим всички възможни $R(i,j,k)$.
 \begin{itemize}
 \item 
@@ -705,7 +706,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 
 \begin{crl}
   Регулярният език $\Ls$, 
-  разпознаван от КДА $M$ е непразен тoчно тогава, когато съдържа дума $\alpha, \abs{\alpha} \leq \abs{Q}$.
+  разпознаван от КДА $M$ е непразен точно тогава, когато съдържа дума $\alpha, \abs{\alpha} \leq \abs{Q}$.
 \end{crl}
 
 \begin{problem}
@@ -748,7 +749,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 
 \begin{problem}
   Нека $\Sigma = \{a,b\}$.  Проверете дали $L$ е регулярен, където
-  \begin{enumerate}[1)]
+  \begin{enumerate}[a)]
   \item
     $L = \{\alpha^R \mid \alpha \in L_0\}$, където $L_0$ е регулярен;
   \item
@@ -797,56 +798,53 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
     $L = \{c^ka^nb^m\mid k,n,m \in \Nat\ \&\ k = 1\implies m = n\}$; % p \geq 2, не става с p = 1
   \end{enumerate}
 \end{problem}
-% \begin{proof}
-%   \begin{enumerate}[1)]
-%   \item
-%     Разгледайте $w = a^pb^p$.
-%   \item
-%     Разгледайте $w = a^{p+1}b^p$.
-%   \item
-%     Езикът е регулярен.
-%   \item
-%     Подобно на 1) се доказва, че езикът не е регулярен.
-%   \item
-%     Да допуснем, че $L_5$ е регулярен и нека $w \in L_5$, така че $\abs{w} > p+1$.
-%     $w = xyz$ и понеже $\abs{xy} \leq p$, то $\abs{z} > 1$.
-%     Имаме, че $xy^iz \in L_5$ и следователно $\abs{xy^iz} = \abs{xz} + i.\abs{y}$ е просто число, за всяко $i$.
-%     Да изберем $i = \abs{xz} > 1$.
-%     Но тогава $\abs{xy^iz} = (1 + \abs{y})\abs{xz}$ е съставно число, следователно 
-%     достигнахме до противоречие.
-%   \item
-%     Разгледайте $w = 0^p1^p$. Проблем с условието $\abs{xy} \leq p$.
-%     Друг начин е да се използва, че $0^\star1^\star \cap L_6 = L_1$.
-%   \item
-%     Разгледайте $0^p10^p1$.
-%   \item
+\begin{proof}
+  \begin{enumerate}[1)]
+  \item
+    Разгледайте $w = a^pb^p$.
+  \item
+    Разгледайте $w = a^{p+1}b^p$.
+  \item
+    Езикът е регулярен.
+  \item
+    Подобно на 1) се доказва, че езикът не е регулярен.
+  \item
+    Да допуснем, че $L_5$ е регулярен и нека $w \in L_5$, така че $\abs{w} > p+1$.
+    $w = xyz$ и понеже $\abs{xy} \leq p$, то $\abs{z} > 1$.
+    Имаме, че $xy^iz \in L_5$ и следователно $\abs{xy^iz} = \abs{xz} + i.\abs{y}$ е просто число, за всяко $i$.
+    Да изберем $i = \abs{xz} > 1$.
+    Но тогава $\abs{xy^iz} = (1 + \abs{y})\abs{xz}$ е съставно число, следователно 
+    достигнахме до противоречие.
+  \item
+    Разгледайте $w = 0^p1^p$. Проблем с условието $\abs{xy} \leq p$.
+    Друг начин е да се използва, че $0^\star1^\star \cap L_6 = L_1$.
+  \item
+    Разгледайте $0^p10^p1$.
+  \item
     
-%   \item
-%     Да разгледаме $w = 1^{p^2}$.
-%     Да допуснем, че $L_9$ е регулярен и имаме, че
-%     \[(\forall i)[\abs{xy^iz}\ \&\ \abs{xy^{i+1}z}\mbox{ са точни квадрати}].\]
-%     Тогава съществува $n$, за което $n^2 = \abs{xy^iz}$, $\abs{xy^{i+1}z} \geq (n+1)^2$ и
-%     \[\abs{y} = \abs{xy^{i+1}z} - \abs{xy^{i}z} \geq 2n + 1 = 2\sqrt{\abs{xy^iz}} + 1\]
-%     Ясно е, че $\abs{y} \leq \abs{w} = p^2$.
-%     Получаваме, че за всяко $i$,
-%     \[\abs{y} \geq 2\sqrt{\abs{xy^iz}} + 1\]
-%     Лесно стигаме до противоречие, например да вземем $i = p^2$.
-%     Тогава $\abs{y} > p$, което е противоречие.
-%     % Да вземем $i = p^4$.
-%     % $\abs{y} \leq p^2 < 2\sqrt{p^4} + 1 \leq 2\sqrt{\abs{xy^iz}} + 1$,
-%     което е противоречие.
-%   \item
-%   \item
-%   \item
-%     Аналогично на 9).
-%   \item
-%     Да допуснем, че $L_{13}$ е регулярен.
-%     Но тогава $L^\prime = \{a,b\}^\star \setminus L_{13}$ е регулярен
-%     и $L_1 = a^\star b^\star \cap L^\prime$ е регулярен.
-%     Достигнахме до противоречие.
-%   \end{enumerate}
-% \end{proof}
-
+  \item
+    Да разгледаме $w = 1^{p^2}$.
+    Да допуснем, че $L_9$ е регулярен и имаме, че
+    \[(\forall i)[\abs{xy^iz}\ \&\ \abs{xy^{i+1}z}\mbox{ са точни квадрати}].\]
+    Тогава съществува $n$, за което $n^2 = \abs{xy^iz}$, $\abs{xy^{i+1}z} \geq (n+1)^2$ и
+    \[\abs{y} = \abs{xy^{i+1}z} - \abs{xy^{i}z} \geq 2n + 1 = 2\sqrt{\abs{xy^iz}} + 1\]
+    Ясно е, че $\abs{y} < p$.
+    Получаваме, че за всяко $i$,
+    \[\abs{y} \geq 2\sqrt{\abs{xy^iz}} + 1\]
+    Лесно стигаме до противоречие, например да вземем $i = p^2$.
+    Тогава $\abs{y} > p$, което е противоречие.
+    което е противоречие.
+  \item
+  \item
+  \item
+    Аналогично на 9).
+  \item
+    Да допуснем, че $L_{13}$ е регулярен.
+    Но тогава $L^\prime = \{a,b\}^\star \setminus L_{13}$ е регулярен
+    и $L_1 = a^\star b^\star \cap L^\prime$ е регулярен.
+    Достигнахме до противоречие.
+  \end{enumerate}
+\end{proof}
 
 \begin{problem}
   Да означим $\mbox{Half}(L) = \{w\mid (\exists x \in \Sigma^\star)[wx \in L\ \&\ \abs{w} = \abs{x}]\}$.
@@ -861,6 +859,326 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Две доказателства. Едното е с индукция по построението регулярния израз за $L$.
   Другото е по автомата за $L$.
 \end{proof}
+
+\section{Минимизация на ДКА}
+
+\begin{itemize}
+\item
+  Нека $L \subseteq \Sigma^\star$ е език и нека $x,y \in \Sigma^\star$.
+  Казваме, че $x$ и $y$ са {\bf еквивалентни относно} $L$, което записваме 
+  като $x \approx_L y$, ако е изпълнено:
+  \[(\forall z \in \Sigma^\star)[xz \in L \iff yz \in L].\]
+  Това означава, че $x\approx_L y$ ако или и две думи са в $L$ или и двете не са в $L$
+  и освен това, като прибавим произволна дума на края на $x$ и $y$, новополучените
+  думи са или и двете в $L$ или и двете не са в $L$.  
+\item
+  Нека $\mathcal{M} = \FA$ е КДА.
+  Казваме, че две думи $\alpha,\beta \in \Sigma^\star$ са {\bf еквивалентни относно $\M$},
+  което означаваме с $\alpha \sim_\M \beta$, ако $\delta^\star(s,\alpha) = \delta^\star(s,\beta)$.
+\item
+  Съобразете, че $\approx_L$ и $\sim_\M$ са {\bf релации на еквивалентност}, т.е.
+  те са рефлексивни, транзитивни и симетрични.
+  Всяко състояние на $\M$, което е достижимо от началното състояние $s$, определя клас на еквивалентност относно 
+  релацията $\sim_\M$.  
+  Нека да означим класовете на еквивалентност на $\approx_\Ls$ с $[x]_\Ls$. 
+\item
+  С $\abs{\approx_\Ls}$ ще означаваме броя на класовете на еквивалентност на релацията $\approx_\Ls$.
+\item
+  $\sim_\M$ е дясно-инвариантна, т.е.
+  \[\alpha \sim_\M \beta\ \rightarrow\ (\forall \gamma\in\Sigma^\star)[\alpha\gamma \sim_\M \beta\gamma].\]
+\end{itemize}
+
+% Ако $M$ разпознава езика $L$, то
+% \[L = \bigcup_{\delta^{\star}(q_0,x)\in F}[x]_{L}.\]
+
+\begin{thm}
+  \label{th:rel-finer}
+  Нека е даден ДКА $\M = \FA$ и $\Ls(\M)$ е езика, разпознаван от $\M$. Тогава е изпълнено
+  \[(\forall \alpha,\beta \in \Sigma^\star)[\alpha\sim_\M\beta\ \rightarrow\ \alpha\approx_{\Ls(\M)}\beta].\]
+\end{thm}
+\begin{proof}[стр. 95 от \cite{papadimitriou}]
+  Да означим $q_\alpha = \delta^\star(s, \alpha)$.
+  Лесно се съобразява, че 
+  \[\alpha \sim_\M \beta\quad\Leftrightarrow\quad q_\alpha = q_\beta.\]
+  Освен това, 
+  \[\alpha\gamma \in \Ls(\M)\quad \Leftrightarrow\quad \delta^\star(q_\alpha, \gamma) \in F.\]
+  Тогава, ако $\alpha \sim_\M \beta$, то  $\alpha \approx_{\Ls(\M)}\beta$, защото за произволно $\gamma \in \Sigma^\star$,
+  \[\alpha\gamma \in \Ls(\M)\ \Leftrightarrow\ \delta^\star(q_\alpha,\gamma) \in F\ \Leftrightarrow\ \delta^\star(q_\beta, \gamma)\in F\ \Leftrightarrow\ \beta\gamma \in \Ls(\M).\]  
+\end{proof}
+
+\begin{cor}
+  Един регулярен език $\Ls$ се разпознава от ДКА с $\abs{Q} \geq \abs{\approx_\Ls}$.
+\end{cor}
+\begin{proof}
+  Теоремата ни казва, че $\sim_\M$ е {\em по-фина} релация от $\approx_{\Ls(\M)}$, от което следва, че
+  броят на класовете на еквивалентност на $\sim_\M$ е по-голям от този на $\approx_{\Ls(\M)}$.
+  Тъй като всяко достижимо състояние определя клас на еквивалентност относно $\sim_\M$,
+  то получаваме {\em долна граница} на броя на състоянията в минималнен автомат за езика $\Ls$.
+  Този брой е не по-малък от броя на класовете на еквивалентност на $\approx_\Ls$.
+  
+\end{proof}
+
+{\bf Сега ще отговорим на въпроса дали тази долна граница може да бъде достигната.}
+
+% Да приемем, че сме фиксирали азбуката $\Sigma$.
+\begin{thm}[Майхил-Нероуд]
+  \label{th:myhill-nerode}
+  \index{теорема!Майхил-Нероуд}
+  \marginpar{на англ. Myhill-Nerode}
+  Нека $\L\subseteq \Sigma^\star$ е регулярен език.
+  Тогава съществува ДКА $\M = \FA$, който разпознава $\L$,
+  с точно толкова състояния, колкото са класовете на еквивалентност на релацията $\approx_\L$,
+  т.е. $\abs{Q} = \abs{\approx_\L}$.
+\end{thm}
+\begin{proof}
+\marginpar{стр. 96 от \cite{papadimitriou}}
+При даден регулярен език $\L$, ние определяме ДКА $\M = \FA$, за който $\L = \L(\M)$ като
+  \begin{itemize}
+  \item
+    $Q = \{[\alpha]_\L\mid \alpha\in \Sigma^\star\}$;
+  \item
+    $s = [\varepsilon]_\L$;
+  \item
+    $F = \{[\alpha]_\L\mid \alpha\in \L\}$;
+  \item
+    За всяка буква $a \in \Sigma$ и всяко състояние $[\alpha]_\L\in Q$, дефинираме
+    \[\delta([\alpha]_\L,a) = [\alpha a]_\L.\]
+  \end{itemize}
+  
+  Първо, трябва да се уверим, че множеството от състояния $Q$ е крайно, т.е.
+  релацията $\approx_\Ls$ има крайно много класове на еквивалентност.
+  И така, тъй като $\Ls$ е регулярен език, то той се разпознава от някой ДКА $\M^\prime$.
+  Ние знаем от теорема \ref{th:rel-finer}, че $\sim_{\M^\prime}$ е по-фина релация от $\approx_\Ls$.
+  Това означава, че броят на класове на еквивалентност на $\approx_\Ls$ е по-малък от този
+  на $\sim_{\M^\prime}$, който очевидно е краен, защото е ограничен отгоре от $\abs{Q^\prime}$.
+
+  Второ, трябва да се уверим, че функцията $\delta$ е добре определена, т.е. 
+  да проверим, че
+  \[[\alpha]_L = [\beta]_L\ \Rightarrow\ \delta([\alpha]_L,a) = \delta([\beta]_L,a).\]
+  Но това се вижда веднага, защото от определението на релацията $\approx_L$ следва, че
+  ако $\alpha \approx_L \beta$, то за всяка буква $a$, $\alpha a \approx_L \beta a$,
+  т.е. $[\alpha a]_L = [\beta a]_L$.
+  
+  Така вече сме показали, че $\M$ е коректно зададен ДКА.
+  Остава да покажем, че $\M$ разпознава езика $\Ls$, т.е. $\Ls(\M) = \Ls$.
+  \begin{prop}
+    За всеки две думи $\alpha,\beta\in\Sigma^\star$,
+    $\delta^\star([\alpha]_\Ls,\beta) = [\alpha\beta]_\Ls$.
+  \end{prop}
+  \begin{proof}
+    Ще докажем това свойство с индукция по дължината на думата $\beta$.
+    \begin{enumerate}[a)]
+    \item
+      $\beta = \varepsilon$, директно от дефиницията на $\delta^\star$,
+      $\delta^\star([x]_\Ls,\varepsilon) = [x\varepsilon]_\Ls = [x]_\Ls$.
+    \item
+      Нека $\beta$ има дължина $n+1$ и сме доказали твърдението за думи с дължина $\leq n$.
+      Тогава $\beta = \gamma a$, където $\gamma$ има дължина $n$.
+      \[\delta^\star([\alpha]_\Ls, \gamma a) = \delta(\delta^\star([\alpha]_\Ls,\gamma),a) = \delta([\alpha\gamma]_\Ls,a) = [\alpha\gamma a]_\Ls = [\alpha\beta]_\Ls.\]
+    \end{enumerate}
+  \end{proof}
+  Сега, 
+  \[\alpha\in \Ls(\M) \iff \delta^\star(s,\alpha) \in F \iff \delta^\star([\varepsilon]_\Ls,\alpha) = [\alpha]_\Ls\ \&\ \alpha\in \Ls \iff \alpha \in \Ls.\]
+  
+\end{proof}
+
+Ако $M = \FA$ е автомат, за който $\abs{Q} = \abs{\approx_\Ls}$, то ще казваме, че
+$M$ е {\bf минимален} за езика $\Ls$.
+
+\begin{framed}
+  \begin{cor}
+    Езикът $\Ls$ е регулярен точно тогава, когато релацията $\approx_\Ls$ има {\em крайно много} класове на еквивалентност.
+  \end{cor}
+\end{framed}
+\begin{proof}
+  Ако $\Ls$ е регулярен, то той се разпознава от някой ДКА $\M$, който има крайно много състояния 
+  и следователно крайно много класове на еквивалентност относно $\sim_\M$.
+  Релацията $\approx_\Ls$ е по-груба от $\sim_\M$ и има по-малко класове на еквивалентност.
+  Следователно, $\approx_\Ls$ има крайно много класове на еквивалентност.
+  
+  За другата посока, ако $\approx_\Ls$ има крайно много класове на еквивалентност, то можем да 
+  построим ДКА $\M$ както в доказателството на теорема \ref{th:myhill-nerode} на Майхил-Нероуд,
+  който разпознава $\Ls$.
+  
+\end{proof}
+
+Това следствие ни дава още един начин за проверка дали даден език е регулярен.
+За разлика от Лема \ref{lem:pumping-reg} за нарастването, сега имаме
+необходимо и достатъчно условие.
+При даден език $\Ls$, ние строим неговата релация $\approx_\Ls$.
+Ако тя е крайна, то езикът $\Ls$ е регулярен.
+Ако тя не е крайна, то езикът $\Ls$ не е регулярен.
+
+\begin{example}
+  За езика $\Ls = \{a^nb^n\mid n \in \N\}$ имаме, че $\abs{\approx_\Ls} = \infty$,
+  защото \[k \neq j\ \rightarrow\ [a^kb]_\Ls \neq [a^jb]_\Ls.\]
+  Проверете, че $[a^kb]_\Ls = \{a^kb,a^{k+1}b,\dots,a^{k+l}b^l,\dots\}$.
+\end{example}
+
+\begin{dfn}
+  Нека $M_1 = \FAn{1}$ и $M_2 = \FAn{2}$.
+  Казваме, че $M_1$ и $M_2$ са изоморфни, което означаваме с $M_1 \cong M_2$, ако
+  \begin{itemize}
+  \item
+    съществува биекция $h:\Sigma_1 \to \Sigma_2$;
+  \item
+    съществува биекция $f: Q_1\to Q_2$;
+  \item
+    $f(q_1) = q_2$;
+  \item
+    $f[F_1] = \{f(q)\mid q\in F_1\} = F_2$;
+  \item
+    $(\forall a\in\Sigma_1)(\forall q\in Q_1)[f(\delta_1(q,a)) = \delta_2(f(q),h(a))]$.
+  \end{itemize}
+  Ще казваме, че $\pair{h,f}$ задава изоморфизъм на $M_1$ върху $M_2$.
+\end{dfn}
+
+\begin{cor}
+  Всички минимални автомати за езика $\Ls$ са изоморфни на $M_0$, автомата построен в теоремата на Нерод-Майхил.
+\end{cor}
+\begin{proof}
+  Нека $M = \FA$ е произволен автомат, за който $\Ls(M) = \Ls$ и $\abs{Q_M} = \abs{\approx_\Ls}$.
+  Съобразете, че $M$ е свързан, т.е. всяко състояние на $M$ е достижимо от началното.
+  Искаме да докажем, че $M \cong M_0$.
+  За всяко състояние $q\in Q$ можем да намерим дума $w_q\in\Sigma^\star$,
+  за която $\delta^\star(s,w_q) = q$.
+  Да дефинираме $f:Q\to [\approx_\Ls]$ като $f(q) = [w_q]_\Ls$. Ще докажем, 
+  $\pair{id_\Sigma, f}$ задава изоморфизъм на $M$ върху $M_0$.
+  \begin{itemize}
+  \item
+    $f$ е определена коректно, т.е. $f$ е функция.
+    За целта, нека $q\in Q$ и $\alpha,\beta$ са две думи, за които
+    \[\delta^\star(s,\alpha) = q = \delta^\star(s,\beta).\]
+    Тогава $\alpha\sim_M \beta$ и от теорема \ref{th:rel-finer} следва, 
+    че $\alpha \approx_\Ls \beta$ и $[\alpha]_\Ls = [\beta]_\Ls$.
+  \item
+    $f$ е инективна, т.е. ако $(\forall q_1,q_2 \in Q)[q_1\neq q_2\ \rightarrow\ f(q_1) \neq f(q_2)]$.
+    Да допуснем, че за $q_1 \neq q_2$ имаме, че $f(q_1) = [w_{q_1}]_\Ls = [w_{q_2}]_\Ls = f(q_2)$.
+    Тогава $w_{q_1} \not\sim_M w_{q_2}$ и $w_{q_1} \approx_\Ls w_{q_2}$.
+    Но това означава, че $\abs{\sim_M} > \abs{\approx_\Ls}$,
+    което противоречи с минималността на $M$.
+  \item
+    $f$ е сюрективна, т.е. за всяко $[\beta]_\Ls \in [\approx_\Ls]$, съществува $q \in Q$, за което $f(q) = [\beta]_\Ls$.
+    Следва от факта, че съществува $q \in Q$, за което $[\beta]_\Ls = [w_q]_\Ls$.
+  \item
+    $f(\delta^\star_M(s,\alpha)) = [\alpha]_\Ls = \delta^\star_{M_0}([\varepsilon]_\Ls, \alpha) = 
+    \delta^\star_{M_0}(f(s), \alpha)$.
+  \end{itemize}
+\end{proof}
+
+
+\paragraph{Алгоритъм за намиране на МКДА.}
+\begin{itemize}
+\item
+  Нека $M = \FA$ да бъде ДКА. Определяме
+  \[A_M = \{\pair{q,w} \mid q\in Q\ \&\ w\in\Sigma^\star\ \&\ \delta^\star(q,w) \in F\}.\]
+\item
+  Казваме, че две състояния $p,q$ са {\bf еквивалентни}, означаваме $p\equiv q$,
+  \footnote{В общия случай, $\approx_L \supseteq \sim_M$, т.е. $\sim_M$ е по-фина от $\approx_L$.
+    Нека $\equiv\ =\  \approx_L/\sim_M$, където $[\alpha]_{\sim_M} \equiv [\beta]_{\sim_M} \iff \alpha \approx_L \beta$. Тогава $\abs{\approx_L} = \abs{\equiv}$.}
+  ако \[(\forall \gamma\in \Sigma^\star)[(p,\gamma) \in A_M \iff (q,\gamma) \in A_M].\]
+\item
+  Релацията $\equiv$ между състояния на автомата $M$ е релация на еквивалентност. 
+\item
+  Нека $q_\alpha$ е състоянието, което съответства на думата $\alpha$ в $M$, т.е.
+  $\delta^\star_M(q_0,\alpha) = q_\alpha$. Тогава:
+  \[q_\alpha \equiv q_\beta\ \iff\ \alpha\approx_{\Ls(M)} \beta.\]
+  Това означава, че ако $M$ е свързан, то $\abs{\equiv} = \abs{\approx_{\Ls(M)}}$.
+\end{itemize}
+
+При даден език $\Ls$ и автомат $M = \FA$, който го разпознава, нашата цел е да построим нов автомат $M_0$,
+който има толкова състояния колкото са класовете на еквивалентност на релацията $\approx_\Ls$.
+Това ще направим като ``слеем'' състоянията на $M$, които са еквивалентни относно релацията $\equiv$.
+Това означава, че всяко състояние на $M_0$ ще отговаря на един клас на еквивалентност на релацията $\equiv$.
+
+Алгоритъмът представлява строене на релации $\equiv_n$, където
+\[p\equiv_n q \iff (\forall\gamma\in\Sigma^\star)[\abs{\gamma}\leq n\ \rightarrow\ ((p,\gamma)\in A_M \iff 
+(q,\gamma) \in A_M)].\]
+
+Обърнете внимание, че за всяко $n$, $\equiv_n$ е {\em по-груба} релация от $\equiv_{n+1}$, 
+която на свой ред е по-груба от $\equiv$.
+Алгоритъмът строи $\equiv_n$ докато $\equiv_n\ \neq\ \equiv_{n+1}$.
+Тъй като броят на класовете на еквивалентност на $\equiv_n$ е краен, и не по-голям от $\abs{Q}$, то 
+със сигурност ще намерим $n$, за което $\equiv_n = \equiv_{n+1}$.
+Понеже единствената дума с дължина $0$ e $\varepsilon$ и по определение $\delta^\star(p,\varepsilon) = p$, 
+лесно се съобразява, че $\equiv_0$ има два класа на еквивалентност.
+Единият е $F$, а другият е $Q\setminus F$.
+
+\begin{prop}
+  За всеки две състояния $p,q \in Q$, и всяко $n$, $p \equiv_{n+1} q$ точно тогава, когато
+  \begin{enumerate}[a)]
+  \item
+    $p \equiv_{n} q$ и
+  \item
+    $(\forall a \in \Sigma)[\delta(q,a) \equiv_{n} \delta(p,a)]$.
+  \end{enumerate}
+\end{prop}
+\begin{proof}[стр. 99 от \cite{papadimitriou}]
+  По условие имаме, че $p\equiv_{n+1} q$ точно тогава, когато
+  $p\equiv_n q$ и за всяка дума $\gamma = a\beta$, $\abs{\gamma} = n+1$,
+  $(p,\gamma) \in A_M \iff (q,\gamma)\in A_M$.
+  Последното е еквивалентно с 
+  \[(\delta(p,a),\beta) \in A_M \iff (\delta(q,a),\beta) \in A_M.\]
+  Тъй като това е вярно за всяка дума $\gamma$, то
+  \[(\forall a\in\Sigma)[\delta(p,a) \equiv_{n} \delta(q, a)].\]
+  
+\end{proof}
+
+Нека е даден автомата $M = \FA$.
+След като сме намерили релацията $\equiv$ за $M$, 
+строим автомата $M^\prime = (Q^\prime,\Sigma,s^\prime,\delta^\prime,F^\prime)$, където:
+\begin{enumerate}[1)]
+\item
+  $Q^\prime = \{[q]_\equiv \mid q\in Q\}$;
+\item
+  $s^\prime = [s]_\equiv$;
+\item
+  $\delta^\prime([q]_\equiv, a) = [\delta(q,a)]_\equiv$;
+\item
+  $F^\prime = \{[q]_\equiv\mid F\cap [q]_\equiv \neq \emptyset\}$;
+\end{enumerate}
+
+
+\begin{figure}
+  \begin{subfigure}[b]{0.3\textwidth}%[НКА с $\varepsilon$-преходи]{
+    \begin{tikzpicture}[->,>=stealth,thick,node distance=45pt]
+      \tikzstyle{every state}=[circle,minimum size=15pt,auto]
+      
+      \node[initial,state] (0) {$0$};
+      \node[state]         (1) [right of=0]{$1$};
+      \node[state]   (2) [right of=1]{$2$};
+      \node[state]   (3) [right of=2]{$3$};
+      \node[accepting, state]   (4) [right of=3]{$4$};
+      
+      \path 
+      (0) edge  node [above] {$\varepsilon$} (1)
+      (1) edge  node [above] {$a$} (2)
+      (2) edge  node [above] {$b$} (3) 
+      (3) edge  node [above] {$a,\varepsilon$} (4) 
+      (1) edge  [bend right=30] node [below] {$a$} (3)
+      (2) edge  [bend right=45] node [above] {$\varepsilon$} (1)
+      (3) edge  [bend right=45] node [above] {$\varepsilon$} (2);
+    \end{tikzpicture}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\textwidth}
+  % \subfigure[получения от него ДКА]{
+    \begin{tikzpicture}[->,>=stealth,thick,node distance=70pt]
+      \tikzstyle{every state}=[circle,font=\small]
+      
+      \node[initial,state] (0) {$\{0,1\}$};
+      \node[accepting,state]         (1) [above right of=0]{$\{1,2,3,4\}$};
+      \node[state]   (2) [below right of=0]{$\emptyset$};
+      
+      \path 
+      (0) edge [] node [above] {$a$} (1)
+      (0) edge node [above] {$b$} (2)
+      (1) edge [loop right] node [right] {$a,b$} (1)
+      (2) edge [loop right] node [right] {$a,b$} (2);
+    \end{tikzpicture}
+  \end{subfigure}
+  \caption{}
+\end{figure}
+
 
 
 \section{Въпроси}
@@ -895,6 +1213,10 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \marginpar{Не}
   за всеки регулярен език $R$ и всеки $K \subseteq R$, то $R\setminus K$ е регулярен ?
 \end{itemize}
+
+
+
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "discrete-math"
