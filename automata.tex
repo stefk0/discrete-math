@@ -45,12 +45,14 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{dfn}
 
 Удобно е да разгледаме транзитивното затваряне на $\delta$:
-\begin{enumerate}
+\begin{itemize}
+\item
+  $\delta^\star : Q\times\Sigma^\star \to Q$;
 \item 
   $\delta^\star(q,\varepsilon) = q$;
 \item
   $\delta^\star(q,a\alpha) = \delta^\star(\delta(q,a),\alpha)$;
-\end{enumerate}
+\end{itemize}
 Тогава \[L(\A) = \{\alpha\in\Sigma^\star \mid \delta^\star(s,\alpha) \in F\}.\]
 
 \begin{prop}
@@ -238,8 +240,6 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
  С това доказахме и посоката $L\subseteq L(\A)$.
 \end{proof}
 
-
-
 \begin{framed}
   За една дума $\alpha \in \{0,1\}^\star$, 
   нека с $\alpha_{(2)}$ да означим числото в десетична бройна система, което се представя в двоична бройна система като $\alpha$.
@@ -360,7 +360,6 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 
   От (1), (2) и (3) следва, че също така имаме $L = L(\A)$. (Защо?)
 \end{proof}
-
 
 \section{Недетерминирани крайни автомати}
 
@@ -529,7 +528,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
     който се разпознава от регулярния израз $(r_1\vert r_2)$,
     където $r_1$ и $r_2$ са регулярните изрази за $L_1$ и $L_2$;
   \item
-    \marginpar{Конкатенация. Обикновено изпускаме $\cdot$}
+    \marginpar{Конкатенация. Обикновено изпускаме знака $\cdot$}
     $L_1\cdot L_2 = \{uw\mid u \in L_1\ \&\ w \in L_2\}$, където $L_1$ и $L_2$ са регулярни езици,
     който се разпознава от регулярния израз $(r_1\cdot r_2)$,
     където $r_1$ и $r_2$ са регулярните изрази за $L_1$ и $L_2$;
@@ -684,6 +683,20 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   е регулярен.
 \end{itemize}
 
+\begin{problem}
+  Да означим $\mbox{Half}(L) = \{w\mid (\exists x \in \Sigma^\star)[wx \in L\ \&\ \abs{w} = \abs{x}]\}$.
+  Докажете, че ако $L$ е регулярен език, то $\mbox{Half}(L)$ също е регулярен език.
+\end{problem}
+
+\begin{problem}
+  Да означим $\mbox{Pref}(L) = \{\alpha \mid (\exists \beta \in \Sigma^\star)[\alpha\beta \in L]\}$.
+  Докажете, че ако $L$ е регулярен език, то $\mbox{Pref}(L)$ също е регулярен език.
+\end{problem}
+\begin{proof}
+  Две доказателства. Едното е с индукция по построението регулярния израз за $L$.
+  Другото е по автомата за $L$.
+\end{proof}
+
 \section{Езици, които не са регулярни}
 \begin{lemma}[за разрастването (регулярни езици)]
   % \index{лема за разрастването!регулярни езици}
@@ -706,46 +719,14 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 
 \begin{crl}
   Регулярният език $\Ls$, 
-  разпознаван от КДА $M$ е непразен точно тогава, когато съдържа дума $\alpha, \abs{\alpha} \leq \abs{Q}$.
+  разпознаван от КДА $\M$ е непразен точно тогава, когато съдържа дума $\alpha, \abs{\alpha} \leq \abs{Q}$.
 \end{crl}
 
 \begin{problem}
-  \marginpar{$c^+\{a^nb^n\mid n\in\Nat\}\cup (a\vert b)^\star$}
+  \marginpar{Например, разгледайте $c^+\{a^nb^n\mid n\in\Nat\}\cup (a\vert b)^\star$}
   Да се даде пример за език $L$, който {\bf не} е регулярен, но удовлетворява
   лемата за разрастването.
 \end{problem}
-
-
-% \section{Регулярни езици}
-% \begin{problem}
-%   Нека $\Sigma = \{0,1\}$.  Проверете дали $L$ е регулярен, където
-%   \begin{enumerate}[1)]
-%   \item
-%     $L_1 = \{0^i1^i\ \mid\ i\geq 0\}$;
-%   \item
-%     $L_2 = \{0^i1^j\ \mid\ i > j\}$;
-%   \item
-%     $L_3 = \{0^{2n}\ \mid\ i\geq 1\}$;
-%   \item
-%     $L_4 = \{0^1m1^n0^{m+n}\ \mid\ m\geq 1\ \&\ n\geq 1\}$;
-%   \item
-%     $L_5 = \{0^n\ \mid\ n\mbox{ е просто }\}$;
-%   \item
-%     $L_6 = \{w\mid w\in\{0,1\}^\star\mbox{ има равен брой нули и единици}\}$;
-%   \item
-%     $L_7 = \{ww\mid w\in\{0,1\}^\star\}$;
-%   \item
-%     $L_8 = \{1^{n^2}\mid n\geq 0\}$;
-%   \item
-%     $L_{9} = \{0^n1^n2^n\mid n\geq 0\}$;
-%   \item
-%     $L_{10} = \{www\mid w\in \{0,1\}^\star\}$;
-%   \item
-%     $L_{11} = \{0^{2^n}\mid n\geq 0\}$;
-%   \item
-%     $L_{12} = \{0^m1^n\mid n\neq m\}$;
-%   \end{enumerate}
-% \end{problem}
 
 \begin{problem}
   Нека $\Sigma = \{a,b\}$.  Проверете дали $L$ е регулярен, където
@@ -753,37 +734,42 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \item
     $L = \{\alpha^R \mid \alpha \in L_0\}$, където $L_0$ е регулярен;
   \item
-    $L_1 = \{a^ib^i\ \mid\ i\geq 0\}$;
+    \marginpar{За конст. $p$, разгледайте $\alpha = a^pb^p$.}
+    $L = \{a^ib^i\ \mid\ i\in\Nat\}$;
   \item
-    $L_2 = \{a^ib^j\ \mid\ i > j\}$;
+    $L = \{a^ib^i\ \mid\ i,j\in\Nat\ \&\ i\neq j\}$;
   \item
-    $L_3 = \{a^{2n}\ \mid\ n\geq 1\}$;
+    \marginpar{$\alpha = a^{p+1}b^p$.}
+    $L = \{a^ib^j\ \mid\ i > j\}$;
   \item
-    $L_4 = \{a^mb^na^{m+n}\ \mid\ m\geq 1\ \&\ n\geq 1\}$;
+    $L = \{a^{2n}\ \mid\ n\geq 1\}$;
   \item
-    $L_5 = \{a^n\ \mid\ n\mbox{ е просто число}\}$;
+    $L = \{a^mb^na^{m+n}\ \mid\ m\geq 1\ \&\ n\geq 1\}$;
+  \item
+    $L = \{a^n\ \mid\ n\mbox{ е просто число}\}$;
   \item
     $L = \{a^{n.m}\mid n,m\mbox{ са прости числа}\}$;
   \item
-    $L_6 = \{w\mid w\in\{a,b\}^\star\mbox{ има равен брой нули и единици}\}$;
+    $L = \{w\mid w\in\{a,b\}^\star\mbox{ има равен брой нули и единици}\}$;
   \item
-    $L_7 = \{ww\mid w\in\{a,b\}^\star\}$;
+    \marginpar{$\alpha = a^pba^pb$}
+    $L = \{\omega\omega\mid \omega\in\{a,b\}^\star\}$;
   \item
-    $L_8 = \{ww^R\mid w\in\{a,b\}^\star\}$;
+    $L = \{ww^R\mid w\in\{a,b\}^\star\}$;
   \item
-    $L_9= \{a^{n^2}\mid n\geq 0\}$;
+    $L= \{a^{n^2}\mid n\geq 0\}$;
   \item
-    $L_{10} = \{a^nb^nc^n\mid n\geq 0\}$;
+    $L = \{a^nb^nc^n\mid n\geq 0\}$;
   \item
-    $L_{11} = \{www\mid w\in \Sigma^\star\}$;
+    $L = \{www\mid w\in \Sigma^\star\}$;
   \item
-    $L_{12} = \{a^{2^n}\mid n\geq 0\}$;
+    $L = \{a^{2^n}\mid n\geq 0\}$;
   \item
-    $L_{13} = \{a^mb^n\mid n\neq m\}$;
+    $L = \{a^mb^n\mid n\neq m\}$;
   \item
-    $L_{14} = \{a^{n!}b^{n!}\mid n\neq 1\}$;
+    $L = \{a^{n!}b^{n!}\mid n\neq 1\}$;
   \item
-    $L_{15} = \{a^{f_n} \mid f_0 = f_1 = 1\ \&\ f_{n+2} = f_{n+1} + f_{n}\}$;
+    $L = \{a^{f_n} \mid f_0 = f_1 = 1\ \&\ f_{n+2} = f_{n+1} + f_{n}\}$;
   \item
     $L = \{\alpha \in \{a,b\}^\star \mid \abs{n_a(\alpha) - n_b(\alpha)} \leq 2\}$;
   \item
@@ -799,32 +785,18 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \end{enumerate}
 \end{problem}
 \begin{proof}
-  \begin{enumerate}[1)]
+  \begin{itemize}
   \item
-    Разгледайте $w = a^pb^p$.
-  \item
-    Разгледайте $w = a^{p+1}b^p$.
-  \item
-    Езикът е регулярен.
-  \item
-    Подобно на 1) се доказва, че езикът не е регулярен.
-  \item
-    Да допуснем, че $L_5$ е регулярен и нека $w \in L_5$, така че $\abs{w} > p+1$.
+    Да допуснем, че $L = \{a^n\mid n \mbox{ е просто число}\}$ е регулярен и нека $w \in L$, така че $\abs{w} > p+1$.
     $w = xyz$ и понеже $\abs{xy} \leq p$, то $\abs{z} > 1$.
     Имаме, че $xy^iz \in L_5$ и следователно $\abs{xy^iz} = \abs{xz} + i.\abs{y}$ е просто число, за всяко $i$.
     Да изберем $i = \abs{xz} > 1$.
     Но тогава $\abs{xy^iz} = (1 + \abs{y})\abs{xz}$ е съставно число, следователно 
     достигнахме до противоречие.
   \item
-    Разгледайте $w = 0^p1^p$. Проблем с условието $\abs{xy} \leq p$.
-    Друг начин е да се използва, че $0^\star1^\star \cap L_6 = L_1$.
-  \item
-    Разгледайте $0^p10^p1$.
-  \item
-    
-  \item
-    Да разгледаме $w = 1^{p^2}$.
-    Да допуснем, че $L_9$ е регулярен и имаме, че
+    Да допуснем, че $L = \{a^{n^2} \mid n\in\Nat\}$ е регулярен и 
+    да разгледаме $w = 1^{p^2}$.
+    Имаме, че
     \[(\forall i)[\abs{xy^iz}\ \&\ \abs{xy^{i+1}z}\mbox{ са точни квадрати}].\]
     Тогава съществува $n$, за което $n^2 = \abs{xy^iz}$, $\abs{xy^{i+1}z} \geq (n+1)^2$ и
     \[\abs{y} = \abs{xy^{i+1}z} - \abs{xy^{i}z} \geq 2n + 1 = 2\sqrt{\abs{xy^iz}} + 1\]
@@ -834,30 +806,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
     Лесно стигаме до противоречие, например да вземем $i = p^2$.
     Тогава $\abs{y} > p$, което е противоречие.
     което е противоречие.
-  \item
-  \item
-  \item
-    Аналогично на 9).
-  \item
-    Да допуснем, че $L_{13}$ е регулярен.
-    Но тогава $L^\prime = \{a,b\}^\star \setminus L_{13}$ е регулярен
-    и $L_1 = a^\star b^\star \cap L^\prime$ е регулярен.
-    Достигнахме до противоречие.
-  \end{enumerate}
-\end{proof}
-
-\begin{problem}
-  Да означим $\mbox{Half}(L) = \{w\mid (\exists x \in \Sigma^\star)[wx \in L\ \&\ \abs{w} = \abs{x}]\}$.
-  Докажете, че ако $L$ е регулярен език, то $\mbox{Half}(L)$ също е регулярен език.
-\end{problem}
-
-\begin{problem}
-  Да означим $\mbox{Pref}(L) = \{\alpha \mid (\exists \beta \in \Sigma^\star)[\alpha\beta \in L]\}$.
-  Докажете, че ако $L$ е регулярен език, то $\mbox{Pref}(L)$ също е регулярен език.
-\end{problem}
-\begin{proof}
-  Две доказателства. Едното е с индукция по построението регулярния израз за $L$.
-  Другото е по автомата за $L$.
+  \end{itemize}
 \end{proof}
 
 \section{Минимизация на ДКА}
@@ -872,7 +821,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   и освен това, като прибавим произволна дума на края на $x$ и $y$, новополучените
   думи са или и двете в $L$ или и двете не са в $L$.  
 \item
-  Нека $\mathcal{M} = \FA$ е КДА.
+  Нека $\M = \FA$ е КДА.
   Казваме, че две думи $\alpha,\beta \in \Sigma^\star$ са {\bf еквивалентни относно $\M$},
   което означаваме с $\alpha \sim_\M \beta$, ако $\delta^\star(s,\alpha) = \delta^\star(s,\beta)$.
 \item
@@ -1069,29 +1018,31 @@ $M$ е {\bf минимален} за езика $\Ls$.
 
 \paragraph{Алгоритъм за намиране на МКДА.}
 \begin{itemize}
-\item
-  Нека $M = \FA$ да бъде ДКА. Определяме
-  \[A_M = \{\pair{q,w} \mid q\in Q\ \&\ w\in\Sigma^\star\ \&\ \delta^\star(q,w) \in F\}.\]
+% \item
+%   Нека $M = \FA$ да бъде ДКА. Определяме
+%   \[A_M = \{\pair{q,w} \mid q\in Q\ \&\ w\in\Sigma^\star\ \&\ \delta^\star(q,w) \in F\}.\]
 \item
   Казваме, че две състояния $p,q$ са {\bf еквивалентни}, означаваме $p\equiv q$,
-  \footnote{В общия случай, $\approx_L \supseteq \sim_M$, т.е. $\sim_M$ е по-фина от $\approx_L$.
-    Нека $\equiv\ =\  \approx_L/\sim_M$, където $[\alpha]_{\sim_M} \equiv [\beta]_{\sim_M} \iff \alpha \approx_L \beta$. Тогава $\abs{\approx_L} = \abs{\equiv}$.}
-  ако \[(\forall \gamma\in \Sigma^\star)[(p,\gamma) \in A_M \iff (q,\gamma) \in A_M].\]
+  % \footnote{В общия случай, $\approx_L \supseteq \sim_M$, т.е. $\sim_M$ е по-фина от $\approx_L$.
+  %   Нека $\equiv\ =\  \approx_L/\sim_M$, където $[\alpha]_{\sim_M} \equiv [\beta]_{\sim_M} \iff \alpha \approx_L \beta$. Тогава $\abs{\approx_L} = \abs{\equiv}$.}
+  ако \[p \equiv q\ \iff\ (\forall \gamma\in \Sigma^\star)[\delta^\star(p,\gamma) \in F\ \iff\ \delta^\star(q,\gamma) \in F].\]
 \item
-  Релацията $\equiv$ между състояния на автомата $M$ е релация на еквивалентност. 
+  Релацията $\equiv$ между състояния на автомата $\M$ е релация на еквивалентност. 
 \item
-  Нека $q_\alpha$ е състоянието, което съответства на думата $\alpha$ в $M$, т.е.
-  $\delta^\star_M(q_0,\alpha) = q_\alpha$. Тогава:
-  \[q_\alpha \equiv q_\beta\ \iff\ \alpha\approx_{\Ls(M)} \beta.\]
-  Това означава, че ако $M$ е свързан, то $\abs{\equiv} = \abs{\approx_{\Ls(M)}}$.
+  Нека $q_\alpha$ е състоянието, което съответства на думата $\alpha$ в $\M$, т.е.
+  $\delta^\star_\M(s,\alpha) = q_\alpha$. Тогава:
+  \[q_\alpha \equiv q_\beta\ \iff\ \alpha\approx_{\Ls(\M)} \beta.\]
+  Това означава, че ако в $\M$ няма недостижими състояния от началното състояние $s$, то $\abs{\equiv} = \abs{\approx_{\Ls(\M)}}$.
 \end{itemize}
 
-При даден език $\Ls$ и автомат $M = \FA$, който го разпознава, нашата цел е да построим нов автомат $M_0$,
+При даден език $\Ls$ и ДКА $\M = \FA$, който го разпознава, нашата цел е да построим нов ДКА $\M_0$,
 който има толкова състояния колкото са класовете на еквивалентност на релацията $\approx_\Ls$.
-Това ще направим като ``слеем'' състоянията на $M$, които са еквивалентни относно релацията $\equiv$.
-Това означава, че всяко състояние на $M_0$ ще отговаря на един клас на еквивалентност на релацията $\equiv$.
+Това ще направим като ``слеем'' състоянията на $\M$, които са еквивалентни относно релацията $\equiv$.
+Това означава, че всяко състояние на $\M_0$ ще отговаря на един клас на еквивалентност на релацията $\equiv$.
+Проблемът с намирането на класовете на еквивалентност на релацията $\equiv$ е кванторът $\forall \gamma \in \Sigma^\star$
+в нейната дефиницията.
 
-Алгоритъмът представлява строене на релации $\equiv_n$, където
+Алгоритъмът представлява намиранто на релации $\equiv_n$, където
 \[p\equiv_n q \iff (\forall\gamma\in\Sigma^\star)[\abs{\gamma}\leq n\ \rightarrow\ ((p,\gamma)\in A_M \iff 
 (q,\gamma) \in A_M)].\]
 
@@ -1100,6 +1051,8 @@ $M$ е {\bf минимален} за езика $\Ls$.
 Алгоритъмът строи $\equiv_n$ докато $\equiv_n\ \neq\ \equiv_{n+1}$.
 Тъй като броят на класовете на еквивалентност на $\equiv_n$ е краен, и не по-голям от $\abs{Q}$, то 
 със сигурност ще намерим $n$, за което $\equiv_n = \equiv_{n+1}$.
+Тогава заключаваме, че $\equiv\ =\ \equiv_n$.
+
 Понеже единствената дума с дължина $0$ e $\varepsilon$ и по определение $\delta^\star(p,\varepsilon) = p$, 
 лесно се съобразява, че $\equiv_0$ има два класа на еквивалентност.
 Единият е $F$, а другият е $Q\setminus F$.
@@ -1113,7 +1066,7 @@ $M$ е {\bf минимален} за езика $\Ls$.
     $(\forall a \in \Sigma)[\delta(q,a) \equiv_{n} \delta(p,a)]$.
   \end{enumerate}
 \end{prop}
-\begin{proof}[стр. 99 от \cite{papadimitriou}]
+\begin{proof}%[стр. 99 от \cite{papadimitriou}]
   По условие имаме, че $p\equiv_{n+1} q$ точно тогава, когато
   $p\equiv_n q$ и за всяка дума $\gamma = a\beta$, $\abs{\gamma} = n+1$,
   $(p,\gamma) \in A_M \iff (q,\gamma)\in A_M$.
@@ -1139,48 +1092,48 @@ $M$ е {\bf минимален} за езика $\Ls$.
 \end{enumerate}
 
 
-\begin{figure}
-  \begin{subfigure}[b]{0.3\textwidth}%[НКА с $\varepsilon$-преходи]{
-    \begin{tikzpicture}[->,>=stealth,thick,node distance=45pt]
-      \tikzstyle{every state}=[circle,minimum size=15pt,auto]
+% \begin{figure}
+%   \begin{subfigure}[b]{0.3\textwidth}%[НКА с $\varepsilon$-преходи]{
+%     \begin{tikzpicture}[->,>=stealth,thick,node distance=45pt]
+%       \tikzstyle{every state}=[circle,minimum size=15pt,auto]
       
-      \node[initial,state] (0) {$0$};
-      \node[state]         (1) [right of=0]{$1$};
-      \node[state]   (2) [right of=1]{$2$};
-      \node[state]   (3) [right of=2]{$3$};
-      \node[accepting, state]   (4) [right of=3]{$4$};
+%       \node[initial,state] (0) {$0$};
+%       \node[state]         (1) [right of=0]{$1$};
+%       \node[state]   (2) [right of=1]{$2$};
+%       \node[state]   (3) [right of=2]{$3$};
+%       \node[accepting, state]   (4) [right of=3]{$4$};
       
-      \path 
-      (0) edge  node [above] {$\varepsilon$} (1)
-      (1) edge  node [above] {$a$} (2)
-      (2) edge  node [above] {$b$} (3) 
-      (3) edge  node [above] {$a,\varepsilon$} (4) 
-      (1) edge  [bend right=30] node [below] {$a$} (3)
-      (2) edge  [bend right=45] node [above] {$\varepsilon$} (1)
-      (3) edge  [bend right=45] node [above] {$\varepsilon$} (2);
-    \end{tikzpicture}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.3\textwidth}
-  % \subfigure[получения от него ДКА]{
-    \begin{tikzpicture}[->,>=stealth,thick,node distance=70pt]
-      \tikzstyle{every state}=[circle,font=\small]
+%       \path 
+%       (0) edge  node [above] {$\varepsilon$} (1)
+%       (1) edge  node [above] {$a$} (2)
+%       (2) edge  node [above] {$b$} (3) 
+%       (3) edge  node [above] {$a,\varepsilon$} (4) 
+%       (1) edge  [bend right=30] node [below] {$a$} (3)
+%       (2) edge  [bend right=45] node [above] {$\varepsilon$} (1)
+%       (3) edge  [bend right=45] node [above] {$\varepsilon$} (2);
+%     \end{tikzpicture}
+%   \end{subfigure}
+%   \begin{subfigure}[b]{0.3\textwidth}
+%   % \subfigure[получения от него ДКА]{
+%     \begin{tikzpicture}[->,>=stealth,thick,node distance=70pt]
+%       \tikzstyle{every state}=[circle,font=\small]
       
-      \node[initial,state] (0) {$\{0,1\}$};
-      \node[accepting,state]         (1) [above right of=0]{$\{1,2,3,4\}$};
-      \node[state]   (2) [below right of=0]{$\emptyset$};
+%       \node[initial,state] (0) {$\{0,1\}$};
+%       \node[accepting,state]         (1) [above right of=0]{$\{1,2,3,4\}$};
+%       \node[state]   (2) [below right of=0]{$\emptyset$};
       
-      \path 
-      (0) edge [] node [above] {$a$} (1)
-      (0) edge node [above] {$b$} (2)
-      (1) edge [loop right] node [right] {$a,b$} (1)
-      (2) edge [loop right] node [right] {$a,b$} (2);
-    \end{tikzpicture}
-  \end{subfigure}
-  \caption{}
-\end{figure}
+%       \path 
+%       (0) edge [] node [above] {$a$} (1)
+%       (0) edge node [above] {$b$} (2)
+%       (1) edge [loop right] node [right] {$a,b$} (1)
+%       (2) edge [loop right] node [right] {$a,b$} (2);
+%     \end{tikzpicture}
+%   \end{subfigure}
+%   \caption{}
+% \end{figure}
 
 
-
+\newpage
 \section{Въпроси}
 
 Вярно ли е, че:
