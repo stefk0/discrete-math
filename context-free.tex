@@ -44,9 +44,11 @@
   където
   \begin{itemize}
   \item
+    \marginpar{Променливите се наричат също нетерминали}
     $V$ е крайно множество от {\em променливи};
   \item
-    $\Sigma$ е крайно множество от {\em терминали}, $\Sigma \cap V = \emptyset$;
+    \marginpar{Буквите се наричат също терминали.}
+    $\Sigma$ е крайно множество от {\em букви}, $\Sigma \cap V = \emptyset$;
   \item
     $R \subseteq V\times (V\cup\Sigma)^\star$, крайно множество от {\em правила};
   \item
@@ -55,48 +57,214 @@
   Обикновено ще пишем $A \rightarrow_G v$ вместо $(A,v) \in R$.
   Пишем $u \Rightarrow_G v$, ако съществуват думи $x,y\in (\Sigma\cup V)^\star$, $A\in V$,
   правило $A\rightarrow_G v^\prime$ и $u = xAy$, $v = xv^\prime y$.
-  Езикът генериран от $G$, $L(G) = \{\alpha\in\Sigma^\star\mid S \Rightarrow^\star_G \alpha\}$.
+  Езикът генериран от $G$ е множеството
+  \[L(G) = \{\alpha\in\Sigma^\star\mid S \Rightarrow^\star_G \alpha\}.\]
 \end{dfn}
 
+
+
 \begin{problem}
-  Да се докаже, че езикът $\{\alpha \in \{a,b\}^\star\mid n_a(\alpha) = n_b(\alpha)\}$ 
+  Да се докаже, че езикът $L = \{\alpha \in \{a,b\}^\star\mid n_a(\alpha) = n_b(\alpha)\}$ 
   е контекстно свободен.
 \end{problem}
 \begin{proof}
-  $S \rightarrow aSbS\vert bSaS \vert\varepsilon$  и да се докаже, че
-  ако $\alpha = a\alpha^\prime$ и $n_a(\alpha) = n_b(\alpha)$,
-  то съществуват $\alpha_1, \alpha_2$, $\alpha = a\alpha_1b\alpha_2$ и
-  $n_a(\alpha_1) = n_b(\alpha_1)$, $n_a(\alpha_2) = n_b(\alpha_2)$.
-  Аналогично е, ако $\alpha = b\alpha^\prime$.
+  \marginpar{  Алтернативна граматика за езика $L$ е
+  \begin{align*}
+    S& \rightarrow aB\vert bA\\
+    A& \rightarrow a\vert aS\vert bAA\\
+    B& \rightarrow b\vert bS\vert aBB
+  \end{align*}}
+  Една възможна граматика $G$ е следната: 
+  \[S \rightarrow aSbS\vert bSaS \vert\varepsilon.\]
+  За да докажете, че тя генерира $L$ трябва да се докаже, че:
+  \begin{enumerate}[a)]
+  \item 
+    ако $n_a(\omega) = n_b(\omega) + 1$, то
+    $\omega = \omega_1 a \omega_2$ и $n_a(\omega_1) = n_b(\omega_2)$.
+  \item
+    ако $n_b(\omega) = n_a(\omega) + 1$, то
+    $\omega = \omega_1 b \omega_2$ и $n_a(\omega_1) = n_b(\omega_2)$.
+  \end{enumerate}
+  Тогава като следствие може да се изведе, че за думи $\omega$, за които $n_a(\omega) = n_b(\omega)$,
+  е изпълнено:
+  \begin{enumerate}[a)]
+  \item 
+    ако $\omega = a\omega^\prime$, то
+    $\omega = a\omega_1b\omega_2$ и $n_a(\omega_1) = n_b(\omega_1)$, $n_a(\omega_2) = n_b(\omega_2)$;
+  \item
+    ако $\omega = b\omega^\prime$, то
+    $\omega = b\omega_1a\omega_2$ и $n_a(\omega_1) = n_b(\omega_1)$, $n_a(\omega_2) = n_b(\omega_2)$.
+  \end{enumerate}
 
-  Алтернативна граматика е $S\rightarrow aB\vert bA, A\rightarrow a\vert aS\vert bAA, B\rightarrow b\vert bS\vert aBB$.
+  Сега първо ще проверим, че $L \subseteq L(G)$.
+  За целта ще докажем с пълна индукция по дължината на думата $\omega$, че за всяка дума $\omega$, $n_a(\omega) = n_b(\omega)$ е изпълнено
+  $S \rightarrow^\star \omega$.
+  \begin{itemize}
+  \item 
+    $\abs{\omega} = 0$. $S \rightarrow \varepsilon$.
+  \item
+    $\abs{\omega} = k+1$. Тогава имаме два случая.
+    \begin{itemize}
+    \item 
+      $\omega = a\omega^\prime$, т.е. $\omega = a\omega_1b\omega_2$ и $n_a(\omega_1) = n_b(\omega_1)$, $n_a(\omega_2) = n_b(\omega_2)$.
+      Тогава $\abs{\omega_1} \leq_k$ и по И.П. $S \rightarrow^\star \omega_1$.
+      Аналогично, $S \rightarrow^\star \omega_2$.
+      Понеже имаме правило $S \rightarrow aSbS$, заключаваме че $S \rightarrow^\star a\omega_1b\omega_2$.
+    \item
+      $\omega = b\omega^\prime$, т.е. $\omega = b\omega_1a\omega_2$ и $n_a(\omega_1) = n_b(\omega_1)$, $n_a(\omega_2) = n_b(\omega_2)$.
+      Този случай е много подобен на горния.
+    \end{itemize}
+  \end{itemize}
   
-  Да се обясни защо граматиката $S\rightarrow aB\vert Ba\vert \varepsilon, B\rightarrow bS\vert Sb$ не работи.
+  Преминаваме към доказателството на другата посока, т.е. $L(G) \subseteq L$.
+  Тук с пълна индукция по дължината на извода $l$ ще докажем, че $S \stackrel{\leq l}{\rightarrow} \omega$, то $\omega \in M$,
+  където
+  \[M = \{\omega \in \{a,b,S\}^\star \mid n_a(\omega) = n_b(\omega)\}.\]
+  За $l = 0$  е ясно, че $S \stackrel{\leq 0}{\rightarrow^\star} S$.
+  За $l = k+1$, то $S \stackrel{\leq k}{\rightarrow^\star} \alpha \rightarrow \omega$.
+  където $\alpha \in M$ и $\omega$ се получава от $\alpha$ с прилагане на правилото $C \rightarrow \gamma$.
+  Разглеждаме всички варианти за думата $\alpha \in M$ и за правилото $C\rightarrow \gamma$ в граматиката $G$
+  за да докажем, че  $\omega \in M$.
+  Удобно е да представим всички случаи в таблица.
+  \begin{center}
+    \begin{tabular}{| c | c | c |}
+      \hline
+      $\alpha$ & $C \rightarrow \gamma$ & $\omega$ \\ \hline
+      $\in M$ & $S \rightarrow aSbS$ & $\in M$ \\ \hline
+      $\in M$ & $S \rightarrow bSaS$ & $\in M$ \\ \hline
+      $\in M$ & $S \rightarrow \varepsilon$ & $\in M$ \\ \hline
+    \end{tabular}
+  \end{center}
+  Във всички случаи се установява, че $\omega \in M$.
+  Сега, за всяка дума $\omega \in L(G)$, то следва, че
+  \[\omega \in \Sigma^\star \cap M = L.\]
+\end{proof}
+
+\begin{prb}
+  Докажете, че езикът $L = \{a^mb^nc^k\mid m+n \geq k\}$ е
+  контекстно-свободен.
+\end{prb}
+\begin{proof}
+  Да разгледаме граматиката $G$ с правила
+  \begin{align*}
+    S& \rightarrow^\star aSc\vert aS \vert B\\
+    B& \rightarrow^\star bBc\vert bB\vert\varepsilon.
+  \end{align*}
+  
+  За да докажем, че $L \subseteq L(G)$ е необходимо 
+  да докажем, че за всяко $n$:
+  \begin{itemize}
+  \item 
+    $S \rightarrow^\star a^nSc^n$,
+  \item
+    $S \rightarrow^\star a^nS$,
+  \item
+    $B \rightarrow^\star a^nBc^n$,
+  \item
+    $B \rightarrow^\star b^nB$.
+  \end{itemize}
+  След това, трябва да докажем, че за всеки $n \geq k$,
+  \begin{itemize}
+  \item 
+    $S \rightarrow^\star a^nSc^k$,
+  \item
+    $B \rightarrow^\star b^nBc^k$.
+  \end{itemize}
+  Сега да разгледаме една дума $\omega \in L$, т.е. $\alpha = a^mb^nc^k$, $m+n \geq k$.
+  Имаме два случая:
+  \begin{itemize}
+  \item 
+    $k \leq m$, т.е. $m = k+l$ и $m+n = k+l+n$.
+    Тогава имаме изводи
+    \[S \rightarrow^\star a^kSc^k,\ S \rightarrow^\star a^lS,\ S \rightarrow B,\ B \rightarrow^\star b^nB,\ B \rightarrow \varepsilon.\]
+    Обединявайки всичко това, получаваме:
+    \[S \rightarrow^\star a^mb^nc^k.\]
+  \item
+    $k > m$, т.е. $k = m+l$ и $m+n = m+l+r$.
+    Тогава имаме изводи
+    \[S \rightarrow^\star a^mSc^m,\ S\rightarrow B,\ B\rightarrow^\star b^lBc^l,\ B\rightarrow b^rB,\ B\rightarrow\varepsilon.\]
+  \end{itemize}
+  Така доказахме, че $\omega \in L(G)$.
+  
+  Сега ще докажем, че $L(G) \subseteq L$.
+  С пълна индукция по дължината на извода $l$,
+  ще докажем, че ако $S \stackrel{\leq l}{\rightarrow^\star}\omega$, то $\omega \in M$, където
+  \[M = \{a^nSc^k\mid n\geq k\}\cup\{a^nb^mBc^k\mid n+m\geq k\}\cup\{a^nb^mc^k\mid n+m\geq k\}.\]
+  
+  Ако $l = 0$, то е ясно, че $S \stackrel{\leq 0}{\rightarrow^\star} S$, $S \in M$.
+
+  Нека $l = k+1$ и $S \stackrel{\leq k}{\rightarrow^\star} \alpha \rightarrow \omega$,
+  където $\alpha \in M$ и $\omega$ се получава от $\alpha$ с прилагане на правилото $C \rightarrow \gamma$.
+  Разглеждаме всички варианти за думата $\alpha \in M$ и за правилото $C\rightarrow \gamma$ в граматиката $G$
+  за да докажем, че  $\omega \in M$.
+  Удобно е да представим всички случаи в таблица.
+  \begin{center}
+    \begin{tabular}{| c | c | c |}
+      \hline
+      $\alpha$ & $C \rightarrow \gamma$ & $\omega$ \\ \hline
+      $a^nSc^k$ & $S \rightarrow aSc$ & $a^{n+1}Sc^{k+1}$ \\ \hline
+      $a^nSc^k$ & $S \rightarrow aS$ & $a^{n+1}Sc^{k}$ \\ \hline
+      $a^nSc^k$ & $S \rightarrow B$ & $a^{n}Bc^{k}$ \\ \hline
+      $a^nb^mBc^k$ & $B \rightarrow bBc$ & $a^nb^{m+1}Bc^{k+1}$\\ \hline
+      $a^nb^mBc^k$ & $B \rightarrow bB$ & $a^nb^{m+1}Bc^{k}$\\ \hline
+      $a^nb^mBc^k$ & $B \rightarrow \varepsilon$ & $a^nb^{m}c^{k}$\\ \hline
+    \end{tabular}
+  \end{center}
+  Във всички случаи се установява, че $\omega \in M$.
+  Сега, за една дума $\omega \in L(G)$, то следва, че
+  \[\omega \in \Sigma^\star \cap M = \{a^mb^nc^k\mid m+n \geq k\}.\]
 \end{proof}
 
 \begin{problem}
   Докажете, че следните езици са контекстно-свободни:
   \begin{enumerate}[1)]
   \item
-    $\{ww^R \mid w \in \{a,b\}^\star\}$;
+    $L = \{ww^R \mid w \in \{a,b\}^\star\}$;
   \item
-    $\{w \in \{a,b\}^\star \mid w = w^R\}$;
+    $L = \{w \in \{a,b\}^\star \mid w = w^R\}$;
   \item
-    $\{a^nb^{2n} \mid n \in \Nat\}$;
+    $L = \{a^nb^{2n} \mid n \in \Nat\}$;
   \item
-    $\{a^nb^k \mid n > k\}$;
+    $L = \{a^nb^k \mid n > k\}$;
   \item
-    $\{a^nb^k \mid n \geq 2k\}$;
+    $L = \{a^nb^k \mid n \geq 2k\}$;
   \item
-    $\{a^mb^nc^k\mid m+n \geq k\}$;
-  \item
-    $\{a^nb^mc^{n+m}\mid n,m \in \Nat\}$;
+    $L = \{a^nb^mc^{n+m}\mid n,m \in \Nat\}$;
   \end{enumerate}
 \end{problem}
 \begin{proof}
-  За 2), $S \rightarrow aSa \vert bSb \vert a\vert b \vert \varepsilon$.
-  Докажете, че ако $w = w^R$, то $\abs{w} = 2n$, $w = w_1w^R_1$ и ако $\abs{w} = 2n+1$, то $w = w_1aw^R_1$, $w = w_1bw^R_1$.
-  За 6), $S \rightarrow aSc\vert aS \vert B, B\vert bSc\vert bS\vert\varepsilon$.
+  \begin{enumerate}[1)]
+  \item
+    Нека правилата на граматиката са 
+    \[S\ \rightarrow\ aSa\ \vert\ bSb\ \vert\ \varepsilon.\]
+  \item
+    Нека правилата на граматиката $G$ са 
+    \[S\ \rightarrow\ aSa\ \vert\ bSb\ \vert\ a\vert\ b\ \vert\ \varepsilon.\]
+    Ще докажем, че $L(G) = L$.
+    Докажете, че с индукция по дължината на думата, че за думи от вида $\omega = \omega^R$:
+    \begin{itemize}[-]
+    \item 
+      ако $\abs{\omega} = 2n$, то $\omega = \alpha\alpha^R$;
+    \item
+      ако $\abs{\omega} = 2n+1$, то $\omega = \beta a\beta^R$ или $\omega = \alpha b\alpha^R$.
+    \end{itemize}
+    След това, докажете, че:
+    \begin{enumerate}
+    \item 
+      за всяко $l$,
+      ако $S \stackrel{\leq l}{\Rightarrow} \omega$, то $\omega = \alpha S \alpha^R\ \vert\ \alpha a \alpha^R\ \vert\ \alpha b \alpha^R\ \vert \alpha\alpha^R$,
+      за някоя дума $\alpha$.
+    \item
+      за всяка дума $\omega$,
+      $S \Rightarrow^\star \omega S \omega^R$.
+    \end{enumerate}
+    
+  \item
+  \item
+    $S\ \rightarrow\ aS\ \vert\ aSb\ \vert\ a$.
+  \item
+  \end{enumerate}
+
 \end{proof}
 
 
@@ -273,18 +441,69 @@
 
 \subsection{Нормална Форма на Чомски}
 
+% \begin{framed}
+\begin{dfn}
+%[стр. 99 от \cite{sipser}]
+\index{Нормална форма на Чомски}
+Една контекстно-свободна граматика е в {\em нормална форма на Чоски}, ако
+всяко правило е от вида
+\[A \rightarrow BC\mbox{ и }A \rightarrow a,\]
+като $B, C$ {\em не могат} да бъдат променливата за начало $S$.
+Освен това, позволяваме правилото $S\to\varepsilon$.
+\footnote{На стр. 151 в \cite{papadimitriou} дефиницията е малко по-различна.
+Там дефинират $G$ да бъде в нормална форма на Чомски ако $R \subseteq V\times(V\cup\Sigma)^2$.
+В този случай губим езиците $\{\varepsilon\}$ и $\{a\}$, за $a\in\Sigma$.}
+\end{dfn}
+% \end{framed}
+
+\begin{thm}
+  Всеки контекстно-свободен език е генериран от контекстно-свободна
+  граматика в нормална форма на Чомски.
+\end{thm}
+\begin{proof}
+  \marginpar{Броят на правилата може да се увеличи експоненциално.}
+  Нека имаме контекстно-свободна граматика $G$, $L = L(G)$.
+  Ще построим контекстно-свободна граматика $G^\prime$ в нормална форма на Чомски, $L = L(G^\prime)$.
+  %[стр. 99 от \cite{sipser}]
+  Следваме следната процедура:
+  \begin{itemize}
+  \item
+    Добвяме нов начален символ $S_0$ и правило $S_0 \to S$.
+  \item
+    За всяка променлива $A \neq S_0$ премахваме правилата от вида $A\to\varepsilon$.
+    Това правим по следния начин.
+    
+    Ако имаме правило от вида $R\to \beta A\gamma$, то добавяме правилото $R\to \beta\gamma$.
+    Правим това за всяко срещане на променливата $A$ в дясната страна на правило.
+    Например, ако имаме правило $R\to \alpha A\beta A \gamma$, то добавяме правилата $R \to \alpha\beta A\gamma$,
+    $R\to \alpha\beta\gamma$ и $R\to \alpha\beta A\gamma$.
+    Ако имаме $R\to A$, то добавяме правилото $R\to\varepsilon$
+    само ако променливата $R$ още не е преминала през процедурата за премахване на $\varepsilon$.
+  \item
+    Премахваме преименуващите правила, т.е. правила от вида $A\to B$.
+    Всяко правило от вида $B \to \beta$ го заменяме с $A\to \beta$,
+    освен ако $A \to \beta$ е вече премахнато преименуващо правило.
+  \item
+    Заменяме правилата от вида $A\to u_1\dots u_n$, $n\geq 3$, $u_i \in V\cup\Sigma$, с
+    правилата \[A\to u_1A_1,\ A_1\to u_2A_2,\ \dots,\ A_{n-2} \to u_{n-1}u_n.\]
+    където $A_i$ са нови променливи.
+    Ако $n\leq 2$, заменяме всяка буква $u_i$ с новата променлива $U_i$
+    и добавяме правилото $U_i\to u_i$.
+  \end{itemize}
+\end{proof}
+
 \begin{problem}
   Нека е дадена граматиката  $G = \pair{\{S,A,B,C,D,E\}, \{a,b\},S, R}$.
   \begin{enumerate}[a)]
   \item
-    Намерете всички нетерминали, от които в $G$ се извежда празната дума.
+    Намерете всички променливи, от които в $G$ се извежда празната дума.
   \item
     Принадлежи ли празната дума на $L(G)$?
   \item
     Постройте граматика $G_1$ без $\varepsilon$-правила, за която $L(G_1)=L(G)\setminus\{\varepsilon\}$.
   \end{enumerate}
   Множеството от правила $R$ на граматиката $G$ е зададено като:
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item
     $R = \{S\rightarrow D,D\rightarrow AD|b,A\rightarrow ACB|BC|a, B\rightarrow ABCA|CEC,C\rightarrow \varepsilon|CA|a, E\rightarrow \varepsilon|aEb\}$;
   \item
@@ -354,12 +573,59 @@
 
 \subsection{Проблемът за принадлежност}
 
+\begin{thm}
+  Съществува полиномиален алгоритъм, който проверява дали дадена дума принадлежни на граматиката $G$.
+\end{thm}
+% \begin{proof}[стр. 154 от \cite{papadimitriou}]
+Можем да приемем, че $G$ е граматика в нормална форма на Чомски.
+Нека $\alpha = a_1a_2\dots a_n$ е дума, за която искаме да проверим дали $\alpha \in L(G)$.
+\marginpar{Това е алгоритъм на Cocke-Younger-Kasami (CYK), който е пример за динамично програмиране}
+\begin{algorithm}[H]
+  \caption{Проверка за $\alpha \in L(G)$}
+  \label{alg:belongs-to-grammar}
+  \begin{algorithmic}[1]
+    \STATE $n := \abs{\alpha}$
+    \FORALL{$1 \leq i \leq n$}
+    \STATE $V[i,i] = \{A \in V \mid A\rightarrow a_i\}$
+    \ENDFOR
+    \FORALL{$1 \leq i,j \leq n\ \&\ i \neq j$}
+    \STATE $V[i,j] = \emptyset$
+    \ENDFOR      
+    \FORALL[Колко дълъг е интервала]{$s \in [1, n)$}%, за които $1 \leq s < n$}
+    \FORALL[Откъде започва интервала]{$i \in [1, n-s]$}%, за които  $1 \leq i \leq n - s$}
+    \FORALL[Как разделяме интервала]{$k \in [i, i + s)$}%, за които $i \leq k < i + s$}
+    \IF{$\exists A\to BC \in R\ \&\ B \in V[i,k]\ \&\ C\in V[k+1,i+s]$}
+    \STATE $V[i,i+s] := V[i,i+s] \cup \{A\}$
+    \ENDIF
+    \ENDFOR
+    \ENDFOR
+    \ENDFOR
+    \IF{$S \in V[1,n]$}
+    \RETURN \TRUE
+    \ELSE
+    \RETURN \FALSE
+    \ENDIF
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{lemma}
+  За всяко $1 \leq s < \abs{\alpha}$, след $s$-тата итерация на алгоритъма, за всяко $i = 1,\dots,n-s$,
+  \[V[i,i+s] = \{A \in V \mid A \Rightarrow^\star a_i\dots a_{i+s}\}.\]
+\end{lemma}
+\begin{proof}
+  Индукция по $s$.
+  За $s = 0$  е ясно.
+\end{proof}
+
+% Сложността на алгоритъма е $O(\abs{x}^3\abs{G})$.
+
+
 \begin{problem}
-  Нека е дадена граматиката $\Gamma=\pair{\{a,b\}, \{S,A,B,C\},S,R}$.
+  Нека е дадена граматиката $G = \pair{\{a,b\}, \{S,A,B,C\},S,R}$.
   Използвайте алгоритъма за динамично програмиране (CYK), за да проверите дали
   думата $\alpha$ принадлежи на $L(G)$, където правилата на граматиката $R$ и думата $\alpha$
   са зададени като:
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item
     $R =\{S\rightarrow a| AB|AC, C\rightarrow SB|AS,A\rightarrow a, B\rightarrow b\}$, $\alpha=aaabb$;
   \item
