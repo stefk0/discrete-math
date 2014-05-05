@@ -23,16 +23,16 @@
 \item
   те {\bf не} са затворени относно операцията допълнение, т.е.
   съществува контекстно-свободен език $L$, за който езикът $\Sigma^\star\setminus L$ {\bf не} е контекстно-свободен; 
-\item
-  те са затворени относно хомоморфизми, т.е.
-  ако $L \subseteq \Sigma^\star_1$ е контекстно-свободен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
-  то езикът $h(L) = \{h(\alpha) \in \Sigma^\star_2 \mid \alpha \in L\}$
-  е контекстно-свободен.
-\item
-  те са затворени относно обратни хомоморфизми, т.е.
-  ако $L\subseteq \Sigma^\star_2$ е контекстно-свободен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
-  то езикът $h^{-1}(L) = \{\alpha \in \Sigma^\star_1 \mid h(\alpha) \in L\}$
-  е контекстно-свободен.
+% \item
+%   те са затворени относно хомоморфизми, т.е.
+%   ако $L \subseteq \Sigma^\star_1$ е контекстно-свободен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
+%   то езикът $h(L) = \{h(\alpha) \in \Sigma^\star_2 \mid \alpha \in L\}$
+%   е контекстно-свободен.
+% \item
+%   те са затворени относно обратни хомоморфизми, т.е.
+%   ако $L\subseteq \Sigma^\star_2$ е контекстно-свободен език и $h:\Sigma_1\to\Sigma^\star_2$ е хомоморфизъм, 
+%   то езикът $h^{-1}(L) = \{\alpha \in \Sigma^\star_1 \mid h(\alpha) \in L\}$
+%   е контекстно-свободен.
 \end{itemize}
 
 \section{Контекстно-свободни граматики}
@@ -58,10 +58,8 @@
   Пишем $u \Rightarrow_G v$, ако съществуват думи $x,y\in (\Sigma\cup V)^\star$, $A\in V$,
   правило $A\rightarrow_G v^\prime$ и $u = xAy$, $v = xv^\prime y$.
   Езикът генериран от $G$ е множеството
-  \[L(G) = \{\alpha\in\Sigma^\star\mid S \Rightarrow^\star_G \alpha\}.\]
+  \[L(G) = \{\alpha\in\Sigma^\star\mid S \rightarrow^\star_G \alpha\}.\]
 \end{dfn}
-
-
 
 \begin{problem}
   Да се докаже, че езикът $L = \{\alpha \in \{a,b\}^\star\mid n_a(\alpha) = n_b(\alpha)\}$ 
@@ -76,7 +74,7 @@
   \end{align*}}
   Една възможна граматика $G$ е следната: 
   \[S \rightarrow aSbS\vert bSaS \vert\varepsilon.\]
-  За да докажете, че тя генерира $L$ трябва да се докаже, че:
+  За да докажете, че тя генерира $L$ трябва първо да видим, че:
   \begin{enumerate}[a)]
   \item 
     ако $n_a(\omega) = n_b(\omega) + 1$, то
@@ -97,7 +95,7 @@
   \end{enumerate}
 
   Сега първо ще проверим, че $L \subseteq L(G)$.
-  За целта ще докажем с пълна индукция по дължината на думата $\omega$, че за всяка дума $\omega$, $n_a(\omega) = n_b(\omega)$ е изпълнено
+  За целта ще докажем с пълна индукция по дължината на думата $\omega$, че за всяка дума $\omega$ със свойството $n_a(\omega) = n_b(\omega)$ е изпълнено
   $S \rightarrow^\star \omega$.
   \begin{itemize}
   \item 
@@ -107,22 +105,24 @@
     \begin{itemize}
     \item 
       $\omega = a\omega^\prime$, т.е. $\omega = a\omega_1b\omega_2$ и $n_a(\omega_1) = n_b(\omega_1)$, $n_a(\omega_2) = n_b(\omega_2)$.
-      Тогава $\abs{\omega_1} \leq_k$ и по И.П. $S \rightarrow^\star \omega_1$.
+      Тогава $\abs{\omega_1} \leq k$ и по И.П. $S \rightarrow^\star \omega_1$.
       Аналогично, $S \rightarrow^\star \omega_2$.
       Понеже имаме правило $S \rightarrow aSbS$, заключаваме че $S \rightarrow^\star a\omega_1b\omega_2$.
     \item
       $\omega = b\omega^\prime$, т.е. $\omega = b\omega_1a\omega_2$ и $n_a(\omega_1) = n_b(\omega_1)$, $n_a(\omega_2) = n_b(\omega_2)$.
-      Този случай е много подобен на горния.
+      Този случай се разглежда подобно на горния.
     \end{itemize}
   \end{itemize}
   
   Преминаваме към доказателството на другата посока, т.е. $L(G) \subseteq L$.
-  Тук с пълна индукция по дължината на извода $l$ ще докажем, че $S \stackrel{\leq l}{\rightarrow} \omega$, то $\omega \in M$,
+  Тук с пълна индукция по дължината на извода $l$ ще докажем, че
+  $S \stackrel{\leq l}{\rightarrow} \omega$, то $\omega \in M$,
   където
   \[M = \{\omega \in \{a,b,S\}^\star \mid n_a(\omega) = n_b(\omega)\}.\]
   За $l = 0$  е ясно, че $S \stackrel{\leq 0}{\rightarrow^\star} S$.
   За $l = k+1$, то $S \stackrel{\leq k}{\rightarrow^\star} \alpha \rightarrow \omega$.
-  където $\alpha \in M$ и $\omega$ се получава от $\alpha$ с прилагане на правилото $C \rightarrow \gamma$.
+  От И.П. имаме, че $\alpha \in M$.
+  Нека $\omega$ се получава от $\alpha$ с прилагане на правилото $C \rightarrow \gamma$.
   Разглеждаме всички варианти за думата $\alpha \in M$ и за правилото $C\rightarrow \gamma$ в граматиката $G$
   за да докажем, че  $\omega \in M$.
   Удобно е да представим всички случаи в таблица.
@@ -135,8 +135,8 @@
       $\in M$ & $S \rightarrow \varepsilon$ & $\in M$ \\ \hline
     \end{tabular}
   \end{center}
-  Във всички случаи се установява, че $\omega \in M$.
-  Сега, за всяка дума $\omega \in L(G)$, то следва, че
+  Във всички случаи лесно се установява, че $\omega \in M$.
+  Така за всяка дума $\omega \in L(G)$ следва, че
   \[\omega \in \Sigma^\star \cap M = L.\]
 \end{proof}
 
@@ -147,12 +147,11 @@
 \begin{proof}
   Да разгледаме граматиката $G$ с правила
   \begin{align*}
-    S& \rightarrow^\star aSc\vert aS \vert B\\
-    B& \rightarrow^\star bBc\vert bB\vert\varepsilon.
+    S& \rightarrow aSc\vert aS \vert B\\
+    B& \rightarrow bBc\vert bB\vert\varepsilon.
   \end{align*}
   
-  За да докажем, че $L \subseteq L(G)$ е необходимо 
-  да докажем, че за всяко $n$:
+  Лесно се вижда, че за всяко $n$ имаме свойствата:
   \begin{itemize}
   \item 
     $S \rightarrow^\star a^nSc^n$,
@@ -163,14 +162,15 @@
   \item
     $B \rightarrow^\star b^nB$.
   \end{itemize}
-  След това, трябва да докажем, че за всеки $n \geq k$,
+  Сега можем да докажем, че за всеки $n \geq k$,
   \begin{itemize}
   \item 
     $S \rightarrow^\star a^nSc^k$,
   \item
     $B \rightarrow^\star b^nBc^k$.
   \end{itemize}
-  Сега да разгледаме една дума $\omega \in L$, т.е. $\alpha = a^mb^nc^k$, $m+n \geq k$.
+  За да докажем, че $L \subseteq L(G)$, 
+  да разгледаме една дума $\omega \in L$, т.е. $\alpha = a^mb^nc^k$, $m+n \geq k$.
   Имаме два случая:
   \begin{itemize}
   \item 
@@ -182,7 +182,8 @@
   \item
     $k > m$, т.е. $k = m+l$ и $m+n = m+l+r$.
     Тогава имаме изводи
-    \[S \rightarrow^\star a^mSc^m,\ S\rightarrow B,\ B\rightarrow^\star b^lBc^l,\ B\rightarrow b^rB,\ B\rightarrow\varepsilon.\]
+    \[S \rightarrow^\star a^mSc^m,\ S\rightarrow B,\ B\rightarrow^\star b^lBc^l,\ B\rightarrow b^rB,\ B\rightarrow\varepsilon,\]
+    и отново получаваме $S \rightarrow^\star a^mb^nc^k$.
   \end{itemize}
   Така доказахме, че $\omega \in L(G)$.
   
@@ -193,8 +194,8 @@
   
   Ако $l = 0$, то е ясно, че $S \stackrel{\leq 0}{\rightarrow^\star} S$, $S \in M$.
 
-  Нека $l = k+1$ и $S \stackrel{\leq k}{\rightarrow^\star} \alpha \rightarrow \omega$,
-  където $\alpha \in M$ и $\omega$ се получава от $\alpha$ с прилагане на правилото $C \rightarrow \gamma$.
+  Нека $l = k+1$ и $S \stackrel{\leq k}{\rightarrow^\star} \alpha \rightarrow \omega$.
+  От И.П. имаме $\alpha \in M$. Нека $\omega$ се получава от $\alpha$ с прилагане на правилото $C \rightarrow \gamma$.
   Разглеждаме всички варианти за думата $\alpha \in M$ и за правилото $C\rightarrow \gamma$ в граматиката $G$
   за да докажем, че  $\omega \in M$.
   Удобно е да представим всички случаи в таблица.
@@ -211,7 +212,7 @@
     \end{tabular}
   \end{center}
   Във всички случаи се установява, че $\omega \in M$.
-  Сега, за една дума $\omega \in L(G)$, то следва, че
+  Сега, за всяка дума $\omega \in L(G)$ следва, че
   \[\omega \in \Sigma^\star \cap M = \{a^mb^nc^k\mid m+n \geq k\}.\]
 \end{proof}
 
@@ -232,40 +233,40 @@
     $L = \{a^nb^mc^{n+m}\mid n,m \in \Nat\}$;
   \end{enumerate}
 \end{problem}
-\begin{proof}
-  \begin{enumerate}[1)]
-  \item
-    Нека правилата на граматиката са 
-    \[S\ \rightarrow\ aSa\ \vert\ bSb\ \vert\ \varepsilon.\]
-  \item
-    Нека правилата на граматиката $G$ са 
-    \[S\ \rightarrow\ aSa\ \vert\ bSb\ \vert\ a\vert\ b\ \vert\ \varepsilon.\]
-    Ще докажем, че $L(G) = L$.
-    Докажете, че с индукция по дължината на думата, че за думи от вида $\omega = \omega^R$:
-    \begin{itemize}[-]
-    \item 
-      ако $\abs{\omega} = 2n$, то $\omega = \alpha\alpha^R$;
-    \item
-      ако $\abs{\omega} = 2n+1$, то $\omega = \beta a\beta^R$ или $\omega = \alpha b\alpha^R$.
-    \end{itemize}
-    След това, докажете, че:
-    \begin{enumerate}
-    \item 
-      за всяко $l$,
-      ако $S \stackrel{\leq l}{\Rightarrow} \omega$, то $\omega = \alpha S \alpha^R\ \vert\ \alpha a \alpha^R\ \vert\ \alpha b \alpha^R\ \vert \alpha\alpha^R$,
-      за някоя дума $\alpha$.
-    \item
-      за всяка дума $\omega$,
-      $S \Rightarrow^\star \omega S \omega^R$.
-    \end{enumerate}
+% \begin{proof}
+%   \begin{enumerate}[1)]
+%   \item
+%     Нека правилата на граматиката са 
+%     \[S\ \rightarrow\ aSa\ \vert\ bSb\ \vert\ \varepsilon.\]
+%   \item
+%     Нека правилата на граматиката $G$ са 
+%     \[S\ \rightarrow\ aSa\ \vert\ bSb\ \vert\ a\vert\ b\ \vert\ \varepsilon.\]
+%     Ще докажем, че $L(G) = L$.
+%     Докажете, че с индукция по дължината на думата, че за думи от вида $\omega = \omega^R$:
+%     \begin{itemize}[-]
+%     \item 
+%       ако $\abs{\omega} = 2n$, то $\omega = \alpha\alpha^R$;
+%     \item
+%       ако $\abs{\omega} = 2n+1$, то $\omega = \beta a\beta^R$ или $\omega = \alpha b\alpha^R$.
+%     \end{itemize}
+%     След това, докажете, че:
+%     \begin{enumerate}
+%     \item 
+%       за всяко $l$,
+%       ако $S \stackrel{\leq l}{\Rightarrow} \omega$, то $\omega = \alpha S \alpha^R\ \vert\ \alpha a \alpha^R\ \vert\ \alpha b \alpha^R\ \vert \alpha\alpha^R$,
+%       за някоя дума $\alpha$.
+%     \item
+%       за всяка дума $\omega$,
+%       $S \Rightarrow^\star \omega S \omega^R$.
+%     \end{enumerate}
     
-  \item
-  \item
-    $S\ \rightarrow\ aS\ \vert\ aSb\ \vert\ a$.
-  \item
-  \end{enumerate}
+%   \item
+%   \item
+%     $S\ \rightarrow\ aS\ \vert\ aSb\ \vert\ a$.
+%   \item
+%   \end{enumerate}
 
-\end{proof}
+% \end{proof}
 
 
 \section{Езици, които не са контекстно-свободни}
@@ -457,12 +458,12 @@
 % \end{framed}
 
 \begin{thm}
-  Всеки контекстно-свободен език е генериран от контекстно-свободна
+  Всеки контекстно-свободен език $L$ е генериран от контекстно-свободна
   граматика в нормална форма на Чомски.
 \end{thm}
 \begin{proof}
   \marginpar{Броят на правилата може да се увеличи експоненциално.}
-  Нека имаме контекстно-свободна граматика $G$, $L = L(G)$.
+  Нека имаме контекстно-свободна граматика $G$, за която $L = L(G)$.
   Ще построим контекстно-свободна граматика $G^\prime$ в нормална форма на Чомски, $L = L(G^\prime)$.
   %[стр. 99 от \cite{sipser}]
   Следваме следната процедура:
@@ -610,7 +611,7 @@
 
 \begin{lemma}
   За всяко $1 \leq s < \abs{\alpha}$, след $s$-тата итерация на алгоритъма, за всяко $i = 1,\dots,n-s$,
-  \[V[i,i+s] = \{A \in V \mid A \Rightarrow^\star a_i\dots a_{i+s}\}.\]
+  \[V[i,i+s] = \{A \in V \mid A \rightarrow^\star a_i\dots a_{i+s}\}.\]
 \end{lemma}
 \begin{proof}
   Индукция по $s$.
