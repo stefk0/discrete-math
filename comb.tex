@@ -1,6 +1,6 @@
 \chapter{Комбинаторика}
 
-\subsection*{Основни понятия}
+\section{Основни понятия}
 
 По-долу навсякъде $k \leq n$.
 \begin{enumerate}
@@ -38,8 +38,8 @@
 \begin{prb}
   Докажете, че:
   \begin{enumerate}[a)]
-  \item
-    $(x+y)^n = \sum^{n}_{i=0}\binom{n}{i}x^iy^{n-i}$;
+  % \item
+  %   $(x+y)^n = \sum^{n}_{i=0}\binom{n}{i}x^iy^{n-i}$;
   \item
     $2^n = \sum^n_{k=0}\binom{n}{k}$;
   \item
@@ -51,7 +51,7 @@
   \item 
     $\binom{n+m}{r} = \sum^r_{k=0}\binom{n}{r-k}\binom{m}{k}$;
   \item
-    $\binom{2n}{r} = \sum^r_{k=0}\binom{n}{k}^2$;
+    $\binom{2n}{n} = \sum^n_{k=0}\binom{n}{k}^2$;
   \item
     $\binom{n+1}{r+1} = \sum^n_{j=r}\binom{j}{r}$;
   \item
@@ -64,6 +64,37 @@
     $n\binom{2n-1}{n-1} = \sum^{n}_{k=1}k\binom{n}{k}^2$;
   \end{enumerate}
 \end{prb}
+
+\begin{thm}
+  За произволни естествени числа $x,y,n$ е изпълнено равенството:
+  \[(x+y)^n = \sum^{n}_{i=0}\binom{n}{i}x^iy^{n-i}.\]
+\end{thm}
+\begin{cor}[Теорема на Ферма]
+  Нека $p$ е просто число. Тогава за числото $a$:
+  \begin{enumerate}[i)]
+  \item
+    $a^p \equiv a\ (\bmod\ p)$;
+  \item 
+    $a^{p-1} \equiv 1\ (\bmod\ p)$, ако $a$ не се дели на $p$.
+  \end{enumerate}
+\end{cor}
+\begin{proof}
+  Да разгледаме следното равенство:
+  \[(x+1)^p = x^p + \binom{p}{1}x^{p-1} + \binom{p}{2}x^{p-2} + \dots + 1 = \sum^{p}_{i=0}\binom{p}{i}x^i\]
+  За $i = 1,\dots,p-1$, всяко от числата $\binom{p}{i}$ се дели на $p$, то 
+  \[(x+1)^p \equiv x^p + 1\ (\bmod\ p).\]
+  Нека сега да разгледаме следната редица, която от се получва от горното равенство за $x = a-1,a-2,\dots,2$:
+  \begin{align*}
+    a^p & \equiv (a-1)^p+1\ (\bmod\ p)\\
+    (a-1)^p & \equiv (a-2)^p+1\ (\bmod\ p)\\
+    \dots & \dots\dots\\
+    2^p & \equiv 1\ (\bmod\ p).
+  \end{align*}
+  Като съберем тези сравнения, получаваме:
+  \[a^p \equiv a\ (\bmod\ p).\]
+  Ако $a$ не се дели на $p$, то
+  \[a^{p-1} \equiv 1\ (\bmod\ p).\]
+\end{proof}
 
 
 
