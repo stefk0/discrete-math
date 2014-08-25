@@ -1,5 +1,6 @@
 \chapter{Булеви функции}
 
+
 Да припомним таблицата за истинност за някои от основните булеви функции на два аргумента.
 \marginpar{$x\oplus y$ - симетрична разлика}
 
@@ -80,25 +81,18 @@
     $\psi = (x\rightarrow y)\vee z$.
   \end{enumerate}
 \end{problem}
-\begin{proof}
-  \begin{itemize}
+\begin{solution}
+  \begin{enumerate}[a)]
   \item
     \begin{align*}
-      \psi\ =\ & x\rightarrow ((y\rightarrow z)\rightarrow x)\\ 
-      =\ & \overline{x}\vee (\overline{y\rightarrow z}\vee x) \\
-      =\ & 1.
+      \psi  =\ & x\rightarrow ((y\rightarrow z)\rightarrow x)\ =\ \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  =\ 1.\\
+      \varphi =\ & (x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))\\
+      =\ & \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
+      =\ & \overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
+      =\ & \overline{x}.\overline{yz} \vee xyz \vee x\vee \overline{y}\vee z =\ \overline{x}(\overline{y}\vee\overline{z}) \vee x\vee \overline{y}\vee z\\
+      =\ & \overline{x}.\overline{y} \vee \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z =\ \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z\\
+      =\ & \overline{(x\vee z)} \vee (x\vee z)\vee \overline{y} = 1 \vee \ov{y} = 1.
     \end{align*}
-    
-    \begin{tabular}{l c l}
-      $\varphi $ & $ =$ & $(x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))$\\
-      & $=$ & $ \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
-      & $=$ & $\overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z$\\
-      & $=$ & $\overline{x}.\overline{yz} \vee xyz \vee x\vee \overline{y}\vee z$\\
-      & $=$ & $\overline{x}(\overline{y}\vee\overline{z}) \vee x\vee \overline{y}\vee z$\\
-      & $=$ & $\overline{x}.\overline{y} \vee \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z$\\
-      & $=$ & $\overline{x}.\overline{z} \vee x\vee \overline{y}\vee z$\\
-      & $=$ & $\overline{(x\vee z)} \vee (x\vee z)\vee \overline{y} = 1$.
-    \end{tabular}
   \item
     $\psi = (x\rightarrow y)\rightarrow(\overline{y}\rightarrow\overline{x}) = 
     \ov{\ov{x}\vee y} \vee y \vee \ov{x} = x\ov{y} \vee y \vee \ov{x} = x \vee y \vee \ov{x} = 1$
@@ -151,8 +145,11 @@
       & $=$ & $y\ov{z} \vee \ov{x}\vee y \vee z$ \\
       & $=$ & $\ov{x}\vee y \vee z$.
     \end{tabular}
-\end{itemize}
-\end{proof}
+\end{enumerate}
+\end{solution}
+
+
+
 
 \section{Полином на Жегалкин}
 
@@ -351,6 +348,12 @@
   Ще означаваме с $S$ множеството от всички самодвойнствени булеви функции, а с $S^n$ тези на $n$ променливи.
 \end{itemize}
 
+\begin{prop}
+  Класът на самодвойнствените функции е затворен, т.е. $[S] = S$.
+  Освен това, $S \subsetneqq \Fs_2$.
+\end{prop}
+
+
 \begin{problem} %% Гаврилов, стр. 31, зад. 1.25
   Проверете дали функцията $g$ е двойнствена на $f$.
   \begin{enumerate}[1)]
@@ -490,6 +493,12 @@
 \[a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n\] наричаме {\em линейна}.
 Ще означаваме с $L$ множеството от всички линейни булеви функции, а с $L^n$ тези на $n$ променливи.
 
+\begin{prop}
+  Класът на линейните функции е затворен, т.е. $[L] = L$.
+  Освен това, $L \subsetneqq \Fs_2$.
+\end{prop}
+
+
 \begin{problem}
   Линейна ли е функцията $f$ с характеристичен вектор $\chi_f = (1001011010010110)$?
 \end{problem}
@@ -558,6 +567,12 @@
 \[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]
 Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
 
+\begin{prop}
+  Класът на монотонните функции е затворен, т.е. $[M] = M$.
+  Освен това, $M \subsetneqq \Fs_2$.
+\end{prop}
+
+
 \begin{problem}
   Проверете монотонни ли са функциите:
   \begin{enumerate}[a)]
@@ -623,11 +638,133 @@
 
 \section{Пълнота и затворени класове}
 
+\begin{dfn}
+Нека $F\subseteq \Fs_2$ е множество от булеви функции. С
+индукция дефинираме следната редица за всяко $n \in \Nat$:
+\begin{align*}
+  & F_0 = F\cup \{I^m_k \mid m,k\in\Nat, 1\leq k\leq m\}\\
+  & F_{n+1} = F_n \cup \{h \mid (\exists f, g_1\dots g_m \in F_n)[h(x_1\dots x_k) =  f(g_1(x_1\dots x_k), \dots g_m(x_1\dots x_k)]\},
+\end{align*}
+
+Затварянето на $F$ по отношение на суперпозиция наричаме
+множеството:
+\[[F] = \bigcup_{n\in \mathbb{N}}F_n.\]
+
+\end{dfn}
+
+% Така множеството $[F]$ се задава с индукция от базово множество
+% $F\cup \{I^n_k \mid 1\leq k\leq n \}$ по правилото суперпозиция. От
+% Тема 1, знаем, че това е най-малкото множество $X$, което съдържа
+% базовото множество и е затворено относно суперпозиция.
+
+
+\begin{dfn}
+  Нека $F\subseteq \Fs_2$ е множество от булеви функции. 
+  $F$ е пълно множество, ако $[F] = \Fs_2$.
+\end{dfn}
+
+\begin{thm}[Бул]
+  Множеството $\{x\vee y,\ov{x},x\wedge y\}$ е пълно.
+\end{thm}
+\begin{proof}
+  Ще докажем, че за всяка булева функция $f \in \Fs_2$, $f \in [\{x\vee y, \ov{x}, x \wedge y\}]$.
+  Ще разгледаме два случая.
+  
+  Нека $f = \bf{0}$. Тогава $f(x_1,\dots,x_n) \equiv x_1\wedge\ov{x}_1$.
+  
+  Нека $f \neq \bf{0}$. Тогава лесно се съобразява, че
+  \marginpar{$x^1 = x$, $x^0 = \ov{x}$}
+  \[f(x_1,\dots,x_n) \equiv \bigvee_{\stackrel{a_1,\dots,a_n:}{f(a_1,\dots,a_n) = 1}} x^{a_1}_1\dots x^{a_n}_n\]
+\end{proof}
+
+
+
+\index{пълно множество}
 \begin{thm}[Критерий за пълнота на Пост-Яблонский]
-  Нека $P\subseteq F_2$. Множеството $P$ е пълно тогава и само тогава, когато то {\em не} е подмножество на 
+  Нека $P\subseteq \Fs_2$ е непразно множество от булеви функции. Множеството $P$ е {\em пълно} тогава и само тогава, когато то {\em не} е подмножество на 
   нито едно от множествата $T_0,T_1,S,M,L$.
 \end{thm}
+\begin{proof}
+  Първо, нека $P$ е пълно множество, т.е. $[P] = \Fs_2$.
+  Ако допуснем, че съществува $K \in \{T_0,T_1,S,M,L\}$, за което $P \subseteq K$, то
+  \[\Fs_2 = [P] \subseteq [K] = K,\]
+  от което следва, че $\Fs_2 = K$, което е противоречие.
+  
+  Нека сега имаме, че за всяко $K \in \{T_0,T_1,S,M,L\}$, $P \not\subseteq K$.
+  Ще докажем, че $\{\ov{x}, x\vee y\} \subseteq [P]$. Тогава, от теоремата на Бул $\Fs_2 = [\{\ov{x}, x\vee y\}] \subseteq [P]$,
+  ще следва, че $[P] = \Fs_2$.
+  Да фиксираме функции $f_0 \in P\setminus T_0$, $f_1 \in P \setminus T_1$, $f_S \in P\setminus S$,
+  $f_M \in P\setminus M$, $f_L \in P\setminus L$.
+  
+  Можем да приемем, че функциите $f_0$ и $f_1$ са едноаргументни,
+  защото ако например $f_0$ е $n$-аргументна, то ще вземем 
+  $g_0(x) = f_0(x,\dots,x) = f_0(I^1_1(x),\dots,I^1_1(x)) \in [P]$.
+  Имаме, че $f_0(0) = 1$ и $f_1(1) = 0$. 
+  Ще разгледаме четири случая за другите стойности на аргументите:
+  \begin{enumerate}[1)]
+  \item 
+    ако $f_0(1) = 0$ и $f_1(0) = 0$, тогава $f_0 \equiv \ov{x}$, $f_1 \equiv {\bf 0}$ и $f_0(f_1(x)) = 1$;
+  \item
+    ако $f_0(1) = 0$ и $f_1(0) = 1$, тогава $f_0 \equiv f_1\equiv \ov{x}$;
+  \item
+    ако $f_0(1) = 1$ и $f_1(0) = 0$, тогава $f_0 \equiv {\bf 1}$ и $f_1 \equiv {\bf 0}$;
+  \item
+    ако $f_0(1) = 1$ и $f_1(0) = 1$, тогава $f_0 \equiv {\bf 1}$, $f_1 \equiv \ov{x}$ и $f_1(f_0(x)) = 0$.
+  \end{enumerate}
+  В случаите $1)$, $3)$, $4)$ получихме, че ${\bf 0}, {\bf 1} \in [P]$.
+  Ще докажем, че и в случая $2)$ също имаме, че ${\bf 0}, {\bf 1} \in [P]$.
+  За целта ще трябва да разгледаме и функцията $f_S \not\in S$.
+  За нея знаем, че съществуват стойности на аргументите ѝ $a_1,\dots,a_n$, такива че:
+  \[f_S(a_1,\dots,a_n) = f_S(\ov{a}_1,\dots,\ov{a}_n).\]
+  Да разгледаме едноместната функция $g_S$, дефинирана като:
+  \[g_S(x) = f_S(x^{a_1},\dots,x^{a_n}) \in [P].\]
+  \begin{align*}
+    g_S(0) & = f_S(0^{a_1},\dots,0^{a_n}) & (0^0 = 1, 0^1 = 0)\\
+    & = f_S(\ov{a}_1,\dots,\ov{a}_n) = f_S(a_1,\dots,a_n) & (\text{защото } f_S\not\in S)\\
+    & = f_S(1^{a_1},\dots,1^{a_n}) & (1^0 = 0, 1^1 = 1)\\
+    & = g_S(1).
+  \end{align*}
+  Следователно $g_S$ е константа функция. 
+  Понеже сме в случая $2)$, то $\ov{x} \in [P]$ и следователно $\ov{g}_S$ е другата константна функция.
+  Заключаваме, че във всичките четири случая получаваме, че ${\bf 0}, {\bf 1} \in [P]$.
+  
+  Сега ще докажем, че имаме $\ov{x} \in [P]$.
+  Да разгледаме $f_M \not\in M$. Това означава, че съществуват вектори $\alpha  \prec \beta$, които се различават
+  само в една стойност и $f_M(\alpha) = 1$, $f_M(\beta) = 0$.
+  Имаме, че  $\alpha = (a_1,\dots,a_{k-1},0,a_{k+1},\dots,a_n)$ и $\beta = (a_1,\dots,a_{k-1},1,a_{k+1},\dots,a_n)$.
+  Да разгледаме едноместната булева функция $g_M$, дефинираната като:
+  \[g_M(x) = f_M(a_1,\dots,a_{k-1},x,a_{k+1},\dots,a_n).\]
+  Понеже вече доказахме, че ${\bf 0},\bf{1} \in [P]$, то $g_M \in [P]$.
+  Лесно се вижда, че $g_M(x) = \ov{x}$. 
 
+  Остава да докажем, че $xy \in [P]$.
+  Да разгледаме $f_L \not\in L$. Това означава, че $f_L$ има следния вид:
+  \[f_L(x_1,\dots,x_n) = a_0 \oplus a_1x_1\oplus a_2x_2 \dots\oplus a_n x_n\oplus \dots \oplus a_lx_{i_1}x_{i_2}\dots x_{i_k}\oplus\dots \]
+  Нека $x_{i_1}x_{i_2}\dots x_{i_k}$ е първият нелинеен член в записа на $f_L$.
+  Да разгледаме двуместната булева функция $g_L$, дефинирана като:
+  \[g_L(x_{i_1},x_{i_2}) = a_0 \oplus a_{i_1}x_{i_1} \oplus a_{i_2}x_{i_2} \oplus x_{i_1}x_{i_2},\]
+  т.е. тя е получена от $f_L$ като $x_{n} = 1$ за $n \in \{i_3,\dots,i_k\}$ и $x_n = 0$ за $n \not\in\{i_1,i_2,\dots,i_k\}$.
+  
+  Можем да приемем, че $a_0 = 0$, защото ако $a_0 = 1$, то ще разгледаме функцията $g^\prime_L(x_{i_1},x_{i_2}) = \ov{g}_L(x_{i_1},x_{i_2}) \in [P]$.
+  За нея, $g^\prime(0,0) = a_0 = 0$.
+  И така, нека $g_L$ има вида
+  \[g_L(x,y) = ax\oplus by \oplus xy.\]
+  Отново трябва да разгледаме четири случая за стойностите на $a$ и $b$.
+  \begin{itemize}
+  \item 
+    ако $a = 0$, $b = 0$, тогава $g_L(x,y) = xy$;
+  \item 
+    ако $a = 0$, $b = 1$, тогава $g_L(x,y) = y \oplus xy$ и 
+    \[g_L(\ov{x},y) = y\oplus (x\oplus 1)y = y \oplus y \oplus xy = xy;\]
+  \item 
+    ако $a = 1$, $b = 0$, тогава $g_L(x,y) = x\oplus xy$ и
+    \[g_L(x, \ov{y}) = x\oplus x(y\oplus 1) = xy;\]
+  \item 
+    ако $a = 1$, $b = 1$, тогава $g_L(x,y) = x \oplus y \oplus xy$ и
+    \[\ov{g}_L(\ov{x},\ov{y}) = xy.\]
+  \end{itemize}
+  Във всички случаи получихме, че $xy \in [P]$.
+\end{proof}
 
 \begin{problem} %Гаврилов, стр. 83, зад. 6.1
   Пълна ли е системата от функции?
@@ -648,7 +785,7 @@
     $A = \{\chi_{f_1} = (11), \chi_{f_2} = (00), \chi_{f_3} = (0011 0101)\}$;
   \end{enumerate}
 \end{problem}
-\begin{proof}
+\begin{solution}
   \begin{enumerate}[1)]
   \item
     \begin{tabular}[b]{|c|c|c|c|c|c|}
@@ -697,7 +834,7 @@
       \hline
     \end{tabular}
   \end{enumerate}
-\end{proof}
+\end{solution}
 
 
 \begin{problem} % Гаврилов, стр. 84
