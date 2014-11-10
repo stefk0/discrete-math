@@ -29,14 +29,14 @@
 Нека имаме една дума $\alpha \in \Sigma^\star$, $\alpha = a_1a_2\cdots a_n$.
 Казваме, че $\alpha$ се {\bf разпознава} от автомата $\A$, ако
 съществува редица от състояния $q_0,q_1,q_2,\dots,q_n$, такива че:
-\begin{enumerate}[1)]
-\item 
+\begin{itemize}
+\item
   $q_0 = s$;
 \item
   $\delta(q_i,a_{i+1}) = q_{i+1}$, за $i < n$;
 \item
   $q_n \in F$.
-\end{enumerate}
+\end{itemize}
 
 % Алтернативен запис е следния:
 % $(q,a\beta) \vdash (p,\beta)$, ако $\delta(q,a) = p$.
@@ -46,9 +46,11 @@
 Казваме, че $\A$ {\bf разпознава} езика $L$, ако $\A$ разпознава точно думите от $L$, т.е.
 $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 Обикновено означаваме езика, който се разпознава от даден автомат $\A$ с $L(\A)$.
+\index{език!автоматен}
+В такъв случай ще казваме, че езикът $L$ е {\bf автоматен}.
 
 При дадена (частична) функция на преходите $\delta$,
-често ще  разглеждаме (частичната) функция $\delta^\star:Q\times\Sigma^\star \to Q$, кято е дефинирана по следния начин:
+често е удобно да разглеждаме (частичната) функция $\delta^\star:Q\times\Sigma^\star \to Q$, кято е дефинирана по следния начин:
 \marginpar{Пример за индуктивна дефиниция по дължината на думата $\alpha$}
 \begin{itemize}
 \item 
@@ -56,7 +58,6 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \item
   $\delta^\star(q,a\beta) = \delta^\star(\delta(q,a),\beta)$, за всяко $q\in Q$, всяко $a\in\Sigma$ и $\beta\in\Sigma^\star$.
 \end{itemize}
-Функцията $\delta^\star$ се нарича {\em транзитивно затваряне} на $\delta$.
 Тогава \[L(\A) = \{\alpha\in\Sigma^\star \mid \delta^\star(s,\alpha) \in F\}.\]
 
 \begin{prop}
@@ -65,11 +66,6 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \begin{proof}
   Индукция по дължината на $\alpha$.
 \end{proof}
-
-\begin{dfn}
-  \index{език!автоматен}
-  Един език $L$ се нарича автоматен, ако съществува автомат $\A$, който разпознава $L$, т.е. $L = L(\A)$.
-\end{dfn}
 
 Нашата дефиниция на автомат позволява $\delta$ да бъде частична функция, т.е.
 може да има $q\in Q$ и $a\in\Sigma$, за които $\delta(q,a)$ не е дефинирана.
@@ -109,17 +105,17 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Нека $L_1 = L(\A_1)$ и $L_2 = L(\A_2)$, 
   където $\A_1 = \FAn{1}$ и $\A_2 = \FAn{2}$ са {\bf тотални}.
   Определяме автомата $\A = \FA$, който разпознава $L_1\cup L_2$.
-  \begin{enumerate}[1)]
+  \begin{itemize}
   \item
     $Q = Q_1\times Q_2$;
   \item
     Определяме за всяко $\pair{r_1,r_2} \in Q$ и всяко $a \in \Sigma$,
     \[\delta(\pair{r_1,r_2},a) = \pair{\delta_1(r_1,a),\delta_2(r_2,a)};\]
   \item
-    $s_0 = \pair{s_1,s_2}$;
+    $s = \pair{s_1,s_2}$;
   \item
     $F = \{\pair{r_1,r_2}\mid r_1\in F_1\vee r_2 \in F_2\} = (F_1\times Q_2)\cup (Q_1\times F_2)$.
-  \end{enumerate}
+  \end{itemize}
   Проверете, че $L(\A) = L(\A_1)\cup L(\A_2)$.
 \end{proof}
 
@@ -130,7 +126,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{cor}
 \begin{proof}
   Същата конструкция на автомата $\A = \FA$, 
-  с единствената разлика, че тук избираме финалните състояния да бъдат:
+  с единствената разлика, че тук избираме финалните състояния да бъдат множеството:
   \[F = \{\pair{q_1,q_2} \mid q_1 \in F_1\ \&\ q_2 \in F_2\} = F_1\times F_2.\]
 \end{proof}
 
@@ -273,8 +269,8 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{solution}
 
 В повечето от горните задачи е лесно да се съобрази, че построения автомат разпознава желания език.
-При по-сложни задачи обаче, ще се наложи да дадем доказателство, като обикновено се прилага метода 
-на математическата индукция.
+При по-сложни задачи обаче, ще се наложи да дадем доказателство, като обикновено се прилага 
+{\em метода на математическата индукция} върху дължината на думите в езика. 
 Ще разгледаме няколко такива примера.
 
 \begin{problem}
@@ -432,7 +428,6 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
       \end{center}
  %   \end{subfigure}
  \end{figure}
-
   Да разгледаме твърденията:
   \begin{enumerate}[(1)]
   \item 
@@ -494,150 +489,6 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Но в тези случаи получаваме от твърдения (1) и (2), че $(\alpha)_{(2)} \equiv 0 \mod 3$ или $(\alpha)_{(2)} \equiv 1 \mod 3$.
   Това е противоречие. Следователно, ако $\alpha \in L$, то $\delta(q_0,\alpha) = q_2$.
 \end{proof}
-
-
-% \section{Недетерминирани крайни автомати (да се унищожи)}
-
-% \begin{itemize}
-% \item
-%   Ще означаваме $\Sigma_\varepsilon = \Sigma\cup\{\varepsilon\}$.
-% \item
-%   Казваме, че два автомата са {\bf еквивалентни}, ако разпознават едни и същи езици.  
-% \end{itemize}
-
-% \begin{dfn}
-%   \marginpar{Въведени от Рабин и Скот \cite{rabin-scott}}
-%   Недетерминиран краен автомат петорка 
-%   \[\N = \NFA,\]
-%   \begin{enumerate}[1)]
-%   \item
-%     $Q$ е крайно множество от състояния;
-%   \item
-%     $\Sigma$ е крайна азбука;
-%   \item
-%     \marginpar{Тук имаме $\varepsilon$-преходи}
-%     $\Delta: Q\times\Sigma_\varepsilon \to \Ps(Q)$ е функцията на преходите.
-%     \marginpar{Да напомним, че $\Ps(Q) = \{R\mid R\subseteq Q\}$, $\abs{\Ps(Q)} = 2^{\abs{Q}}$}
-%     Обърнете внимание, че тя е тотална.
-%   \item
-%     $s \in Q$ е началното състояние;
-%   \item
-%     $F\subseteq Q$ е множеството от финални състояния.
-%   \end{enumerate}
-% \end{dfn}
-
-% \begin{thm}
-%   За всеки НKА $\N$ съществува еквивалентен на него ДКА $\D$, т.е. $L(\N) = L(\D)$.
-% \end{thm}
-% \begin{proof}
-%   Нека $\N = \NFA$. Ще построим ДКА $\D = (Q^\prime,\Sigma,\delta,s^\prime,F^\prime)$.
-%   Ще разгледаме два случая, в зависимост от това дали в $\N$ има $\varepsilon$-преходи.
-%   Ако в $\N$ няма $\varepsilon$-преходи, то конструкцията е следната:
-%   \begin{itemize}
-%   \item
-%     $Q^\prime = \Ps(Q)$;
-%   \item
-%     $\delta(R,a) = \{q\in Q\mid (\exists r\in R)[q\in\Delta(r,a)]\} = \bigcup_{r\in R}\Delta(r,a)$;
-%   \item
-%     $s^\prime = \{s\}$;
-%   \item
-%     $F^\prime = \{R \subseteq Q \mid R\cap F \neq \emptyset\}$.
-%   \end{itemize}
-  
-%   Сега да разгледаме случая, когато в $\N$ има $\varepsilon$-преходи.
-%   Да положим за всяко $q \in Q$, 
-%   \[\Es(q) = \{p \in Q \mid \mbox{ има }\varepsilon\mbox{-път от }q\mbox{ до }p]\}.\]
-%   Множеството $\Es(q)$ се нарича $\varepsilon$-{\em затваряне} на състоянието $q$.
-%   Аналогично дефинираме и $\varepsilon$-затварянето $\Es(R)$ на едно подмножество $R \subseteq Q$. Нека 
-%   \[\Es(R) = \{p\in Q\mid (\exists r\in R)[\mbox{ има }\varepsilon\mbox{-път от }r\mbox{ до }p]\} = \bigcup_{r\in R}\Es(r).\]
-%   Сега вече сме готови да дадем конструкцията на $\D$ в този случай.
-%   \begin{itemize}
-%   \item
-%     $Q' = \Ps(Q)$;
-%   \item
-%     $s' = \Es(s)$;
-%   \item
-%     $F' = \{R \subseteq Q \mid R\cap F \neq \emptyset\}$.
-%   \item
-%     Ще покажем как намираме $\delta(R,a)$, за $a\in\Sigma$ и $R\subseteq Q$.
-%     \begin{itemize}
-%     \item 
-%       Нека $R = \{r_1,\dots,r_n\}$. 
-%       Намираме множеството $P = \bigcup^n_{i = 1}\Delta(r_i,a)$.
-%     \item
-%       Нека $P = \{p_1,\dots,p_k\}$.
-%       Тогава $\delta(R,a) = \bigcup^k_{i = 1}\Es(p_i) = \Es(P)$.
-%     \end{itemize}
-%     Написано по-формално, това означава, че 
-%     \[\delta(R,a) = \bigcup_{r \in R}\Es(\Delta(r,a)).\]
-
-%   \end{itemize}
-%   Да отбележим, че детерминираният автомат $\D$ има не повече от $2^{\abs{Q}}$ на брой състояния.
-% \end{proof}
-
-% Сега можем да дадем много по-лесна конструкция за обединение на два автоматни езика
-% - с ново състояние и $\varepsilon$-преходи към началните състояния на старите
-% автомати.
-
-% Сега ще видим, че автоматните езици  са затворени относно още две операции.
-% \begin{lemma}
-%   Класът на автоматните езици е затворен относно операцията {\bf конкатенация}.
-%   Това означава, че ако $L_1$ и $L_2$ са два произволни автоматни езика, то $L_1\cdot L_2$
-%   също е автоматен език.
-% \end{lemma}
-% \begin{proof}
-%   $\N_1 = \NFAn{1}$ и $\N_2 = \NFAn{2}$.
-%   Дефнинираме $\N = \NFA$, където:
-%   \begin{itemize}
-%   \item
-%     $Q = Q_1\cup Q_2$;
-%   \item
-%     $s = s_1$;
-%   \item
-%     $F = F_2$;
-%   \item
-%     Функцията на преходите $\Delta$ е на практика обединение на $\Delta_1$ и $\Delta_2$,
-%     като имаме $\varepsilon$-преход от финалните състояния на $\N_1$ към началното състояние $s_2$ на $\N_2$.
-%     Определяме $\Delta$ по следния начин:
-%     \begin{eqnarray*}
-%       \Delta(q,a) = 
-%       \begin{cases}
-%         \Delta_1(q,a), & q\in Q_1\wedge q\not\in F_1\\
-%         \Delta_1(q,a), & q\in F_1\wedge a \neq \varepsilon\\
-%         \Delta_1(q,a)\cup\{s_2\}, & q\in F_1\wedge a = \varepsilon\\
-%         \Delta_2(q,a), & q\in Q_2
-%       \end{cases}
-%     \end{eqnarray*}
-%   \end{itemize}
-% \end{proof}
-
-% \begin{lemma}
-%   Класът от автоматните езици е затворен относно операцията {\bf звезда на Клини}
-% \end{lemma}
-% \begin{proof}
-%   Нека е даден автомата $\N_1 = \NFAn{1}$.
-%   Ще построим $\N = \NFA$.
-%   \begin{itemize}
-%   \item
-%     $Q = Q_1\cup \{s\}$;
-%   \item
-%     $s$ е новото начално състояние, $s \not\in Q$;
-%   \item
-%     $F = F_1\cup \{s\}$;
-%   \item
-%     Функцията на преходите я определяме по следния начин:
-%     \begin{eqnarray*}
-%       \Delta(q,a) = 
-%       \begin{cases}
-%         \Delta_1(q,a),            & q\in Q_1\wedge q\not\in F_1\\
-%         \Delta_1(q,a),            & q\in F_1\wedge a\neq \varepsilon\\
-%         \Delta_1(q,a)\cup\{s_1\}, & q\in F_1\wedge a = \varepsilon\\
-%         \{s_1\},                  & q = s\wedge a = \varepsilon\\
-%         \emptyset,                & q = s\wedge a\neq \varepsilon
-%       \end{cases}
-%     \end{eqnarray*}
-%   \end{itemize}
-% \end{proof}
 
 \section{Регулярни езици}
 
@@ -704,7 +555,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
     \end{itemize}    
     Получаваме, че $L^\star = \{\varepsilon\}$, т.е. {\em краен} език
   \item
-    Нека $L = \{0^i\mid i \in \N\} = \{\varepsilon, 0, 00, 000, \dots\}$.
+    Нека $L = \{0^i\mid i \in \Nat\} = \{\varepsilon, 0, 00, 000, \dots\}$.
     Тогава лесно може да се види, че $L = L^\star$.
   \end{itemize}
 \end{example}
@@ -747,7 +598,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   могат да се разпознаят от автомата по път, който започва от $q_i$,
   завършва в $q_j$, и междинните състояния имат индекси $\leq k$.
   Тогава за $n = \abs{Q}$, 
-  \[L(i,j,n) = \{\alpha\in\Sigma^\star\mid (q_i,\alpha) \vdash^\star (q_j,\varepsilon)\}.\]
+  \[L(i,j,n) = \{\alpha\in\Sigma^\star\mid \delta^\star(q_i,\alpha) \in F\}.\]
   Следователно,
   \[L(M) = \bigcup\{L(1,j,n)\mid q_j \in F\}.\]
   Ще докажем с {\bf индукция по $k$}, че за всяко $i,j,k$, множествата от думи $L(i,j,k)$
@@ -774,10 +625,10 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{proof}
 
 \begin{example}
+  \label{fig:a1}
   Да разгледаме следния автомат:
   
   \begin{figure}[H]
-    \label{subf:a1}
     \begin{center}
       \begin{tikzpicture}[->,>=stealth,thick,node distance=45pt]
         \tikzstyle{every state}=[circle,minimum size=15pt,auto]
@@ -793,7 +644,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
       \end{center}
  \end{figure}
 
- За да намерим регулярния език за автомата от Фигура \ref{subf:a1}, 
+ За да намерим регулярния език за автомата от Пример \ref{fig:a1}, 
  трябва да намерим $r^2_{1,2}$, защото началното състояние е $q_1$, финалното е $q_2$ и 
  броят на състоянията в автомата е $2$.
  \begin{align*}
@@ -897,26 +748,30 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Нека са дадени автоматите:
   \begin{itemize}
   \item
-    $\N_1 = \NFAn{1}$, като $L(\N_1) = L(r_1)$;
+    $\N_1 = \NFAn{1}$, като $L(\N_1) = L_1$;
   \item
-    $\N_2 = \NFAn{2}$, като $L(\N_2) = L(r_2)$.
+    $\N_2 = \NFAn{2}$, като $L(\N_2) = L_2$.
   \end{itemize}
   Ще дефинираме автомата $\N = \NFA$ като
-  \[L(\N) = L(r_1\cdot  r_2) = L(r_1)\cdot L(r_2) = L(\N_1)\cdot L(\N_2).\]
+  \[L(\N) = L_1\cdot L_2 = L(\N_1)\cdot L(\N_2).\]
   \begin{itemize}
   \item
     $Q = Q_1 \cup Q_2$;
   \item
     $s = s_1$;
   \item
-    Ако $s_2\in F_2$, то $F = F_1 \cup F_2$.
-    В противен случай, $F = F_1$.
+    $F = 
+    \begin{cases}
+      F_1 \cup F_2, & \text{ ако } s_2 \in F_2\\
+      F_1,          & \text{ иначе}.
+    \end{cases}$
   \item 
-    $\Delta(q,a) = \Delta_1(q,a)$, за всяко $q\in Q_1\setminus F_1$ и $a\in\Sigma$;
-  \item
-    $\Delta(q,a) = \Delta_2(q,a)$, за всяко $q\in Q_2$ и $a\in\Sigma$;
-  \item
-    $\Delta(q,a) = \Delta_1(q,a) \cup \Delta_2(s_2,a)$, за всяко $q \in F_1$ и $a\in\Sigma$.
+    $\Delta(q,a) = 
+    \begin{cases}
+      \Delta_1(q,a),                      & \text{ ако }q\in Q_1\setminus F_1\ \&\ a\in\Sigma\\
+      \Delta_2(q,a),                      & \text{ ако }q\in Q_2\ \&\ a\in\Sigma\\
+      \Delta_1(q,a) \cup \Delta_2(s_2,a), & \text{ ако }q \in F_1\ \&\ a\in\Sigma.
+    \end{cases}$
   \end{itemize}
 \end{proof}
 
@@ -927,24 +782,35 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Нека са дадени автоматите:
   \begin{itemize}
   \item 
-    $\N_1 = \NFAn{1}$, като $L(\N_1) = L(r_1)$;
+    $\N_1 = \NFAn{1}$, като $L(\N_1) = L_1$;
   \item
-    $\N_2=\NFAn{2}$, като $L(\N_2) = L(r_2)$.
+    $\N_2=\NFAn{2}$, като $L(\N_2) = L_2$.
   \end{itemize}
   Ще дефинираме автомата $\N=\NFA$, така че
-  \[L(\N) = L(r_1 + r_2) = L(r_1) \cup L(r_2) = L(\N_1) \cup L(\N_2).\]
+  \[L(\N) = L(\N_1) \cup L(\N_2).\]
   \begin{itemize}
   \item 
     $Q = Q_1 \cup Q_2 \cup \{s\}$;
   \item
-    Ако $s_1 \in F_1$ или $s_2 \in F_2$, то $F = F_1  \cup F_2 \cup \{s\}$.
-    В противен случай, $F = F_1 \cup F_2$.
+    $F = 
+    \begin{cases}
+      F_1 \cup F_2 \cup \{s\}, & \text{ ако } s_1 \in F_1 \vee s_2 \in F_2\\
+      F_1 \cup F_2,            & \text{ иначе } 
+    \end{cases}$
   \item
-    $\Delta(q,a) = \Delta_1(q,a)$, за всяко $q\in Q_1$, $a\in\Sigma$;
-  \item
-    $\Delta(q,a) = \Delta_2(q,a)$, за всяко $q\in Q_2$, $a\in\Sigma$;
-  \item
-    $\Delta(s,a) = \Delta_1(s_1,a) \cup \Delta_2(s_2,a)$, за всяко $a\in\Sigma$;
+    $
+    \Delta(q,a) = 
+    \begin{cases}
+      \Delta_1(q,a),                       & \text{ ако } q\in Q_1\ \&\ a\in\Sigma\\
+      \Delta_2(q,a),                       & \text{ ако } q\in Q_2\ \&\  a\in\Sigma\\
+      \Delta_1(s_1,a) \cup \Delta_2(s_2,a), & \text{ ако } q = s\ \&\  a \in\Sigma.
+    \end{cases}
+    $
+  %   $\Delta(q,a) = \Delta_1(q,a)$, за всяко $q\in Q_1$, $a\in\Sigma$;
+  % \item
+  %   $\Delta(q,a) = \Delta_2(q,a)$, за всяко $q\in Q_2$, $a\in\Sigma$;
+  % \item
+  %   $\Delta(s,a) = \Delta_1(s_1,a) \cup \Delta_2(s_2,a)$, за всяко $a\in\Sigma$;
   \end{itemize}
 \end{proof}
 \begin{remark}
@@ -968,16 +834,23 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \item
     $F_1 = F$;
   \item
-    $\Delta_1(q,a) = \Delta(q,a)$, за всяко $q\in Q\setminus F$, $a\in\Sigma$;
-  \item
-    $\Delta_1(q,a) = \Delta(q,a) \cup \Delta(s,a)$, за всяко $q\in F$, $a\in\Sigma$;
+    $
+    \Delta_1(q,a) = 
+    \begin{cases}
+      \Delta(q,a), & \text{ ако } q\in Q\setminus F, a \in \Sigma\\
+      \Delta(q,a) \cup \Delta(s,a), & \text{ ако } q\in F, a\in\Sigma.
+    \end{cases}
+    $
+    % $\Delta_1(q,a) = \Delta(q,a)$, за всяко $q\in Q\setminus F$, $a\in\Sigma$;
+  % \item
+  %   $\Delta_1(q,a) = \Delta(q,a) \cup \Delta(s,a)$, за всяко $q\in F$, $a\in\Sigma$;
   \end{itemize}
-  Накрая строим автомат $\N_2$, за който $L(\N_2) = L(\varepsilon + r^+) = L(\varepsilon) \cup L(\N_1)$.
+  Накрая строим автомат $\N_2$, за който $L(\N_2) = \{\varepsilon\} \cup L(\N_1)$.
 \end{proof}
 
-\begin{remark}
-  Запазваме свойството, че в началното състояние не влизат ребра.
-\end{remark}
+% \begin{remark}
+%   Запазваме свойството, че в началното състояние не влизат ребра.
+% \end{remark}
 
 \section{Допълнителни свойства}
 
@@ -1015,7 +888,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \begin{lemma}[за нарастването (регулярни езици)]
   \index{лема за нарастването!регулярни езици}
   \label{lem:pumping-reg}
-  \marginpar{На англ.\\ Pumping Lemma (\cite{hopcroft})}
+  \marginpar{На англ.\\ Pumping Lemma}
   \marginpar{Има версия и за безконтекстни езици}
   Нека $L$ да бъде безкраен регулярен език.
   Съществува число $n\geq 1$, зависещо само от $L$, 
@@ -1032,7 +905,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \marginpar{стр. 88 от \cite{papadimitriou}, стр. 78 от \cite{sipser}}
+%  \marginpar{стр. 88 от \cite{papadimitriou}, стр. 78 от \cite{sipser}}
   Понеже $L$ е регулярен, той се разпознава от ДКА $\M = \FA$.
   Нека $n = \abs{Q}$ и нека $\alpha = a_1a_2\dots a_k$ е дума, за която $k \geq n$.
   Да разгледаме първите $n$ стъпки от изпълнението на $\alpha$ върху $\M$:
@@ -1055,7 +928,8 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Да допуснем, че $L$ е регулярен.
   За константа $p$, избираме думата $\alpha = a^pb^p$.
   Очевидно $|\alpha| \geq p$.
-  Тогава $xy^0z = a^{p-k}b^p$, където $y = a^k$ и $k \geq 1$.
+  Понеже $\abs{xy} \leq p$, то $y = a^k$, за  $k \geq 1$.
+  Тогава $xy^0z = a^{p-k}b^p$.
   Очевидно е, че $xz \not\in L$.
 \end{proof}
 
@@ -1066,11 +940,10 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Нека $\M = \FA$ разпознава регулярния език $L$ и $n = \abs{Q}$.
   \begin{description}
   \item[$(\Rightarrow)$]
-    Нека $L$ е непразен и нека $m$ да бъде минималната дължина на дума в $L$.
+    Нека $L$ е непразен език и нека $m = \min\{\abs{\alpha} \mid \alpha \in L\}$.
     Ще докажем, че $m < \abs{Q}$.
     
-    За целта, да допуснем, че $m \geq \abs{Q}$.
-    Да изберем $\alpha \in L$, за която $\abs{\alpha} = m$.
+    За целта, да допуснем, че $m \geq \abs{Q}$ и да изберем $\alpha \in L$, за която $\abs{\alpha} = m$.
     Според \Lem{pumping-reg}, съществува разбиване $xyz = \alpha$, 
     такова че $xz \in L$.
     При положение, че $\abs{y} \geq 1$, то $\abs{xz} < m$, което 
@@ -1086,7 +959,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{proof}
 
 \begin{cor}
-  \marginpar{$(L(\M_1)\setminus L(\M_2)) \cup (L(\M_2)\setminus L(\M_1)) = \emptyset$?}
+  \marginpar{$(L_1\setminus L_2) \cup (L_2 \setminus L_1) = \emptyset$?}
   Съществува алгоритъм, който определя дали два автомата $\M_1$ и $\M_2$ разпознават един и същ език.
 \end{cor}
 
@@ -1102,7 +975,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   Понеже $L$ е безкраен, знаем, че такава дума съществува.
   Тогава отново по \Lem{pumping-reg},
   \[\alpha = xyz, \abs{xy} \leq \abs{Q}, xz \in L.\]
-  Но понеже $\abs{\alpha} \geq 2\abs{Q}$, то $\abs{xz} \geq \abs{Q}$ и понеже избрахме $\alpha$
+  Но понеже $\abs{xyz} \geq 2\abs{Q}$, а $\abs{y} \leq \abs{Q}$, то $\abs{xz} \geq \abs{Q}$ и понеже избрахме $\alpha = xyz$
   да бъде най-късата дума с дължина поне $2\abs{Q}$, заключаваме, че $\abs{Q} \leq \abs{xz} < 2\abs{Q}$.
 \end{proof}
 
@@ -1119,7 +992,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   {\scriptsize  
     \[(\exists p \geq 1)(\forall \alpha \in L)[\abs{\alpha} \geq p \Rightarrow (\exists x,y,z\in\Sigma^\star)[\alpha = xyz\ \wedge\ \abs{y} \geq 1\ \wedge\ \abs{xy} \leq p\ \wedge\ (\forall i\in\Nat)[xy^iz \in L]].\]}
   Тогава нейното отрицание гласи следното:
-  {\scriptsize  \[(\forall p \geq 1)(\exists \alpha \in L)[\abs{\alpha} \geq p\ \&\ (\forall x,y,z\in\Sigma^\star)[\alpha \neq xyz\ \vee\ \abs{y} \not\geq 1\ \vee\ \abs{xy} \not\leq p\ \vee\ (\exists i\in\Nat)[xy^iz \not\in L]],\]}
+  {\scriptsize  \[(\forall p \geq 1)(\exists \alpha \in L)[\abs{\alpha} \geq p\ \wedge (\forall x,y,z\in\Sigma^\star)[\alpha \neq xyz\ \vee\ \abs{y} \not\geq 1\ \vee\ \abs{xy} \not\leq p\ \vee\ (\exists i\in\Nat)[xy^iz \not\in L]],\]}
   което е еквивалентно на:
   {\scriptsize
     \[(\forall p \geq 1)(\exists \alpha \in L)[\abs{\alpha} \geq p\ \wedge\ (\forall x,y,z\in\Sigma^\star)[(\alpha = xyz \wedge \abs{y} \geq 1\wedge \abs{xy} \leq p) \Rightarrow (\exists i\in\Nat)[xy^iz \not\in L]].\]}
@@ -1133,6 +1006,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   т.е. ще докажем, че
   {\scriptsize
     \[(\forall p \geq 1)(\exists \alpha \in L)[\abs{\alpha} \geq p\ \wedge\ (\forall x,y,z\in\Sigma^\star)[(\alpha = xyz \wedge \abs{y} \geq 1\wedge \abs{xy} \leq p) \Rightarrow (\exists i\in\Nat)[xy^iz \not\in L]].\]}
+
   И така, за произволно число $p \geq 1$, да изберем думата $w$ със свойството, че $\abs{w} > p+1$.
   Да разгледаме произволно разбиване на $w$, $w = xyz$, за което $\abs{xy} \leq p$ и $\abs{y} \geq 1$.
   Ще докажем, че съществува $i$, за което $xy^iz \not\in L$, т.е. $\abs{xy^iz} = \abs{xz} + i.\abs{y}$ не е просто число.
