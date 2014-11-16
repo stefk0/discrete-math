@@ -1086,62 +1086,45 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \end{enumerate}
 \end{problem}
 
-\newpage
-
 \subsection*{Примери, когато лемата не е  приложима}
 
 \begin{problem}
   \marginpar{Например, разгледайте $c^+\{a^nb^n\mid n\in\Nat\}\cup (a\vert b)^\star$}
   Да се даде пример за език $L$, който {\bf не} е регулярен, но удовлетворява
-  лемата за разрастването.
+  условието на \Lem{pumping-reg}.
 \end{problem}
 
-\begin{example}
-  Лемата за нарастването не винаги е приложима.
-  Съществуват езици, които {\em не} са регулярни, но удовлетворяват условията на лемата.
-  Например, $L = \{\alpha\alpha^R\beta\mid \alpha,\beta \in (a\mid b)^+\}$.
-\end{example}
-\begin{proof}
-  Нека $n = 4$.
-  За $\alpha = a\alpha_0$, $xyz = a\alpha_0\alpha^R_0a\beta$.
-  \begin{itemize}
-  \item 
-    Ако $\alpha_0 = \varepsilon$, то $xyz = aa\beta$.
-    Да вземем $y$ да бъде първия символ от $\beta$, $\abs{\beta} \geq 2$.
-    Тогава е ясно.
-  \item
-    Ако $\alpha_0 \neq \varepsilon$, то да вземем $x = \varepsilon$ и $y = a$.
-    Тогава пак е ясно.
-  \end{itemize}
-  Така доказахме, че $L$ удовлетворява условията на \Lem{pumping-reg}.
 
-  Нека сега да вземем $(ab)^n$, $(ab)^k$, за всички $n > k$.
-  Тогава $[(ab)^n]_\Ls \neq [(ab)^k]_\Ls$, защото за $\gamma = (ba)^ka$,
-  $(ab)^k(ba)^ka \in \Ls$, но $(ab)^n(ba)^ka \not\in \Ls$.
-  Следователно, $\abs{\approx_\Ls} = \infty$ и от теоремата на Нерод-Майхил следва, че
-  езикът $\Ls$ не е регулярен.
-\end{proof}
 
 \begin{problem}
   Езикът $L = \{c^ka^nb^m\mid k,n,m \in \Nat\ \&\ k = 1\implies m = n\}$
-  не е регулярен, но лемата за разрастването е изпълнена за него.
+  {\bf не} е регулярен, но условието на  \Lem{pumping-reg} е изпълнена за него.
 \end{problem}
 \begin{proof}
   Да допуснем, че $L$ е регулярен.
-  Тогава $L_1 = L\cap ca^\star b^\star = \{c^ka^nb^n \mid n\in\Nat\}$ е регулярен,
+  Тогава ще следва, че 
+  \[L_1 = L\cap ca^\star b^\star = \{ca^nb^n \mid n\in\Nat\}\]
+  е регулярен,
   но с лемата за разрастването лесно се вижда, че $L_1$ не е.
 
-  Сега да проверим, че лемата за разрастването е изпълнена за $L$.
+  Сега да проверим, че условието на \Lem{pumping-reg} е изпълнена за $L$.
   Да изберем константа $p = 2$.
   Сега трябва да разгледаме всички думи $\alpha \in L$, $\abs{\alpha} \geq 2$
   и за всяка $\alpha$ да посочим разбиване $xyz = \alpha$, за което са изпълнени трите свойства от лемата.
+  \marginpar{Условията за $x,y,z$ са:
+    \begin{align*}
+      & \abs{xy} \leq 2\\
+      & \abs{y} \geq 1\\
+      & (\forall i\in\Nat)(xy^iz \in L)
+    \end{align*}}
+
   \begin{itemize}
   \item
-    $\alpha = a^n$ или $\alpha = b^n$, $n\geq 2$ са очевидни.
+    Ако $\alpha = a^n$ или $\alpha = b^n$, $n\geq 2$, то е  очевидно, че можем да
+    намерим такова разбиване.
   \item
-    $\alpha = a^nb^m$ и $n+m \geq 2$, $n \geq 1$. Ясно е, че $\alpha \in L$.
-    Да изберем $x = \varepsilon$, $y = a$, $z = a^{n-1}b^m$.
-    Тогава е ясно, че $\abs{xy} \leq 2$, $\abs{y} \geq 1$ и $(\forall i\in\Nat)[xy^iz \in L]$.
+    $\alpha = a^nb^m$ и $n+m \geq 2$, $n \geq 1$.
+    Избираме $x = \varepsilon$, $y = a$, $z = a^{n-1}b^m$.
   \item
     $\alpha = ca^nb^n$, $n\geq 1$.
     Избираме $x = \varepsilon$, $y = c$, $z = a^nb^n$.
@@ -1153,6 +1136,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
     Избираме $x = \varepsilon$, $y = c$, $z = c^{k-1}a^nb^m$.
   \end{itemize}
 \end{proof}
+
 
 \section{Минимизация на ДКА}
 
@@ -1174,23 +1158,21 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   те са рефлексивни, транзитивни и симетрични.
   Всяко състояние на $\M$, което е достижимо от началното състояние $s$, определя клас на еквивалентност относно 
   релацията $\sim_\M$.  
-  Нека да означим класовете на еквивалентност на $\approx_\Ls$ с $[x]_\Ls$. 
+  Нека да означим класовете на еквивалентност на $\approx_L$ с $[x]_L$.
 \item
-  С $\abs{\approx_\Ls}$ ще означаваме броя на класовете на еквивалентност на релацията $\approx_\Ls$.
+  С $\abs{\approx_L}$ ще означаваме броя на класовете на еквивалентност на релацията $\approx_L$.
 \item
   $\sim_\M$ е дясно-инвариантна, т.е.
   \[\alpha \sim_\M \beta\ \rightarrow\ (\forall \gamma\in\Sigma^\star)[\alpha\gamma \sim_\M \beta\gamma].\]
 \end{itemize}
 
-% Ако $M$ разпознава езика $L$, то
-% \[L = \bigcup_{\delta^{\star}(q_0,x)\in F}[x]_{L}.\]
-
 \begin{thm}
   \label{th:rel-finer}
-  Нека е даден ДКА $\M = \FA$ и $\Ls(\M)$ е езика, разпознаван от $\M$. Тогава е изпълнено
-  \[(\forall \alpha,\beta \in \Sigma^\star)[\alpha\sim_\M\beta\ \rightarrow\ \alpha\approx_{\Ls(\M)}\beta].\]
+  Нека е даден ДКА $\M = \FA$ и $L(\M)$ е езика, разпознаван от $\M$. Тогава е изпълнено
+  \[(\forall \alpha,\beta \in \Sigma^\star)[\alpha\sim_\M\beta\ \rightarrow\ \alpha\approx_{L(\M)}\beta].\]
 \end{thm}
-\begin{proof}[стр. 95 от \cite{papadimitriou}]
+\begin{proof}
+  \marginpar{стр. 95 от \cite{papadimitriou}}
   Да означим $q_\alpha = \delta^\star(s, \alpha)$.
   Лесно се съобразява, че 
   \[\alpha \sim_\M \beta\quad\Leftrightarrow\quad q_\alpha = q_\beta.\]
@@ -1201,14 +1183,14 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \end{proof}
 
 \begin{cor}
-  Един регулярен език $\Ls$ се разпознава от ДКА с $\abs{Q} \geq \abs{\approx_\Ls}$.
+  Един регулярен език $L$ се разпознава от ДКА с $\abs{Q} \geq \abs{\approx_L}$.
 \end{cor}
 \begin{proof}
-  Теоремата ни казва, че $\sim_\M$ е {\em по-фина} релация от $\approx_{\Ls(\M)}$, от което следва, че
-  броят на класовете на еквивалентност на $\sim_\M$ е по-голям от този на $\approx_{\Ls(\M)}$.
+  Теоремата ни казва, че $\sim_\M$ е {\em по-фина} релация от $\approx_{L(\M)}$, от което следва, че
+  броят на класовете на еквивалентност на $\sim_\M$ е по-голям от този на $\approx_{L(\M)}$.
   Тъй като всяко достижимо състояние определя клас на еквивалентност относно $\sim_\M$,
-  то получаваме {\em долна граница} на броя на състоянията в минималнен автомат за езика $\Ls$.
-  Този брой е не по-малък от броя на класовете на еквивалентност на $\approx_\Ls$.
+  то получаваме {\em долна граница} на броя на състоянията в минималнен автомат за езика $L$.
+  Този брой е не по-малък от броя на класовете на еквивалентност на $\approx_L$.
   
 \end{proof}
 
@@ -1218,6 +1200,8 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
 \begin{thm}[Майхил-Нероуд]
   \label{th:myhill-nerode}
   \index{теорема!Майхил-Нероуд}
+  \index{Майхил}
+  \index{Нероуд}
   \marginpar{на англ. Myhill-Nerode}
   Нека $\L\subseteq \Sigma^\star$ е регулярен език.
   Тогава съществува ДКА $\M = \FA$, който разпознава $\L$,
@@ -1225,8 +1209,8 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   т.е. $\abs{Q} = \abs{\approx_\L}$.
 \end{thm}
 \begin{proof}
-\marginpar{стр. 96 от \cite{papadimitriou}}
-При даден регулярен език $\L$, ние определяме ДКА $\M = \FA$, за който $\L = \L(\M)$ като
+  \marginpar{стр. 96 от \cite{papadimitriou}}
+  При даден регулярен език $\L$, ние определяме ДКА $\M = \FA$, за който $\L = \L(\M)$ като
   \begin{itemize}
   \item
     $Q = \{[\alpha]_\L\mid \alpha\in \Sigma^\star\}$;
@@ -1240,35 +1224,35 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   \end{itemize}
   
   Първо, трябва да се уверим, че множеството от състояния $Q$ е крайно, т.е.
-  релацията $\approx_\Ls$ има крайно много класове на еквивалентност.
-  И така, тъй като $\Ls$ е регулярен език, то той се разпознава от някой ДКА $\M^\prime$.
-  Ние знаем от теорема \ref{th:rel-finer}, че $\sim_{\M^\prime}$ е по-фина релация от $\approx_\Ls$.
-  Това означава, че броят на класове на еквивалентност на $\approx_\Ls$ е по-малък от този
+  релацията $\approx_\L$ има крайно много класове на еквивалентност.
+  И така, тъй като $\L$ е регулярен език, то той се разпознава от някой ДКА $\M^\prime$.
+  Ние знаем от \Th{rel-finer}, че $\sim_{\M^\prime}$ е по-фина релация от $\approx_\L$.
+  Това означава, че броят на класове на еквивалентност на $\approx_\L$ е по-малък от този
   на $\sim_{\M^\prime}$, който очевидно е краен, защото е ограничен отгоре от $\abs{Q^\prime}$.
 
   Второ, трябва да се уверим, че функцията $\delta$ е добре определена, т.е. 
   да проверим, че
-  \[[\alpha]_L = [\beta]_L\ \Rightarrow\ \delta([\alpha]_L,a) = \delta([\beta]_L,a).\]
-  Но това се вижда веднага, защото от определението на релацията $\approx_L$ следва, че
-  ако $\alpha \approx_L \beta$, то за всяка буква $a$, $\alpha a \approx_L \beta a$,
-  т.е. $[\alpha a]_L = [\beta a]_L$.
+  \[[\alpha]_\L = [\beta]_\L\ \Rightarrow\ \delta([\alpha]_\L,a) = \delta([\beta]_\L,a).\]
+  Но това се вижда веднага, защото от определението на релацията $\approx_\L$ следва, че
+  ако $\alpha \approx_\L \beta$, то за всяка буква $a$, $\alpha a \approx_\L \beta a$,
+  т.е. $[\alpha a]_\L = [\beta a]_\L$.
   
   Така вече сме показали, че $\M$ е коректно зададен ДКА.
-  Остава да покажем, че $\M$ разпознава езика $\Ls$, т.е. $\Ls(\M) = \Ls$.
+  Остава да покажем, че $\M$ разпознава езика $\L$, т.е. $\L(\M) = \L$.
   \begin{prop}
     За всеки две думи $\alpha,\beta\in\Sigma^\star$,
-    $\delta^\star([\alpha]_\Ls,\beta) = [\alpha\beta]_\Ls$.
+    $\delta^\star([\alpha]_\L,\beta) = [\alpha\beta]_\L$.
   \end{prop}
   \begin{proof}
     Ще докажем това свойство с индукция по дължината на думата $\beta$.
     \begin{enumerate}[a)]
     \item
       $\beta = \varepsilon$, директно от дефиницията на $\delta^\star$,
-      $\delta^\star([x]_\Ls,\varepsilon) = [x\varepsilon]_\Ls = [x]_\Ls$.
+      $\delta^\star([x]_\L,\varepsilon) = [x\varepsilon]_\L = [x]_\L$.
     \item
       Нека $\beta$ има дължина $n+1$ и сме доказали твърдението за думи с дължина $\leq n$.
       Тогава $\beta = \gamma a$, където $\gamma$ има дължина $n$.
-      \[\delta^\star([\alpha]_\Ls, \gamma a) = \delta(\delta^\star([\alpha]_\Ls,\gamma),a) = \delta([\alpha\gamma]_\Ls,a) = [\alpha\gamma a]_\Ls = [\alpha\beta]_\Ls.\]
+      \[\delta^\star([\alpha]_\L, \gamma a) = \delta(\delta^\star([\alpha]_\L,\gamma),a) = \delta([\alpha\gamma]_\L,a) = [\alpha\gamma a]_\L = [\alpha\beta]_\L.\]
     \end{enumerate}
   \end{proof}
   Сега, 
@@ -1276,7 +1260,7 @@ $L = \{\alpha \in \Sigma^\star \mid \A\mbox{ разпознава }\alpha\}$.
   
 \end{proof}
 
-Ако $M = \FA$ е автомат, за който $\abs{Q} = \abs{\approx_\Ls}$, то ще казваме, че
+Ако $M = \FA$ е автомат, за който $\abs{Q} = \abs{\approx_\L}$, то ще казваме, че
 $M$ е {\bf минимален} за езика $\Ls$.
 
 \begin{framed}
@@ -1285,29 +1269,41 @@ $M$ е {\bf минимален} за езика $\Ls$.
   \end{cor}
 \end{framed}
 \begin{proof}
-  Ако $\Ls$ е регулярен, то той се разпознава от някой ДКА $\M$, който има крайно много състояния 
+  Ако $\L$ е регулярен, то той се разпознава от някой ДКА $\M$, който има крайно много състояния 
   и следователно крайно много класове на еквивалентност относно $\sim_\M$.
-  Релацията $\approx_\Ls$ е по-груба от $\sim_\M$ и има по-малко класове на еквивалентност.
-  Следователно, $\approx_\Ls$ има крайно много класове на еквивалентност.
+  Релацията $\approx_\L$ е по-груба от $\sim_\M$ и има по-малко класове на еквивалентност.
+  Следователно, $\approx_\L$ има крайно много класове на еквивалентност.
   
-  За другата посока, ако $\approx_\Ls$ има крайно много класове на еквивалентност, то можем да 
-  построим ДКА $\M$ както в доказателството на теорема \ref{th:myhill-nerode} на Майхил-Нероуд,
-  който разпознава $\Ls$.
+  За другата посока, ако $\approx_\L$ има крайно много класове на еквивалентност, то можем да 
+  построим ДКА $\M$ както в доказателството на \Th{myhill-nerode} на Майхил-Нероуд,
+  който разпознава $\L$.
   
 \end{proof}
 
 Това следствие ни дава още един начин за проверка дали даден език е регулярен.
-За разлика от Лема \ref{lem:pumping-reg} за нарастването, сега имаме
+За разлика от \Lem{pumping-reg} за нарастването, сега имаме
 необходимо и достатъчно условие.
-При даден език $\Ls$, ние строим неговата релация $\approx_\Ls$.
-Ако тя е крайна, то езикът $\Ls$ е регулярен.
-Ако тя не е крайна, то езикът $\Ls$ не е регулярен.
+При даден език $\L$, ние строим неговата релация $\approx_\L$.
+Ако тя е крайна, то езикът $\L$ е регулярен.
+Ако тя не е крайна, то езикът $\L$ не е регулярен.
 
 \begin{example}
-  За езика $\Ls = \{a^nb^n\mid n \in \N\}$ имаме, че $\abs{\approx_\Ls} = \infty$,
-  защото \[k \neq j\ \rightarrow\ [a^kb]_\Ls \neq [a^jb]_\Ls.\]
-  Проверете, че $[a^kb]_\Ls = \{a^kb,a^{k+1}b,\dots,a^{k+l}b^l,\dots\}$.
+  За езика $L = \{a^nb^n\mid n \in \Nat\}$ имаме, че $\abs{\approx_L} = \infty$,
+  защото \[k \neq j\ \rightarrow\ [a^kb]_L \neq [a^jb]_L.\]
+  Проверете, че $[a^kb]_L = \{a^kb,a^{k+1}b^{2},\dots,a^{k+l}b^{l+1},\dots\}$.
+  Така получаваме, че релацията $\approx_L$ има безкрайно много класове на еквивалентност
+  и следователно този език {\bf не} е автоматен.
 \end{example}
+
+\begin{example}
+  За езика $L = \{a^{n^2} \mid n \in \Nat\}$ имаме, че $\abs{\approx_L} = \infty$,
+  защото \[m \neq n\ \rightarrow\ [a^{n^2}]_L \neq [a^{m^2}]_L.\]
+  
+  Да разгледаме $n < m$ и думата $\gamma = a^{2n+1}$.
+  Тогава $a^{n^2}\gamma = a^{(n+1)^2} \in L$, но 
+  $m^2 < m^2 + 2n + 1 < (m+1)^2$ и следователно $a^{m^2}\gamma \not\in L$.
+\end{example}
+
 
 \begin{dfn}
   Нека $M_1 = \FAn{1}$ и $M_2 = \FAn{2}$.
@@ -1343,7 +1339,7 @@ $M$ е {\bf минимален} за езика $\Ls$.
     $f$ е определена коректно, т.е. $f$ е функция.
     За целта, нека $q\in Q$ и $\alpha,\beta$ са две думи, за които
     \[\delta^\star(s,\alpha) = q = \delta^\star(s,\beta).\]
-    Тогава $\alpha\sim_M \beta$ и от теорема \ref{th:rel-finer} следва, 
+    Тогава $\alpha\sim_M \beta$ и от \Th{rel-finer} следва, 
     че $\alpha \approx_\Ls \beta$ и $[\alpha]_\Ls = [\beta]_\Ls$.
   \item
     $f$ е инективна, т.е. ако $(\forall q_1,q_2 \in Q)[q_1\neq q_2\ \rightarrow\ f(q_1) \neq f(q_2)]$.
@@ -1376,20 +1372,19 @@ $M$ е {\bf минимален} за езика $\Ls$.
 \item
   Нека $q_\alpha$ е състоянието, което съответства на думата $\alpha$ в $\M$, т.е.
   $\delta^\star_\M(s,\alpha) = q_\alpha$. Тогава:
-  \[q_\alpha \equiv q_\beta\ \iff\ \alpha\approx_{\Ls(\M)} \beta.\]
-  Това означава, че ако в $\M$ няма недостижими състояния от началното състояние $s$, то $\abs{\equiv} = \abs{\approx_{\Ls(\M)}}$.
+  \[q_\alpha \equiv q_\beta\ \iff\ \alpha\approx_{\L(\M)} \beta.\]
+  Това означава, че ако в $\M$ няма недостижими състояния от началното състояние $s$, то $\abs{\equiv} = \abs{\approx_{\L(\M)}}$.
 \end{itemize}
 
-При даден език $\Ls$ и ДКА $\M = \FA$, който го разпознава, нашата цел е да построим нов ДКА $\M_0$,
-който има толкова състояния колкото са класовете на еквивалентност на релацията $\approx_\Ls$.
+При даден език $\L$ и ДКА $\M = \FA$, който го разпознава, нашата цел е да построим нов ДКА $\M_0$,
+който има толкова състояния колкото са класовете на еквивалентност на релацията $\approx_\L$.
 Това ще направим като ``слеем'' състоянията на $\M$, които са еквивалентни относно релацията $\equiv$.
 Това означава, че всяко състояние на $\M_0$ ще отговаря на един клас на еквивалентност на релацията $\equiv$.
 Проблемът с намирането на класовете на еквивалентност на релацията $\equiv$ е кванторът $\forall \gamma \in \Sigma^\star$
 в нейната дефиницията.
 
-Алгоритъмът представлява намиранто на релации $\equiv_n$, където
-\[p\equiv_n q \iff (\forall\gamma\in\Sigma^\star)[\abs{\gamma}\leq n\ \rightarrow\ ((p,\gamma)\in A_M \iff 
-(q,\gamma) \in A_M)].\]
+Алгоритъмът представлява намирането на релации $\equiv_n$, където
+\[p\equiv_n q \iff (\forall\gamma\in\Sigma^\star)[\abs{\gamma}\leq n\ \rightarrow\ (\delta^\star(p,\gamma) \in F\ \iff\ \delta^\star(q,\gamma) \in F)].\]
 
 Обърнете внимание, че за всяко $n$, $\equiv_n$ е {\em по-груба} релация от $\equiv_{n+1}$, 
 която на свой ред е по-груба от $\equiv$.
@@ -1478,7 +1473,7 @@ $M$ е {\bf минимален} за езика $\Ls$.
 % % \end{figure}
 
 
-% % \newpage
+% \newpage
 \section{Въпроси}
 
 Вярно ли е, че:
