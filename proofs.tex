@@ -1,15 +1,21 @@
-\subsection*{Допускане на противното}
+\chapter{Доказателства на твърдения}
 
-\begin{prb}
-  За всяко $a \in \Z$, ако $a^2$ е четно, то $a$ е четно.
-\end{prb}
+Ще разгледаме два основни метода за доказателства на твърдения.
+
+\section{Допускане на противното}
+
+\begin{problem}
+  \label{prob:even-number-square}
+  За всяко $a \in \Int$, ако $a^2$ е четно, то $a$ е четно.
+\end{problem}
 \begin{proof}
   Твърдението може да се запише като
   \[(\forall a\in\Z)[a^2\mbox{ е четно}\ \rightarrow\ a\mbox{ е четно}].\]
+  \marginpar{$\neg (\forall x)(A(x) \rightarrow B(x))$ е еквивалентно на $ \equiv (\exists x)(A(x) \wedge \neg B(x))$}
   Да допуснем противното, т.е.
   \[(\exists a\in\Z)[a^2\mbox{ е четно}\ \wedge\ a\mbox{ не е четно}].\]
-  Да вземем едно такова $a$.
-  Тогава $a = 2k+1$, за някое $k \in \Z$
+  Да вземем едно такова нечетно $a$, за което $a^2$ е четно.
+  Това означава, че $a = 2k+1$, за някое $k \in \Z$,
   и \[a^2 = (2k+1)^2 = 4k^2 + 4k + 1,\]
   което очевидно е нечетно число.
   Но ние допуснахме, че $a^2$ е четно.
@@ -18,18 +24,160 @@
   \[(\forall a\in\Z)[a^2\mbox{ е четно}\ \rightarrow\ a\mbox{ е четно}].\]
 \end{proof}
 
-\begin{prb}
-  Докажете, че:
+\begin{problem}
+  Всяко естествено число $n \geq 2$ може да се запише като произведение на прости числа.
+\end{problem}
+\begin{proof}
+  Доказателството протича с индукция по $n$.
+  \begin{enumerate}[a)]
+  \item 
+    За $n = 2$  е ясно.
+  \item
+    Ако $n+1$ е просто число, то всичко е ясно.
+    Ако $n+1$ е съставно, то \[n + 1 = n_1\cdot n_2.\]
+    Тогава $n_1 = p^{n_1}_1\cdots p^{n_k}_k$ и $n_2 = q^{m_1}_1\cdots q^{m_r}_r$,
+    където $p_1,\dots,p_k$ и $q_1,\dots,q_r$ са прости числа.
+    Тогава е ясно, че $n+1$ също е произведение на прости числа.
+  \end{enumerate}
+\end{proof}
+
+\begin{thm}[Основна теорема на аритметиката]
+  \label{th:main-arithmetic}
+  Всяко естествено число $n \geq 2$ може да се запише {\bf по единствен начин} като произведение на прости числа.
+\end{thm}
+\begin{proof}
+  Вече знаем, че всяко число може да се представи като произведение на прости числа.
+  Да допуснем, че има такива, които имат няколко различни такива представяния.
+  От всички тези числа, нека изберем {\em най-малкото с това свойство}.
+  Да го означим с $n$. Имаме, че  
+  \[n = p_1p_2\dots p_k = q_1q_2\dots q_m.\]
+  Можем да приемем, че простите числа $p_1,\dots,p_k$ и $q_1,\dots,q_m$ са подредени във възходящ ред.
+  Без ограничение на общността, нека $p_1 < q_1$.
+  Знаем със сигурност, че $p_1 \neq q_1$, защото ако $p_1 = q_1$, то $n' = n/p_1$ 
+  е число по-малко от $n$, което има две различни представяния като произведение на прости числа, което е противоречие с избора ни на $n$ - 
+  най-малкото такова число.
+  
+  И така, нека $p_1 < q_1$. Следователно, $p_1 < q_i$, за $i = 1, \dots, m$.
+  Тогава съществуват числа $a_i$, $r_i$, за които:
+  \[q_i = a_ip_1 + r_i.\]
+  Ясно е, че $0 < r_i < p_1 < q_i$, $i = 1,\dots, m$ и 
+  \[n' = r_1r_2\dots r_m < q_1q_2\dots q_m = n.\]
+  Числото $n'$ може да се представи като произведение на прости числа, като разложим $r_1,\dots,r_m$.
+  Знаем, че в това произведение {\em не участва} $p_1$, защото $r_i < p_1$.
+  Освен това,
+  \[n = q_1q_2\dots q_m = (a_1p_1+r_1)(a_2p_1 + r_2)\dots(a_mp_1+r_m) = A + \underbrace{r_1r_2\dots r_m}_{n'}.\]
+  Понеже $p_1 | A$ и $p_1 | n$, то $p_1 | n'$.
+  Това означава, че можем да получим друго представяне на $n'$ като произведение на прости числа, в което {\em участва} $p_1$.
+  Това е противоречие с минималността на $n$.
+\end{proof}
+
+\begin{thm}[Безу]
+  Нека $a, b \in \Int$, като поне едно от двете не е $0$.
+  Тогава съществуват $x,y \in \Int$, такива че 
+  \[xa + yb = \text{НОД}(a,b).\]
+\end{thm}
+\begin{proof}
+  За дадените числа $a, b \in \Int$, да разгледаме множеството
+  \[S = \{x \mid x > 0\ \&\ x = ma + nb, \text{ за някои }m,n \in \Int \}.\]
+  Лесно се съобразява, че $S \neq \emptyset$.
+  
+  Да вземем {\em най-малкия елемент} $s \in S$.
+  Тогава  $s = ua+vb$.
+  Да разгледаме произволен елемент $x \in S$, $x = ma + nb$ и да допуснем, че $s \not\vert x$.
+  Тогава $x = qs + r$ и $0 < r < s$.
+  \begin{align*}
+    r & = qs - x\\
+      & = qua + qvb - ma - nb\\
+      & = a(qu - m) + b(qv - n)
+  \end{align*}
+  Понеже $r > 0$, то $r \in S$.
+  Но от $s > r$ достигаме до противоречие с минималността на $s$.
+  Следователно, $s | x$.
+
+  Да означим $d = \text{НОД}(a,b)$.
+  Вече знаем, че за всяко $x \in S$, $s|x$.
+  Понеже $s \vert \abs{a}$ и $s \vert \abs{b}$, $1 \leq s \leq d$.
+  Но по определение, $d \vert a$ и $d \vert b$.
+  Тогава, $d \vert ua$ и $d \vert vb$ и $d \vert (ua+vb) = s$.
+  Получаваме, че $d \leq s$.
+  Следователно, $\text{НОД}(a,b) = s$.
+\end{proof}
+
+\begin{problem}
+  Докажете, че
+  \[\mbox{НОК}(a,b) = \frac{a.b}{\mbox{НОД}(a,b)}.\]
+\end{problem}
+\begin{proof}
+  Нека $D = \mbox{НОД}(a,b)$.
+  Това означава, че
+  \[a = Da_1,\ b = Db_1,\ \mbox{НОД}(a_1,b_1) = 1.\]
+  Ще докажем, че за всяко $g$, за което $a | g$ и $b | g$,
+  то съществува $q_1$, такова че 
+  \[g = \frac{ab}{D}q_1.\]
+  Да разгледаме $g$, такова че $a | g$ и $b | g$.
+  \begin{align*}
+    D|a \text{ и } a|g\ \Rightarrow\ & g = Da_1q,\\
+    D|b \text{ и } b|g\ \Rightarrow\ & \frac{g}{b} = \frac{Da_1q}{Db_1} = \frac{a_1q}{b_1}.
+  \end{align*}
+  Понеже $(a_1,b_1) = 1$, то $q = b_1q_1$.
+  Тогава $\frac{g}{b} = a_1q_1$ и 
+  \[g = \frac{ab}{D}q_1.\]
+  Тогава за $q_1 = 1$, 
+  \[g = \frac{ab}{D}.\]
+\end{proof}
+
+
+% Можем да обобщим предишната задача по следния начин.
+% \begin{problem}
+%   Нека $p$ е просто число.
+%   Тогава за всяко $a \in \Nat$, ако $p \vert a^2$, то $p \vert a$.  
+% \end{problem}
+% \begin{proof}
+%   Да допуснем, че съществува число $a\in \Nat$, за което 
+%   $p \vert a^2$, но $p \not\vert a$.
+  
+%   Първо ще докажем, че в този случай $p \leq a$.
+%   Да допуснем, че $p > a$. Тогава $a = p - m$, за някое $m$.
+%   Тогава $a^2 = p(p - 2m) + m^2$.
+%   Понеже $p \vert a^2$, то $p \vert m^2$
+
+%   Да вземем най-малкото такова $a \in \Nat$.
+%   Тогава имаме, че $a^2 = kp$ и $a = lp + r$, където $r < p$.
+%   \[a^2 = kp = l^2p^2 + 2lpr + r^2.\]
+%   Получаваме, че $p \vert r^2$, но $p \not\vert r$.
+%   Лесно се съобразява, че $r < a$.
+  
+% \end{proof}
+
+
+
+\begin{problem}
+  За всеко $a,b \in \Z$ и за всяко просто число $p$,
+  ако $p\vert ab$, то $p\vert a$ или $p\vert b$ (може и двете).
+\end{problem}
+\begin{proof}
+  Нека $p \vert ab$. Тогава $ab = kp$.
+  Знаем, че $ab = p^{n_1}_1\dots p^{n_m}_m = kp$.
+  Тогава $p = p_i$, за някое $i = 1,\dots,m$.
+  Следва, че $p$ участва в разлагането на прости множители или на $a$ или на $b$.
+\end{proof}
+
+
+\begin{problem}
+  Докажете, че следните числа {\bf не} са рационални:
   \begin{enumerate}[a)]
   \item
-    $\sqrt{2},\sqrt{3},\sqrt{6}$ не са рационални числа.
+    $\sqrt{2},\sqrt{3},\sqrt{6}$;
   \item
-    $\sqrt{pq}$ и $\sqrt{\frac{p}{q}}$ не са рационални числа, където
-    $p$ и $q$ са прости числа.
+    $\sqrt{p}$, където $p$ е просто число;
   \item
-    $log_23$ не е рационално.
+    $\sqrt{n}$, където $n$ не е точен квадрат;
+  \item
+    $\sqrt{pq}$ и $\sqrt{\frac{p}{q}}$, където $p$ и $q$ са различни прости числа;
+  \item
+    $log_23$.
   \end{enumerate}
-\end{prb}
+\end{problem}
 \begin{proof}
   \begin{enumerate}[a)]
   \item
@@ -38,21 +186,26 @@
     Без ограничение, можем да приемем, че $a$ и $b$ са естествени числа,
     които нямат общи делители, т.е. не можем да съкратим дробта $\frac{a}{b}$.
     Получаваме, че \[2b^2 = a^2.\]
-    Тогава $a^2$ е четно число и следователно $a$ е четно число, защото 
-    произведение на две нечетни числа е нечетно число.
+    Тогава $a^2$ е четно число и от Задача \ref{prob:even-number-square}, $a$ е четно число.
     Нека $a = 2k$. Получаваме, че
     \[2b^2 = 4k^2,\]
     от което следва, че
     \[b^2 = 2k^2.\]
-    Това означава, че $b$ също е четно число, $b = 2n$.
+    Това означава, че $b$ също е четно число, $b = 2n$, за някое $n \in \Z$.
     Следователно, $a$ и $b$ са четни числа и имат общ делител $2$,
     което е противоречие с нашето допускане. Така достигаме до
     противоречие.
     Накрая заключаваме, че $\sqrt{2}$ не е рационално число.
+  \item
+    Да допуснем, че $\sqrt{p} = \frac{m}{n}$ и $m$ и $n$ са взаимно прости.
+    Тогава $n^2p = m^2$. От това следва, че $p | m^2$ и следователно $p | m$.
+    Нека $m = kp$. Тогава $n^2p = k^2p^2$ и $n^2 = k^2p$.
+    Сега имаме, че $p | n$, но така стигаме до противоречие с факта, че $m$ и $n$
+    са взаимно прости.
   \end{enumerate}
 \end{proof}
 
-\subsection*{Индукция върху $\Nat$}
+\section{Индукция върху $\Nat$}
 
 Доказателството с индукция по $\Nat$ представлява следната схема:
 \begin{prooftree}
@@ -64,7 +217,7 @@
 Това означава, че ако искаме да докажем, че свойството $P(x)$ е вярно за всяко $x\in\Nat$,
 то трябва да докажем първо, че $P(0)$ и след това ако $P(x)$ вярно, то също така е вярно $P(x+1)$.
 
-\begin{prb}
+\begin{problem}
   Докажете, че:
   \begin{enumerate}[a)]
   \item
@@ -128,9 +281,9 @@
     $\sum^n_{i=0}(-\frac{1}{2})^i = \frac{2^{n+1}+(-1)^n}{3\cdot 2^n}$;
 
   \end{enumerate}
-\end{prb}
+\end{problem}
 
-% \begin{prb}
+%  \begin{problem}
 %   \begin{enumerate}
 %   \item
 %     за $n > 1$ е изпълнено
@@ -144,7 +297,7 @@
 %   \item
 %     $\sum^n_{i=1}\frac{1}{\sqrt{i}} > 2(\sqrt{n+1} - 1)$;
 %   \end{enumerate}
-% \end{prb}
+% \end{problem}
 % \begin{proof}
 %   \begin{enumerate}[]
 %   \item
@@ -179,7 +332,7 @@
 %   \end{enumerate}
 % \end{proof}
 
-% \begin{prb}
+% \begin{problem}
 %   \marginpar{Нютонов бином}
 %   Нека положим 
 %   \[\binom{n}{m} = \frac{n!}{(n-i)!i!}\]
@@ -192,21 +345,80 @@
 %   \item
 %     $\binom{n+1}{m+1} = \binom{n}{m} + \binom{n}{m+1}$;
 %   \end{enumerate}
-% \end{prb}
+% \end{problem}
 
-\begin{prb}
-  \marginpar{Наричат се хармонични числа}
-  Нека да положим
-  $H_n = \sum^n_{i=1}\frac{1}{i}$.
+% \begin{problem}
+%   \marginpar{Наричат се хармонични числа}
+%   Нека да положим
+%   $H_n = \sum^n_{i=1}\frac{1}{i}$.
+%   Проверете:
+%   \begin{enumerate}[a)]
+%   \item
+%     $\sum^n_{i=1}H_i = (n+1)H_n - n$.
+%   \item
+%     $H_{2^k} \geq 1+ k/2$, за всяко $k \geq 0$.
+%   \end{enumerate}
+% \end{problem}
+
+\begin{problem}
+  Докажете, че за произволни числа $x,y$ и естествено число $n$ е изпълнено равенството:
+  \[(x+y)^n = \sum^{n}_{i=0}\binom{n}{i}x^iy^{n-i}.\]
+\end{problem}
+\begin{problem}[Теорема на Ферма]
+  Нека $p$ е просто число. Тогава докажете, че за числото $a$:
+  \begin{enumerate}[i)]
+  \item
+    $a^p \equiv a\ (\bmod\ p)$;
+  \item 
+    $a^{p-1} \equiv 1\ (\bmod\ p)$, ако $a$ не се дели на $p$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  Да разгледаме следното равенство:
+  \[(x+1)^p = x^p + \binom{p}{1}x^{p-1} + \binom{p}{2}x^{p-2} + \dots + 1 = \sum^{p}_{i=0}\binom{p}{i}x^i\]
+  За $i = 1,\dots,p-1$, всяко от числата $\binom{p}{i}$ се дели на $p$, то 
+  \[(x+1)^p \equiv x^p + 1\ (\bmod\ p).\]
+  Нека сега да разгледаме следната редица, която от се получва от горното равенство за $x = a-1,a-2,\dots,2$:
+  \begin{align*}
+    a^p & \equiv (a-1)^p+1\ (\bmod\ p)\\
+    (a-1)^p & \equiv (a-2)^p+1\ (\bmod\ p)\\
+    \dots & \dots\dots\\
+    2^p & \equiv 1\ (\bmod\ p).
+  \end{align*}
+  Като съберем тези сравнения, получаваме:
+  \[a^p \equiv a\ (\bmod\ p).\]
+  Ако $a$ не се дели на $p$, то
+  \[a^{p-1} \equiv 1\ (\bmod\ p).\]
+\end{proof}
+
+\begin{problem}
+  \marginpar{Числа на Фибоначи}
+  Да определим следната редица:
+  \[F_0 = 0,F_1 = 1,\dots,F_{n+2} = F_{n} + F_{n+1}.\]
   Проверете:
   \begin{enumerate}[a)]
   \item
-    $\sum^n_{i=1}H_i = (n+1)H_n - n$.
+    $\sum^n_{i=0} F^2_i = F_{n}F_{n+1}$;
   \item
-    $H_{2^k} \geq 1+ k/2$, за всяко $k \geq 0$.
+    $\sum^n_{i=1} F_{2i-1} = F_{2n}$;
+  \item
+    $\sum^{2n}_{i=1}F_{i-1}F_{i} = F^2_{2n}$;
+  \item
+    единствено членовете от вида $F_{3n}$ са четни;
+  \item
+    за $n > 0$, $F_{n+1}F_{n-1} - F^2_n = (-1)^n$;
+  \item
+    $F_{m+n} = F_{m-1}\cdot F_{n} + F_m \cdot F_{n-1}$;
+  \item
+    ако $m\vert n$, то $F_m \vert F_n$.
+  \item
+    \marginpar{Използвайте, че $\phi^2 = \phi + 1$}
+    ако $n\geq 3$, то $F_n > \phi^{n-2}$,
+    където $\phi = \frac{1+\sqrt{5}}{2}$.
   \end{enumerate}
-\end{prb}
+\end{problem}
 
+\newpage 
 \subsection*{Пълна индукция върху $\Nat$}
 
 Доказателство с пълна индукция по $\Nat$ за свойството $P$ представлява следната схема:
@@ -289,7 +501,7 @@
 %   \end{enumerate}
 % \end{proof}
 
-\begin{prb}
+\begin{problem}
   Докажете, че за всяко $x,y\in\Nat$
   \[f(x,y) = x^y,\]
   където
@@ -301,32 +513,38 @@
       f(x,y/2) * f(x,y/2), & x\neq 0\ \wedge y\mbox{ е четно}
     \end{cases}
   \end{align*}
-\end{prb}
+\end{problem}
 
-\begin{prb}
-  Всяко естествено число $n \geq 2$ може да се запише като произведение на прости числа.
-\end{prb}
+
+\begin{problem}
+  Функцията $f:\Nat\times\Nat \to \Nat$, определена като 
+  \[f(x,y) = 2^x(2y+1)-1,\]
+  е биективна.
+\end{problem}
 \begin{proof}
-  \begin{enumerate}[a)]
-  \item 
-    За $n = 2$  е ясно.
-  \item
-    Ако $n+1$ е просто число, то всичко е ясно.
-    Ако $n+1$ е съставно, то \[n + 1 = n_1\cdot n_2.\]
-    Тогава $n_1 = p^{n_1}_1\cdots p^{n_k}_k$ и $n_2 = q^{m_1}_1\cdots q^{m_r}_r$,
-    където $p_1,\dots,p_k$ и $q_1,\dots,q_r$ са прости числа.
-    Тогава е ясно, че $n$ също е произведение на прости числа.
-  \end{enumerate}
+  Първо, да вземем едно произволно естествено число $z$.
+  Да разгледаме единственото представяне на $z+1$ като произведение на прости числа.
+  Нека $z+1 = 2^{x}p^{k_1}_{i_1}p^{k_2}_{i_2}\dots p^{k_n}_{i_n}$, като $2 < p_{i_1} < p_{i_2} < \dots < p_{i_n}$.
+  Това означава, че $z' = p^{k_1}_{i_1}p^{k_2}_{i_2}\dots p^{k_n}_{i_n}$ е нечетно число и следователно съществува $y$,
+  за което $2y+1 = z'$.
+  Следователно, $2^x(2y+1) = z+1$ и тогава $f(x,y) = z$.
+
+  Сега, нека $\pair{x,y} \neq \pair{x',y'}$.
+  Интересният случай е когато $x \neq x'$ и $y \neq y'$.
+  Да допуснем, че $f(x,y) = f(x',y') = z+1$.
+  Това означава, че числото $z$ има две различни представяния като произведение на прости числа,
+  което е противоречие.
 \end{proof}
 
-\begin{prb}
-  Нека фунцкията $f:\Nat\to\Nat$ е определена като
-  \begin{align*}
-    f(x) = x-10, & x > 100\\
-    f(x) = f(f(x+11)), & x < 100.
-  \end{align*}
-  Докажете, че $(\forall x \leq 100)[f(x) = 91]$.
-\end{prb}
+
+% \begin{problem}
+%   Нека фунцкията $f:\Nat\to\Nat$ е определена като
+%   \begin{align*}
+%     f(x) = x-10, & x > 100\\
+%     f(x) = f(f(x+11)), & x < 100.
+%   \end{align*}
+%   Докажете, че $(\forall x \leq 100)[f(x) = 91]$.
+% \end{problem}
 
 \subsection*{Индукция върху $\Nat\times\Nat$}
 
@@ -376,7 +594,7 @@
   то $P$ е вярно и за $\pair{x,y}$.
 \end{remark}
 
-\begin{prb}
+\begin{problem}
   Докажете,  че $f(x,y) = \abs{x-y}$, където
   \begin{align*}
     f(x,y) = 
@@ -386,7 +604,7 @@
       f(x-1,y-1), & \mbox{ иначе}
     \end{cases}
   \end{align*}
-\end{prb}
+\end{problem}
 \begin{proof}
   Индукция по $(\Nat^2,\prec)$, където $\prec$ е лексикографската наредба.
   Имаме един минимален елемент $(0,0)$.
@@ -399,7 +617,7 @@
   \[f(x,y) = f(x-1,y-1) = \abs{x-1-y+1} =\abs{x-y}.\]
 \end{proof}
 
-\begin{prb}
+\begin{problem}
   Докажете, че $f(x,y) = \mbox{НОД}(x,y)$, където
   за $x,y \in \Nat$,
   \begin{align*}
@@ -410,54 +628,8 @@
       x, & x = y.
     \end{cases}
   \end{align*}
-\end{prb}
+\end{problem}
 
-\begin{prb}
-  \marginpar{Числа на Фибоначи}
-  Да определим следната редица:
-  \[F_0 = 0,F_1 = 1,\dots,F_{n+2} = F_{n} + F_{n+1}.\]
-  Проверете:
-  \begin{enumerate}[a)]
-  \item
-    $\sum^n_{i=0} F^2_i = F_{n}F_{n+1}$;
-  \item
-    $\sum^n_{i=1} F_{2i-1} = F_{2n}$;
-  \item
-    $\sum^{2n}_{i=1}F_{i-1}F_{i} = F^2_{2n}$;
-  \item
-    единствено членовете от вида $F_{3n}$ са четни;
-  \item
-    за $n > 0$, $F_{n+1}F_{n-1} - F^2_n = (-1)^n$;
-  \item
-    $F_{m+n} = F_{m-1}\cdot F_{n} + F_m \cdot F_{n-1}$;
-  \item
-    ако $m\vert n$, то $F_m \vert F_n$.
-  \item
-    \marginpar{Използвайте, че $\phi^2 = \phi + 1$}
-    ако $n\geq 3$, то $F_n > \phi^{n-2}$,
-    където $\phi = \frac{1+\sqrt{5}}{2}$.
-  \end{enumerate}
-\end{prb}
-
-\begin{prb}
-  \marginpar{Нютонов бином}
-  Нека положим $\binom{n}{m} = \frac{n!}{(n-i)!i!}$.
-  Проверете:
-  \begin{enumerate}[a)]
-  \item 
-    $2^n = \sum^n_{i=0}\binom{n}{i}$;
-  \item
-    $(x+y)^n = \sum^n_{i=0} \binom{n}{i}x^{n-i}y^{i}$;
-  \item
-    $\binom{n+1}{m+1} = \binom{n}{m} + \binom{n}{m+1}$;
-  \end{enumerate}
-\end{prb}
-
-\begin{prb}
-  Докажете, че за всеки $m,n\in\Nat$
-  съществуват $p,q\in\Z$, такива че
-  \[p\cdot m +  q\cdot n = \mbox{НОД}(m,n).\]
-\end{prb}
 
 \newpage
 \subsection*{Фундирани множества}
@@ -563,7 +735,7 @@
 \[(\forall y\in A)[y \prec x_0\ \rightarrow P(y)].\]
 Но това означава, че $P(x_0)$, което е противоречие.
 
-\begin{prb}
+\begin{problem}
   Докажете,  че $f(x,y) = \abs{x-y}$, където
   \begin{align*}
     f(x,y) = 
@@ -573,7 +745,7 @@
       f(x-1,y-1), & \mbox{ иначе}
     \end{cases}
   \end{align*}
-\end{prb}
+\end{problem}
 \begin{proof}
   Индукция по $(\Nat^2,\prec)$, където $\prec$ е лексикографската наредба.
   Имаме един минимален елемент $(0,0)$.
@@ -586,7 +758,7 @@
   \[f(x,y) = f(x-1,y-1) = \abs{x-1-y+1} =\abs{x-y}.\]
 \end{proof}
 
-\begin{prb}
+\begin{problem}
   Докажете, че $f(x,y) = \mbox{НОД}(x,y)$, където
   за $x,y \in \Nat$,
   \begin{align*}
@@ -597,9 +769,9 @@
       x, & x = y.
     \end{cases}
   \end{align*}
-\end{prb}
+\end{problem}
 
-\begin{prb}
+\begin{problem}
   Докажете, че $f(x,y) = \binom{x}{y}$, където
   за $x \geq y, x,y\in\Nat$,
   \begin{align*}
@@ -609,9 +781,9 @@
       f(x-1,y) + f(x-1,y-1), & \mbox{ иначе}
     \end{cases}
   \end{align*}
-\end{prb}
+\end{problem}
 
-% \begin{prb}
+% \begin{problem}
 %   \begin{align*}
 %     f(x,y) = 
 %     \begin{cases}
@@ -622,37 +794,18 @@
 %   \end{align*}
 %   Докажете, че $f$ е тотална функция.
 
-% \end{prb}
-
-\begin{dfn}
-  Да определим следната редица:
-  \[F_0 = 0,F_1 = 1,\dots,F_{n+2} = F_{n} + F_{n+1}.\]
-  Числата $F_n$ се наричат {\em числа на Фибоначи}.
-\end{dfn}
-
-\begin{prb}
-  Докажете, че:
-  \begin{enumerate}[a)]
-  \item
-    единствено членовете от вида $F_{3n}$ са четни;
-  \item
-    за $n > 0$, $F_{n+1}F_{n-1} - F^2_n = (-1)^n$;
-  \item
-    $F_{m+n} = F_{m-1}\cdot F_{n} + F_m \cdot F_{n-1}$;
-  \item
-    ако $m\vert n$, то $F_m \vert F_n$.
-  \item
-    ако $n\geq 3$, то $F_n > \phi^{n-2}$,
-    където $\phi = \frac{1+\sqrt{5}}{2}$.
-  \end{enumerate}
-\end{prb}
+% \end{problem}
 
 
-\begin{prb}
-  Докажете, че за всеки $m,n\in\Nat$
-  съществуват $p,q\in\Z$, такива че
-  \[p\cdot m +  q\cdot n = \mbox{НОД}(m,n).\]
-\end{prb}
+% \begin{problem}
+%   Докажете, че за всеки $m,n\in\Nat$
+%   съществуват $p,q\in\Z$, такива че
+%   \[p\cdot m +  q\cdot n = \mbox{НОД}(m,n).\]
+% \end{problem}
+
+$\mbox{НОК}(x,y) = z$ точно тогава, когато
+$z$ е най-малкото число, за което е изпълнено свойството $x | z\ \&\ y | z$.
+
 
 
 %%% Local Variables: 
