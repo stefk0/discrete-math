@@ -1,12 +1,14 @@
 \chapter{Булеви функции}
 
+%Основен източник е %\cite{gavrilov}.
 
-Да припомним таблицата за истинност за някои от основните булеви функции на два аргумента.
+Да припомним таблицата за истинност на някои от основните булеви функции на два аргумента.
 \marginpar{$x\oplus y$ - симетрична разлика}
 
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
   \hline
   $x$ & $y$ & $\overline{x}$ & $x \vee y$ & $xy$ & $x \rightarrow y$ & $\overline{x}\vee y$ & $x \iff y$ & $x \oplus y$ & $x\overline{y} \vee \overline{x}y$\\
+  \hline
   \hline
   0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 \\
   \hline
@@ -84,8 +86,8 @@
 \begin{solution}
   \begin{enumerate}[a)]
   \item
+    $\psi = \ & x\rightarrow ((y\rightarrow z)\rightarrow x)\ =\ \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  =\ 1$.
     \begin{align*}
-      \psi  =\ & x\rightarrow ((y\rightarrow z)\rightarrow x)\ =\ \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  =\ 1.\\
       \varphi =\ & (x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))\\
       =\ & \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
       =\ & \overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
@@ -120,31 +122,31 @@
       & $=$ & $x \oplus y\oplus z \oplus xz \oplus xy \oplus xyz$ \\
      \end{tabular}
      
-   \item
-     $\psi = \ov{x.(y\rightarrow\ov{z})} = \ov{x}\vee yz$.
+  %  \item
+  %    $\psi = \ov{x.(y\rightarrow\ov{z})} = \ov{x}\vee yz$.
      
-     \begin{tabular}{l c l}
-       $\varphi$ & $ = $ & $x\rightarrow ((\ov{x}.\ov{y}\rightarrow(\ov{x}.\ov{z}\rightarrow y))\rightarrow y).z$\\
-       & $=$ & $\ov{x} \vee ((\ov{\ov{x}.\ov{y}} \vee \ov{\ov{x}.\ov{z}}\vee y)\rightarrow y).z$\\
-       & $=$ & $\ov{x} \vee ((x\vee y \vee x\vee z \vee y)\rightarrow y).z$\\
-       & $=$ & $\ov{x} \vee ((x\vee y \vee z)\rightarrow y).z$\\
-       & $=$ & $\ov{x} \vee (\ov{x\vee y \vee z}\vee y).z$\\
-       & $=$ & $\ov{x} \vee yz$
-     \end{tabular}
+  %    \begin{tabular}{l c l}
+  %      $\varphi$ & $ = $ & $x\rightarrow ((\ov{x}.\ov{y}\rightarrow(\ov{x}.\ov{z}\rightarrow y))\rightarrow y).z$\\
+  %      & $=$ & $\ov{x} \vee ((\ov{\ov{x}.\ov{y}} \vee \ov{\ov{x}.\ov{z}}\vee y)\rightarrow y).z$\\
+  %      & $=$ & $\ov{x} \vee ((x\vee y \vee x\vee z \vee y)\rightarrow y).z$\\
+  %      & $=$ & $\ov{x} \vee ((x\vee y \vee z)\rightarrow y).z$\\
+  %      & $=$ & $\ov{x} \vee (\ov{x\vee y \vee z}\vee y).z$\\
+  %      & $=$ & $\ov{x} \vee yz$
+  %    \end{tabular}
 
      
-  \item
-    $\psi = (x\rightarrow y)\vee z = \ov{x}\vee y \vee z$.
+  % \item
+  %   $\psi = (x\rightarrow y)\vee z = \ov{x}\vee y \vee z$.
     
-    \begin{tabular}{l c l}
-      $\varphi $ & $ = $ & $\ov{((x\vee y) \rightarrow y.z)\vee (y\rightarrow x.z)} \vee (x\rightarrow (\ov{y}\rightarrow z)) $\\
-      & $=$ & $\ov{\ov{x}.\ov{y}\vee yz \vee \ov{y}\vee xz} \vee \ov{x}\vee y \vee z$\\
-      & $=$& $\ov{\ov{y}\vee yz \vee xz} \vee \ov{x}\vee y \vee z$ \\
-      & $=$ & $\ov{\ov{y}\vee z \vee xz} \vee \ov{x}\vee y \vee z$\\
-      & $=$ & $\ov{\ov{y}\vee z} \vee \ov{x}\vee y \vee z$ \\
-      & $=$ & $y\ov{z} \vee \ov{x}\vee y \vee z$ \\
-      & $=$ & $\ov{x}\vee y \vee z$.
-    \end{tabular}
+  %   \begin{tabular}{l c l}
+  %     $\varphi $ & $ = $ & $\ov{((x\vee y) \rightarrow y.z)\vee (y\rightarrow x.z)} \vee (x\rightarrow (\ov{y}\rightarrow z)) $\\
+  %     & $=$ & $\ov{\ov{x}.\ov{y}\vee yz \vee \ov{y}\vee xz} \vee \ov{x}\vee y \vee z$\\
+  %     & $=$& $\ov{\ov{y}\vee yz \vee xz} \vee \ov{x}\vee y \vee z$ \\
+  %     & $=$ & $\ov{\ov{y}\vee z \vee xz} \vee \ov{x}\vee y \vee z$\\
+  %     & $=$ & $\ov{\ov{y}\vee z} \vee \ov{x}\vee y \vee z$ \\
+  %     & $=$ & $y\ov{z} \vee \ov{x}\vee y \vee z$ \\
+  %     & $=$ & $\ov{x}\vee y \vee z$.
+  %   \end{tabular}
 \end{enumerate}
 \end{solution}
 
@@ -170,6 +172,11 @@
 \begin{thm}
   Всяка булева функция има единствен полином на Жегалкин.
 \end{thm}
+\begin{proof}
+  Всеки полином на Жегалкин представя различна булева функция.
+  Всички полиноми на Жегалкин на $n$ променливи са $2^{2^n}$.
+  Всички булеви функции на $n$ променливи са $2^{2^n}$.
+\end{proof}
 
 
 \begin{problem}
@@ -188,6 +195,7 @@
 \begin{proof}
   \begin{enumerate}[a)]
   \item
+    Общият вид на $f(x,y) = a_0\oplus a_1 x \oplus a_2 y \oplus a_3 xy $.
     \[
     \begin{array}{c c c}
       a_0\oplus a_1 0 \oplus a_2 0 \oplus a_3 0 & = 0 \vee 0  &  = 0\\
@@ -239,14 +247,27 @@
 %   \end{enumerate}
 % \end{proof}
 
-\section{ДНФ}
+\section{Дизюнктивна нормална форма}
 
-Нека е дадена булевата функция $f(x_1,\dots,x_n)$.
 \begin{itemize}
 \item
-  Дизюнктивна нормална форма на $f$ е формулата
-  \[\bigvee_{\stackrel{(\sigma_1\dots \sigma_n) \in \{0,1\}^n}{f(\sigma_1, \dots \sigma_n) = 1}}x_1^{\sigma_1}x_2^{\sigma_2}\dots x_n^{\sigma_n},\]
+  \index{конюнкт}
+  {\bf Конюнкт} на променливите $x_1,x_2,\dots,x_n$ представлява съждителна формула от вида 
+  \[x^{\sigma_1}_1x^{\sigma_2}_2 \cdots x^{\sigma_n}_n,\]
   където $x^{\sigma_i}_i = x_i$, ако $\sigma_i = 1$ и $x^{\sigma_i}_i = \overline{x}_i$, ако $\sigma_i = 0$.
+\item
+  \index{дизюнктивна нормална форма}
+  Една съждителна формула $\Phi(x_1,\dots,x_n)$ е в {\bf дизюнктивна нормална форма (ДНФ)}, ако
+  тя представлява дизюнкция от конюнкти на някои от променливите на $\Phi$.
+  Например, формулата 
+  \[\Phi(x,y) = \ov{x}y \vee x\ov{y}\]
+  е в дизюнктивна формална форма.
+\item
+  \index{съвършена дизюнктивна нормална форма}
+  Една съждителна формула $\Phi(x_1,\dots,x_n)$ е в {\bf съвършена дизюнктивна нормална форма (СДНФ)}, ако
+  тя е е в ДНФ и всеки конюнкт участват всичките променливи $x_1,\dots,x_n$.
+  За една булева функция $f(x_1,\dots,x_n)$, можем да намерим формула $\Phi(x_1,\dots,x_n)$ в СДНФ еквивалентна на нея по следния начин:
+  \[\Phi(x_1,\dots,x_n) = \bigvee_{\stackrel{(\sigma_1\dots \sigma_n) \in \{0,1\}^n}{f(\sigma_1, \dots \sigma_n) = 1}}x_1^{\sigma_1}x_2^{\sigma_2}\dots x_n^{\sigma_n}.\]
 \end{itemize}
 
 \begin{problem} %% Гаврилов стр. 50
@@ -303,11 +324,18 @@
   \end{enumerate}
 \end{problem}
 
-\section{Функции запазващи константите}
+\section{Класовете $T_0$ и $T_1$}
+\index{$T_0, T_1$}
 
-Нека $c\in\{0,1\}$. Казваме, че булевата функция $f(\xn)$ запазва константата $c$, ако $f(c,c,\dots,c) = c$.
-Означаваме с $T_0$ функциите, които запазват константата $0$ и с $T_1$ тези, които запазват константата $1$.
-С $T^n_0$ и $T^n_1$ означаваме тези функции, които са на $n$ променливи и принадлежат на $T_0$ или $T_1$ съответно.
+\begin{itemize}
+\item 
+  Нека $c\in\{0,1\}$. 
+  Казваме, че булевата функция $f(\xn)$ запазва константата $c$, ако $f(c,c,\dots,c) = c$.
+\item
+  Означаваме с $T_0$ функциите, които запазват константата $0$ и с $T_1$ тези, които запазват константата $1$.
+\item
+  С $T^n_0$ и $T^n_1$ означаваме тези функции, които са на $n$ променливи и принадлежат на $T_0$ или $T_1$ съответно.
+\end{itemize}
 
 \begin{problem}% Гаврилов, стр. 73
   Принадлежи ли функцията $f$ на множеството $T_1 \setminus T_0$ ?
@@ -333,6 +361,11 @@
     $f = (\bigoplus^{n-1}_{i=1} x_ix_{i+1})\oplus x_nx_1$;
   \end{enumerate}
 \end{problem}
+
+\begin{prop}
+  Класовете $T_0$ и $T_1$ са затворени, т.е. $[T_0] = T_0$ и $[T_1] = T_1$.
+\end{prop}
+
 
 \section{Самодвойнствени функции}
 
@@ -489,9 +522,20 @@
 
 \section{Линейни функции}
 \index{линейна!булева функция}
-Всяка булева функция $f(\xn)$ с полином на Жегалкин от вида 
-\[a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n\] наричаме {\em линейна}.
-Ще означаваме с $L$ множеството от всички линейни булеви функции, а с $L^n$ тези на $n$ променливи.
+
+\begin{itemize}
+\item 
+  Всяка булева функция $f(\xn)$ с полином на Жегалкин от вида 
+  \[a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n\] наричаме {\bf линейна}.
+\item
+  Ще означаваме с $L$ множеството от всички линейни булеви функции, а с $L^n$ тези на $n$ променливи.
+\end{itemize}
+
+\begin{problem}
+  \marginpar{Отг. $2^n$}
+  Колко са всички линейни булеви функции на $n$ променливи?
+\end{problem}
+
 
 \begin{prop}
   Класът на линейните функции е затворен, т.е. $[L] = L$.
@@ -560,12 +604,18 @@
 
 \section{Монотонни функции}
 
-Нека $\alpha$ и $\beta$ са два бинарни вектора с равна дължина.
-Дефинираме релацията $\preceq$ между тях по следния начин.
-\[\alpha \preceq \beta \iff \abs{\alpha} = \abs{\beta}\wedge (\forall i \leq \abs{\alpha})[a_i \leq b_i].\]
-Булевата фунция $f(\xn)$ наричаме {\em монотонна}\index{монотонна!функция}, ако 
-\[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]
-Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
+\begin{itemize}
+\item 
+  Нека $\alpha$ и $\beta$ са два бинарни вектора с равна дължина.
+  \marginpar{Това не е лексикографската наредба!}
+  Дефинираме релацията $\preceq$ между тях по следния начин.
+  \[\alpha \preceq \beta \iff \abs{\alpha} = \abs{\beta}\wedge (\forall i \leq \abs{\alpha})[a_i \leq b_i].\]
+\item
+  Булевата фунция $f(\xn)$ наричаме {\bf монотонна}\index{монотонна!функция}, ако 
+  \[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]  
+\item
+  Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
+\end{itemize}
 
 \begin{prop}
   Класът на монотонните функции е затворен, т.е. $[M] = M$.
@@ -693,8 +743,8 @@
   Нека сега имаме, че за всяко $K \in \{T_0,T_1,S,M,L\}$, $P \not\subseteq K$.
   Ще докажем, че $\{\ov{x}, x\vee y\} \subseteq [P]$. Тогава, от теоремата на Бул $\Fs_2 = [\{\ov{x}, x\vee y\}] \subseteq [P]$,
   ще следва, че $[P] = \Fs_2$.
-  Да фиксираме функции $f_0 \in P\setminus T_0$, $f_1 \in P \setminus T_1$, $f_S \in P\setminus S$,
-  $f_M \in P\setminus M$, $f_L \in P\setminus L$.
+  Да фиксираме функциите:
+  \[f_0 \in P\setminus T_0,\ f_1 \in P \setminus T_1,\ f_S \in P\setminus S,\ f_M \in P\setminus M,\ f_L \in P\setminus L.\]
   
   Можем да приемем, че функциите $f_0$ и $f_1$ са едноаргументни,
   защото ако например $f_0$ е $n$-аргументна, то ще вземем 
@@ -734,7 +784,7 @@
   Имаме, че  $\alpha = (a_1,\dots,a_{k-1},0,a_{k+1},\dots,a_n)$ и $\beta = (a_1,\dots,a_{k-1},1,a_{k+1},\dots,a_n)$.
   Да разгледаме едноместната булева функция $g_M$, дефинираната като:
   \[g_M(x) = f_M(a_1,\dots,a_{k-1},x,a_{k+1},\dots,a_n).\]
-  Понеже вече доказахме, че ${\bf 0},\bf{1} \in [P]$, то $g_M \in [P]$.
+  Понеже вече доказахме, че ${\bf 0},{\bf 1} \in [P]$, то $g_M \in [P]$.
   Лесно се вижда, че $g_M(x) = \ov{x}$. 
 
   Остава да докажем, че $xy \in [P]$.
@@ -743,7 +793,7 @@
   Нека $x_{i_1}x_{i_2}\dots x_{i_k}$ е първият нелинеен член в записа на $f_L$.
   Да разгледаме двуместната булева функция $g_L$, дефинирана като:
   \[g_L(x_{i_1},x_{i_2}) = a_0 \oplus a_{i_1}x_{i_1} \oplus a_{i_2}x_{i_2} \oplus x_{i_1}x_{i_2},\]
-  т.е. тя е получена от $f_L$ като $x_{n} = 1$ за $n \in \{i_3,\dots,i_k\}$ и $x_n = 0$ за $n \not\in\{i_1,i_2,\dots,i_k\}$.
+  т.е. тя е получена от $f_L$ като $x_{j} = 1$ за $j \in \{i_3,\dots,i_k\}$ и $x_j = 0$ за $j \not\in\{i_1,i_2,\dots,i_k\}$.
   
   Можем да приемем, че $a_0 = 0$, защото ако $a_0 = 1$, то ще разгледаме функцията $g^\prime_L(x_{i_1},x_{i_2}) = \ov{g}_L(x_{i_1},x_{i_2}) \in [P]$.
   За нея, $g^\prime(0,0) = a_0 = 0$.
@@ -779,6 +829,18 @@
     $A = \{0, \ov{x}, x(y\oplus z)\oplus yz\}$;
   \item
     $A = \{x\rightarrow y, \ov{x}\rightarrow \ov{y}x, x\oplus y\oplus z, 1\}$;
+  \item
+    $A = \{\ov{y}\rightarrow\ov{x}, \ov{x}\rightarrow \ov{y}x, x\oplus y\oplus z, 0\}$;
+  \item
+    $A = \{\ov{y}\rightarrow \ov{x}z, (y\vee \ov{x} \rightarrow x, x\oplus y\oplus z, 1\}$;
+  \item
+    $A = \{x\oplus z \oplus 1, x \to \ov{y}, x\oplus (y \vee z) \oplus 1\}$;
+  \item
+    $A = \{1,\ov{x}, x(y\leftrightarrow z)\oplus\ov{x}(y\oplus z), x\leftrightarrow y\}$;
+  \item
+    $A = \{\ov{x}, x(y\leftrightarrow z) \leftrightarrow yz, x \oplus y \oplus z\}$;
+  \item
+    $A = \{\ov{x}, x(y\leftrightarrow z) \leftrightarrow (y\vee z), x \oplus y \oplus z\}$;
   \item
     $A = \{\chi_{f_1} = (0110), \chi_{f_2} = (1100 0011), \chi_{f_3} = (1001 0110)\}$;
   \item
@@ -841,6 +903,7 @@
   Проверете пълно ли е множеството от булеви функции:
   \begin{enumerate}[a)]
   \item
+    \marginpar{Да}
     $A = (S\cap M)\cup(L\setminus M)$;
   \item
     $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$.
@@ -854,6 +917,22 @@
     $A = (M\setminus T_0)\cup (L\setminus S)$;
   \end{enumerate}
 \end{problem}
+\begin{solution}
+  \begin{itemize}[a)]
+  \item 
+    Лесно се вижда, че $A \not\subseteq T_0, T_1, M$.
+    Например, да разгледаме $f(x) = x \oplus 1$.
+    $f \in A$, защото $f \in L \setminus M$ и $f \not\in T_0, T_1, M$.
+
+    Да разгледаме $g(x,y) = x\oplus y \oplus 1$.
+    $g \in A$, защото $g \in L\setminus M$ и $g \not\in S$.
+
+    Остана да проверим, че $A \not\subseteq L$.
+    Да разгледаме $h(x,y,z) = xy\oplus yz \oplus xz$.
+    $h \in A$, защото $h \in S\cap M$.
+    Ясно е, че $h \not\in L$.
+  \end{itemize}
+\end{solution}
 
 \begin{problem}
   Проверете дали системата от функции $A$ е базис?
@@ -882,6 +961,28 @@
     Не, защото $A\subseteq L$.
   \end{enumerate}
 \end{proof}
+
+\begin{problem}
+  Намерете броя на булевите функции на $n$ променливи, които принадлежат на следните класове:
+  \begin{enumerate}[a)]
+  \item
+    $T_0$, $T_1$;
+  \item
+    $T_0 \cap T_1$, $T_0 \cup T_1$, $T_0 \setminus T_1$;
+  \item
+    $S$;
+  \item
+    $T_0 \cap S$, $T_1 \cap S$, $T_0 \cap T_1 \cap S$;
+  \item
+    $S \setminus T_0$, $S \setminus (T_0 \cap T_1)$, $S \setminus (T_0 \cup T_1)$;
+  \item
+    $L$;
+  \item
+    $T_0 \cap L$, $T_1 \cap L$;
+  \item
+    $T_0 \cap T_1 \cap L$;
+  \end{enumerate}
+\end{problem}
 
 
 
