@@ -86,7 +86,7 @@
 \begin{solution}
   \begin{enumerate}[a)]
   \item
-    $\psi = \ & x\rightarrow ((y\rightarrow z)\rightarrow x)\ =\ \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  =\ 1$.
+    $\psi =  x\rightarrow ((y\rightarrow z)\rightarrow x)\ =\ \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  =\ 1$.
     \begin{align*}
       \varphi =\ & (x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))\\
       =\ & \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
@@ -693,7 +693,7 @@
 индукция дефинираме следната редица за всяко $n \in \Nat$:
 \begin{align*}
   & F_0 = F\cup \{I^m_k \mid m,k\in\Nat, 1\leq k\leq m\}\\
-  & F_{n+1} = F_n \cup \{h \mid (\exists f, g_1\dots g_m \in F_n)[h(x_1\dots x_k) =  f(g_1(x_1\dots x_k), \dots g_m(x_1\dots x_k)]\},
+  & F_{n+1} = F_n \cup \{h \mid (\exists f, g_1\dots g_m \in F_n)[h(x_1\dots x_k) =  f(g_1(x_1\dots x_k), \dots, g_m(x_1\dots x_k)]\},
 \end{align*}
 
 Затварянето на $F$ по отношение на суперпозиция наричаме
@@ -711,6 +711,7 @@
 \begin{dfn}
   Нека $F\subseteq \Fs_2$ е множество от булеви функции. 
   $F$ е пълно множество, ако $[F] = \Fs_2$.
+  $F$ се нарича базис, ако не съществува $G \subsetneqq F$, за което $[G] = \Fs_2$.
 \end{dfn}
 
 \begin{thm}[Бул]
@@ -899,14 +900,14 @@
 \end{solution}
 
 
-\begin{problem} % Гаврилов, стр. 84
+\begin{problem} % Гаврилов, стр. 83
   Проверете пълно ли е множеството от булеви функции:
   \begin{enumerate}[a)]
   \item
     \marginpar{Да}
     $A = (S\cap M)\cup(L\setminus M)$;
   \item
-    $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$.
+    $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$;
   \item
     $A = (L\cap M)\cup (S\setminus T_0)$;
   \item
@@ -915,67 +916,156 @@
     $A = (M\setminus S)\cup(L\cap S)$;
   \item
     $A = (M\setminus T_0)\cup (L\setminus S)$;
+  \item
+    $A = (M\setminus T_0) \cup (S\setminus L)$.
   \end{enumerate}
 \end{problem}
 \begin{solution}
-  \begin{itemize}[a)]
+  Във всяка една от задачите трябва да проверим дали
+  $A \not\subseteq T_0$, 
+  $A \not\subseteq T_1$, 
+  $A \not\subseteq S$, 
+  $A \not\subseteq M$ и 
+  $A \not\subseteq L$.
+  \begin{enumerate}[a)]
   \item 
-    Лесно се вижда, че $A \not\subseteq T_0, T_1, M$.
-    Например, да разгледаме $f(x) = x \oplus 1$.
-    $f \in A$, защото $f \in L \setminus M$ и $f \not\in T_0, T_1, M$.
-
-    Да разгледаме $g(x,y) = x\oplus y \oplus 1$.
-    $g \in A$, защото $g \in L\setminus M$ и $g \not\in S$.
-
-    Остана да проверим, че $A \not\subseteq L$.
-    Да разгледаме $h(x,y,z) = xy\oplus yz \oplus xz$.
-    $h \in A$, защото $h \in S\cap M$.
-    Ясно е, че $h \not\in L$.
-  \end{itemize}
+    Нека $A = (S \cap M) \cup (L\setminus M)$.
+    \begin{itemize}
+    \item 
+      Да разгледаме функцията 
+      $f(x) = x \oplus 1$.
+      Лесно се съобразява, че $f \in L\setminus M$, откъдето  следва, че $f \in A$.
+      Обаче ние имаме, че $f \not\in T_0, T_1, M$.
+      Следователно, $A \not\subseteq T_0, T_1, M$.
+    \item
+      Да разгледаме $g(x,y) = x\oplus y \oplus 1$.
+      За нея имаме, че $g \in A$, защото $g \in L\setminus M$ и освен това $g \not\in S$.
+    \item
+      Остана да проверим, че $A \not\subseteq L$.
+      Да разгледаме 
+      \[h(x,y,z) = xy\oplus yz \oplus xz.\]
+      Тогава $h \in A$, защото $h \in S\cap M$.
+      Ясно е, че $h \not\in L$.
+    \end{itemize}
+  \item
+    Нека $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$.
+    Ако една функция е монотонна, но не запазва $1$-цата, то тогава 
+    със сигурност тази функция е константата $0$, т.е.
+    \[(L \cap M)\setminus T_1 = \{0\}.\]
+    Но $0 \in S$ и оттук $A \subseteq S$.
+    Следователно $A$ не е пълен клас.
+  \item
+    Нека $A = (L\cap M)\cup (S\setminus T_0)$.
+    \begin{itemize}
+    \item
+      $0 \in L \cap M$ и следователно $A \not\subseteq T_1$;
+    \item
+      $1 \in L \cap M$ и следователно $A \not\subseteq T_0$;
+    \item
+      И двете константи са в $L \cap M$, но както знаем, те  не са самодвойнствени.
+      Следователно $A \not\subseteq S$.
+    \item
+      Да разгледаме
+      \[h(x,y,z) = xy\oplus xz \oplus yz \oplus 1.\]
+      Лесно се съобразява, че $h \in S \setminus T_0$, но $h \not\in L$.
+      Следователно, $A \not\subseteq L$.
+      Освен това, $h \not \in M$. Следователно, $A \not\subseteq M$.
+    \end{itemize}
+  \item
+    Нека $A = (L \cap T_1) \cup (S \cap M)$.
+    Ако $f \in S \cap M$, то $f$ не е константа и $f(1,\dots,1) = 1$.
+    Следователно, $f \in T_1$.
+    Получаваме, че $S \cap M \subseteq T_1$.
+    Заключаваме, че $A \subseteq T_1$.
+  \item
+    Нека $A = (M\setminus S)\cup(L\cap S)$.
+    \begin{itemize}
+    \item 
+      $x\oplus 1 \in L \cap S$, но $x \oplus 1 \not\in T_0, T_1$.
+      Следователно, $A \not\subseteq T_0,T_1$.
+      Освен това, $x\oplus 1 \not\in M$.
+      И така, $A \not\subseteq M$.
+    \item
+      Нека $f(x,y) \equiv x \vee y \equiv xy \oplus x \oplus y \oplus 1$.
+      Имаме, че $f \in M \setminus S$ и $f \not\in L$.
+      Следователно, $A \not\subseteq L$ и $A \not\subseteq S$.
+    \end{itemize}
+  \item
+    Нека $A = (M \setminus T_0) \cup (L \setminus S)$.
+    Имаме, че $M \setminus T_0 = \{1\}$.
+    Следователно, $A \subseteq L$.
+  \item
+    Нека $A = (M \setminus T_0) \cup (S \setminus L)$.
+    \begin{itemize}
+    \item 
+      Имаме, че $1 \in M\setminus T_0$.
+      Следователно, $A \not\subseteq T_0$ и $A \not\subseteq S$.
+    \item
+      Нека $h(x,y,z) \equiv xy \oplus xz \oplus yz \oplus 1$.
+      Тогава $h \in S\setminus L$ и $h \not\in T_1$, $h \not \in M$.
+      Заключаваме, че $A \not\subseteq T_1, M, L$.
+    \end{itemize}
+  \end{enumerate}
 \end{solution}
 
-\begin{problem}
+\begin{problem} % Гаврилов, стр. 84
   Проверете дали системата от функции $A$ е базис?
   \begin{enumerate}[a)]
   \item
+    \marginpar{Не}
     $A = \{x\rightarrow y, x\oplus y, x\vee y\}$;
   \item
+    \marginpar{Да}
     $A = \{x\oplus y\oplus z, x\vee y, 0, 1\}$;
   \item
-    $A = \{xy\oplus yz\oplus zx, 0, 1, x\vee y\}$;
+    \marginpar{Не, $A \subseteq T_1$}
+    $A = \{x\oplus y\oplus yz, x \oplus y \oplus 1\}$;
+  \item
+    \marginpar{Не}
+    $A = \{xy \vee z, xy \oplus z, xy \iff z\}$;
   \end{enumerate}
 \end{problem}
-\begin{proof}
+
+\begin{problem}
+  Намерете всички базиси на класа $A$, където:
   \begin{enumerate}[a)]
+  \item 
+    $A = \{1, \ov{x}, xy(x\oplus y), x \oplus y \oplus xy \oplus yz \oplus zx\}$;
   \item
-    $\{xy\oplus yz\oplus zx, x\oplus y\oplus 1, x\oplus 1\} \subseteq A$.
+    $A = \{0, x\oplus y, x \to y, xy \iff xz\}$;
   \item
-    $\{xy\oplus yz\oplus zx\oplus 1, 0\} \subseteq A$
+    $A = \{0,1,x\oplus y \oplus z, xy \oplus zx \oplus yz, xy \oplus z, x \vee y\}$;
   \item
-    $\{xy\oplus yz\oplus zx\oplus 1, 0, 1\} \subseteq A$
-  \item
-    Не, защото $A \subseteq T_1$.
-  \item
-    $\{\ov{x}, xy\} \subseteq A$, следователно $A$ е пълно.
-  \item
-    Не, защото $A\subseteq L$.
+    $A = \{xy, x\vee y, xy\vee z, x\oplus y, x \to y\}$.
   \end{enumerate}
-\end{proof}
+\end{problem}
 
 \begin{problem}
   Намерете броя на булевите функции на $n$ променливи, които принадлежат на следните класове:
   \begin{enumerate}[a)]
   \item
+    \marginpar{$2^{2^n-1}$}
     $T_0$, $T_1$;
   \item
-    $T_0 \cap T_1$, $T_0 \cup T_1$, $T_0 \setminus T_1$;
+    \marginpar{$2^{2^n-2}$}
+    $T_0 \cap T_1$
   \item
+    \marginpar{$3.2^{2^n-2}$}
+    $T_0 \cup T_1$
+  \item
+    \marginpar{$2^{2^n-2}$}
+    $T_0 \setminus T_1$;
+  \item
+    \marginpar{$2^{2^{n-1}}$}
     $S$;
   \item
-    $T_0 \cap S$, $T_1 \cap S$, $T_0 \cap T_1 \cap S$;
+    $T_0 \cap S$, $T_1 \cap S$;
+  \item
+    $T_0 \cap T_1 \cap S$;
   \item
     $S \setminus T_0$, $S \setminus (T_0 \cap T_1)$, $S \setminus (T_0 \cup T_1)$;
   \item
+    \marginpar{$2^{n+1}$}
     $L$;
   \item
     $T_0 \cap L$, $T_1 \cap L$;
