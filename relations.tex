@@ -15,32 +15,32 @@
 \begin{enumerate}[1)]
 \item
   \marginpar{Norbert Wiener (1914)}
-  Първото теоретико-множествено определение на понятите наредена двойка е
+  Първото теоретико-множествено определение на понятието наредена двойка е
   дадено от Норберт Винер:
   \[\pair{a,b} = \{\{\{a\},\emptyset\},\{\{b\}\}\}.\]
 \item
   \marginpar{Kazimierz Kuratowski (1921)}
-  Определението на Куратовски се приема за ``стандартно'' в наши дни:
+  Определението на Куратовски се приема за ,,стандартно`` в наши дни:
   \[\pair{a,b} = \{\{a\},\{a,b\}\}.\]
 \end{enumerate}
 
-\begin{prb}
+\begin{problem}
   Докажете, че горните дефиниции наистина изпълняват харектеристичното свойство за наредени двойки.
-\end{prb}
+\end{problem}
 
 \begin{remark}
-  \marginpar{Пример за рекурсивна дефиниция}
-  Сега можем да въведем понятието наредена $n$-орка \[\pair{a_1,\dots,a_n}\] за всяко $n \geq 1$:
+  %\marginpar{Пример за рекурсивна дефиниция}
+  Сега можем да въведем понятието наредена $n$-орка $\pair{a_1,\dots,a_n}$ за всяко естествено число $n \geq 1$:
   \begin{align*}
     & \pair{a_1} = a_1,\\
     & \pair{a_1,a_2,\dots,a_n} = \pair{a_1,\pair{a_2,\dots,a_n}}
   \end{align*}
 \end{remark}
-
  
-\subsection*{Декартово произведение}
+\section{Декартово произведение}
 \marginpar{На англ. cartesian product}
 \index{декартово произведение}
+\marginpar{Считаме, че $(A\times B)\times C = A\times (B\times C) = A\times B \times C$}
 За две множества $A$ и $B$, определяме тяхното декартово произведение като
 \[A\times B = \{\pair{a,b}\mid a\in A\ \&\ b\in B\}.\]
 За краен брой множества $A_1,A_2,\dots,A_n$, определяме
@@ -66,6 +66,7 @@
   \end{enumerate}
 \end{problem}
 
+\section{Основни видове бинарни релации}
 \marginpar{Бинарни релации}
 Релациите от вида $R\ \subseteq\ A\times A$ са важен клас, който ще срещаме често.
 Да разгледаме няколко основни вида релации от този клас:
@@ -119,51 +120,8 @@
   \end{enumerate}
 \end{example}
 
-% \begin{problem}
-%   Кои от изброените по-горе свойства има релацията $R$, където:
-%   \begin{enumerate}[a)]
-%   \item
-%     \marginpar{$x\vert y \iff (\exists z)(y = x\cdot z)$}
-%     $R \subseteq \Z\times \Z$ е определена като
-%     \[\pair{x,y} \in R \iff x \vert y.\]
-%   % \item
-%   %   \marginpar{$gcd$ - greatest common divisor (най-голям общ делител)}
-%   %   $R \subseteq \Z\times \Z$ е определена като
-%   %   \[\pair{x,y}\in R \iff gcd(x,y) = 1 \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
-%   % \item
-%   %   \marginpar{$\R$ - реални, $\Q$ - рационални}
-%   %   $R \subseteq \R\times\R$ е определена като
-%   %   \[\pair{x,y} \in R\ \iff\ x\cdot y \in \Q.\]
-%   \item
-%     Нека $S$ да бъде произволно множество и $T \subseteq S$.
-%     Определяме релацията $R \subseteq \Ps(S)\times\Ps(S)$ като:
-%     \[\pair{A,B}\in R\ \iff\ (A\cup B)\setminus(A\cap B) \subseteq T.\]
-%   \end{enumerate}
-% \end{problem}
-
-
 \begin{problem}
-  Нека $R$ е релация върху $A$.
-  Да определим релациите:
-  \begin{itemize}
-  \item 
-    $S = \{\pair{x,y}\mid \pair{x,y} \in R\ \wedge\ \pair{y,x} \in R\}$;
-  \item
-    $T = \{\pair{x,y} \mid \pair{x,y}\in R\ \wedge\ \pair{y,x}\not\in R\}$.
-  \end{itemize}
-  Докажете, че:
-  \begin{enumerate}[a)]
-  \item 
-    $S$ е симетрична и $T$ е антисиметрична.
-  \item
-    $\pair{x,y} \in R\ \iff\ (\pair{x,y}\in S \vee \pair{x,y} \in T)$;
-  \item
-    ако $R$ е транзитивна, то $S$ и $T$ са също транзитивни, но обратната посока не е вярна.
-  \end{enumerate}
-\end{problem}
-
-\begin{problem}
-  Проверете дали релацията $R$ е рефлексивна, транзитивна, симетрична, антисиметрична или асиметрична.
+  Проверете кои от горе-изброените свойства притежава релацията $R$:
   \begin{enumerate}[a)]
   \item
     \marginpar{Озн. $\Nat^2 = \Nat\times\Nat$}
@@ -171,27 +129,26 @@
     \marginpar{$a\vert b \iff (\exists k\in\Nat)(b = k\cdot a)$}
     \[(a,b) \in R \iff a | b.\]
   \item
-    \marginpar{$gcd$ - greatest common divisor (най-голям общ делител)}
     $R \subseteq \Z\times \Z$ е определена като
-    \[\pair{x,y}\in R \iff gcd(x,y) = 1 \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
+    \[\pair{x,y}\in R \iff \mbox{НОД}(x,y) = 1\]% \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
   \item
     \marginpar{Озн. $\R$ - реалните числа}
-    $R\subseteq \R^2$ и е определена като
-    \[(a,b) \in R \iff a.b > 0.\]
+    $R\subseteq \Int^2$ и е определена като
+    \[(a,b) \in R \iff a\cdot b > 0.\]
   \item
-    $R\subseteq \R^2$ и е определена като 
+    $R\subseteq \Int^2$ и е определена като 
     \[(a,b) \in R \iff a+b = 0.\]
   \item
-    $R\subseteq \R^2$ и е определена като
+    $R\subseteq \Int^2$ и е определена като
     \[(a,b) \in R \iff a+b = 5.\]
   \item
-    $R\subseteq \R^2$ и е определена като 
+    $R\subseteq \Int^2$ и е определена като 
     \[(a,b) \in R \iff a+b\mbox{ е четно}.\]
   \item
-    $R\subseteq (\R^2)^2$ и е определена като
+    $R\subseteq (\Int^2)^2$ и е определена като
     \[(\langle{a,b}\rangle, \langle{c,d}\rangle) \in R \iff a+d = b+c.\]
   \item
-    $R\subseteq (\R^2)^2$ и е определена като
+    $R\subseteq (\Int^2)^2$ и е определена като
     \[(\langle{a,b}\rangle,\langle{c,d}\rangle) \in R \iff a\cdot d = b\cdot c.\]
   \item
     \marginpar{Озн. $\Z$ - целите числа}
@@ -209,7 +166,7 @@
     \[(a,b) \in R \iff a = b \vee a+1 = b.\]
   \item
     $R \subseteq \Nat^2$ и е определена като
-    \[\pair{a,b}\in R \iff (\exists k\in\N)[a+k = b].\]
+    \[\pair{a,b}\in R \iff (\exists k\in\Nat)[a+k = b].\]
   \item
     Нека $\leq_1\ \subseteq\ A^2$ и $\leq_2\ \subseteq\ B^2$ са частични наредби.
     $R \subseteq A^2\times B^2$ е определена като
@@ -224,7 +181,129 @@
   \end{enumerate}
 \end{problem}
 
-\subsection*{Операции върху релации}
+\begin{problem}
+  Нека $R$ и $S$ са релации на еквивалентност върху множеството $A$.
+  Какви свойства притежават следните релации:
+  \begin{enumerate}[a)]
+  \item
+    $R \cap S$;
+  \item
+    $R \cup S$;
+  \item
+    $R \setminus S$;
+  % \item
+  %   $R \circ S$.
+  \end{enumerate}
+\end{problem}
+
+%% Rosen Textbook
+\begin{problem}
+  Кои от следните бинарни релации върху множеството на функциите от $\Z$ в $\Z$
+  са релации на еквивалентност? Опишете техните класове на еквивалентност.
+  \begin{enumerate}[a)]
+  \item
+    $R = \{(f,g)\mid f(1) = g(1)\}$.
+  \item
+    $R = \{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
+  \item
+    $R =\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
+  \item
+    $R = \{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
+  \item
+    $R = \{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
+  \end{enumerate}
+\end{problem}
+
+\section{Релации над думи}
+
+\begin{itemize}
+\item
+  Азбука е крайно множество $\Sigma = \{a_1,\dots,a_n\}$ като елементите $a_i$ на $\Sigma$ наричаме {\bf букви}.
+\item
+  Нека да фиксираме един елемент $\varepsilon \not\in \Sigma$.
+  Сега ще определим {\bf думите} над азбуката $\Sigma$. Това са:
+  \begin{itemize}
+  \item
+    \marginpar{наричаме $\varepsilon$ празната дума}
+    $\varepsilon$ е дума над $\Sigma$;
+  \item
+    \marginpar{т.е. думите са крайни последователности от букви}
+    Нека $\alpha$ е дума над $\Sigma$ и $a \in \Sigma$ е буква.
+    Тогава $\alpha a$ е дума над $\Sigma$;
+  \item
+    няма други думи над $\Sigma$.
+  \end{itemize}
+\item
+  Означаваме с $\Sigma^n$ множеството от всички думи с дължина $n$ над азбуката $\Sigma$, $\Sigma^0 = \{\varepsilon\}$,
+  защото празната дума е единствената дума с дължина $0$.
+\item
+  Със $\Sigma^\star$ означаваме множеството от всички думи над азбуката $\Sigma$, т.е.
+  \marginpar{$0 \in \Nat$}
+  \[\Sigma^\star = \bigcup_{n\in\Nat} \Sigma^{n}.\]
+\end{itemize}
+
+Сега ще определим функцията {\bf дължина}\index{дума!дължина} на дума.
+\marginpar{Функцията $\abs{\cdot}:\Sigma^\star\to\Nat$ е винаги сюрективна. Кога е биективна?}
+Дължината $|\alpha|$ на думата $\alpha \in \Sigma^\star$ се определя с индукция по построението на $\alpha$.
+\begin{enumerate}[(i)]
+  \item
+    Нека $\alpha = \varepsilon$. Тогава $|\alpha| = 0$.
+  \item
+    Нека $\alpha = \beta a$, за някоя дума $\beta\in \Sigma^\star$ и някоя буква $a\in X$.
+    Тогава \[|\alpha| = |\beta| + 1.\]
+\end{enumerate}
+
+Определяме функцията {\bf конкатенация}\index{дума!конкатенация} $\cdot$, т.е.
+слепване на две думи.
+За всеки две думи $\alpha$ и $\beta$ от $\Sigma^\star$ определяме тяхната конкатенация с индукция по дължината $\beta$:
+\marginpar{$\cdot:\Sigma^\star\times \Sigma^\star \to \Sigma^\star$ е винаги сюрективна. Може ли да бъде биективна?}
+\begin{enumerate}[(i)]
+  \item
+    $|\beta| = 0$, т.е. $\beta = \varepsilon$.
+    Тогава $\alpha\cdot\beta = \alpha$.
+  \item
+    $|\beta| = n+1$, т.е. $\beta = \gamma b$, за някоя дума $\gamma$, $|\gamma| = n$, и някоя буква $b\in\Sigma$.
+    Тогава $\alpha\cdot\beta = (\alpha\cdot\gamma)\cdot b$.
+\end{enumerate}
+
+Казваме, че думата $\alpha$ е {\bf начало} на думата $\beta$, ако съществува дума $\gamma \in \Sigma^\star$ такава, че
+$\beta = \alpha\cdot\gamma$. Обикновено означаваме $\alpha \preceq \beta$.
+Аналогично дефинираме $\alpha$ да бъде {\bf край} на думата $\beta$, ако съществува $\gamma \in \Sigma^\star$ такава, че
+$\beta = \gamma \cdot \alpha$.
+
+\begin{problem}
+  Нека $\Sigma = \{0,1\}$.
+  Какви свойства имат следните бинарни релации над $\Sigma^\star$ ?
+  Ако $R$ е релация на  еквивалентност, то опишете нейните класове на еквивалентност 
+  и намерете техния брой.
+  \begin{enumerate}[a)]
+  \item
+    $(\alpha,\beta) \in R \iff \alpha \preceq \beta$;
+  \item
+    $(\alpha,\beta) \in R  \iff (\exists\gamma\in \Sigma^\star)[\exists a,b\in \Sigma)(\gamma a \preceq \alpha\ \&\ \gamma b \preceq \beta\ \&\ a \neq b]$;
+  \item
+    $(\alpha,\beta) \in R  \iff (\exists\gamma\in \Sigma^\star)[\exists a,b\in \Sigma)(\gamma a \preceq \alpha\ \&\ \gamma b \preceq \beta\ \&\ a < b]$;
+  \item
+    $(\alpha,\beta) \in R  \iff \alpha \preceq \beta \vee (\exists\gamma\in \Sigma^\star)[\exists a,b\in \Sigma)(\gamma a \preceq \alpha\ \&\ \gamma b \preceq \beta\ \&\ a < b]$;
+  \item
+    $(\alpha,\beta) \in R \iff |\alpha| = |\beta|\ \& (\forall i \leq |\alpha|)[a_i \leq b_i]$;
+  \item
+    $(\alpha,\beta) \in R \iff (\forall i \leq \min\{|\alpha|,|\beta|\})[a_i \leq b_i]$;
+  \item
+    $(\alpha,\beta) \in R \iff (\exists \gamma_1,\gamma_2 \in \Sigma^\star)[\beta = \gamma_1 \alpha \gamma_2]$;
+  \item
+    за фиксирано число $n$,
+    \[(\alpha,\beta) \in R \iff (\exists\gamma\in\Sigma^n)[\gamma\preceq\alpha\ \&\ \gamma\preceq\beta].\]
+  \item
+    за фиксирано число $n$,
+    \[(\alpha,\beta) \in R \iff \alpha = \beta \vee (\alpha \neq \beta\ \&\ (\exists\gamma\in\Sigma^n)[\gamma\preceq\alpha\ \&\ \gamma\preceq\beta]).\]
+  \item
+    за фиксирано число $n$,
+    \[(\alpha, \beta)\in R \iff |\alpha| = |\beta| > n\ \&\ (\forall i > n)[a_i = b_i].\]
+  \end{enumerate}
+\end{problem}
+\newpage
+\section{Операции върху релации}
 \begin{enumerate}[I)]
 \item
   {\bf Композиция} на две релации $S \subseteq B\times C$ и $T \subseteq A\times B$ е релацията $S\circ T \subseteq A\times C$,
@@ -282,17 +361,25 @@
       За целта е достатъчно да вземем произволна двойка $\pair{x,y} \in R$
       и да покажем, че $\pair{y,x} \in R$.
       Нека 
-      
-      \AxiomC{$\pair{x,y} \in R$}
-      % \AxiomC{$\psi\rightarrow\phi$}
-      \LeftLabel{$R^{-1}\circ R = R$:}
-      \UnaryInfC{$(\exists z)[\pair{x,z} \in R\ \wedge\ \pair{z,y} \in R^{-1}]$}
-      \UnaryInfC{$(\exists z)[\pair{z,x} \in R^{-1}\ \wedge\ \pair{y,z} \in R]$}
-      \UnaryInfC{$(\exists z)[\pair{y,z} \in R\ \wedge\ \pair{z,x} \in R^{-1}]$}
-      \UnaryInfC{$\pair{y,x} \in R^{-1}\circ R$}
-      \LeftLabel{$R^{-1}\circ R = R$: }
-      \UnaryInfC{$\pair{y,x} \in R$}
-      \DisplayProof
+      % \begin{prooftree}
+      %   \AxiomC{$\pair{x,y} \in R$}
+      %   \RightLabel{\scriptsize($R^{-1}\circ R = R$)}
+      %   \UnaryInfC{$\pair{x,y} \in R^{-1}\circ R$}
+      %   \UnaryInfC{$(\exists z)[\pair{x,z} \in R\ \wedge\ \pair{z,y} \in R^{-1}]$}
+      %   \UnaryInfC{$(\exists z)[\pair{z,x} \in R^{-1}\ \wedge\ \pair{y,z} \in R]$}
+      %   \UnaryInfC{$(\exists z)[\pair{y,z} \in R\ \wedge\ \pair{z,x} \in R^{-1}]$}
+      %   \UnaryInfC{$\pair{y,x} \in R^{-1}\circ R$}
+      %   \RightLabel{\scriptsize($R^{-1}\circ R = R$)}
+      %   \UnaryInfC{$\pair{y,x} \in R$}
+      % \end{prooftree}
+      \begin{align*}
+        \pair{x,y} \in R & \iff \pair{x,y} \in R^{-1}\circ R & (\text{имаме, че }R^{-1}\circ R = R)\\
+        & \iff (\exists z)[\pair{x,z} \in R\ \wedge\ \pair{z,y} \in R^{-1}]\\
+        & \iff (\exists z)[\pair{z,x} \in R^{-1}\ \wedge\ \pair{y,z} \in R]\\
+        & \iff (\exists z)[\pair{y,z} \in R\ \wedge\ \pair{z,x} \in R^{-1}]\\
+        & \iff \pair{y,x} \in R^{-1}\circ R\\
+        & \iff \pair{y,x} \in R.
+      \end{align*}
       
       Следователно,
       \[(\forall x,y \in A)[\pair{x,y} \in R\ \rightarrow\ \pair{y,x} \in R].\]
@@ -304,11 +391,11 @@
       \begin{prooftree}
       \AxiomC{$\pair{x,y} \in R$}
       \AxiomC{$\pair{y,z} \in R$}
-      \RightLabel{($R$ е симетрична)}
+      \RightLabel{\scriptsize($R$ е симетрична)}
       \UnaryInfC{$\pair{z,y} \in R$}
       \UnaryInfC{$\pair{y,z} \in R^{-1}$}
       \BinaryInfC{$\pair{x,z} \in R^{-1}\circ R$}
-      \RightLabel{($R^{-1}\circ R = R$)}
+      \RightLabel{\scriptsize($R^{-1}\circ R = R$)}
       \UnaryInfC{$\pair{x,z} \in R$}
       \end{prooftree}
       Следователно,
@@ -323,9 +410,9 @@
       \begin{prooftree}
         \AxiomC{$\pair{x,y} \in R$}
         \AxiomC{$\pair{x,y} \in R$}
-        \RightLabel{($R$ е симетрична) }
+        \RightLabel{\scriptsize($R$ е симетрична) }
         \UnaryInfC{$\pair{y,x} \in R$}
-        \RightLabel{($R$ е транзитивна) }
+        \RightLabel{\scriptsize($R$ е транзитивна) }
         \BinaryInfC{$\pair{x,x} \in R\ \wedge \pair{y,y}\in R$}
       \end{prooftree}
       Следователно,
@@ -336,12 +423,12 @@
       \begin{prooftree}
         \AxiomC{$\pair{x,z}\in R$}
         \AxiomC{$\pair{x,y} \in R^{-1}\circ R$}
-        \RightLabel{(Съществува $z$)}
+        \RightLabel{\scriptsize(Съществува $z$)}
         \UnaryInfC{$\pair{z,y} \in R^{-1}$}
         \UnaryInfC{$\pair{y,z} \in R$}
-        \RightLabel{($R$ е симетрична)}
+        \RightLabel{\scriptsize($R$ е симетрична)}
         \UnaryInfC{$\pair{z,y} \in R$}
-        \RightLabel{($R$ е транзитивна)}
+        \RightLabel{\scriptsize($R$ е транзитивна)}
         \BinaryInfC{$\pair{x,y} \in R$}
       \end{prooftree}
     \item
@@ -349,10 +436,10 @@
       \begin{prooftree}
         \AxiomC{$\pair{x,y}\in R$}
         \AxiomC{$\pair{x,y}\in R$}
-        \RightLabel{(От (i))}
+        \RightLabel{\scriptsize(От (i))}
         \UnaryInfC{$\pair{y,y} \in R$}
         \UnaryInfC{$\pair{y,y} \in R^{-1}$}
-        \RightLabel{(по деф.)}
+        \RightLabel{\scriptsize(по деф.)}
         \BinaryInfC{$\pair{x,y} \in R^{-1}\circ R$}
       \end{prooftree}
     \end{enumerate}
@@ -375,254 +462,24 @@
   Докажете, че $Q$ е релация на еквивалентност.
 \end{problem}
 
-\newpage
-
-Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
-Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
-Релацията $R \subseteq A\times A$ се нарича:
-\begin{itemize}
-\item
-  \marginpar{На англ. partial order}
-  {\bf частична наредба}, ако тя е рефлексивна, транзитивна и антисиметрична.
-  Например, $\leq$ е частична наредба.
-  Също така, релацията $\subseteq$ между множества е частична наредба.
-\item 
-  \marginpar{На англ. equivalence relation}
-  {\bf релация на еквивалентност}, ако тя е рефлексивна, транзитивна и симетрична.
-  Например, $=$ е релация на еквивалентност.
-\item
-  \marginpar{На англ. linear order}
-  {\bf линейна наредба}\index{наредба!линейна}, ако $R$ е частична наредба, 
-  и за всеки два елемента $x,y$ точно едно от $\pair{x,y} \in R$, $x = y$, $\pair{y,x}\in R$ е изпълнено.
-\item
-  \marginpar{На англ. well-founded relation}
-  {\bf фундирана наредба}\index{наредба!фундирана}, 
-  ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
-  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)\neg(\exists y\in X)[\pair{y,m} \in R]].\]
-\item
-  \marginpar{На англ. well-ordered relation}
-  {\bf добра наредба}\index{наредба!добра}, ако всяко непразно подмножество $X\subseteq A$ има {\em най-малък} елемент , т.е.
-  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)(\forall y\in X)[\pair{m,y}\in R \vee m = y]].\]
-\item
-  \marginpar{lexicographical order}
-  {\bf лексикографска наредба} върху частичната наредба $(X,<)$ ще наричаме 
-  наредбата $(X\times X,\prec)$, където
-  \[\pair{x,y}\prec\pair{x^\prime,y^\prime}\ \iff\ x<x^\prime\ \vee\ (x = x^\prime\ \wedge\ y < y^\prime).\]
-\end{itemize}
-
-\begin{remark}
-  Обърнете внимание на разликата между понятията {\em минимален} и {\em най-малък} елемент относно релацията $R$.
+\begin{problem}
+  Нека $R$ е релация върху $A$.
+  Да определим релациите:
   \begin{itemize}
-  \item $x_0$ е {\em минимален} елемент за множеството $X \subseteq A$ относно $R$,
-    ако не съществуват елементи $y \in X$, за които $\pair{y,x}\in R$, т.е.
-    \[(\forall y \in X)[\pair{y,x} \not\in R].\]
-  \item $x_0$ е {\em най-малък} елемент за множеството $X \subseteq A$ относно $R$,
-    ако за всеки друг елемент $y \in X$ е изпълнено $\pair{x,y}\in R$, т.е.
-    \[(\forall y \in X)[x\neq y \rightarrow \pair{x,y} \in R].\]
+  \item 
+    $S = \{\pair{x,y}\mid \pair{x,y} \in R\ \wedge\ \pair{y,x} \in R\}$;
+  \item
+    $T = \{\pair{x,y} \mid \pair{x,y}\in R\ \wedge\ \pair{y,x}\not\in R\}$.
   \end{itemize}
-\end{remark}
-
-\begin{problem}
-  Да се докаже, че $(\N^2,\prec)$ е добре наредено множество.
-\end{problem}
-
-\begin{problem}
-  Докажете, че следните две условия за частично наредено множество $(X,<)$ са еквивалентни:
+  Докажете, че:
   \begin{enumerate}[a)]
+  \item 
+    $S$ е симетрична и $T$ е антисиметрична.
   \item
-    всяко непразно подмножество на $X$ има минимален елемент;
+    $\pair{x,y} \in R\ \iff\ (\pair{x,y}\in S \vee \pair{x,y} \in T)$;
   \item
-    не съществува строго намаляваща редица $x_1>x_2>x_3>\dots$ то елементи на $X$.
+    ако $R$ е транзитивна, то $S$ и $T$ са също транзитивни, но обратната посока не е вярна.
   \end{enumerate}
-\end{problem}
-
-\begin{problem}
-  Да се докаже, че частично нареденото множество $(X,<)$ е добре наредено тогава и само тогава, когато 
-  $(X,<)$ е фундирано и $<$ е линейна наредба върху $X$.
-\end{problem}
-
-\begin{problem}% от СЕП
-  Кои от изброените множества са фундирани? Кои са добре наредени?
-  \begin{enumerate}[a)]
-  \item
-    $(\N,<)$;
-  \item
-    $(\Z,<)$;
-  \item
-    $(X^*, <)$, където за $\alpha,\beta\in X^*$, $\alpha < \beta \iff \alpha\mbox{ е поддума на }\beta$;
-  \item
-    $(2^\N,\subsetneq)$;
-  \item
-    $(Fin(\N),\subsetneq)$, където $Fin(\N)$ е съвкупността от всички крайни подмножества на $\N$;
-  \item
-    $(\N^+,|)$, където $m|n \iff m\neq n\ \&\ m\mbox{ дели }n$.
-  \end{enumerate}
-\end{problem}
-
-\begin{problem}
-  Нека $R$ и $S$ са релации на еквивалентност върху множеството $A$.
-  Определете кои от свойствата а) - г) притежават тези релации.
-  След това, нека $R$ и $S$ да бъдат частични наредби върху $A$
-  и отново определете кои от свойствата а) - г) притежават тези релации.
-  \begin{enumerate}[a)]
-  \item
-    $R \cap S$;
-  \item
-    $R \cup S$;
-  \item
-    $R \setminus S$;
-  \item
-    $R \circ S$.
-  \end{enumerate}
-\end{problem}
-
-
-
-
-\subsection*{Азбуки и думи}
-
-\begin{itemize}
-\item
-  Азбука е крайно множество $X = \{a_1,\dots,a_n\}$ като елементите $a_i$ на $X$ наричаме {\bf букви}.
-\item
-  Нека да фиксираме един елемент $\varepsilon \not\in X$.
-  Сега ще определим {\bf думите} над азбуката $X$. Това са:
-  \begin{enumerate}[1)]
-  \item
-    \marginpar{наричаме $\varepsilon$ празната дума}
-    $\varepsilon$ е дума над $X$;
-  \item
-    \marginpar{т.е. думите са крайни последователности от букви}
-    Нека $\alpha$ е дума над $X$ и $a \in X$ е буква.
-    Тогава $\alpha a$ е дума над $X$;
-  \item
-    \marginpar{Защо е важно условие 3) ?}
-    няма други думи над $X$.
-  \end{enumerate}
-\item
-  Нека $\beta=b_{1}\cdots b_{n}$ и $\gamma=c_{1}\cdots c_{m}$ са думи над $X$.
-  Тогава казваме, че 
-  $\beta$ е {\bf начало} на $\gamma$, ако $n\leq m$ и $(\forall k\leq n)(b_{k} = c_{k})$;
-  $\beta$ е {\bf край} на $\gamma$, ако $n \leq m$ и $(\forall k\leq n)(b_{n-k} = c_{m-k})$.
-\end{itemize}
-Означаваме с $X^n$ множеството от всички думи с дължина $n$ над азбуката $X$, $X^0 = \{\varepsilon\}$.
-С $X^{*}$ означаваме множеството от всички думи над азбуката $X$, т.е.
-\marginpar{$0 \in \Nat$}
-\[X^{*} = \bigcup_{n\in\Nat} X^{n}.\]
-
-Сега ще определим функцията {\bf дължина}\index{дума!дължина} на дума.
-\marginpar{Функцията $\abs{\cdot}:X^\star\to\Nat$ е винаги сюрективна. Кога е биективна?}
-Дължината $|\alpha|$ на думите $\alpha \in X^*$ се определя с индукция по построението на $\alpha$.
-\begin{enumerate}[(i)]
-  \item
-    Нека $\alpha = \varepsilon$. Тогава $|\alpha| = 0$.
-  \item
-    Нека $\alpha = \beta a$, за някоя дума $\beta\in X^*$ и някоя буква $a\in X$.
-    Тогава \[|\alpha| = |\beta| + 1.\]
-\end{enumerate}
-
-Определяме функцията {\bf конкатенация}\index{дума!конкатенация} $\cdot$, т.е.
-слепване на две думи.
-За всеки две думи $\alpha$ и $\beta$ от $X^*$ определяме тяхната конкатенация с индукция по дължината $\beta$:
-\marginpar{$\cdot:X^\star\times X^\star \to X^\star$ е винаги сюрективна. Може ли да бъде биективна?}
-\begin{enumerate}[(i)]
-  \item
-    $|\beta| = 0$, т.е. $\beta = \varepsilon$.
-    Тогава \[\alpha\cdot\beta = \alpha.\]
-  \item
-    $|\beta| = n+1$, т.е. $\beta = \gamma b$, за някоя дума $\gamma$, $|\gamma| = n$, и някоя буква $b\in X$.
-    Тогава \[\alpha\cdot\beta = (\alpha\cdot\gamma)\cdot b.\]
-\end{enumerate}
-
-Сега можем да даден алтернативни дефиниции на понятията начало и край на дума.
-Казваме, че думата $\alpha$ е {\bf начало} на думата $\beta$, ако съществува дума $\gamma \in X^\star$ такава, че
-$\beta = \alpha\cdot\gamma$.
-Аналогично дефинираме $\alpha$ да бъде {\bf край} на думата $\beta$, ако съществува $\gamma \in X^\star$ такава, че
-$\beta = \gamma \cdot \alpha$.
-
-\begin{problem}
-  Какви свойства имат следните релации?
-  \begin{enumerate}[a)]
-  \item
-    $\alpha R \beta \iff \alpha \mbox{ е начало на }\beta$ 
-  \item
-    $\alpha R \beta \iff \alpha \mbox{ е край на }\beta$
-  \item
-    $\alpha R \beta \iff \alpha \mbox{ е начало на }\beta \vee (\exists\alpha_1\in X^{*})(\exists a,b\in X)(\alpha_1 a \mbox{ е начало на }\alpha\ \&\ \alpha_1 b \mbox{ е начало на } \beta)$
-  \item
-    \marginpar{това не е лексикографската наредба}
-    $R\subseteq (\{0,1\}^{n})^{2}$ е определена като
-    \[\langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff a_1\leq b_1\ \&\dots\ \&\ a_n\leq b_n\]
-  \item
-    $R\subseteq (\{0,1\}^{n})^{2}$ е определена като
-    \[\langle{a_1,\dots,a_n}\rangle R \langle{b_1,\dots,b_n}\rangle \iff (\exists i : 1\leq i\leq n)((\forall j < i)(a_j = b_j)\ \&\ a_i \leq b_i)\]
-\end{enumerate}
-\end{problem}
-\begin{proof}
-  \begin{enumerate}[1)]
-  \item[в)]
-    \begin{enumerate}[(i)]
-    \item
-      Ще проверим дали $R$ е рефлексивна, т.е. дали $(\forall\gamma\in X^{*})[\gamma R\gamma]$.
-      Очевидно $R$ е рефлексивна, защото всяка дума е начало на самата себе си ($\alpha = \alpha\cdot\varepsilon$).
-    \item
-      Ще проверим дали $R$ е транзитивна, т.е. дали $(\forall\alpha,\beta,\gamma\in X^*)[\alpha R\beta\wedge\beta R\gamma\rightarrow\alpha R\gamma]$.
-      Тук трябва да разгледаме четири случая:
-      \begin{enumerate}[a)]
-      \item
-        $\beta = \alpha\cdot\delta$ и $\gamma = \beta\cdot\rho$, за някои $\delta$ и $\rho$.
-        Тогава $\gamma = \alpha\cdot(\delta\cdot\rho)$, следователно $\alpha$ е начало на $\gamma$.
-      \item
-        $\beta = \alpha\cdot\delta$ и $\beta = \rho\cdot a\cdot \beta'$ и $\gamma = \rho\cdot b\cdot\gamma'$.
-        Ако $\alpha$ е начало на $\rho$, то $\alpha R \gamma$.
-        Ако $\rho\cdot a$ е начало на $\alpha$, тогава $\alpha = \rho\cdot c\cdot\alpha'$ и $\alpha R \gamma$.
-      \item
-        $\alpha = \rho\cdot a\cdot \alpha'$ и $\beta = \rho\cdot b\cdot\beta'$ и $\gamma = \beta\cdot\delta$ се разглежда аналогично.
-      \item
-        $\alpha = \rho\cdot a\cdot \alpha'$ и $\beta = \rho\cdot b\cdot\beta'$ и $\beta = \delta\cdot c\cdot \beta'$ и $\gamma = \delta\cdot d\cdot\gamma'$.
-        Ако $\rho\cdot b$ е начало на $\delta$, то $\delta = \rho\cdot b\cdot\nu$ и $\gamma = \rho\cdot b\cdot \gamma''$. Тогава $\alpha R \gamma$.
-        Ако $\delta\cdot c$ е начало на $\rho$, то $\rho = \delta\cdot c\cdot\nu$ и $\alpha = \delta\cdot c\cdot\alpha''$. Получаваме, че 
-        $\alpha R \gamma$.
-      \end{enumerate}
-    \item
-      Ще проверим дали $R$ е симетрична, т.е. дали $(\forall\alpha,\beta\in X^*)[\alpha R\beta \rightarrow \beta R\alpha]$.
-      Ако $\alpha = \varepsilon$, то $\alpha R\beta$, но нямаме $\beta R\alpha$.
-      Следователно, релацията не е симетрична.
-    \item
-      Лесно се вижда също, че $R$ не е антисиметрична.
-    \end{enumerate}
-    
-  \end{enumerate}
-  
-\end{proof}
-
-
-\begin{problem}
-  За всяко естествено число $n$, дефинираме релацията $R_n \subseteq (X^*)^2$ като
-  \[\alpha R_n \beta \iff [|\alpha| > n\ \wedge |\beta| > n\wedge (\forall i < n)[a_i = b_i]].\]
-  Докажете, че $R_n$ е релация на еквивалентност и намерете броя на класовете на еквивалентност.
-\end{problem}
-
-\begin{problem}
-  За всяко естествено число $n$, дефинираме релацията $R_n \subseteq (X^*)^2$ като
-  \[\alpha R_n \beta \iff \alpha = \beta \vee [|\alpha| > n\ \wedge |\beta| > n\wedge (\forall i < n)[a_i = b_i]].\]
-  Докажете, че $R_n$ е релация на еквивалентност и намерете броя на класовете на еквивалентност.
-\end{problem}
-\begin{proof}
-  Броят на класовете на еквивалентност е $\frac{|X|^n - 1}{|X| - 1}$.
-\end{proof}
-
-
-\begin{problem}
-  За всяко естествено число $n$, дефинираме релацията $R_n \subseteq (X^*)^2$ като
-  \[\alpha R_n \beta \iff |\alpha| = |\beta| > n\wedge (\forall i > n)[a_i = b_i].\]
-  Докажете, че $R_n$ е релация на еквивалентност.
-\end{problem}
-
-\begin{problem}
-  Нека $R$ е релация върху паметта на един компютър и е дефинирана като
-  \[xRy \iff x,y\mbox{ са указатели в паметта и }*x = *y.\]
-  Докажете, че $R$ е релация на еквивалентност.
 \end{problem}
 
 Нека $R \subseteq A\times A$ е бинарна релация.
@@ -644,33 +501,89 @@ $\beta = \gamma \cdot \alpha$.
   Намерете множествата $[1]_R$ и $[\frac{1}{2}]_R$.
 \end{problem}
 
-\begin{lemma}
-  Нека $R\subseteq A\times A$ е релация на еквивалентност и $x,y\in A$. 
-  Тогава \[[x]_R = [y]_R \iff xRy.\]
-\end{lemma}
+\section{Наредби}
+Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
+Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
+Релацията $R \subseteq A\times A$ се нарича:
+\begin{itemize}
+\item
+  \marginpar{На англ. partial order}
+  {\bf частична наредба}, ако тя е рефлексивна, транзитивна и антисиметрична.
+  Например, $\leq$ е частична наредба.
+  Също така, релацията $\subseteq$ между множества е частична наредба.
+\item 
+  \marginpar{На англ. equivalence relation}
+  {\bf релация на еквивалентност}, ако тя е рефлексивна, транзитивна и симетрична.
+  Например, $=$ е релация на еквивалентност.
+\item
+  \marginpar{На англ. linear order}
+  {\bf линейна наредба}\index{наредба!линейна}, ако $R$ е частична наредба, 
+  и за всеки два елемента $x,y$ точно едно от $\pair{x,y} \in R$, $x = y$, $\pair{y,x}\in R$ е изпълнено.
+\item
+  \marginpar{На англ. well-founded order}
+  {\bf фундирана наредба}\index{наредба!фундирана}, 
+  ако всяко непразно подмножество $X\subseteq A$ притежава поне един {\em минимален} елемент, т.е.
+  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)\neg(\exists y\in X)[\pair{y,m} \in R]].\]
+\item
+  \marginpar{На англ. well-ordered relation}
+  {\bf добра наредба}\index{наредба!добра}, ако всяко непразно подмножество $X\subseteq A$ има {\em най-малък} елемент , т.е.
+  \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)(\forall y\in X)[\pair{m,y}\in R \vee m = y]].\]
+\item
+  \marginpar{lexicographical order}
+  {\bf лексикографска наредба} върху частичната наредба $(X,<)$ ще наричаме 
+  наредбата $(X\times X,\prec)$, където
+  \[\pair{x,y}\prec\pair{x^\prime,y^\prime}\ \iff\ x<x^\prime\ \vee\ (x = x^\prime\ \wedge\ y < y^\prime).\]
+\end{itemize}
 
+\begin{remark}
+  Обърнете внимание на разликата между понятията {\em минимален} и {\em най-малък} елемент относно релацията $R$.
+  \begin{itemize}
+  \item $x_0$ е {\bf минимален} елемент за множеството $X \subseteq A$ относно $R$,
+    ако не съществуват елементи $y \in X$, за които $\pair{y,x}\in R$, т.е.
+    \[(\forall y \in X)[\pair{y,x} \not\in R].\]
+  \item $x_0$ е {\bf най-малък} елемент за множеството $X \subseteq A$ относно $R$,
+    ако за всеки друг елемент $y \in X$ е изпълнено $\pair{x,y}\in R$, т.е.
+    \[(\forall y \in X)[x\neq y \rightarrow \pair{x,y} \in R].\]
+  \end{itemize}
+\end{remark}
 
-% \begin{problem}
-%   Покажете, че за всяка релация $R$ и $x$, $[x]_R = R[\{x\}]$.
-% \end{problem}
-
-%% Rosen Textbook
 \begin{problem}
-  Кои от следните релации върху множеството от функциите от $\Z$ в $\Z$
-  са релации на еквивалентност?
+  Да се докаже, че $(\Nat^2,\prec)$ е добре наредено множество.
+\end{problem}
+
+\begin{problem}
+  Докажете, че следните две условия за частично наредено множество $(X,<)$ са еквивалентни:
   \begin{enumerate}[a)]
   \item
-    $R = \{(f,g)\mid f(1) = g(1)\}$.
+    всяко непразно подмножество на $X$ има минимален елемент;
   \item
-    $R = \{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
-  \item
-    $R =\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
-  \item
-    $R = \{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
-  \item
-    $R = \{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
+    не съществува строго намаляваща редица $x_1>x_2>x_3>\dots$ то елементи на $X$.
   \end{enumerate}
 \end{problem}
+
+\begin{problem}
+  Да се докаже, че частично нареденото множество $(X,<)$ е добре наредено тогава и само тогава, когато 
+  $(X,<)$ е фундирано и $<$ е линейна наредба върху $X$.
+\end{problem}
+
+\begin{problem}% от СЕП
+  Кои от изброените множества са фундирани? Кои са добре наредени?
+  \begin{enumerate}[a)]
+  \item
+    $(\Nat,<)$;
+  \item
+    $(\Z,<)$;
+  \item
+    $(X^*, <)$, където за $\alpha,\beta\in X^*$, $\alpha < \beta \iff \alpha\mbox{ е поддума на }\beta$;
+  \item
+    $(2^\Nat,\subsetneq)$;
+  \item
+    $(Fin(\Nat),\subsetneq)$, където $Fin(\Nat)$ е съвкупността от всички крайни подмножества на $\Nat$;
+  \item
+    $(\Nat^+,|)$, където $m|n \iff m\neq n\ \&\ m\mbox{ дели }n$.
+  \end{enumerate}
+\end{problem}
+
 
 \begin{problem}
   Нека $A$ е непразно множество и $f$ е функция с $Dom(f) = A$.
@@ -683,17 +596,12 @@ $\beta = \gamma \cdot \alpha$.
   \item
     Определете класовете на еквивалентност на $R$.
 \end{enumerate}
-
-\begin{problem}
-  Нека $R_1$ и $R_2$ са симетрични релации.
-  Проверете дали $\overline{R}_1$, $R_1\cap R_2$ и $R_1 \cup R_2$ са симетрични.
 \end{problem}
 
 \begin{problem}
   Докажете, че подмножество на всяка антисиметрична релация е също антисиметрична.
 \end{problem}
 
-\end{problem}
 
 
 

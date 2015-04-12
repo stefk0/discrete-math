@@ -1,46 +1,70 @@
+\chapter{Основни понятия по логика}
+
 \section{Съждително смятане}
 \label{sect:propositional}
 \marginpar{На англ. Propositional calculus}
 
 Съждителното смятане наподобява аритметичното смятане.
-Вместо артиметичните операции $+,-,\cdot,/$, имаме съждителни операции като $\neg, \wedge, \vee$.
+Вместо аритметичните операции $+,-,\cdot,/$, имаме съждителни операции като $\neg, \wedge, \vee$.
+Например, $(p\vee q)\rightarrow \neg  r$ е логически израз.
 Освен това, докато аритметичните променливи приемат стойности произволни числа, то
 съждителните променливи приемат само стойности {\bf истина (1)} или {\bf лъжа (0)}.
 
-{\bf Съждителен израз} начичаме съвкупността от съждения $p,q,r,\dots$, свързани със знаците за логически операции
+{\bf Съждителен израз} наричаме съвкупността от съждителни променливи $p,q,r,\dots$, свързани със знаците за логически операции
 $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определящи реда на операциите.
 
-{\bf Съждително верен} (валиден) е този логически израз, който има верностна стойност {\bf 1} при всички възможни набори на
-стойностите на съждителните променливи в израза.
+\subsection*{Съждителни операции}
 
-\subsection*{Основни  съждителни операции: $\neg$, $\vee$, $\wedge$, $\rightarrow$,$\iff$}
+\begin{itemize}
+\item
+  Отрицание $\neg$
+\item 
+  Дизюнкция $\vee$
+\item
+  Конюнкция $\wedge$
+\item
+  Импликация $\rightarrow$
+\item
+  Еквивалентност $\iff$
+\end{itemize}
+
 Ще използваме таблица за истинност за да определим стойностите на основните съждителни операции
 при всички възможни набори на стойностите на променливите.
 
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\[
+\begin{array}{|c|c|c|c|c|c|c|c|c|}
   \hline
-  $p$ & $q$ & $\neg p$ & $p \vee q$ & $p \wedge q$ & $p \rightarrow q$ & $\neg p \vee q$ & $p \iff q$\\
+  p & q & \neg p & p \vee q & p \wedge q & p \rightarrow q & \neg p \vee q & p \iff q & \ov{p}q\ \vee\ p\ov{q} \\
   \hline
-  0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+  0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1\\
   \hline
-  0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+  0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 0\\
   \hline
-  1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+  1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
   \hline
-  1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+  1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1\\
   \hline
-\end{tabular}
-% Булевите алгебри носят името на Джордж Бул (1815 - 1864), който първи описва техните свойства в своята книга
-% ``The Mathematical Analysis of Logic'' (1847).
+\end{array}
+\]
 
 
-\subsection*{Основни съждителни закони (правила)}
+{\bf Съждително верен} (валиден) е този логически израз, който има верностна стойност {\bf 1} при всички възможни набори на
+стойностите на съждителните променливи в израза, т.е. стълбът на израза в таблицата за истинност трябва да съдържа само 
+стойности {\bf 1}. 
+
+За два съждителни израза $\varphi$ и $\psi$ са {\bf еквивалентни}, означаваме $\varphi \equiv \psi$, ако са съставени от 
+едни и същи съждителни променливи и двата израза имат едни и същи верностни стойности при всички комбинации от верностни 
+стойности на променливите. С други думи, колоните на двата израза в таблиците им за истинност трябва да съвпадат.
+Например, лесно се вижда, че 
+\[p\to q \equiv \neg p \vee q.\]
+
+\subsection*{Съждителни закони}
 
 \begin{enumerate}[I)]
   \item
     {\bf Комутативен закон}
     \[p\vee q \equiv q\vee p\] 
-    \[p\ \wedge\ q \equiv q\ \wedge\ p\]
+    \[p \wedge q \equiv q \wedge p\]
   \item
     {\bf Асоциативен закон}
     \[(p\vee q)\vee r \equiv p\vee(q\vee r)\]
@@ -51,14 +75,14 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
     \[p\vee (q\ \wedge\ r) \equiv (p\vee q)\ \wedge\ (p\vee r)\]
   \item
     {\bf Закони на де Морган}
-    \[\neg(p\ \wedge\ q) \equiv (\neg p \vee \neg q)\]
-    \[\neg(p\vee q) \equiv (\neg p\ \wedge\ \neg q)\]
+    \[\neg(p \wedge q) \equiv (\neg p \vee \neg q)\]
+    \[\neg(p\vee q) \equiv (\neg p \wedge \neg q)\]
   \item
     {\bf Закон за контрапозицията}
     \[p\rightarrow q \equiv \neg q \rightarrow \neg p\]
   \item
     {\bf Обобщен закон за контрапозицията}
-    \[(p\ \wedge\ q)\rightarrow r \equiv (p\ \wedge\ \neg r) \rightarrow \neg q\]
+    \[(p \wedge q)\rightarrow r \equiv (p \wedge \neg r) \rightarrow \neg q\]
   \item
     {\bf Закон за изключеното трето}
     \[p\vee \neg p \equiv {\mathbf 1}\]
@@ -72,10 +96,10 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
 \begin{example}
   Нека например да проверим едно от правилата на де Морган и закона
   за контрапозицията.
-  
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+  \[
+  \begin{array}{|c|c|c|c|c|c|c|c|c|}
     \hline
-    $p$ & $q$ & $p\wedge q$ & $\neg(p\wedge q)$ & $\neg p$ & $\neg q$ & $\neg p \vee \neg q$ & $p \rightarrow q$ & $\neg q \rightarrow \neg p$\\
+    p & q & p\wedge q & \neg(p\wedge q) & \neg p & \neg q & \neg p \vee \neg q & p \rightarrow q & \neg q \rightarrow \neg p\\
     \hline
     0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
     \hline
@@ -85,11 +109,11 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
     \hline
     1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
     \hline
-  \end{tabular}
-  
-  При всички стойности на променливите $p$ и $q$, стълбовете съответсващи на $\neg(p \wedge q)$ и $\neg p \vee \neg q$
+  \end{array}
+  \]
+  При всички стойности на променливите $p$ и $q$, стълбовете съответстващи на $\neg(p \wedge q)$ и $\neg p \vee \neg q$
   съвпадат. Следователно, законът на де Морган е валиден.
-  По същия начин се съобразява, че законът за констрапозицията е валиден.
+  По същия начин се съобразява, че законът за контрапозицията е валиден.
 \end{example}
 
 
@@ -134,7 +158,7 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
 % \end{tabular}
 
 \begin{problem}
-  Проверете дали следните съждителни формули са тавтологии:
+  Проверете дали следните съждителни формули са валидни.
   \begin{enumerate}[a)]
   \item
     $(p\wedge q)\rightarrow p$;
@@ -155,7 +179,7 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
   \item
     $\neg(p\vee q) \equiv (\neg p \wedge \neg q)$;
   \item
-    $\neg(p\rightarrow q) \equiv (p\wedge \neg q)$;
+    $\neg(p\rightarrow q) \equiv (p\wedge \neg q)$.
   \end{enumerate}
 \end{problem}
 
@@ -206,6 +230,7 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
 
 
 \begin{problem}
+  \marginpar{(От \cite{smullyan})}
   Да предположим, че сме на остров, който се обитава негодници и благородници.
   Негодниците винаги лъжат, а благородниците винаги казват истината.
   Срещаме трима обитатели на този остров, наречени {\bf А}, {\bf Б} и {\bf В}.
@@ -266,26 +291,25 @@ $\neg, \vee, \wedge, \rightarrow, \leftrightarrow$ и скоби, определ
       \[a \iff \ov{a}\ov{b}\ov{c} \equiv \mathbf{1}.\]
       Сега получаваме следните еквивалентни преобразования:
       \begin{align*}
-        a \iff \ov{a}\ov{b}\ov{c} & \equiv\ (a \rightarrow \ov{a}\ov{b}\ov{c})\ \wedge\ (\ov{a}\rightarrow (a\vee b \vee c))\\
-        & \equiv\ (\ov{a} \vee \ov{a}\ov{b}\ov{c}) \wedge (a \vee a\vee b \vee c)\\
-        & \equiv\ \ov{a}\ \wedge\ (a \vee b \vee c)\\
-        & \equiv\ \ov{a}a \vee \ov{a}b \vee \ov{a}c\\
+        a \iff \ov{a}\ov{b}\ov{c} & \equiv\ a\ov{a}\ov{b}\ov{c} \vee \ov{a}(\ov{\ov{a}\ov{b}\ov{c}})\\
+        & \equiv\ \ov{a}(a \vee b \vee c)\\
         & \equiv\ \ov{a}b \vee \ov{a}c\\
         & \equiv\ \mathbf{1}.
       \end{align*}
     \item
+      Правим аналогични разсъждения и за {\bf Б}.
       \begin{align*}
-        b \iff (\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c}) & \equiv\ (b \rightarrow (\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c}))\wedge (\ov{b}\rightarrow \ov{\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c}})\\
-        & \equiv\ (\ov{b} \vee \ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c}) \wedge (b\vee \ov{a}\ov{b}\ov{c}\vee abc \vee \ov{a}bc \vee a\ov{b}c \vee ab\ov{c})\\
-        & \equiv\ (\ov{b} \vee \ov{a}b\ov{c}) \wedge (b \vee \ov{a}\ov{b}\ov{c} \vee  a\ov{b}c)\\
-        & \equiv\ \ov{a}\ov{b}\ov{c} \vee  a\ov{b}c \vee \ov{a}b\ov{c}.\\
+        b \iff (\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c}) & \equiv\ b(\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c})\vee \ov{b}(\ov{\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c}})\\
+        & \equiv\ \ov{a}b\ov{c}\ \vee\ \ov{b}(a\vee b \vee \ov{c})(a\vee\ov{b}\vee c)(\ov{a} \vee b \vee c)\\
+        & \equiv\ \ov{a}b\ov{c}\ \vee\ \ov{b}(a \vee a\ov{b} \vee ac \vee ab \vee bc \vee a\ov{c} \vee \ov{b}\ov{c})(\ov{a} \vee b \vee c)\\
+        & \equiv\ \ov{a}b\ov{c}\ \vee\ \ov{b}(a \vee bc \vee \ov{b}\ov{c})(\ov{a} \vee b \vee c)\\
+        & \equiv\ \ov{a}b\ov{c}\ \vee\ \ov{a}\ov{b}\ov{c} \vee  a\ov{b}c.\\
         & \equiv\ \mathbf{1}. 
       \end{align*}
     \item
       Сега взимаме конюнкцията на А) и Б).
-      \begin{align*}
-        (\ov{a}b \vee \ov{a}c)\wedge (\ov{a}\ov{b}\ov{c} \vee  a\ov{b}c \vee \ov{a}b\ov{c}) &\ \equiv\ \ov{a}b\ov{c}.
-      \end{align*}
+      \[(\ov{a}b \vee \ov{a}c)\wedge (\ov{a}\ov{b}\ov{c} \vee  a\ov{b}c \vee \ov{a}b\ov{c}) \equiv\ \ov{a}b\ov{c} \equiv {\mathbf 1}.\]
+      Заключаваме, че {\bf А} и {\bf В} са негодници, а {\bf Б} е благородник.
     \end{enumerate}
   \end{enumerate}
 \end{proof}

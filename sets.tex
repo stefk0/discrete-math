@@ -1,5 +1,7 @@
-\chapter{Множествата}
+\chapter{Множества}
 \index{множество}
+
+\section{Основни понятия}
 {\bf Множество} е съвкупност от обекти (елементи).
 Едно множество може също така да бъде елемент на някое друго множество.
 Използваме означението $x \in A$, 
@@ -13,76 +15,20 @@
 
 \begin{example}
   Ето няколко примера за множества, които ще използваме често:
-  \begin{align*}
-    \Nat = & \{0,1,2,\dots\},\\
-    \mathbb{Z} = & \{\dots,-2,-1,0,1,2,\dots\},\\
-    \mathbb{Q} = & \{\frac{m}{n} \mid m,n \in \mathbb{Z}\ \&\ n \neq 0\}.
-  \end{align*}
-
+  \begin{itemize}
+  \item 
+    Естествените числа, 
+    \[\Nat = \{0,1,2,\dots\};\]
+  \item
+    Целите числа,
+    \[\Int = \{\dots,-2,-1,0,1,2,\dots\};\]
+  \item
+    Рационалните числа,
+    \[\mathbb{Q} = \{\frac{m}{n} \mid m,n \in \mathbb{Z}\ \&\ n \neq 0\}.\]
+  \end{itemize}
 \end{example}
 
-
-% Не му е  мястото на това тук! Да се премести.
-% \section{Декартово произведение}
-%   Въвеждаме операция наредена двойка $\langle{x,y}\rangle$, която искаме да има следните свойства:
-%   \begin{enumerate}
-%   \item
-%     $\langle{x,y}\rangle = \langle{x',y'}\rangle \iff x = x' \ \&\ y = y'$;
-%   \item
-%     класът $A\times B = \{\langle{x,y}\rangle\ \mid\ x\in A\ \&\ x\in B\}$ е множество.
-% \end{enumerate}
-
-
-% \begin{dfn}[Куратовски]
-%   Наредена двойка\index{наредена двойка} $\langle{x,y}\rangle = \{\{x\},\{x,y\}\}$
-% \end{dfn}
-
-% Първото свойство се проверява лесно.
-% За второто свойство, достатъчно е да покажем, че за произволни множества $A,B$ можем да 
-% изберем множество $C$, за което е изпълнено, че
-% \[x\in A\ \&\ x\in B \rightarrow \{x,\{x,y\}\}\in C.\]
-% Ако успеем да намерим такова множество $C$, то тогава от аксиомата за отделянето следва, че $A\times B$
-% е множество, защото $A\times B = \{ z\in C\ \mid\ (\exists x\in A)(\exists y\in B)[z = \langle{x,y}\rangle]\}$ е множество.
-
-% Лесно може да се провери, че $C = \Ps(\Ps(A\cup B))$ върши работа.
-
-% Възможно е да се дадат и други дефиниции на наредена двойка.
-% \begin{problem}
-%   Проверете кои от следните операции отговарят на условията за наредена двойка.
-%   \begin{enumerate}
-%   \item
-%     $\langle{x,y}\rangle_{1} = \{x,y\}$;
-%   \item
-%     $\langle{x,y}\rangle_{2} = \{x,\{y\}\}$;
-%   \item
-%     $\langle{x,y}\rangle_{3} = \{\{\emptyset,\{x\}\},\{\{y\}\}\}$;
-%   \item
-%     $\langle{x,y}\rangle_{4} = \{\{0,x\},\{1,y\}\}$, 
-%     където $0,1$ са различни обекти.
-% \end{enumerate}
-% \end{problem}
-
-% \begin{problem}
-%   Проверете:
-%   \begin{enumerate}
-%   \item
-%     $A\times B = \emptyset \iff A = \emptyset \vee B = \emptyset$
-%   \item
-%     $A\times(B\cup C) = (A\times B)\cup(A\times C)$
-%   \item
-%     $A\times(B\cap C) = (A\times B)\cap(A\times C)$ 
-%   \item
-%     $A\times(B\backslash C) = (A\times B)\backslash(A\times C)$
-%   \item
-%     $(A\cap B)\times (C\cap D) = (A\times C)\cap(B\times D)$
-%   \item
-%     $(A\cup B)\times (C\cup D) = (A\times C)\cup(B\times D)$
-%   \item
-%     $(A\backslash C)\times(B\backslash D)\subsetneq (A\times B)\backslash(C\times D)$
-%   \end{enumerate}
-% \end{problem}
-
-\subsection*{Сравняване на множества}
+\section{Сравняване на множества}
 
 Казваме, че едно множество $A$ {\bf се включва в} множеството $B$, което означаваме с $A \subseteq B$, 
 ако всеки елемент, който принадлежи на $A$, принадлежи и на $B$, т.е.
@@ -99,17 +45,17 @@
 \item
   $\Nat \subseteq \mathbb{Z}$ и $\mathbb{Z} \subseteq \mathbb{Q}$.
 \end{itemize}
-Две множества $A$ и $B$ са {\bf равни},
+Две множества $A$ и $B$ са {\bf равни}, ако
 \[A = B \iff A \subseteq B\ \&\ B\subseteq A.\]
 
-\section*{Операции върху множества}
+\section{Операции върху множества}
 
-Определяме следните операции върху произволни множества $A$ и $B$.
+Ще разгледаме няколко операции върху произволни множества $A$ и $B$.
 \begin{enumerate}[{\bf (I)}]
 \item
   {\bf Сечение}
-  \[A\cap B = \{x\ \mid\ x\in A\ \&\ x\in B\}.\]
-  Казано малко по-формално, $A\cap B$ е множеството, за което е изпълнена формулата
+  \[A\cap B = \{x\ \mid\ x\in A\ \wedge\ x\in B\}.\]
+  Казано по-формално, $A\cap B$ е множеството, за което е изпълнена формулата
   \[(\forall x)[x \in A\cap B \iff (x\in A\ \wedge\ x \in B)].\]
   Примери:
   \begin{itemize}
@@ -118,7 +64,7 @@
   \item
     $A \cap \emptyset = \emptyset$, за всяко множество $A$.
   \item
-    $\{1,2,\emptyset\} \cap \{\emptyset\} = \{\emptyset\}$.
+    $\{1,\emptyset,\{\emptyset\}\} \cap \{\emptyset\} = \{\emptyset\}$.
     \item
       $\{1,2,\{1,2\}\} \cap \{1,\{1\}\} = \{1\}$.
     \end{itemize}
@@ -140,7 +86,7 @@
     \end{itemize}
   \item
     {\bf Разлика}
-    \[A\setminus B = \{x\ \mid\ x\in A\ \&\ x\not\in B\}.\]
+    \[A\setminus B = \{x\ \mid\ x\in A\ \wedge\ x\not\in B\}.\]
     $A\setminus B$ е множеството, за което е изпълнена формулата
     \[(\forall x)[x \in A\setminus B \iff (x\in A\ \wedge\ x \not\in B)].\]
     Примери:
@@ -204,33 +150,38 @@
     \[(\forall x)[x \in \bigcap^n_{i=1}A_i \iff (\forall i)[1 \leq i \leq n\ \rightarrow\ x \in A_i]].\]
   \end{enumerate}
 
-% Това е много сложно!
-% Тук имаме проблем с значението на $\bigcap\emptyset$.
-% На пръв поглед изглежда, че $\bigcap\emptyset$ е множеството от всички множества $V$, 
-% но ние знаем, че такова множество не съществува.
-% Това в известен смисъл е аналог на делението на нула.
-% Ние ще приемем, че $\bigcap\emptyset = \emptyset$.
-
 \begin{example}
-  Нека $A = \{x\in\N\mid x > 1\}$ и $B = \{x\in\N\mid x>3\}$. Тогава :
-    \begin{enumerate}[]
+  Нека $A = \{x\in\Nat\mid x > 1\}$ и $B = \{x\in\Nat\mid x>3\}$. Тогава :
+  \begin{itemize}
     \item
-      $A\cap B = \{x\in\N\mid x > 3\}$,
+      $A\cap B = \{x\in\Nat\mid x > 3\}$,
     \item
-      $A\cup B = \{x\in\N\mid x > 1\}$,
+      $A\cup B = \{x\in\Nat\mid x > 1\}$,
     \item
-      $A\setminus B = \{x\in\N\mid 1<x\leq 3\}$,
+      $A\setminus B = \{x\in\Nat\mid 1<x\leq 3\}$,
     \item
       $B\setminus A = \emptyset$,
     \item
-      $A\triangle B = \{x\in\N\mid 1<x\leq 3\}$
-    \end{enumerate}
+      $A\triangle B = \{x\in\Nat\mid 1<x\leq 3\}$
+    \end{itemize}
 \end{example}
 
 
 \begin{problem}
   Нека $A = \{x\in\R\mid |x|\leq 1\}$ и $B = \{x\in\R\mid |x-1|\leq \frac{1}{2}\}$.
-  Намерете множествата $A\cup B$, $A\cap B$, $A\setminus B$, $B\setminus A$, $A\triangle B$.
+  Намерете:
+  \begin{itemize}
+  \item 
+    $A\cup B$;
+  \item
+    $A\cap B$;
+  \item
+    $A\setminus B$;
+  \item
+    $B\setminus A$;
+  \item
+    $A \triangle B$.
+  \end{itemize}
 \end{problem}
 
 % \begin{example}
@@ -298,10 +249,16 @@
   Намерете $\Ps(A)$, където:
   \begin{enumerate}[a)]
   \item
+    \marginpar{$\{\emptyset\}$}
     $A= \emptyset$.
   \item
+    \marginpar{$\{\emptyset,\{1\},\{2\},\{1,2\}\}$}
+    $A= \{1,2\}$.
+  \item
+    \marginpar{$\{\emptyset,\{\{1,2\}\}\}$}
     $A= \{\{1,2\}\}$.
   \item
+    \marginpar{$\{\emptyset, \{\emptyset\},\{\{\emptyset\}\},\{\emptyset,\{\emptyset\}\}\}$}
     $A= \{\emptyset, \{\emptyset\}\}$.
   \item
     $A= \{\emptyset, \{1,2\}, 7\}$.
@@ -311,7 +268,7 @@
 \end{problem}
 
 \begin{problem}
-  Проверете:
+  Проверете верни ли са свойствата:
   \begin{enumerate}[a)]
   \item
     $A\subseteq B \iff A\setminus B = \emptyset \iff A\cup B = B \iff A\cap B = A$;
@@ -336,9 +293,10 @@
   \item
     $(A\cup B)\setminus C = (A\setminus C) \cup (B\setminus C)$;
   \item
-%    \marginpar{Намерете контра-пример!}
+    \marginpar{Не е вярно!}
     $A\setminus (B\setminus C) = (A\setminus B)\setminus C$;
   \item
+    \marginpar{Закони на Де Морган}
     $C\setminus (A\cup B) = (C\backslash A)\cap(C\backslash B)$ и $C \backslash (A\cap B) = (C\backslash A)\cup(C\backslash B)$
   \item
     $C\backslash(\bigcup^{n}_{i=1} A_i) = \bigcap^{n}_{i=1} (C\backslash A_i)$ и $C \backslash(\bigcap^{n}_{i=1} A_i) = \bigcup^{n}_{i=1} (C\backslash A_i)$;
@@ -365,7 +323,10 @@
   \item 
     $A\subseteq B \Rightarrow \Ps(A) \subseteq \Ps(B)$;
   \item
+    \marginpar{$X \subseteq A\cup B \stackrel{?}{\Rightarrow} X\subseteq A \vee X \subseteq B$}
     $\Ps(A\cap B) = \Ps(A) \cap \Ps(B)$ и $\Ps(A\cup B) = \Ps(A) \cup \Ps(B)$;
+  \item
+    $\Ps(A\setminus B) = \Ps(A)\setminus\Ps(B)$ и $\Ps(A\triangle B) = \Ps(A)\triangle \Ps(B)$.
   \end{enumerate}
 \end{problem}
 
@@ -373,6 +334,7 @@
   Да се решат системите с променлива $X$:
   \begin{enumerate}[a)]
   \item
+    \marginpar{$X \stackrel{?}{=} C \cup (A\setminus B)$}
     \begin{tabular}{l c l}
       $\big|A\setminus X$ & $= $ & $ B$\\
       $\big|X\setminus A $ & $=$ & $ C$,
@@ -396,6 +358,7 @@
   \end{enumerate}
 \end{problem}
 
+Следващият пример проказва, че трябва да бъдем внимателни как строим нови множества.
 \begin{example}
   Нека съвкупността от обекти $D$ е определена като
   \[D = \{A\mid A\mbox{ е множество и } A\not\in A\}.\]

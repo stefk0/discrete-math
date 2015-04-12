@@ -22,42 +22,42 @@
   \caption{Инициализация}
   \label{alg:bfs-init}
   \begin{algorithmic}[1]
-    \Procedure{BFS-INIT}{s}
-    \ForAll{$v \in V \setminus \{s\}$}
-    \State $color[v] := \mbox{WHITE}$
-    \State $dist[v] := \infty$
-    \State $pred[v] := NIL$
+    \Procedure{BFS-INIT}{$G$,$r$}
+    \ForAll{$v \in V \setminus \{r\}$}
+    \State $\texttt{color}[v] := \texttt{WHITE}$
+    \State $\texttt{dist}[v] := \infty$
+    \State $\texttt{pred}[v] := \texttt{NIL}$
     \EndFor
-    \State $color[s]:=GRAY$
-    \State $dist[s]:=0$
-    \State $pred[s]:=NIL$
+    \State $\texttt{color}[r]:= \texttt{GRAY}$
+    \State $\texttt{dist}[r]:= 0$
+    \State $\texttt{pred}[r]:= \texttt{NIL}$
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
-За този алгоритъм най-удобно е да имаме масив $Adj$ с дължина $\abs{V}$,
-като $Adj[u]$ дава списък с наследниците на $u$, т.е.
-\[Adj[u] = \{u \in V \mid (u,v) \in E\}.\]
+За този алгоритъм най-удобно е да имаме масив $\texttt{Adj}$ с дължина $\abs{V}$,
+като $\texttt{Adj}[u]$ дава списък с преките наследници на $u$, т.е.
+\[\texttt{Adj}[u] = \{v \in V \mid (u,v) \in E\}.\]
 
-\begin{algorithm}
+\begin{algorithm}[H]
   \caption{Алгоритъм за обхожданев широчина}
   \label{alg:bfs}
   \begin{algorithmic}[1]
-    \Procedure{BFS}{$s$}
-    \State \Call{BFS-INIT}{$s$}
+    \Procedure{BFS}{$G$,$r$}
+    \State \Call{BFS-INIT}{$G$,$r$}
     \State $Q := \emptyset$\Comment{Опашката $Q$ съдържа точно сивите върхове}
-    \State put($Q$,$s$)
+    \State put($Q$,$r$)
     \While {$Q \neq \emptyset$}
     \State $u := get(Q)$\Comment{$u$ е премахнат от опашката}
-    \ForAll{$v \in Adj[u]$}
-    \If{$WHITE = color[v]$}
+    \ForAll{$v \in \texttt{Adj}[u]$}
+    \If{$\texttt{WHITE} = \texttt{color}[v]$}
     \State $put(Q,v)$
-    \State $color[v] := GRAY$
-    \State $pred[v] := u$
-    \State $dist[v] := dist[u] + 1$
+    \State $\texttt{color}[v] := \texttt{GRAY}$
+    \State $\texttt{pred}[v] := u$
+    \State $\texttt{dist}[v] := \texttt{dist}[u] + 1$
     \EndIf
     \EndFor
-    \State $color[u] := BLACK$
+    \State $\texttt{color}[u] := \texttt{BLACK}$
     \EndWhile
     \EndProcedure
   \end{algorithmic}
@@ -67,70 +67,73 @@
 \item 
   Алгоритъмът работи както за ориентирани, така и за неориентирани графи.
 \item
-  Дължина на път (без цикли) е броят на ребрата, които участват в пътя.
+  {\bf Дължина на път} (без цикли) е броят на ребрата, които участват в пътя.
   Например, за пътя $p = (v_0,\dots,v_k)$ в графа $G$,
   неговата дължина е $k$, защото ребрата, които участват в $p$
   са $\{(v_0,v_1),(v_1,v_2),\dots,(v_{k-1},v_k)\}$ и са общо $k$ на брой.
-  Обикновено ще означаваме дължината на пътя $p$ с $\abs{p}$.
+  Обикновено ще означаваме дължината на пътя $p$ с $\abs{p}$ и пишем $v_0 \stackrel{p}{\leadsto} v_k$.
 \item
   Нека да означим за всеки два върха $u,v \in V$,
-  \[
-  \delta(u,v) =
-  \begin{cases}
-    \min\{\abs{p} \mid u\stackrel{p}{\leadsto}v\}, \mbox{ ако има път между }u, v \\
-    \infty, \mbox{ ако няма път}
-  \end{cases}\]
+  \begin{align*}
+    \delta(u,v) =
+    \begin{cases}
+      \min\{\abs{p} \mid u\stackrel{p}{\leadsto}v\}, & \text{ ако има път между }u, v \\
+      \infty, & \text{ ако няма път}
+    \end{cases}
+  \end{align*}
 \item
-  Имаме свойството, че за (не)ориентиран граф $G = (V,E)$ и един връх $s \in V$,
+  Имаме свойството, че за граф $G = (V,E)$ и един връх $s \in V$,
   ако $(u,v) \in E$, то
   \[\delta(s,v) \leq \delta(s,u) + 1.\]
 \item
-  За (не)ориентиран граф $G = (V,E)$, и фиксиран връх $s\in V$, означаваме $G_{pred} = (V_{pred},E_{pred})$ да бъде
+  За граф $G = (V,E)$, и фиксиран връх $r\in V$, означаваме
+  \[G_{pred} = (V_{pred},E_{pred}),\]
+  където
   \begin{align*}
-    V_{pred} & = \{v \in V\mid pred[v] \neq NIL\} \cup \{s\},
-    E_{pred} & = \{(u,v) \in E \mid pred[v] = u\}.
+    V_{pred} & = \{v \in V\mid \texttt{pred}[v] \neq \texttt{NIL}\} \cup \{s\},\\
+    E_{pred} & = \{(u,v) \in E \mid \texttt{pred}[v] = u\}.
   \end{align*}
-  След изпълнение на BFS($s$), $G_{pred}$ представлява дърво с корен $s$, 
-  за всеки достижим в $G$ от $s$ връх $v$, $G_{pred}$ съдържа единствен прост път $s \stackrel{p}{\leadsto} v$, 
-  като $p$ е най-къс измежду всички пътища свързващи $s$ с $v$ в $G$.
+  След изпълнение на BFS($G$,$r$), $G_{pred}$ представлява дърво с корен $r$, 
+  за всеки достижим в $G$ от $r$ връх $v$, $G_{pred}$ съдържа единствен прост път $r \stackrel{p}{\leadsto} v$, 
+  като $p$ е най-къс измежду всички пътища свързващи $r$ с $v$ в $G$.
 \end{itemize}
 
 \begin{thm}
-  Нека е даден (не)ориентиран граф $G = (V,E)$ и един връх $s \in V$.
-  След изпълнение на BFS($s$) получаваме, че
-  \[(\forall v \in V)[dist[v] = \delta(s,v)].\]
+  Нека е даден граф $G = (V,E)$ и един връх $r \in V$.
+  След изпълнение на BFS($G$,$r$) получаваме, че
+  \[(\forall v \in V)[\texttt{dist}[v] = \delta(r,v)].\]
 \end{thm}
 
 \subsection{Обхождане в дълбочина}
 
-\begin{algorithm}
+\begin{algorithm}[H]
   \caption{Обхождане в дълбочина}
   \label{alg:dfs-visit}
   \begin{algorithmic}[1]
-    \Procedure{DFS-VISIT}{$u$}
+    \Procedure{DFS-VISIT}{$G$,$u$}
     % \State $t := t+1$
     % \State $in[u] := t$
-    \State $color[u] := GRAY$\Comment{Върхът $u$ е посетен, но не е обработен}
-    \ForAll{$v \in Adj[u]$}
-    \If {$WHITE = color[v]$}
-    \State $pred[v] := u$
+    \State $\texttt{color}[u] := \texttt{GRAY}$\Comment{Върхът $u$ е посетен, но не е обработен}
+    \ForAll{$v \in \texttt{Adj}[u]$}
+    \If {$\texttt{WHITE} = \texttt{color}[v]$}
+    \State $\texttt{pred}[v] := u$
     \State \Call{DFS-VISIT}{$v$}
     \EndIf
     \EndFor
     % \State $t := t+1$
     % \State $out[u] := t$
-    \State $color[u] := BLACK$\Comment{Приключили сме с $u$}
+    \State $\texttt{color}[u] := \texttt{BLACK}$\Comment{Приключили сме с $u$}
     \EndProcedure
     \Statex
-    \Procedure{DFS}{}
+    \Procedure{DFS}{$G$}
     \ForAll{$v \in V$}\Comment{Инициализация}
-    \State $color[v] := WHITE$
-    \State $pred[v] := NIL$
+    \State $\texttt{color}[v] := \texttt{WHITE}$
+    \State $\texttt{pred}[v] := \texttt{NIL}$
     \EndFor    
     % \State $t := 0$
     \ForAll{$v \in V$}
-    \If{$WHITE = color[v]$}
-    \State\Call{DFS-VISIT}{$v$}
+    \If{$\texttt{WHITE} = \texttt{color}[v]$}
+    \State\Call{DFS-VISIT}{$G$,$v$}
     \EndIf
     \EndFor
     \EndProcedure
@@ -153,23 +156,23 @@
   {\bf Покриващо дърво} за свъзан неориентиран граф $G = (V,E)$,
   е дърво $T = (V,E^\prime)$, $E^\prime \subseteq E$.
 \item
-  Тегло на едно подмножество от $U \subseteq E$ е числото
+  Тегло на едно подмножество от ребра $U \subseteq E$ е числото
   \[w(U) = \sum_{e \in U} w(e).\]
 \item
-  {\bf Минимално покриващо дърво} свъзан неориентиран граф $G = (V,E,w)$
+  {\bf Минимално покриващо дърво} за свъзан неориентиран претеглен граф $G = (V,E,w)$
   е покриващо дърво $T$, за което 
   \[w(T) = \min\{w(T^\prime) \mid T^\prime\mbox{ е покриващо дърво за }G\}.\]
 \end{itemize}
 
 \subsection{Алгоритъм на Прим}
 
-Нека е даден неориентиран граф $G = (V,E,w)$ с тегла по ребрата.
+Нека е даден неориентиран претеглен {\bf свързан} граф $G = (V,E,w)$.
 
-\begin{algorithm}[h!]
-  \caption{Алгоритъм на Прим}
+\begin{algorithm}[H]
+  \caption{Прим}
 
   \begin{algorithmic}[1]
-    \Procedure{PRIM}{$r$}
+    \Procedure{PRIM}{$G,r$}
     \State $U := \{r\}$\Comment{Започваме от дърво с корен $r$ и без ребра}
     \State $S := \emptyset$
     \While{$(\exists (x,y)\in E)[x\in U\ \&\ y \in V\setminus U]$}
@@ -200,24 +203,24 @@
 Нека е даден неориентиран {\bf свързан} претеглен граф $G = (V,E,w)$.
 
 \begin{algorithm}[h!]
-  \caption{Алгоритъм на Крускал}
-
+  \caption{Крускал}
+  
   \begin{algorithmic}[1]
-    \Procedure{KRUSKAL}{}
-    \State $X = \emptyset$\Comment{$X$ ще бъде списък с дървета}
+    \Procedure{KRUSKAL}{$G$}
+    \State $X = \emptyset$\Comment{$X$ ще бъде колекция от дървета}
     \For{$v \in V$}
-    \State Добавяме дървото $T = (\{v\},\emptyset)$ към списъка $X$
+    \State Добавяме дървото $T = (\{v\},\emptyset)$ към колекцията $X$
     \EndFor
     \State$E^\prime := $\Call{Sort}{$E$,$w$}\Comment{Сортираме $E$ във възходящ ред относно тегла им}
     \Statex
     \ForAll{$(u,v) \in E^\prime$}
-    \State Нека $u$ принадлежи на върховете на дървото $T_u \in X$
-    \State Нека $v$ принадлежи на върховете на дървото $T_v \in X$
+    \State Нека $u$ е връх в дървото $T_u \in X$
+    \State Нека $v$ е връх в дървото $T_v \in X$
     \If{$T_u \neq T_v$}
-    \State $V := V_u\cup V_v$
-    \State $E := E_u\cup E_v\cup\{(u,v)\}$
-    \State $T := (V,E)$
-    \State Премахваме $T_u$ и $T_v$ от  списъка $X$
+    \State $W := V_u\cup V_v$
+    \State $R := E_u\cup E_v\cup\{(u,v)\}$
+    \State $T := (W,R)$
+    \State Премахваме $T_u$ и $T_v$ от колекцията $X$
     \State Добавяме дървото $T$ към $X$
     \EndIf
     \EndFor
@@ -225,32 +228,6 @@
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
-
-
-% \begin{enumerate}
-% \item
-%   Нека $V = \{v_0,\dots,v_n\}$.
-%   Строим редица от дървета $\{T_i\}_{i \leq n}$, като
-%   \[T_i = (\{v_i\},\emptyset),\]
-%   т.е. дърветата са съставени само от един връх и нямат ребра.
-%   Ще се стремим да обединяваме тези дървете и най-накрая да получим само едно дърво.
-% \item
-%   Сортираме ребрата $E$ на графа $G$ във възходящ ред относно тяхната цена
-%   и започваме да ги обхождаме във възходящ ред.
-% \item
-%   За всяко ребро $(v,v^\prime) \in E$, нека $v$ принадлежи на върховете на $T$, а $v^\prime$ 
-%   принадлежи на върховете на $T^\prime$.
-%   \begin{itemize}
-%   \item 
-%     Ако $T \neq T^\prime$, то обединяваме $T$ и $T^\prime$ като добавяме към техните ребра $(v,v^\prime)$.
-%     Така получаваме с единица по-къса редица от дървета.
-%   \item
-%     Ако $T = T^\prime$, то не правим нищо.    
-%   \end{itemize}  
-% \item
-%   Алгоритъмът завършва или когато сме обходили всички ребра, или
-%   когато сме получили редица от дървета с дължина 1.
-% \end{enumerate}
 
 \section{Минимални пътища от даден връх}
 
@@ -299,79 +276,22 @@
   Важно свойство е, че броят на върховете по всички минални пътища е $\leq \abs{V}$.
 \end{itemize}
 
-\begin{prop}
-  Нека $u \stackrel{p}{\leadsto} v$, където $p$ е с минимално тегло.
-  Тогава няма цикъл с положително тегло по $p$.
-\end{prop}
-\begin{proof}
-  Нека $p = (v_0,\dots,v_k)$, $v_0 = u$, $v_k = v$ и 
-  $c = (v_i,\dots,v_j)$, за някои $0 \leq i < j \leq k$, 
-  като $w(c) > 0$. Щом $c$ е цикъл, то $v_i = v_j$.
-  Но тогава пътя $p^\prime = (v_0,\dots,v_i,v_{j+1},\dots,v_k)$ също е път от $u$ до $v$.
-  Освен това, $w(p^\prime) = w(p) - w(c) < w(p)$.
-  Получихме, че пътя $p^\prime$ има по-малко тегло от пътя $p$.
-  Това е противоречие с минималността на теглото на пътя $p$.
-\end{proof}
-
-
-
-
 Нека да фиксираме един връх $s \in V$.
-Нашата цел е да намерим минимални пътища от $s$ до всички достижими от $s$ върхове,
+Целта ни е да намерим минимални пътища от $s$ до всички достижими от $s$ върхове,
 както и тяхната цена. 
 Да отбележим, че ако имаме отрицателен по някой път $s \leadsto v$, то задачата не е добре 
 дефинирана, защото тогава $\delta(s,v) = -\infty$.
 
-За тази цел въвеждаме два масива, $dist$ и $pred$, с дължина $\abs{V}$.
+За тази цел въвеждаме два масива, $\texttt{dist}$ и $\texttt{pred}$, с дължина $\abs{V}$.
 \begin{itemize}
 \item 
-  $dist[v]$ - дава цена на минимален път от $s$ до $v$.
-  Ако $dist[v] = \infty$, то не е намерен път $s\leadsto v$.
+  $\texttt{dist}[v]$ - дава цена на минимален път от $s$ до $v$.
+  Ако $\texttt{dist}[v] = \infty$, то не е намерен път $s\leadsto v$.
 \item
-  $pred[v]$ - дава предшественика на $v$ по този минимален път, т.е.
-  ако $pred[v] = u$, то $s \leadsto u \to v$.
-  Ако $pred[v] = NIL$, то не е намерен път $s \leadsto v$.
-% \item
-%   Сега като имаме масива $pred$, можем да образуваме графа на предшествениците $G_{pred} = (V_{pred},E_{pred})$, където
-%   \begin{enumerate}[]
-%   \item 
-%     $V_{pred} = \{u \in V \mid pred[u] \neq NIL \} \cup \{s\}$,
-%   \item
-%     $E_{pred} = \{(u,v) \in V\times V \mid pred[v] = u\}$.
-%   \end{enumerate}
+  $\texttt{pred}[v]$ - дава предшественика на $v$ по този минимален път, т.е.
+  ако $\texttt{pred}[v] = u$, то $s \leadsto u \to v$.
+  Ако $\texttt{pred}[v] = \texttt{NIL}$, то не е намерен път $s \leadsto v$.
 \end{itemize}
-
-% \begin{figure}[!ht]
-%   \centering
-% \begin{subfigure}{0.5\textwidth}
-%   \centering
-% % \begin{algorithm}
-%   % \caption{INIT(s)}
-%   % \label{alg:init}
-%   \begin{algorithmic}[1]
-%     \ForAll{$v \in V$}
-%     \State $dist[v] := \infty$
-%     \State $pred[v] := NIL$
-%     \EndFor
-%     \State $dist[s] := 0$
-%   \end{algorithmic}
-% % \end{algorithm}
-% \end{subfigure}
-% \hfill
-% \begin{subfigure}{0.5\textwidth}
-%   \centering
-% % \begin{algorithm}
-%   % \caption{UPDATE(u,v)}
-%   % \label{alg:update}
-%   \begin{algorithmic}[1]
-%     \If{$dist[v] > dist[u] + w(u,v)$}
-%     \State $dist[v] := dist[u] + w(u,v)$
-%     \State $pred[v] := u$
-%     \EndIf
-%   \end{algorithmic}
-% % \end{algorithm}
-% \end{subfigure}
-% \end{figure}
 
 \begin{algorithm}[h!]
   \caption{Инициализация}
@@ -379,10 +299,10 @@
   \begin{algorithmic}[1]
     \Procedure{INIT}{$s$}
     \ForAll{$v \in V$}
-    \State $dist[v] := \infty$
-    \State $pred[v] := NIL$
+    \State $\texttt{dist}[v] := \infty$
+    \State $\texttt{pred}[v] := \texttt{NIL}$
     \EndFor
-    \State $dist[s] := 0$
+    \State $\texttt{dist}[s] := 0$
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
@@ -392,9 +312,9 @@
   \label{alg:update}
   \begin{algorithmic}[1]
     \Procedure{UPDATE}{$u$,$v$}
-    \If{$dist[v] > dist[u] + w(u,v)$}
-    \State $dist[v] := dist[u] + w(u,v)$
-    \State $pred[v] := u$
+    \If{$\texttt{dist}[v] > \texttt{dist}[u] + w(u,v)$}
+    \State $\texttt{dist}[v] := \texttt{dist}[u] + w(u,v)$
+    \State $\texttt{pred}[v] := u$
     \EndIf
     \EndProcedure
   \end{algorithmic}
@@ -411,189 +331,169 @@
 \begin{prop}
   \label{prop:upper-bound}
   Нека сме изпълнили INIT(s).
-  Тогава имаме свойството \[(\forall v\in V)[dist[v] \geq \delta(s,v)].\]
+  Тогава имаме свойството \[(\forall v\in V)[\texttt{dist}[v] \geq \delta(s,v)].\]
   То се запазва и след прозволен брой изпълнения на UPDATE върху ребра на графа.
-  Освен това, ако веднъж $dist[v] = \delta(s,v)$, то стойността на $dist[v]$
+  Освен това, ако веднъж $\texttt{dist}[v] = \delta(s,v)$, то стойността на $\texttt{dist}[v]$
   повече не се променя.
 \end{prop}
 \begin{proof}
   Индукция по броя $i$ на изпълнения на UPDATE.
   За $i = 0$ е очевидно.
   Ще докажем твърдението за $i > 0$ изпълнения на UPDATE.
-  Нека $dist[v] > dist[u] + w(u,v)$ и изпълним UPDATE(u,v).
+  Нека $\texttt{dist}[v] > \texttt{dist}[u] + w(u,v)$ и изпълним UPDATE(u,v).
   Тогава като използваме индукционното предположение и неравенството на триъгълника,
   \begin{align*}
-    dist[v] & = dist[u] + w(u,v)\\
+    \texttt{dist}[v] & = \texttt{dist}[u] + w(u,v)\\
     & \geq \delta(s,u) + w(u,v)\\
     & \geq  \delta(s,v).
   \end{align*}
 
-  Ясно е, че веднъж достигнали $dist[v] = \delta(s,v)$, $dist[v]$
+  Ясно е, че веднъж достигнали $\texttt{dist}[v] = \delta(s,v)$, $\texttt{dist}[v]$
   не може да се промени, защото тази стойност може само да намалява, а ние
   сме достигнали нейния минумум.
 \end{proof}
 
 \begin{prop}
   \label{prop:no-path}
-  Нека сме изпълнили INIT(s)
-  и нека няма път от $s$ до $v$.
+  Нека сме изпълнили INIT($s$) и нека няма път от $s$ до $v$.
   Тогава имаме свойството
-  \[dist[v] = \delta(s,v) = \infty.\]
+  \[\texttt{dist}[v] = \delta(s,v) = \infty.\]
   То се запазва и след прозволен брой изпълнения на UPDATE върху ребра на графа.
 \end{prop}
 \begin{proof}
   Щом няма път от $s$ до $v$, то $\delta(s,v) = \infty$.
-  От Твърдение \ref{prop:upper-bound}, $dist[v] \geq \delta(s,v) = \infty$.
-  Следователно, $dist[v] = \infty$.
+  От Твърдение \ref{prop:upper-bound}, $\texttt{dist}[v] \geq \delta(s,v) = \infty$.
+  Следователно, $\texttt{dist}[v] = \infty$.
 \end{proof}
-
-% \begin{proof}
-%   Индукция по броя на изпълнения $i$ на UPDATE.
-  
-%   За $i = 0$, то твърдението е очевидно.
-%   Да приемем, че то е вярно за $\leq i$.
-%   Нека $(i+1)$-то изпълнение е UPDATE(u,v), за някое $u \in V$,
-%   само в този случай можем да променим стойността на $v$.
-  
-%   Ако $dist[u] = \infty$, то $dist[v] = dist[u] + w(u,v)$ и нищо не правим.
-%   Ако $dist[u] < \infty$, то това означава, че има път от $s$ до $u$, 
-%   защото от твърдение ...., $\infty > dist[u] \geq \delta(s,u)$.
-%   \begin{itemize}
-%   \item 
-%     ако има ребро $(u,v) \in E$, то това означава, че има път $s \leadsto u \to v$,
-%     което е противоречие с условието.
-%   \item
-%     ако няма ребро $(u,v)\not\in E$, $w(u,v) = \infty$ и $dist[v] = \infty$.
-%   \end{itemize}
-% \end{proof}
-
-
-% \begin{prop}
-%   Нека $(u,v) \in E$.
-%   Тогава веднага след изпълнението на UPDATE(u,v) имаме, че
-%   \[dist[v] \leq dist[u] + w(u,v).\]
-% \end{prop}
-
 
 \begin{prop}
   \label{prop:converge}
   Нека $s\leadsto u \to v$ е път с минимално тегло.
-  Нека сме изпълнили INIT(s) и няколко на брой UPDATE, като измежду тях и UPDATE($u$,$v$).
-  Ако по някое време преди изпълнение на UPDATE(u,v) 
-  имаме, че $dist[u] = \delta(s,u)$, то след това изпълнение
-  $dist[v] = \delta(s,v)$ и повече не се променя.
+  Нека сме изпълнили INIT(s) и няколко пъти $\texttt{UPDATE}$, като измежду тях и UPDATE($u$,$v$).
+  Ако преди изпълнението на UPDATE($u$,$v$) 
+  имаме, че $\texttt{dist}[u] = \delta(s,u)$, то след това изпълнение
+  $\texttt{dist}[v] = \delta(s,v)$ и стойността на $\texttt{dist}[v]$ повече не се променя.
 \end{prop}
 \begin{proof}
   Първо да отбележим, че за $(u,v) \in E$, веднага след изпълнението на UPDATE(u,v) имаме, че
-  \[dist[v] \leq dist[u] + w(u,v).\]
-  Ако $dist[u] = \delta(s,u)$, то от Твърдение \ref{prop:upper-bound} това равенство се запазва.
+  \[\texttt{dist}[v] \leq \texttt{dist}[u] + w(u,v).\]
+  Ако $\texttt{dist}[u] = \delta(s,u)$, то от Твърдение \ref{prop:upper-bound} това равенство се запазва.
   Получаваме, че:
   \begin{align*}
-    dist[v] & \leq dist[u] + w(u,v)\\
+    \texttt{dist}[v] & \leq \texttt{dist}[u] + w(u,v)\\
     & = \delta(s,u) + w(u,v)\\
     & = \delta(s,v),
   \end{align*}
   защото $s\leadsto u \to v$ е път с минимална дължина.
-  Тогава $dist[v] \leq \delta(s,v)$ и следователно 
-  \[dist[v] = \delta(s,v),\]
-  защото пак от Твърдение \ref{prop:upper-bound}, винаги е изпълнено, че $dist[v] \geq \delta(s,v)$,
+  Тогава $\texttt{dist}[v] \leq \delta(s,v)$ и следователно 
+  \[\texttt{dist}[v] = \delta(s,v),\]
+  защото пак от Твърдение \ref{prop:upper-bound}, винаги е изпълнено, че $\texttt{dist}[v] \geq \delta(s,v)$,
 \end{proof}
 
-\begin{prop}
-  \label{prop:path-update}
-  Да разгледаме пътя $p = (v_0,\dots,v_k)$, като $v_0 = s$.
-  Нека сме изпълнили INIT(s) и след това няколко пъти UPDATE, като сме включили 
-  UPDATE($v_{i}$,$v_{i+1}$), за всяко $0\leq i < k$, в този ред на изпълнение.
-  Тогава най-накрая получаваме, че $dist[v_k] = \delta(s,v_k)$.
-\end{prop}
-\begin{proof}
-  Индукция по $i$.
-  В началото, $dist[v_0] = dist[s] = 0 = \delta(s,s)$.
-  Ако $dist[v_{i-1}] = \delta(s,v_{i-1})$, то след изпълнение на UPDATE($v_{i-1}$,$v_{i}$),
-  получаваме от Твърдение \ref{prop:converge}, че $dist[v_i] = \delta(s,v_{i})$.
-\end{proof}
+% \begin{prop}
+%   \label{prop:path-update}
+%   Да разгледаме пътя $p = (v_0,\dots,v_k)$, като $v_0 = s$.
+%   Нека сме изпълнили INIT(s) и след това няколко пъти UPDATE, като сме включили 
+%   UPDATE($v_{i}$,$v_{i+1}$), за всяко $0\leq i < k$, в този ред на изпълнение.
+%   Тогава най-накрая получаваме, че $\texttt{dist}[v_k] = \delta(s,v_k)$.
+% \end{prop}
+% \begin{proof}
+%   Индукция по $i$.
+%   В началото, $\texttt{dist}[v_0] = \texttt{dist}[s] = 0 = \delta(s,s)$.
+%   Ако $\texttt{dist}[v_{i-1}] = \delta(s,v_{i-1})$, то след изпълнение на UPDATE($v_{i-1}$,$v_{i}$),
+%   получаваме от Твърдение \ref{prop:converge}, че $\texttt{dist}[v_i] = \delta(s,v_{i})$.
+% \end{proof}
 
-\begin{prop}
-  \label{prop:tree-shortest-path}
-  Нека сега да приемем, че в нашия граф няма цикли с отрицателни тегла, достижими от $s$
-  и нека сме изпълнили INIT(s) и произволен брой пъти UPDATE.
-  Тогава:
-  \begin{enumerate}[1)]
-  \item 
-    $G_{pred}$ е дърво с корен $s$.
-  \item
-    ако $(\forall v\in V)[dist[v] = \delta(s,v)]$, то $G_{pred}$ е дърво на пътищата с минимални тегла с корен $s$.
-  \end{enumerate}
-\end{prop}
-\begin{proof}
-  \begin{enumerate}[1)]
-  \item 
-    Първо ще докажем, че $G_{pred}$ е насочен ацикличен граф и след
-    това, че няма пътища $p \neq p^\prime$ от вида $s\stackrel{p}{\leadsto} v$ и $s\stackrel{p^\prime}{\leadsto} v$.
-    \begin{itemize}
-    \item 
-      Да допуснем, че $G_{pred}$ е цикличен граф.
-      Нека $c = (v_0,\dots,v_k)$ е цикъл, $v_0 = v_k$, който се е получил точно след изпълнение на 
-      UPDATE($v_{k-1}$,$v_k$).
+% \begin{prop}
+%   \label{prop:tree-shortest-path}
+%   Нека сега да приемем, че в нашия граф няма цикли с отрицателни тегла, достижими от $s$
+%   и нека сме изпълнили INIT(s) и произволен брой пъти UPDATE.
+%   Тогава:
+%   \begin{enumerate}[1)]
+%   \item 
+%     $G_{pred}$ е дърво с корен $s$.
+%   \item
+%     ако $(\forall v\in V)[\texttt{dist}[v] = \delta(s,v)]$, то $G_{pred}$ е дърво на пътищата с минимални тегла с корен $s$.
+%   \end{enumerate}
+% \end{prop}
+% \begin{proof}
+%   \begin{enumerate}[1)]
+%   \item 
+%     Първо ще докажем, че $G_{pred}$ е насочен ацикличен граф и след
+%     това, че няма пътища $p \neq p^\prime$ от вида $s\stackrel{p}{\leadsto} v$ и $s\stackrel{p^\prime}{\leadsto} v$.
+%     \begin{itemize}
+%     \item 
+%       Да допуснем, че $G_{pred}$ е цикличен граф.
+%       Нека $\gamma = (v_0,\dots,v_k)$ е цикъл, $v_0 = v_k$, който се е получил точно след изпълнение на 
+%       UPDATE($v_{k-1}$,$v_k$).
 
-      Да разгледаме ситуацията преди изпълнението на UPDATE($v_{k-1}$,$v_{k}$).
-      Имаме, че 
-      \[(\forall i < k)[pred[v_{i+1}] = v_{i}]\]
-      от което следва, че
-      \[(\forall i < k-1)[dist[v_{i+1}] \geq dist[v_i] + w(v_i,v_{i+1})].\]
-      Щом още нямаме цикъл, преди изпълнението на UPDATE($v_{k-1}$,$v_k$) имаме, че
-      \[dist[v_{k}] > dist[v_{k-1}] + w(v_{k-1},v_k).\]
-      Получаваме, че
-      \begin{align*}
-        \sum^{k}_{i = 1} dist[v_{i}] & > \sum^{k-1}_{i=0} (dist[v_i] + w(v_{i},v_{i+1}))\\
-        & = \sum^{k-1}_{i=0} dist[v_i] + w(c),
-      \end{align*}
-      но понеже $v_0 = v_k$, 
-      \[\sum^{k-1}_{i=0} dist[v_i] = \sum^{k}_{i=1} dist[v_i]\]
-      и тогава
-      \[0 > w(c).\]
-      Получаваме, че цикълът $c$ има отрицателно тегло, което е противоречие.
-    \item
-      Да допуснем, че има $p \neq p^\prime$  и  $s\stackrel{p}{\leadsto} v$ и $s\stackrel{p^\prime}{\leadsto} v$.
-      Това означава, че съществуват $x \neq y$,
-      $s \leadsto u \leadsto x \to z \leadsto v$ и $s \leadsto u \leadsto y \to z \leadsto v$.
-      По определение, $pred(z) = x \neq y = pred(z)$. Противоречие.
-    \end{itemize}
-  \item
-    \begin{itemize}
-    \item 
-      Лесно се съобразява, че $V_{pred}$ съдържа точно върховете достижими от $s$,
-      защото $v$ е достижим от $s$ точно когато $\delta(s,v) = dist[v] < \infty$, 
-      но тогава $pred[v] \neq NIL$.
-    \item
-      Вече доказахме в 1), че $G_{pred}$ е дърво с корен $s$.
-    \item
-      Остана да докажем, че ако имаме $s\stackrel{p}{\leadsto} v$ в $G_{pred}$, 
-      то $p$ е път с минимално тегло в $G$.
-      Нека $p = (v_0,\dots,v_k)$, $v_0 = s$, $v_k = v$.
-      По условие, 
-      \[(\forall i < k)[dist[v_i] = \delta(s,v_i)],\]
-      а от факта, че $(\forall i < k)[pred[v_i] = v_{i-1}]$ следва, че
-      \[(\forall i < k)[dist[v_i] \geq dist[v_{i-1}] + w(v_{i-1},v_{i})].\]
-      Като обединим горните две неравенства, получваме, че
-      \[(\forall i < k)[w(v_{i-1},v_{i}) \leq \delta(s,v_{i}) - \delta(s,v_{i-1})],\]
-      Тогава
-      \begin{align*}
-        w(p) & = \sum^k_{i=1} w(v_{i-1},v_{i})\\
-        & \leq \sum^k_{i=1} (\delta(s,v_i)- \delta(s,v_{i-1}))\\
-        & = \delta(s,v_k) - \delta(s,v_0)\\
-        & = \delta(s,v_k) - \delta(s,s)\\
-        & = \delta(s,v_k) - 0\\
-        & = \delta(s,v_k).
-      \end{align*}
-      Следователно, 
-      \[w(p) \leq \delta(s,v_k).\]
-      Понеже $\delta(s,v_k)$ е минималното тегло на път от $s$ до $v_k$,
-      то $w(p) = \delta(s,v_k)$.
-      Следователно, $p$ е път с минимално тегло.
-    \end{itemize}
-  \end{enumerate}
-\end{proof}
+%       Да разгледаме ситуацията точно преди това изпълнение на UPDATE($v_{k-1}$,$v_{k}$).
+%       Имаме, че 
+%       \[(\forall i < k-1)[\texttt{pred}[v_{i+1}] = v_{i}]\]
+%       от което следва, че
+%       \begin{equation}
+%         \label{ineq}
+%         (\forall i < k-1)[\texttt{dist}[v_{i+1}] \geq \texttt{dist}[v_i] + w(v_i,v_{i+1})].
+%       \end{equation}
+%       Щом още нямаме цикъл преди изпълнението на UPDATE($v_{k-1}$,$v_k$),
+%       то стойността на $\texttt{pred}[v_k]$ се променя при извикването на UPDATE($v_{k-1}$,$v_k$).
+%       Оттук следва, че
+%       \[\texttt{dist}[v_{k}] > \texttt{dist}[v_{k-1}] + w(v_{k-1},v_k).\]
+%       Комбинирайки с Неравенство (\ref{ineq}) получаваме, че
+%       \begin{align*}
+%         \sum^{k}_{i = 1} \texttt{dist}[v_{i}] & > \sum^{k-1}_{i=0} (\texttt{dist}[v_i] + w(v_{i},v_{i+1}))\\
+%         & = \sum^{k-1}_{i=0} \texttt{dist}[v_i] + w(\gamma),
+%       \end{align*}
+%       но понеже $v_0 = v_k$, 
+%       \[\sum^{k-1}_{i=0} \texttt{dist}[v_i] = \sum^{k}_{i=1} \texttt{dist}[v_i]\]
+%       и тогава
+%       \[0 > w(\gamma).\]
+%       Получаваме, че цикълът $\gamma$ има отрицателно тегло, което е противоречие.
+%     \item
+%       Да допуснем, че в $G_{pred}$ има $p \neq p^\prime$  и  $s\stackrel{p}{\leadsto} v$ и $s\stackrel{p^\prime}{\leadsto} v$.
+%       Това означава, че съществуват $x \neq y$,
+%       $s \leadsto u \leadsto x \to z \leadsto v$ и $s \leadsto u \leadsto y \to z \leadsto v$.
+%       По определение, $pred(z) = x \neq y = pred(z)$. Противоречие.
+%     \end{itemize}
+%   \item
+%     \begin{itemize}
+%     \item 
+%       Лесно се съобразява, че $V_{pred}$ съдържа точно върховете достижими от $s$,
+%       т.е. ако $v \in V_{pred}$, то съществува път $p = (s,\dots,v)$.
+%       % защото $v$ е достижим от $s$ точно когато $\delta(s,v) = \texttt{dist}[v] < \infty$, 
+%       % но тогава $\texttt{pred}[v] \neq NIL$.
+%     \item
+%       Вече доказахме в 1), че $G_{pred}$ е дърво с корен $s$.
+%     \item
+%       Остана да докажем, че ако имаме $s\stackrel{p}{\leadsto} v$ в $G_{pred}$, 
+%       то $p$ е път с минимално тегло в $G$.
+%       Нека $p = (v_0,\dots,v_k)$, $v_0 = s$, $v_k = v$.
+%       По условие, 
+%       \[(\forall i < k)[\texttt{dist}[v_i] = \delta(s,v_i)],\]
+%       а от факта, че $(\forall i < k)[\texttt{pred}[v_i] = v_{i-1}]$ следва, че
+%       \[(\forall i < k)[\texttt{dist}[v_i] \geq \texttt{dist}[v_{i-1}] + w(v_{i-1},v_{i})].\]
+%       Като обединим горните две неравенства, получваме, че
+%       \begin{equation}
+%         \label{eq:weight}
+%         (\forall i < k)[w(v_{i-1},v_{i}) \leq \delta(s,v_{i}) - \delta(s,v_{i-1})],
+%       \end{equation}
+%       Тогава
+%       \begin{align*}
+%         w(p) & = \sum^k_{i=1} w(v_{i-1},v_{i}) & (\text{по деф.})\\
+%         & \leq \sum^k_{i=1} (\delta(s,v_i)- \delta(s,v_{i-1})) & (\ref{eq:weight})\\
+%         & = \delta(s,v_k) - \delta(s,v_0)\\
+%         & = \delta(s,v_k) - \delta(s,s) & (v_0 = s)\\
+%         & = \delta(s,v_k) - 0\\
+%         & = \delta(s,v_k).
+%       \end{align*}
+%       Следователно, 
+%       \[w(p) \leq \delta(s,v_k).\]
+%       Понеже $\delta(s,v_k)$ е минималното тегло на път от $s$ до $v_k$,
+%       то $w(p) = \delta(s,v_k)$.
+%       Следователно, $p$ е път с минимално тегло.
+%     \end{itemize}
+%   \end{enumerate}
+% \end{proof}
 
 
 
@@ -602,43 +502,33 @@
 \index{Дейкстра!алгоритъм}
 
 В този алгоритъм, разглеждаме ориентирани графи $G = (V,E,w)$ с {\em положителни} тегла (или цени) по ребрата, т.е. 
-имаме функция $w:E\to\R^+$. 
-% Целта на алгоритъма е да построим следните функции:
-% \begin{itemize}
-% \item 
-%   $\delta: V\to\R\cup\{\infty\}$, 
-%   която да дава минималната цена на път от $s$ до $v$. Ако няма път от $s$ до $v$, то $\delta(v)$
-%   ще приема стойност $\infty$.
-% \item
-%   $\pi:V\to V\cup\{\infty\}$, която да дава предшественика на $v$ по път с минимална цена от $s$ до $v$,
-%   ако такъв път съществува, иначе ще дава като резултат $\infty$.
-% \end{itemize}
+за всяко $(u,v) \in E$, $w(u,v) \geq 0$.
 
-\begin{algorithm}
-\caption{Алгоритъм на Дейкстра}
-\label{alg:dijkstra}
-
-\begin{algorithmic}[1]
-  \Require{$w:E\to \R^+$}
-  \Procedure{DIJKSTRA}{$s$}
-  \State \Call{INIT}{$s$}
-  \State $V^\prime := V$
-  \While{$V^\prime\neq\emptyset$}
-  % \AND $(\exists u\in V^\prime)[dist[u] < \infty]$}
-  \State Избираме $u_0\in V^\prime$, за който $ dist[u_0] = min\{dist[v] \mid v\in V^\prime\} $
-  \State $V^\prime := V^\prime\setminus\{u_0\}$
-  \ForAll{ $v\in Adj[u_0]$ }
-  % \If{$(u_0,v)\in E$}
-  \State\Call{UPDATE}{$u_0$,$v$}
+\begin{algorithm}[H]
+  \caption{Пътища с мин. тегло от върха $s$ (Дейкстра)}
+  \label{alg:dijkstra}
+  
+  \begin{algorithmic}[1]
+    \Require{$w:E\to \R^+$}
+    \Procedure{DIJKSTRA}{$s$}
+    \State \Call{INIT}{$s$}
+    \State $U := V$
+    \While{$U \neq\emptyset$}
+    % \AND $(\exists u\in V^\prime)[dist[u] < \infty]$}
+    \State Избираме $u_0\in U$, за който $\texttt{dist}[u_0] = \min\{\texttt{dist}[v] \mid v\in U\} $
+    \State $U := V^\prime\setminus\{u_0\}$
+    \ForAll{ $v\in Adj[u_0]$ }
+    % \If{$(u_0,v)\in E$}
+    \State\Call{UPDATE}{$u_0$,$v$}
     % \AND $\delta(v) > \delta(u_0) + c(u_0,v)$}
-  % \State $\delta(v):= \delta(u_0)+c(u_0,v)$
-  % \State $\pi(v) := u_0$
-  % \EndIf
-  \EndFor
-  \EndWhile
-  \EndProcedure
-  % \Return $\delta$
-\end{algorithmic}
+    % \State $\delta(v):= \delta(u_0)+c(u_0,v)$
+    % \State $\pi(v) := u_0$
+    % \EndIf
+    \EndFor
+    \EndWhile
+    \EndProcedure
+    % \Return $\delta$
+  \end{algorithmic}
 \end{algorithm}
 
 \begin{thm}
@@ -689,11 +579,12 @@
 те са недостижими от $s$ и следователно пътят от $s$ до $v$ има дължина $\infty$.
 
 Фигура \ref{fig:dijkstra-table} илюстрира как се променя функцията $\delta$ по време на изпълнението на алгоритъма.
-Освен това, с лека модификация на горния алгоритъм, можем да намерим не само стойността на най-късите пътища, но
-и списък с ребрата, които участват във всеки от тях. Фигура \ref{fig:dijkstra-graph} илюстрира това.
-Ребрата, оцветени в зелено, са тези, които участват в най-късите пътища.
-Жълти ребра са тези, които са кандидати да участват в най-късите пътища.
-Червени са тези ребра, които са били вече обходени и са отхвърлени като част от най-къс път.
+Освен това, можем да намерим не само стойността на най-късите пътища, но
+и списък с ребрата, които участват във всеки от тях.
+% Фигура \ref{fig:dijkstra-graph} илюстрира това.
+% Ребрата, оцветени в зелено, са тези, които участват в най-късите пътища.
+% Жълти ребра са тези, които са кандидати да участват в най-късите пътища.
+% Червени са тези ребра, които са били вече обходени и са отхвърлени като част от най-къс път.
 
 \tikzstyle{weight} = [font=\small]
 \tikzstyle{value} = [font=\small]
@@ -738,50 +629,11 @@
         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-    \caption{Пример за насочен граф с тегла по ребрата}
+    \caption{По-долу ще приложим алгоритъма на Дейкстра върху този граф}
+    \label{subfig:dijkstra}
   \end{subfigure}
- \quad
- \begin{subtable}[b]{0.5\textwidth}
-   \begin{tabular}[b]{|c|c|c|c|c|c|c|c|c|}
-     \hline
-     $\delta(a)$ & $\delta(b)$ & $\delta(c)$ & $\delta(d)$ & $\delta(e)$ & $\delta(f)$ & $\delta(g)$\\
-     \hline
-     $\infty$ & {\bf \framebox{0}} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
-     \hline
-     7 & $\colon$ & {\bf \framebox{2}} & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
-     \hline
-      {\bf \framebox{6}} & $\colon$ & $\colon$ & $\infty$ & 7 & $\infty$ & $\infty$ \\
-      \hline
-      $\colon$ & $\colon$ & $\colon$ & 10 & {\bf \framebox{7}} & $\infty$ & 16 \\
-      \hline
-      $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{10}} & $\colon$ & 14 & {\bf 12} \\
-      \hline
-      $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & 14 & {\bf \framebox{12}} \\
-      \hline
-      $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{14}} & $\colon$ \\
-      \hline
-      $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ \\
-      \hline
-    \end{tabular}
-    \caption{Разстояния с начален връх $b$}
-  \end{subtable}
-  \caption{Алгоритъм на Дейкстра}
-  \label{fig:dijkstra-table}
-\end{figure}
-
-
-\begin{figure}[!htbp]
-  \index{Дейкстра!алгоритъм}
-  \input{dijkstra-graph.tex}
-  \caption{Алгоритъм на Дейкстра запазващ минималните пътища}
-  \label{fig:dijkstra-graph}
-\end{figure}
-
-
-Ще завършим с един прост пример, който показва, че алгоритъмът на Дейкстра не работи
-при наличието на ребра с отрицателни тегла.
-
-\begin{figure}[!htbp]
+  \qquad
+  \begin{subfigure}[b]{0.5\textwidth}
   \begin{tikzpicture}[]
     
     \foreach \nodename/\x/\y/\direction/\navigate in { a/1/1/above/north,
@@ -798,217 +650,258 @@
         (\startnode) edge[arrowdecorate] node[\direction] {$\weight$} (\endnode)
       };
     \end{tikzpicture}
-    \caption{Пример, за който алгоритъмът на Дейкстра не дава верен резултат}
-\end{figure}
-
-\newpage
-\subsection{Алгоритъм на Белман-Форд}\index{Белман-Форд!алгоритъм}
-
-Алгоритъмът на Дейкстра работи само за графи $G = (V,E,c)$ с {\em положителни} тегла по ребрата.
-Сега ще разгледаме един алгоритъм, който работи и за графи с отрицателни тегла по ребрата.
-Задачата отново е да намерим минималните разстояния на пътищата с начало върха $s$, но
-искаме също така алгоритъмът да отговаря на въпроса дали има отрицателен цикъл в графа. 
-Ако такъв съществува, то няма решение на проблема. (Защо?)
-Ако отрицателен цикъл не съществува, то алгоритъмът намира пътища в графа с минимални тегла от върха $s$
-до всички достижими върхове в графа.
-
-
-\begin{algorithm}
-  \caption{Белман-Форд}
-  \label{alg:belman-ford}
-  
-  \begin{algorithmic}[1]
-    \Procedure{Bellman-Ford}{$s$}
-    \State\Call{INIT}{$s$}
-    \For{$i:=1$ to $\abs{V}-1$}
-    \ForAll{$(u,v)\in E$}
-    \State\Call{UPDATE}{$u$,$v$}
-    % \ENSURE{$dist[v] \geq \delta(s,v)$}
-    \EndFor
-    \EndFor
-    
-    \Comment{Проверка за отрицателен цикъл}
-    \ForAll{$(u,v)\in E$}
-    \If {$dist[v] > dist[u] + w(u,v)$}
-    \State Return False
-    \EndIf
-    \EndFor
-    \State Return True
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-
-% \begin{enumerate}[1)]
-%   \item
-%     Дефинираме функция $\delta:V\to\R^+\cup\{\infty\}$ като
-%     \[\delta(u)=
-%     \begin{cases}
-%       0 & \text{, ако } u = s\\
-%       \infty & \text{, иначе}
-%     \end{cases}
-%     \]
-%   Тъй като $V$ е крайно множество, можем да представим $\delta$ като масив.
-%   \item
-%     За всяко ребро $(u,v)\in E$,
-%         \[\delta(v) :=
-%         \begin{cases}
-%           \delta(u) + c(u,v) & \text{, ако } \delta(v) > \delta(u) + c(u,v)\\
-%           \delta(v) & \text{, иначе}
-%         \end{cases}
-%         \]
-%   \item
-%     Стъпка 2) се изпълнява общо $\nu- 1$ пъти.
-%   \item
-%     За всяко ребро $(u,v)\in E$, проверяваме дали $\delta(v) > \delta(u) + c(u,v)$.
-%     Ако намерим такова ребро, то процедурата връща $FALSE$, иначе връща $TRUE$.
-% \end{enumerate}
-
-\begin{prop}
-  \label{prop:bellman-ford}
-  Нека графът $G$ няма отрицателни цикли, които са достижими от $s$.
-  Тогава след изпълнение на алгоритъма на Белман-Форд получаваме, че
-  за всички $v \in V$ достижими от $s$, 
-  \[dist[v] = \delta(s,v).\]
-\end{prop}
-\begin{proof}
-  Да разгледаме $s \stackrel{p}{\leadsto} v$, където $p = (v_0,\dots,v_k)$ е път с минимално тегло в $G$.
-  Понеже в пътища с минимална дължина няма цикли, то $k \leq \abs{V} - 1$.
-  Тогава според Твърдение \ref{prop:path-update}, 
-  след $i$-тата итерация на FOR цикъла, $dist[v_i] = \delta(s,v_i)$.
-  Така получаваме, че най-накрая $dist[v] = \delta(s,v)$.
-\end{proof}
-\begin{cor}
-  \label{cor:bellman-ford}
-  При същите предположения за графа $G$,
-  за всяко $v \in V$, 
-  има път $s \leadsto v$ точно тогава, когато след приключване на алгоритъма е изпълнено $dist[v] < \infty$.
-\end{cor}
-\begin{proof}
-  Ако има път $p$, $s \stackrel{p}{\leadsto} v$, то
-  според твърдението $dist[v] = \delta(s,v) < \infty$.
-  За другата посока, нека $dist[v] < \infty$, но да допуснем, че няма път от $s$ до $v$.
-  Но тогава от Твърдение \ref{prop:no-path} следва, че $dist[v]  = \infty$,
-  което е противоречие.
-\end{proof}
-
-
-\begin{thm}
-  \label{th:bellman-ford}
-  Ако $G$ няма отрицателни цикли достижими от $s$, то
-  алгоритъмът на Белман-Форд връща TRUE, $(\forall v\in V)[dist[v] = \delta(s,v)]$,
-  и $G_{pred}$ е дърво с корен $s$, което съдържа пътища с минимални тегла.
-
-  Ако $G$ има отрицателни цикли достижими от $s$, то
-  алгоритъмът на Белман-Форд връща FALSE.
-\end{thm}
-\begin{proof}
-  \begin{enumerate}[a)]
-  \item 
-    Нека $G$ не съдържа цикъл с отрицателно тегло, достижим от $s$.
-    Ако $v$ е достижим от $s$, то според Твърдение \ref{prop:bellman-ford}, 
-    след изпълнение на алгоритъма
-    \[dist[v] = \delta(s,v).\]
-
-    Ако $v$ не е достижим от $s$, то според Твърдение \ref{prop:no-path},
-    след изпълнение на алгоритъма
-    \[dist[v] = \infty = \delta(s,v).\]
-
-    Понеже $(\forall v\in V)[dist[v] = \delta(s,v)]$, от Твърдение \ref{prop:tree-shortest-path} следва, че
-    $G_{pred}$ е дърво с корен $s$, което съдържа пътища с минимални тегла.
-    
-    Като използваме Твърдение \ref{prop:triangle} лесно се вижда, че алгоритъмът връща TRUE, 
-  \item
-    Нека $G$ съдържа цикъл с отрицателно тегло, достижим от $s$.
-    Нека един такъв цикъл е $c = (v_0,\dots,v_k)$, $v_0 = v_k$.
-    Тогава
-    \[w(c) = \sum^k_{i=1}w(v_{i-1},v_i) < 0.\]
-    Да допуснем, че алгоритъмът връща TRUE. Тогава за всяко $i = 1,\dots, k$, 
-    \[dist[v_i] \leq dist[v_{i-1}] + w(v_{i-1},v_i)\]
-    и като сумираме, 
-    \[\sum^{k}_{i=1} dist[v_i] \leq \sum^{k}_{i=1} dist[v_{i-1}] + \sum^{k}_{i=1}w(v_{i-1},v_i).\]
-    Тъй като $v_0 = v_k$, 
-    \[\sum^{k}_{i=1} dist[v_i] = \sum^{k}_{i=1}dist[v_{i-1}].\]
-    Получаваме, че \[0 \leq \sum^{k}_{i=1}w(v_{i-1},v_i),\] което е противоречие с отицателността на цикъла.
-  \end{enumerate}
-\end{proof}
-
-Фигура \ref{fig:bellman-ford-negative-cycle} илюстрира случая за цикъл с отрицателно тегло.
-Както забелязахме при алгоритъма на Дейкстра, и тук можем да намерим не само дължините на най-късите пътища, но
-и спъсъка на ребрата, участващи в тях. Фигура \ref{fig:bellman-ford-graph} илюстрира този проблем. 
-Останалите накрая оцветени в синьо ребра участват в най-късите пътища.
-
-
-
-\begin{figure}[!htbp]
-  \begin{subfigure}[b]{0.5\textwidth}
-    \begin{tikzpicture}
-      [nodedecorate/.style={shape=circle,inner sep=2pt,draw,thick},%
-      arrowdecorate/.style={->,>=stealth,thick}]
-      %% nodes or vertices
-      
-      \foreach \nodename/\x/\y/\direction/\navigate in { a/0/0/below/south,
-        b/6/0/below/south, c/4.5/0/below/south, d/3/0/below/south, e/1.5/0/below/south}
-      {
-        \node (\nodename) at (\x,\y) [nodedecorate] {};
-        \node [\direction] at (\nodename.\navigate) {$\nodename$};
-      }
-      %% edges or lines
-      \path
-      \foreach \startnode/\endnode/\direction/\angle/\weight in {
-        a/e/above/15/1, d/e/above/-25/-1, e/d/below/-15/1,  d/c/above/15/1, c/b/above/15/1, b/e/below/60/-4}
-      {
-        (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
-      };
-      ;
-    \end{tikzpicture}
-    \caption{Граф с отрицателен цикъл}
+    \caption{Пример, за който алгоритъмът на Дейкстра не дава верен резултат (Защо?)}
   \end{subfigure}
-  \quad
-  \begin{subtable}[b]{0.5\textwidth}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-      $\delta(a)$ & $\delta(b)$ & $\delta(c)$ & $\delta(d)$ & $\delta(e)$ \\
-      \hline
-      0 & $\infty$ & $\infty$ & $\infty$ & {\bf \framebox{1}}\\
-      \hline
-      \hline
-      $\colon$ & \framebox{$\infty$} & $\infty$ & $\infty$ & 1\\
-      $\colon$ & $\infty$ & \framebox{$\infty$} & $\infty$ & 1\\
-      $\colon$ & $\infty$ & $\infty$ & {\bf \framebox{2}} & 1\\
-      $\colon$ & $\infty$ & $\infty$ & 2 & \framebox{1}\\
-      \hline\hline
-      $\colon$ & \framebox{$\infty$} & $\infty$ & 2 & 1\\
-      $\colon$ & $\infty$ & {\bf \framebox{3}} & 2 & 1\\
-      $\colon$ & $\infty$ & 3 & \framebox{2} & 1\\
-      $\colon$ & $\infty$ & $\infty$ & 2 & \framebox{1}\\
-      \hline\hline
-      $\colon$ & {\bf \framebox{4}} & 3 & 2 & 1\\
-      $\colon$ & 4 & \framebox{3} & 2 & 1\\
-      $\colon$ & 4 & 3 & \framebox{2} & 1\\
-      $\colon$ & 4 & 3 & 2 & {\bf \framebox{0}}\\
-      \hline\hline
-    \end{tabular}
-    \caption{Изпълнение на алгоритъма}
-  \end{subtable}
-  \caption{Алгоритъм на Белман-Форд върху ориентиран граф с отрицателен цикъл,
-  като ребрата са подредени лексикографски: $\pair{a,e}, \pair{b,e}, \pair{c,b}, \pair{d,c}, \pair{d,e}, \pair{e, d}$}
-  \label{fig:bellman-ford-negative-cycle}
+  \caption{}
+  \end{figure}
+
+  \begin{figure}[!htbp]
+    \begin{subtable}[b]{0.5\textwidth}
+      \begin{tabular}[b]{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$\\
+        \hline
+        $\infty$ & {\bf \framebox{0}} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+        \hline
+        7 & $\colon$ & {\bf \framebox{2}} & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+        \hline
+        {\bf \framebox{6}} & $\colon$ & $\colon$ & $\infty$ & 7 & $\infty$ & $\infty$ \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & 10 & {\bf \framebox{7}} & $\infty$ & 16 \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{10}} & $\colon$ & 14 & {\bf 16} \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & 14 & {\bf \framebox{12}} \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{14}} & $\colon$ \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ \\
+        \hline
+      \end{tabular}
+      \caption{Масива $\texttt{dist}$ за начален връх $b$}
+    \end{subtable}
+    \qquad
+    \begin{subtable}[b]{0.5\textwidth}
+      \begin{tabular}[b]{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$\\
+        \hline
+        $\texttt{NIL}$ & \framebox{\texttt{NIL}} & $\texttt{NIL}$ & $\texttt{NIL}$ & $\texttt{NIL}$ & $\texttt{NIL}$ & $\texttt{NIL}$ \\
+        \hline
+        $b$ & $\colon$ & \framebox{$b$} & $\texttt{NIL}$ & $\texttt{NIL}$ & $\texttt{NIL}$ & $\texttt{NIL}$ \\
+        \hline
+        {\bf \framebox{c}} & $\colon$ & $\colon$ & $\texttt{NIL}$ & c & $\texttt{NIL}$ & $\texttt{NIL}$ \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & a & {\bf \framebox{c}} & $\texttt{NIL}$ & a \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{a}} & $\colon$ & c & a \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & c & {\bf \framebox{d}} \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & {\bf \framebox{c}} & $\colon$ \\
+        \hline
+        $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ & $\colon$ \\
+        \hline
+      \end{tabular}
+      \caption{Масива $\texttt{pred}$ за начален връх $b$}
+    \end{subtable}
+    \caption{Алгоритъм на Дейкстра с начален връх $b$ за графа от (\ref{subfig:dijkstra})}
+  \label{fig:dijkstra-table}
 \end{figure}
 
+% \begin{figure}[!htbp]
+%   \index{Дейкстра!алгоритъм}
+%   \input{dijkstra-graph.tex}
+%   \caption{Алгоритъм на Дейкстра запазващ минималните пътища}
+%   \label{fig:dijkstra-graph}
+% \end{figure}
 
-\begin{figure}[!htbp]
-  \input{bellman-ford-graph.tex}
-  \index{Белман-Форд!алгоритъм}
-  \caption{Алгоритъм на Белман-Форд запазващ минималните пътища}
-  \label{fig:bellman-ford-graph}
-\end{figure}
 
 
-%% стр. 654
-\begin{problem}
-  Променете алгоритъма на Белман-Форд, така че $\delta(v) = -\infty$ за всеки връх $v$, 
-  за който има отрицателен цикъл по някой път от началния връх $s$ до $v$.
-\end{problem}
+% \newpage
+
+% \subsection{Алгоритъм на Белман-Форд}\index{Белман-Форд!алгоритъм}
+
+% Алгоритъмът на Дейкстра работи само за графи $G = (V,E,w)$ с {\em положителни} тегла по ребрата.
+% Сега ще разгледаме един алгоритъм, който работи и за графи с отрицателни тегла по ребрата.
+% Задачата отново е да намерим минималните разстояния на пътищата с начало върха $s$, но
+% искаме също така алгоритъмът да отговаря на въпроса дали има отрицателен цикъл в графа. 
+% Ако такъв съществува, то няма решение на проблема. (Защо?)
+% Ако отрицателен цикъл не съществува, то алгоритъмът намира пътища в графа с минимални тегла от върха $s$
+% до всички достижими върхове в графа.
+
+
+% \begin{algorithm}
+%   \caption{Пътища с мин. тегло от върха $s$ (Белман-Форд)}
+%   \label{alg:belman-ford}
+  
+%   \begin{algorithmic}[1]
+%     \Procedure{Bellman-Ford}{$s$}
+%     \State\Call{INIT}{$s$}
+%     \For{$i:=1$ to $\abs{V}-1$}
+%     \ForAll{$(u,v)\in E$}
+%     \State\Call{UPDATE}{$u$,$v$}
+%     % \ENSURE{$\texttt{dist}[v] \geq \delta(s,v)$}
+%     \EndFor
+%     \EndFor
+    
+%     \Comment{Проверка за отрицателен цикъл}
+%     \ForAll{$(u,v)\in E$}
+%     \If {$\texttt{dist}[v] > \texttt{dist}[u] + w(u,v)$}
+%     \State Return \texttt{False}
+%     \EndIf
+%     \EndFor
+%     \State Return \texttt{True}
+%     \EndProcedure
+%   \end{algorithmic}
+% \end{algorithm}
+
+% \begin{prop}
+%   \label{prop:bellman-ford}
+%   Нека графът $G$ няма отрицателни цикли, които са достижими от $s$.
+%   Тогава след изпълнение на алгоритъма на Белман-Форд получаваме, че
+%   за всички $v \in V$ достижими от $s$, 
+%   \[\texttt{dist}[v] = \delta(s,v).\]
+% \end{prop}
+% \begin{proof}
+%   Да разгледаме $s \stackrel{p}{\leadsto} v$, където $p = (v_0,\dots,v_k)$ е път с минимално тегло в $G$.
+%   Понеже в пътища с минимална дължина няма цикли, то $k \leq \abs{V} - 1$.
+%   Тогава според Твърдение \ref{prop:path-update}, 
+%   след $i$-тата итерация на \texttt{for} цикъла (ред 3), $\texttt{dist}[v_i] = \delta(s,v_i)$.
+%   Така получаваме, че най-накрая $\texttt{dist}[v] = \delta(s,v)$.
+% \end{proof}
+% \begin{cor}
+%   \label{cor:bellman-ford}
+%   При същите предположения за графа $G$,
+%   за всяко $v \in V$, 
+%   има път $s \leadsto v$ точно тогава, когато след приключване на алгоритъма е изпълнено $\texttt{dist}[v] < \infty$.
+% \end{cor}
+% \begin{proof}
+%   Ако има път $p$, $s \stackrel{p}{\leadsto} v$, то
+%   според твърдението $\texttt{dist}[v] = \delta(s,v) < \infty$.
+%   За другата посока, нека $\texttt{dist}[v] < \infty$, но да допуснем, че няма път от $s$ до $v$.
+%   Но тогава от Твърдение \ref{prop:no-path} следва, че $\texttt{dist}[v]  = \infty$,
+%   което е противоречие.
+% \end{proof}
+
+
+% \begin{thm}
+%   \label{th:bellman-ford}
+%   Ако $G$ няма отрицателни цикли достижими от $s$, то
+%   алгоритъмът на Белман-Форд връща TRUE, $(\forall v\in V)[dist[v] = \delta(s,v)]$,
+%   и $G_{pred}$ е дърво с корен $s$, което съдържа пътища с минимални тегла.
+
+%   Ако $G$ има отрицателни цикли достижими от $s$, то
+%   алгоритъмът на Белман-Форд връща FALSE.
+% \end{thm}
+% \begin{proof}
+%   \begin{enumerate}[a)]
+%   \item 
+%     Нека $G$ не съдържа цикъл с отрицателно тегло, достижим от $s$.
+%     Ако $v$ е достижим от $s$, то според Твърдение \ref{prop:bellman-ford}, 
+%     след изпълнение на алгоритъма
+%     \[\texttt{dist}[v] = \delta(s,v).\]
+
+%     Ако $v$ не е достижим от $s$, то според Твърдение \ref{prop:no-path},
+%     след изпълнение на алгоритъма
+%     \[\texttt{dist}[v] = \infty = \delta(s,v).\]
+
+%     Понеже $(\forall v\in V)[\texttt{dist}[v] = \delta(s,v)]$, от Твърдение \ref{prop:tree-shortest-path} следва, че
+%     $G_{pred}$ е дърво с корен $s$, което съдържа пътища с минимални тегла.
+    
+%     Като използваме Твърдение \ref{prop:triangle} лесно се вижда, че алгоритъмът връща TRUE.
+%   \item
+%     Нека $G$ съдържа цикъл с отрицателно тегло, достижим от $s$.
+%     Нека един такъв цикъл е $\gamma = (v_0,\dots,v_k)$, $v_0 = v_k$.
+%     Тогава
+%     \[w(\gamma) = \sum^k_{i=1}w(v_{i-1},v_i) < 0.\]
+%     Да допуснем, че алгоритъмът връща TRUE. Тогава за всяко $i = 1,\dots, k$, 
+%     \[\texttt{dist}[v_i] \leq \texttt{dist}[v_{i-1}] + w(v_{i-1},v_i)\]
+%     и като сумираме, 
+%     \[\sum^{k}_{i=1} \texttt{dist}[v_i] \leq \sum^{k}_{i=1} \texttt{dist}[v_{i-1}] + \sum^{k}_{i=1}w(v_{i-1},v_i).\]
+%     Тъй като $v_0 = v_k$, 
+%     \[\sum^{k}_{i=1} \texttt{dist}[v_i] = \sum^{k}_{i=1}\texttt{dist}[v_{i-1}].\]
+%     Получаваме, че \[0 \leq \sum^{k}_{i=1}w(v_{i-1},v_i) = w(\gamma),\] което е противоречие с отицателността на цикъла.
+%   \end{enumerate}
+% \end{proof}
+
+% Фигура \ref{fig:bellman-ford-negative-cycle} илюстрира случая за цикъл с отрицателно тегло.
+% Както забелязахме при алгоритъма на Дейкстра, и тук можем да намерим не само дължините на най-късите пътища, но
+% и спъсъка на ребрата, участващи в тях. Фигура \ref{fig:bellman-ford-graph} илюстрира този проблем. 
+% Останалите накрая оцветени в синьо ребра участват в най-късите пътища.
+
+
+
+% \begin{figure}[!htbp]
+%   \begin{subfigure}[b]{0.5\textwidth}
+%     \begin{tikzpicture}
+%       [nodedecorate/.style={shape=circle,inner sep=2pt,draw,thick},%
+%       arrowdecorate/.style={->,>=stealth,thick}]
+%       %% nodes or vertices
+      
+%       \foreach \nodename/\x/\y/\direction/\navigate in { a/0/0/below/south,
+%         b/6/0/below/south, c/4.5/0/below/south, d/3/0/below/south, e/1.5/0/below/south}
+%       {
+%         \node (\nodename) at (\x,\y) [nodedecorate] {};
+%         \node [\direction] at (\nodename.\navigate) {$\nodename$};
+%       }
+%       %% edges or lines
+%       \path
+%       \foreach \startnode/\endnode/\direction/\angle/\weight in {
+%         a/e/above/15/1, d/e/above/-25/-1, e/d/below/-15/1,  d/c/above/15/1, c/b/above/15/1, b/e/below/60/-4}
+%       {
+%         (\startnode) edge[arrowdecorate,bend left=\angle] node[\direction] {$\weight$} (\endnode)
+%       };
+%       ;
+%     \end{tikzpicture}
+%     \caption{Граф с отрицателен цикъл}
+%   \end{subfigure}
+%   \quad
+%   \begin{subtable}[b]{0.5\textwidth}
+%     \begin{tabular}{|c|c|c|c|c|}
+%       \hline
+%       $\delta(a)$ & $\delta(b)$ & $\delta(c)$ & $\delta(d)$ & $\delta(e)$ \\
+%       \hline
+%       0 & $\infty$ & $\infty$ & $\infty$ & {\bf \framebox{1}}\\
+%       \hline
+%       \hline
+%       $\colon$ & \framebox{$\infty$} & $\infty$ & $\infty$ & 1\\
+%       $\colon$ & $\infty$ & \framebox{$\infty$} & $\infty$ & 1\\
+%       $\colon$ & $\infty$ & $\infty$ & {\bf \framebox{2}} & 1\\
+%       $\colon$ & $\infty$ & $\infty$ & 2 & \framebox{1}\\
+%       \hline\hline
+%       $\colon$ & \framebox{$\infty$} & $\infty$ & 2 & 1\\
+%       $\colon$ & $\infty$ & {\bf \framebox{3}} & 2 & 1\\
+%       $\colon$ & $\infty$ & 3 & \framebox{2} & 1\\
+%       $\colon$ & $\infty$ & $\infty$ & 2 & \framebox{1}\\
+%       \hline\hline
+%       $\colon$ & {\bf \framebox{4}} & 3 & 2 & 1\\
+%       $\colon$ & 4 & \framebox{3} & 2 & 1\\
+%       $\colon$ & 4 & 3 & \framebox{2} & 1\\
+%       $\colon$ & 4 & 3 & 2 & {\bf \framebox{0}}\\
+%       \hline\hline
+%     \end{tabular}
+%     \caption{Изпълнение на алгоритъма}
+%   \end{subtable}
+%   \caption{Алгоритъм на Белман-Форд върху ориентиран граф с отрицателен цикъл,
+%   като ребрата са подредени лексикографски: $\pair{a,e}, \pair{b,e}, \pair{c,b}, \pair{d,c}, \pair{d,e}, \pair{e, d}$}
+%   \label{fig:bellman-ford-negative-cycle}
+% \end{figure}
+
+
+% % \begin{figure}[!htbp]
+% %   \input{bellman-ford-graph.tex}
+% %   \index{Белман-Форд!алгоритъм}
+% %   \caption{Алгоритъм на Белман-Форд запазващ минималните пътища}
+% %   \label{fig:bellman-ford-graph}
+% % \end{figure}
+
+
+% %% стр. 654
+% \begin{problem}
+%   Променете алгоритъма на Белман-Форд, така че $\delta(v) = -\infty$ за всеки връх $v$, 
+%   за който има отрицателен цикъл по някой път от началния връх $s$ до $v$.
+% \end{problem}
 
 
 

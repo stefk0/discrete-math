@@ -1,36 +1,42 @@
-\section*{Функции}
+\chapter{Функции}
 \index{функция}
 
-Релацията $R \subseteq A\times B$ се нарича {\bf функция}\index{функция} от $A$ в $B$, ако
+\section{Основни свойства}
+
+Релацията $R \subseteq A\times B$ се нарича {\bf тотална функция}\index{тотална функция} от $A$ в $B$, ако
 \begin{enumerate}[i)]
-  \item
-    $Dom(R) = A$, т.е.
-    \[(\forall a\in A)(\exists b\in B)[(a,b)\in R].\]
-  \item
-    За всеки елемент $a\in A$ съотвества {\em точно един} елемент $b \in B$, т.е.
-    \[(\forall x\in A)(\forall y_1,y_2 \in B)(\langle{x,y_1}\rangle\in R\ \wedge\ \langle{x,y_2}\rangle\in R \rightarrow y_1 = y_2).\]
+\item
+  $Dom(R) = A$, т.е.
+  \[(\forall a\in A)(\exists b\in B)[(a,b)\in R].\]
+\item
+  За всеки елемент $a\in A$ съотвества {\em точно един} елемент $b \in B$, т.е.
+  \[(\forall a\in A)(\forall b_1,b_2 \in B)((\langle{a,b_1}\rangle\in R\ \wedge\ \langle{a,b_2}\rangle\in R) \rightarrow b_1 = b_2).\]
 \end{enumerate}
 Обикновено означаваме функциите като $f:A\to B$ и
 вместо $(a,b)\in f$ пишем $f(a) = b$.
 Казваме, че функцията $f$ e
 \begin{itemize}
 \item
-  \marginpar{също казваме, че $f$ е обратима}
+  \marginpar{или $f$ е {\bf обратима}}
   {\bf инекция}\index{функция!инекция}, ако 
-  \[(\forall x_1,x_2\in A)[x_1\neq x_2 \rightarrow f(x_1)\neq f(x_2)],\]
+  \[(\forall a_1,a_2\in A)[a_1\neq a_2 \rightarrow f(a_1)\neq f(a_2)],\]
   или еквивалентно,
-  \[(\forall x_1,x_2\in A)[f(x_1) = f(x_2) \rightarrow x_1 = x_2].\]
+  \[(\forall a_1,a_2\in A)[f(a_1) = f(a_2) \rightarrow a_1 = a_2].\]
 \item
-  \marginpar{също казваме, че $f$ е върху $B$}
+  \marginpar{или $f$ е {\bf върху} $B$}
   {\bf сюрекция}\index{функция!сюрекция}, ако 
-  \[(\forall y\in B)(\exists x\in A)[f(x) = y].\]
+  \[(\forall b\in B)(\exists a\in A)[f(a) = b].\]
 \item
   {\bf биекция}\index{функция!биекция}, ако е инекция и сюрекция.
 \end{itemize}
 
 \begin{problem}
   Дайте примери за функция $f:\mathbb{N}\rightarrow\Z$, която е:
-  \begin{enumerate}
+  \begin{enumerate}[a)]
+  \item
+    инективна;
+  \item
+    сюрективна;
   \item
     нито инективна, нито сюрективна;
   \item
@@ -39,6 +45,74 @@
     сюрективна, но не е инективна;
   \item
     сюрективна и инективна.
+  \end{enumerate}
+\end{problem}
+
+
+Да разгледаме функцията $f \subseteq (\Real\times\Real)\times\Real$, дефинирана като:
+\[f(x,y) = \frac{x}{y}.\]
+Както много добре знаем, за стойности от вида $(x,0)$, функцията $f$ не е дефинирана.
+Такива функции ще наричаме {\bf частични}.
+Официалната дефиниция е следната.
+\marginpar{Тук нямаме условието $Dom(R) = A$}
+Релацията $R \subseteq A\times B$ се нарича {\bf частична функция}\index{частична функция} от $A$ в $B$, ако
+за всеки елемент $a\in A$ съотвества {\em най-много един} елемент $b \in B$, т.е.
+\[(\forall x\in A)(\forall y_1,y_2 \in B)[(\langle{x,y_1}\rangle\in R\ \wedge\ \langle{x,y_2}\rangle\in R) \rightarrow y_1 = y_2].\]
+
+\begin{problem}
+  За всяка от следните тотални функции $f$ определете дали $f$ е
+  инекция, сюрекция или биекция.
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{(биекция)}
+    $f: \Real\rightarrow \Real$, $f(x) = 2x+3$.
+  \item
+    $f: \Real\rightarrow \Real$, $f(x) = x^2 - 4x +2$.
+  \item 
+    $f: \Real\rightarrow \Real$, $f(x) = x^3+7$.    
+  \item
+    $f: \Nat\rightarrow \Nat$, 
+    $f(x) = 
+      \begin{cases}
+        x+1, & \mbox{ ако }x\mbox{ е четно}\\
+        x-1, & \mbox{ ако }x\mbox{ е нечетно}\\
+      \end{cases}$
+    \item
+    \marginpar{$rem(x,3)$ - остатък при деление на $3$}
+    $f: \Nat\rightarrow \Nat$, $f(x) = rem(x,3)$.
+  \item 
+    \marginpar{НОД - най-голям общ делител}
+    $f: \Nat\times\Nat \rightarrow \Nat$,
+    $f(x, y) = \mbox{ НОД}(x,y)$.
+  \item 
+    \marginpar{НОК - най-малко общо кратно}
+    $f: \Nat\times\Nat \rightarrow \Nat$,
+    $f(x, y) = \mbox{ НОК}(x,y)$.
+  \item 
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 3x+2y$.
+  \item 
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2^x(2y+1)-1$.
+  \item 
+    \marginpar{Канторово кодиране}
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = \frac{(x+y)(x+y+1)}{2} + x$.
+  \item 
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2x(2y+1)$.
+  \item
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2x(2^y+1)$.
+  \item
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2^x3^y$.
+  \item
+    $f: \Nat \times \Nat\rightarrow \Nat$,
+    $f(x, y) = 2^x6^y$.
+  \item 
+    $f: \Real\times\Real\rightarrow \Real$,
+    $f(x, y) = x^2+y^2$.
   \end{enumerate}
 \end{problem}
 
@@ -53,100 +127,105 @@
   \end{enumerate}
 \end{problem}
 
-\begin{prb}
-  За всяка от следните  функции $f$ определете дали $f$ е
-  инекция, сюрекция или биекция.
-  \begin{enumerate}[a)]
-  \item
-    $f: \mathbb{R}\rightarrow \mathbb{R}$, $f(x) = 2x+3$.
-  \item
-    $f: \mathbb{R}\rightarrow \mathbb{R}$, $f(x) = x^2 - 4x +2$.
-  \item 
-    $f: \mathbb{R}\rightarrow \mathbb{R}$, $f(x) = x^3+7$.    
-  \item
-    $f: \mathbb{N}\rightarrow \mathbb{N}$, 
-    \begin{align*}
-      f(x) = 
-      \begin{cases}
-        x+1, & \mbox{ ако }x\mbox{ е четно}\\
-        x-1, & \mbox{ ако }x\mbox{ е нечетно}\\
-      \end{cases}
-    \end{align*}
-  \item
-    \marginpar{$rem(x,3)$ - остатък при деление на $3$}
-    $f: \mathbb{N}\rightarrow \mathbb{N}$, $f(x) = rem(x,3)$.
-  \item 
-    \marginpar{НОД - най-голям общ делител}
-    $f: \mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}$,
-    $f(x, y) = \mbox{ НОД}(x,y)$.
-  \item 
-    $f: \mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}$,
-    $f(x, y) = 3x+2y$.
-  \item 
-    $f: \Nat \times \Nat\rightarrow \Nat$,
-    $f(x, y) = 2^x(2y+1)-1$.
-  \item 
-    $f: \Nat \times \Nat\rightarrow \Nat$,
-    $f(x, y) = 2x(2y+1)$.
-  \item
-    $f: \Nat \times \Nat\rightarrow \Nat$,
-    $f(x, y) = 2x(2^y+1)$.
-  \item
-    $f: \Nat \times \Nat\rightarrow \Nat$,
-    $f(x, y) = 2^x3^y$.
-  \item
-    $f: \Nat \times \Nat\rightarrow \Nat$,
-    $f(x, y) = 2^x6^y$.
-  \item 
-    $f: \mathbb{R} \times \mathbb{R}\rightarrow \mathbb{R}$,
-    $f(x, y) = x^2+y^2$.
-  \item
-    
-  \end{enumerate}
-\end{prb}
+\section{Операции върху функции}
 
 
-% \item 
-%   $f: \mathbb{Q}\rightarrow \mathbb{Q}$, $f(x) =
-%   \cstwo{0}{$x=0$}{\frac{1}{x}}{$x\neq 0$}$.
-% \item
-%   $f: \mathbb{R} \rightarrow \mathbb{R}$, $f(x) = |x|+1$.
-% \item 
-%   $f: (-\frac{\pi}{2}, \frac{\pi}{2})\rightarrow \mathbb{R}$,
-%   $f(x) = tg x$.
-% \item 
-%   $f: \mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}$,
-%   $f(x, y) = 3^x.5^y$.
-% \item
-%   $f: \mathbb{R}^+ \rightarrow \mathbb{N}$, $f(x) = \lfloor x
-%   \rfloor$. (най-голямото естествено  число, по-малко или равно на
-%   $x$. )
-% \item
-%   $f: \mathbb{N} \rightarrow \mathbb{N}$, $f(x) = (x+1)$-вото
-%   просто число.
-% \end{enumerate}
-
-
-\subsection*{Операции върху функции}
-
+\subsection*{Образ и първообраз}
 Нека е дадена функцията $f:A\to B$.
 Ще разгледаме няколко основни операции върху функции.
-\begin{enumerate}[I)]
-\item
-  {\bf Образ}
-  
-  Нека $X\subseteq A$. {\em Образ на множеството} $X$ под действието на функцията $f$, наричаме
+
+\begin{itemize}
+\item 
+  {\bf Образ на множеството} $X\subseteq A$ под действието на функцията $f$, наричаме
   множеството: \[f(X) = \{b\in B \mid f(a) = b\ \wedge\ a \in X\}.\]
 \item
-  {\bf Първообраз}
-
-  Нека $Y\subseteq B$. {\em Първообраз на множеството} $Y$ под действието на функцията $f$, наричаме
+  {\bf Първообраз на множеството} $Y\subseteq B$ под действието на функцията $f$, наричаме
   множеството: \[f^{-1}(Y) = \{a\in A \mid f(a) = b\ \wedge\ b \in Y\}.\]
-\item
-  {\bf Обратна функция}
-  За всяка биективна функция $f:A\to B$, определяме нейната обратна функция $g:B \to  A$ като:
-  \[(\forall a \in A)(\forall b \in Ran(f))[g(b) = a\ \iff\ f(a) = b].\]
-  Обикновено означаваме $g$ като $f^{-1}$.
+\end{itemize}
+
+
+\begin{example}
+  Нека $f:\Real\to\Real$ е дефинирана като $f(x) = \abs{x+1}$ и нека $A = [-1,1)$.
+  \begin{itemize}
+  \item
+    $f(A) = \{f(x) \mid x\in A\} = \{\abs{x+1} \mid x \in [-1,1)\} = [0, 2)$.
+  \item
+    $f^{-1}(A) = \{x\in\Real\mid f(x) \in A\} = \{x\in\Real\mid \abs{x+1} \in [-1,1)\} = [-1,0)$.
+  \end{itemize}
+\end{example}
+
+\begin{problem}
+  Нека е дадена произволна функция $f:A \to B$.
+  Проверете:
+  \begin{enumerate}[a)]
+  \item
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)$.
+  \item
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)$.
+  \item
+    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$.
+  \item
+    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$.
+  \item
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$.
+  \item
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$.
+  \item
+    $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
+  \item
+    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$
+  \item
+    при какви условия за $f$,
+    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$.
+  \item
+    при какви условия за $f$,
+    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$.
+  \item
+    при какви условия за $f$,
+    $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
+  \end{enumerate}
+\end{problem}
+
+\newpage
+
+\subsection*{Обратна функция}
+
+За всяка биективна функция $f:A\to B$, определяме нейната обратна функция $g:B \to  A$ като:
+\[(\forall a \in A)(\forall b \in Ran(f))[g(b) = a\ \iff\ f(a) = b].\]
+Обикновено означаваме $g$ като $f^{-1}$.
+
+\subsection*{Композиция}
+
+Нека са дадени функциите $f:A\to B$ и $g:C\to A$.
+{\em Композиция} на $f$ и $g$ е функцията $f\circ g: C \to B$ определена като
+\[f\circ g = \{\pair{c,b}\mid (\exists a\in A)[g(c) = a\ \wedge\ f(a) = b]\}.\]
+\marginpar{Най-напред прилагаме $g$ и след това $f$}
+Композицията на $f$ и $g$ може да се запише и така:
+\[(\forall c\in C)[(f\circ g)(c) = f(g(c))]\]
+
+\begin{example}
+  Нека $f(x) = 2x+1$, $g(x) = x^2$. Тогава:
+  \begin{itemize}
+  \item 
+    $(f\circ g)(x) = 2x^2 + 1$;
+  \item
+    $(g\circ f)(x) = (2x+1)^2$.
+  \end{itemize}
+\end{example}
+
+
+% \begin{enumerate}[I)]
+% \item
+%   {\bf Образ}
+  
+
+% \item
+%   {\bf Първообраз}
+
+
+% \item
+%   {\bf Обратна функция}
+
 % \item 
 %   {\bf Рестрикция}
 
@@ -160,117 +239,65 @@
 %   {\em Затваряне} на множеството $X$ относно функцията $f$ е множеството
 %   \[f[X] = \bigcup_{n\in\Nat} X_n. \]
   
-\item
-  {\bf Композиция}
+% \item
+%   {\bf Композиция}
 
-  Нека са дадени функциите $f:A\to B$ и $g:C\to A$.
-  {\em Композиция} на $f$ и $g$ е функцията $f\circ g: C \to B$ определена като
-  \[f\circ g = \{\pair{c,b}\mid (\exists a\in A)[g(c) = a\ \wedge\ f(a) = b]\}.\]
-  \marginpar{Най-напред прилагаме $g$ и след това $f$}
-  Композицията на $f$ и $g$ може да се запише и така:
-  \[(\forall c\in C)[(f\circ g)(c) = f(g(c))]\]
-\end{enumerate}
 
-\begin{prb}
+% \end{enumerate}
+
+
+
+
+\begin{problem}
   Нека $f: A\to B$, $g: B\to C$ са функции.
   Вярно ли е, че:
-  \begin{enumerate}
+  \begin{enumerate}[a)]
   \item 
-    Ако $f$  не е инекция, то $g\circ f$ не е инекция?
+    Ако $f$ не е инекция, то $g\circ f$ не е инекция?
   \item
-    Ако $g$  не е инекция, то $g\circ f$ не е инекция?
+    Ако $g$ не е инекция, то $g\circ f$ не е инекция?
   \item 
-    Ако $f$  не е сюрекция, то $g\circ f$ не е сюрекция?
+    Ако $f$ не е сюрекция, то $g\circ f$ не е сюрекция?
   \item
-    Ако $g$  не е сюрекция, то $g\circ f$ не е сюрекция?
-  \end{enumerate}
-\end{prb}
-
-\begin{prb}
-  Нека $f: A\to B$, $g: B\to C$ са функции.
-  Вярно ли е, че:
-  \begin{enumerate}[1)]
+    Ако $g$ не е сюрекция, то $g\circ f$ не е сюрекция?
   \item
+    \marginpar{Да}
     $f,g$ са инективни, то $g\circ f$ е инективна?
   \item
+    \marginpar{Да}
     $f,g$ са сюрективни, то $g\circ f$ е сюрективна?
   \item
+    \marginpar{Да}
     $f,g$ са биективни, то $g\circ f$ е биективна?
   \item
     $g\circ f$ е сюрективна,  то $f,g$ са сюрективни ?
   \item
     $g\circ f$ е инективна, то $f,g$ са инективни ?
   \end{enumerate}
-\end{prb}
+\end{problem}
 
-\begin{prb}
+\begin{problem}
   Нека $f: A\to B$, $g: B\to C$ са {\em биективни} функции.
   Докажете, че
   \[(g\circ f)^{-1} = f^{-1}\circ g^{-1}.\]
-\end{prb}
-
-\begin{prb}
-  $f(x) = \pair{g(x),h(x)}$.
-\end{prb}
-
-
-% \begin{dfn}
-%   Дефинираме следните операции върху релацията $R\subseteq A\times{B}$:
-%   \begin{enumerate}
-%   \item
-%     Дефиниционна област
-%     $Domain(R) = \{x\mid (\exists y)\langle{x,y}\rangle\in R \}$;
-%   \item
-%     Област от стойности
-%     $Range(R) = \{y\mid (\exists x)[\langle{x,y}\rangle\in R]\}$;
-%   \item
-%     Поле
-%     $Field(R) = Domain(R) \cup Range(R)$;
-%   \item
-%     Рестрикция
-%     $R\upharpoonright{C} = \{\langle{x,y}\rangle\mid \langle{x,y}\rangle\in R\ \&\ x\in C\}$;
-%   \item
-%     Образ
-%     $R[C] = \{ y \mid (\exists x)[ x\in C\ \&\ \langle{x,y}\rangle\in R]\} = Range(R\upharpoonright{C})$.
-
-
-% \end{enumerate}
-% \end{dfn}
-
-% \begin{example}
-%   Нека да разгледаме релацията \[F = \{\langle{\emptyset, a}\rangle,\langle{\{\emptyset\}, b}\rangle\}.\]
-%   Лесно се вижда, че $F$ е функция.
-%   Имаме, че \[F^{-1} = \{\langle{a,\emptyset}\rangle,\langle{b, \{\emptyset\}}\rangle\}\] е функция тогава и само тогава, когато  $a\neq b$.
-%   Обърнете внимание, че
-%   \[F\upharpoonright{\emptyset} = \emptyset \mbox{, но } F\upharpoonright\{\emptyset\} = \{\langle{\emptyset,a}\rangle\}.\]
-%   Освен това, $F(\{\emptyset\}) = \{a\}$ и $F(\{\emptyset\}) = b$.
-% \end{example}
-
-% Нека $f$ е функция и $A$ е множество.
-% \begin{enumerate}[(i)]
-% \item
-%   $f(A) = \{y \mid (\exists x\in A)(f(x) = y)\}$
-% \item
-%   $f^{-1}(A) = \{x \mid f(x)\in A\}$
-% \end{enumerate}
-
+\end{problem}
 
 \begin{problem}
   Нека а дадена произволна функция $f:A \to B$.
   Проверете:
   \begin{enumerate}[a)]
-  \item
-    $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
-  \item
-    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$
-  \item
-    при какви условия за $f$,
-    $(\forall X,Y \subseteq A)[f(X\cap Y) = f(X)\cap f(Y)]$.
+  % \item
+  %   $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
+  % \item
+  %   $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$
+  % \item
+  %   при какви условия за $f$,
+  %   $(\forall X,Y \subseteq A)[f(X\cap Y) = f(X)\cap f(Y)]$.
   % \item
   %   $f(\bigcap_{i\in I}A_i) \subseteq \bigcap_{i\in I}f(A_i)$
-  \item
-    при какви условия за $f$,
-    $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
+  % \item
+  %   при какви условия за $f$,
+  %   $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
   \item
     \marginpar{Опр. $(\forall x\in X)\ id_X(x) = x$}
     при какви условия за $f$, $f\circ f^{-1} = id_{B}$.
@@ -278,24 +305,24 @@
      при какви условия за $f$, $f^{-1}\circ f = id_{A}$.
    % \item
      % $Dom(f\circ g) = g^{-1}(Dom(f))$, където $g$ е функция.
-  \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)$.
-  \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)$.
-  \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$.
-  \item
-    при какви условия за $f$,
-    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$.
-  \item
-    при какви условия за $f$,
-    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$.
-  \item
-    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$.
-  \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$.
-  \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$.
+  % \item
+  %   $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)$.
+  % \item
+  %   $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)$.
+  % \item
+  %   $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$.
+  % \item
+  %   при какви условия за $f$,
+  %   $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$.
+  % \item
+  %   при какви условия за $f$,
+  %   $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$.
+  % \item
+  %   $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$.
+  % \item
+  %   $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$.
+  % \item
+  %   $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$.
   \end{enumerate}
 \end{problem}
 \newpage
@@ -342,7 +369,7 @@
   Вярна ли е обратната посока?
 \end{problem}
 
-\cite{hein}
+% \cite{hein}
 
 %%% Local Variables: 
 %%% mode: latex

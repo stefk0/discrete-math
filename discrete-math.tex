@@ -10,7 +10,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
 citecolor=green, urlcolor=blue]{hyperref}
-
+\usepackage{pifont}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{mathrsfs}
@@ -25,7 +25,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 
 \usepackage{algorithm}
 %\usepackage{algorithmic}
-\usepackage{algpseudocode}
+\usepackage[noend]{algpseudocode}
+%\usepackage{algpseudocode}
 
 %%%%%%%%%%%%%%% TIKZ Package %%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tikz}
@@ -35,10 +36,6 @@ citecolor=green, urlcolor=blue]{hyperref}
 \usepackage{caption}
 \usepackage{subcaption}
 
-% \setlength{\parskip}{2.3ex}            % vertical space between paragraphs
-% \setlength{\parindent}{0.5cm}            % amount of indentation of paragraph
-%this package allows for hyperlinks within the pdf document
-
 \theoremstyle{definition}
 \newtheorem{thm}{Теорема}
 \newtheorem{crl}{Следствие}
@@ -47,18 +44,21 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newtheorem{prop}{Твърдение}
 \newtheorem{dfn}{Определение}
 \newtheorem{problem}{Задача}
-\newtheorem{prb}{Задача}
 \newtheorem{example}{Пример}
+\newtheorem{question}{Въпрос}
 \newtheorem*{remark}{Забележка}
 \renewenvironment{proof}{\noindent{\bf Док.}\hspace*{1em}}{\qed\par}
+\newenvironment{solution}{\noindent{\bf Решение.}\hspace*{1em}}{\qed\par}
 
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
 \renewcommand{\C}{\mathcal{C}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\L}{\mathcal{L}}
 \newcommand{\D}{\mathcal{D}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
+\newcommand{\N}{\mathcal{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Ls}{\mathscr{L}}
 \newcommand{\Fs}{\mathscr{F}}
@@ -66,11 +66,14 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\Ps}{\mathscr{P}}
 \newcommand{\As}{\mathscr{A}}
 \newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Es}{\mathscr{E}}
 \newcommand{\Is}{\mathscr{I}}
 \newcommand{\Ss}{\mathscr{S}}
 \newcommand{\xn}{x_{1},\dots,x_{n}}
 
 \newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Int}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
 
 \newcommand{\xs}{overline{x}}
 
@@ -78,17 +81,24 @@ citecolor=green, urlcolor=blue]{hyperref}
 
 \newcommand{\zs}{overline{z}}
 \newcommand{\ov}[1]{\overline{#1}}
-\newcommand{\abs}[1]{\vert{#1}\vert}
+\newcommand{\abs}[1]{\lvert{#1}\rvert}
 \newcommand{\pair}[1]{\langle{#1}\rangle}
 
 \newcommand{\FA}{\langle{Q,\Sigma,s,\delta,F}\rangle}
-\newcommand{\FAn}[1]{\langle{Q_#1,\Sigma_#1,s_#1,\delta_#1,F_#1}\rangle}
+\newcommand{\FAn}[1]{\langle{Q_#1,\Sigma,s_#1,\delta_#1,F_#1}\rangle}
 \newcommand{\NFA}{\langle{Q,\Sigma,s,\Delta,F}\rangle}
-\newcommand{\NFAn}[1]{\langle{Q_#1,\Sigma_#1,s_#1,\Delta_#1,F_#1}\rangle}
+\newcommand{\NFAn}[1]{\langle{Q_#1,\Sigma,s_#1,\Delta_#1,F_#1}\rangle}
 \newcommand{\PDA}{\langle{Q,\Sigma,\Gamma,\#,s,\Delta,F}\rangle}
+\newcommand{\PDAn}[1]{\langle{Q_#1,\Sigma,\Gamma,\#,s_#1,\Delta_#1,F_#1}\rangle}
 \newcommand{\CFG}{\langle{V,\Sigma,R,S}\rangle}
+\newcommand{\TM}{\langle{Q,\Sigma,\Gamma,\delta,s,\bot,F}\rangle}
 
 \renewcommand{\iff}{\ \leftrightarrow\ }
+
+\newcommand{\Th}[1]{{\em Теорема~\ref{th:#1}}}
+\newcommand{\Lem}[1]{{\em Лема~\ref{lem:#1}}}
+\newcommand{\Prob}[1]{{\em Задача~\ref{pr:#1}}}
+\newcommand{\Prop}[1]{{\em Твърдение~\ref{pr:#1}}}
 
 \setlength{\marginparsep}{0.5cm}
 \setlength{\oddsidemargin}{0.3cm}
@@ -100,32 +110,36 @@ citecolor=green, urlcolor=blue]{hyperref}
 % {\raggedright\footnotesize #1}}
 \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
 {\raggedright\scriptsize #1}}
+%\renewcommand\marginpar[1]{\oldmarginpar{\scriptsize #1}}
+
+\title{Записки}
+\author{Стефан Вътев\thanks{ел. поща: \href{stefanv@fmi.uni-sofia.bg}{stefanv@fmi.uni-sofia.bg}}}
+%, Факултет по математика и информатика, Софийски университет ,,Св. Климент Охридски''}}
 
 \makeindex
 \begin{document}
+\maketitle
+% \layout
 
-\layout
-
-\author{Stefan Vatev\thanks{foo}}
 \tableofcontents
 \include{propositional}
 \include{predicate}
-\include{induction}
 \include{sets}
 \include{relations}
 \include{functions}
-\include{proofs}
 \include{cardinality}
+\include{proofs}
 \include{comb}
-\include{automata}
-\include{context-free}
-\include{boolean1}
-% \include{graph}
+\include{boolean}
+% \include{automata}
+% \include{context-free}
+% \include{turing}
+\include{graphs}
 \include{graph-alg}
 
 % \backmatter
 
-\bibliographystyle{plain}
+\bibliographystyle{amsalpha}
 \bibliography{discrete-math}
 
 \printindex

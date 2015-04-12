@@ -728,8 +728,6 @@
   \[f(x_1,\dots,x_n) \equiv \bigvee_{\stackrel{a_1,\dots,a_n:}{f(a_1,\dots,a_n) = 1}} x^{a_1}_1\dots x^{a_n}_n\]
 \end{proof}
 
-
-
 \index{пълно множество}
 \begin{thm}[Критерий за пълнота на Пост-Яблонский]
   Нека $P\subseteq \Fs_2$ е непразно множество от булеви функции. Множеството $P$ е {\em пълно} тогава и само тогава, когато то {\em не} е подмножество на 
@@ -882,20 +880,20 @@
       $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
       \hline
     \end{tabular}
-  \item
-    \begin{tabular}[b]{|c|c|c|c|c|c|}
-      \hline
-      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
-      \hline
-      $0$ & $+$ & $-$ & $+$ & $-$ & $+$\\
-      \hline
-      $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
-      \hline
-      $x\rightarrow y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
-      \hline
-      $xy \sim xz$ & $-$ & $+$ & $-$ & $-$ & $-$\\
-      \hline
-    \end{tabular}
+  % \item
+  %   \begin{tabular}[b]{|c|c|c|c|c|c|}
+  %     \hline
+  %     & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+  %     \hline
+  %     $0$ & $+$ & $-$ & $+$ & $-$ & $+$\\
+  %     \hline
+  %     $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
+  %     \hline
+  %     $x\rightarrow y$ & $-$ & $+$ & $-$ & $-$ & $-$\\
+  %     \hline
+  %     $xy \sim xz$ & $-$ & $+$ & $-$ & $-$ & $-$\\
+  %     \hline
+    % \end{tabular}
   \end{enumerate}
 \end{solution}
 
@@ -949,10 +947,17 @@
     \end{itemize}
   \item
     Нека $A = ((L\cap M)\setminus T_1)\cup (S\cap T_1)$.
-    Ако една функция е монотонна, но не запазва $1$-цата, то тогава 
-    със сигурност тази функция е константата $0$, т.е.
-    \[(L \cap M)\setminus T_1 = \{0\}.\]
-    Но $0 \in S$ и оттук $A \subseteq S$.
+    \begin{itemize}
+    \item 
+      Ако една функция е монотонна, но не запазва $1$-цата, то тогава 
+      със сигурност тази функция е константата $0$, т.е.
+      \[(L \cap M)\setminus T_1 = \{0\}.\]
+      % $0 \not\in S$ и оттук $A \not\subseteq S$.
+    \item
+      Ако $f \in S \cap T_1$, то това означава $f(1,\dots,1) = 1$ и $f(0,\dots,0) = 0$.
+      Следователно, $S \cap T_1 \subseteq T_0$.
+      Получаваме, че $A =  \{0\} \cup (S \cap T_1) \subseteq T_0$.
+    \end{itemize}    
     Следователно $A$ не е пълен клас.
   \item
     Нека $A = (L\cap M)\cup (S\setminus T_0)$.
@@ -1050,10 +1055,10 @@
     \marginpar{$2^{2^n-2}$}
     $T_0 \cap T_1$
   \item
-    \marginpar{$3.2^{2^n-2}$}
+%    \marginpar{$3.2^{2^n-2}$}
     $T_0 \cup T_1$
   \item
-    \marginpar{$2^{2^n-2}$}
+ %   \marginpar{$2^{2^n-2}$}
     $T_0 \setminus T_1$;
   \item
     \marginpar{$2^{2^{n-1}}$}
