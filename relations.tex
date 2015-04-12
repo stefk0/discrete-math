@@ -313,10 +313,26 @@ $\beta = \gamma \cdot \alpha$.
   {\bf Обръщане} на релацията $R \subseteq A\times B$ е релацията $R^{-1}\subseteq B\times A$, 
   определена като:
   \[R^{-1} = \{\pair{x,y} \mid \pair{y,x} \in R\}.\]
-% \item
-  
-%   $\overline{R} = \{\langle{x,y}\rangle \in A\times B \mid\langle{x,y}\rangle\not\in R\}$;
+  \item
+  \marginpar{Очевидно е, че $P$ е рефлексивна релация, дори ако $R$ не е.}
+  {\bf Рефлексивно затваряне} на релацията $R \subseteq A\times A$ е релацията
+  \[P = R \cup A\times A.\]
+\item
+  {\bf Итерация} на релацията $R \subseteq A\times A$ дефинираме като за всяко естествено число $n$,
+  дефинираме релацията $R^n$ по следния начин:
+  \marginpar{Лесно се вижда, че  $R^1 = R$}
+  \begin{align*}
+    R^0 & = A\times A\\
+    R^{n+1} & = R^n \circ R.
+  \end{align*}
+\item
+  \marginpar{\ding{45} Проверете, че $R^+$ е транзитивна релация!}
+  {\bf Транзитивно затваряне} на $R \subseteq A\times A$ е релацията
+  \[R^+ = \bigcup_{n\geq 1} R^n.\]
 \end{enumerate}
+
+За дадена релация $R$, с $R^\star$ ще означаваме нейното рефлексивно и транзитивно затваряне.
+От дефинициите е ясно, че \[R^\star = \bigcup_{n\geq 0} R^n.\]
 
 \begin{problem}
   Дайте пример за релации $R$ и $S$, за които
