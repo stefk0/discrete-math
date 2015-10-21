@@ -344,42 +344,64 @@
 % \end{problem}
 
 \begin{problem}
+  \marginpar{Един метод за доказателство е с индукция по $n$. Ние ще разгледаме друг метод.}
   Докажете, че
   \[\sum^n_{k=0}\binom{n}{k}k = n2^{n-1}.\]
 \end{problem}
 \begin{proof}
-  Нека $A = \{a_1,\dots,a_n\}$.
-  Съобразете, че:
+  Нека за определеност да положим $A = \{a_1,\dots,a_n\}$.
+  Ще докажем задачата като преброим по два пъти един и същ клас от обекти.% , а именно
+  % $\Bs = \{\pair{a,B} \mid a\in A\ \&\ B \in \Ps(A)\ \&\ a \not\in B\}$.
+  \marginpar{Да означим $\Ps_k(A) = \{B \subseteq A \mid \abs{B} = k\}$ и да напомним, че $\abs{\Ps_k(A)} = \binom{n}{k}$}
   \begin{itemize}
   \item 
     Дясната страна на тъждеството можем да представим по следния начин:
-    \[n2^{n-1} = \sum^n_{i=1}\abs{\{B \in \Ps(A) \mid a_i \not\in B\}}.\]
+    \[\sum^n_{i=1}\abs{\{B \in \Ps(A) \mid a_i \not\in B\}} = \sum^{n}_{i=1}2^{n-1} = n2^{n-1}.\]
   \item
     Това ни подсказва, че за лявата страна, можем да използваме наблюдението, че
     \begin{align*}
       \sum^n_{i=1}\abs{\{B \in \Ps(A) \mid a_i \not\in B\}} & = \sum^n_{i=1}\sum^n_{k=0}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}}\\
       & = \sum^n_{k=0}\sum^n_{i=1}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}}.
     \end{align*}
-    Да разгледаме всяко $k$ поотделно.
+    Да разгледаме всяко $k$ поотделно като използваме тъждеството:
+    \[\Ps(A) = \bigcup^n_{k=0}\Ps_k(A).\]
     \begin{itemize}
     \item 
+      \marginpar{$\Ps_0(A) = \{\emptyset\}$}
       За $k = 0$ получваме, че  
-      \[\sum^n_{i=1}\abs\{B \in \Ps_0(A) \mid a_i \not\in B\} = \sum^n_{i=1}1 = \binom{n}{n}n.\]
+      \[\sum^n_{i=1}\abs{\{B \in \Ps_0(A) \mid a_i \not\in B\}} = \sum^n_{i=1}1 = \binom{n}{n}n.\]
     \item 
-      За $k = 1$ получваме, че  
-      \[\sum^n_{i=1}\abs{\{B \in \Ps_1(A) \mid a_i \not\in B\}} = \sum^n_{i=1}(n-1) = \binom{n}{n-1}(n-1).\]
+      \marginpar{Да напомним, че \[\binom{n}{k} = \binom{n}{n-k}\]}
+      За $k = 1$ получваме, че
+      \begin{align*}
+        \sum^n_{i=1}\abs{\{B \in \Ps_1(A) \mid a_i \not\in B\}} & = \sum^n_{i=1}\binom{n-1}{1}\\
+        & = n\binom{n-1}{n-2}\frac{n-1}{n-1}\\
+        & = \binom{n}{n-1}(n-1).
+      \end{align*}
     \item
-      Да видим дали можем да получим за $k = 2$ формула сходна с тази за $k = 1$.
-      \[\sum^n_{i=1}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}} = \sum^n_{i=1}\binom{n-1}{2} = n\binom{n-1}{2}\frac{n-2}{n-2} = \binom{n}{n-2}(n-2).\]
+      Да видим дали можем да получим за $k = 2$ формула сходна с тази за $k = 0$ и $k =1$.
+      \begin{align*}
+        \sum^n_{i=1}\abs{\{B \in \Ps_2(A) \mid a_i \not\in B\}} & = \sum^n_{i=1}\binom{n-1}{2}\\
+        & = n\binom{n-1}{n-3}\frac{n-2}{n-2}\\
+        & = \binom{n}{n-2}(n-2).
+      \end{align*}
     \item
       Сега вече имаме добра идея какъв вид трябва да намерим за произволно $k < n$:
-      \[\sum^n_{i=1}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}} = \sum^n_{i=1}\binom{n-1}{k} = n\binom{n-1}{k}\frac{n-k}{n-k} = \binom{n}{n-k}(n-k).\]
+      \begin{align*}
+        \sum^n_{i=1}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}} & = \sum^n_{i=1}\binom{n-1}{k}\\
+        & = n\binom{n-1}{n-1-k}\frac{n-k}{n-k}\\
+        & = \binom{n}{n-k}(n-k).
+      \end{align*}
     \item
-      Да разгледаме и случая $k = n$:
+      Да разгледаме накрая и случая $k = n$:
+      \marginpar{$\Ps_n(A) = \{A\}$}
       \[\sum^n_{i=1}\abs{\{B \in \Ps_n(A) \mid a_i \not\in B\}} = \sum^n_{i=1}0 = 0 = \binom{n}{0}\cdot 0.\]
   \end{itemize}
-  Да обединим всичко това:
-  \[\sum^n_{k=0}\sum^n_{i=1}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}} = \sum^n_{k=0} \binom{n}{n-k}(n-k) = \sum^{n}_{k=0}\binom{n}{k}k.\]
+  Да обединим всички случаи за $k$, получаваме лявата страна:
+  \begin{align*}
+    \sum^n_{k=0}\sum^n_{i=1}\abs{\{B \in \Ps_k(A) \mid a_i \not\in B\}} & = \sum^n_{k=0} \binom{n}{n-k}(n-k)\\
+    & = \sum^{n}_{k=0}\binom{n}{k}k.
+  \end{align*}
 \end{itemize}
 \end{proof}
 
