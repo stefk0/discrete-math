@@ -1,4 +1,7 @@
 \documentclass[a4paper,10pt]{report}
+% \documentclass{report}
+
+% \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 
 % \setlength{\oddsidemargin}{4cm}
 % \setlength{\evensidemargin}{4cm}
@@ -24,6 +27,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \usepackage{bussproofs}
 
 \usepackage{algorithm}
+\floatname{algorithm}{Алгоритъм}
 %\usepackage{algorithmic}
 \usepackage[noend]{algpseudocode}
 %\usepackage{algpseudocode}
@@ -47,8 +51,9 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newtheorem{example}{Пример}
 \newtheorem{question}{Въпрос}
 \newtheorem*{remark}{Забележка}
-\renewenvironment{proof}{\noindent{\bf Док.}\hspace*{1em}}{\qed\par}
+\renewenvironment{proof}{\noindent{\bf Доказателство.}\hspace*{1em}}{\qed\par}
 \newenvironment{solution}{\noindent{\bf Решение.}\hspace*{1em}}{\qed\par}
+\newenvironment{hint}{\noindent{\bf Упътване.}\hspace*{1em}}{\qed\par}
 
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
@@ -106,20 +111,26 @@ citecolor=green, urlcolor=blue]{hyperref}
 \setlength{\marginparwidth}{110pt}
 \let\oldmarginpar\marginpar
 
-% \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
-% {\raggedright\footnotesize #1}}
 \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
 {\raggedright\scriptsize #1}}
+
+% \setlist[itemize]{leftmargin=*}
+% \renewcommand\marginpar[1]{}
+
+
 %\renewcommand\marginpar[1]{\oldmarginpar{\scriptsize #1}}
 
-\title{Записки}
+\fontfamily{garamond}
+\title{Записки по Дискретна математика}
 \author{Стефан Вътев\thanks{ел. поща: \href{stefanv@fmi.uni-sofia.bg}{stefanv@fmi.uni-sofia.bg}}}
 %, Факултет по математика и информатика, Софийски университет ,,Св. Климент Охридски''}}
+
+\usepackage{breqn}         % automatic equation breaking
 
 \makeindex
 \begin{document}
 \maketitle
-% \layout
+\layout
 
 \tableofcontents
 \include{propositional}
@@ -134,7 +145,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 % \include{automata}
 % \include{context-free}
 % \include{turing}
-\include{graphs}
+%\include{graphs}
 \include{graph-alg}
 
 % \backmatter
@@ -143,6 +154,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \bibliography{discrete-math}
 
 \printindex
+% \listofalgorithms
 
 \end{document}
 

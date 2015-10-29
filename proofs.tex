@@ -400,14 +400,17 @@
 \begin{proof}
   Да разгледаме следното равенство:
   \[(x+1)^p = x^p + \binom{p}{1}x^{p-1} + \binom{p}{2}x^{p-2} + \dots + 1 = \sum^{p}_{i=0}\binom{p}{i}x^i\]
-  За $i = 1,\dots,p-1$, всяко от числата $\binom{p}{i}$ се дели на $p$, то 
-  \[(x+1)^p \equiv x^p + 1\ (\bmod\ p).\]
-  Нека сега да разгледаме следната редица, която от се получава от горното равенство за $x = a-1,a-2,\dots,2$:
+  За $i = 1,\dots,p-1$, всяко от числата $\binom{p}{i}$ се дели на $p$, тогава
+  \begin{equation}
+    \label{eq:fermat}
+    (x+1)^p \equiv x^p + 1\ (\bmod\ p).
+  \end{equation}
+  Нека сега да разгледаме следната редица, която се получава от Равенство (\ref{eq:fermat}), като $x$ приема стойностите от $a-1$ до $0$:
   \begin{align*}
-    a^p & \equiv (a-1)^p+1\ (\bmod\ p)\\
-    (a-1)^p & \equiv (a-2)^p+1\ (\bmod\ p)\\
+    a^p & \equiv (a-1)^p+1\ (\bmod\ p) & (\text{полагаме }x = a-1)\\
+    (a-1)^p & \equiv (a-2)^p+1\ (\bmod\ p) & (\text{полагаме }x = a-2)\\
     \dots & \dots\dots\\
-    2^p & \equiv 1\ (\bmod\ p).
+    2^p & \equiv 1\ (\bmod\ p) & (\text{полагаме }x = 0).
   \end{align*}
   Като съберем тези сравнения, получаваме:
   \[a^p \equiv a\ (\bmod\ p).\]
@@ -667,7 +670,6 @@
     \end{cases}
   \end{align*}
 \end{problem}
-
 
 \newpage
 \subsection*{Фундирани множества}

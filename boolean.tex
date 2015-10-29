@@ -815,11 +815,47 @@
   Във всички случаи получихме, че $xy \in [P]$.
 \end{proof}
 
+\begin{example}
+  Да проверим дали следното множество от булеви функции е пълно
+  $A = \{xy, x\vee y, x\oplus y\oplus z\oplus 1\}$.
+  Пресмятаме за всяка от функциите на кои от петте класа принадлежат:
+  \newline
+  \newline
+  \begin{tabular}[b]{|c|c|c|c|c|c|}
+    \hline
+    & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+    \hline
+    $xy$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+    \hline
+    $x\vee y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+    \hline
+    $x\oplus y\oplus z\oplus 1$ & $-$ & $-$ & $+$ & $+$ & $-$ \\
+    \hline
+  \end{tabular}
+  \newline
+  
+  От таблицата имаме, че:
+  \begin{itemize}
+  \item 
+    $x \oplus y \oplus z \oplus 1 \not\in T_0$. Следователно, $A \not\subseteq T_0$.
+  \item 
+    $x \oplus y \oplus z \oplus 1 \not\in T_1$. Следователно, $A \not\subseteq T_1$.
+  \item
+    $xy \not\in L$. Следователно, $A \not\subseteq L$.
+  \item
+    $xy \not\in S$. Следователно, $A \not\subseteq S$.
+  \item
+    $x \oplus y \oplus z \oplus 1 \not\in M$. Следователно, $A \not\subseteq M$.
+  \end{itemize}
+  Според критерия на Пост-Яблонский, множеството $A$ е пълно.
+\end{example}
+
+
 \begin{problem} %Гаврилов, стр. 83, зад. 6.1
   Пълна ли е системата от функции?
   \begin{enumerate}[1)]
-  \item
-    $A = \{xy, x\vee y, x\oplus y\oplus z\oplus 1\}$;
+  % \item
+  %   $A = \{xy, x\vee y, x\oplus y\oplus z\oplus 1\}$;
   \item
     $A = \{1, xy(x\oplus z)\}$;
   \item
@@ -848,19 +884,20 @@
 \end{problem}
 \begin{solution}
   \begin{enumerate}[1)]
+  % \item
+  %   \begin{tabular}[b]{|c|c|c|c|c|c|}
+  %     \hline
+  %     & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+  %     \hline
+  %     $xy$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+  %     \hline
+  %     $x\vee y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
+  %     \hline
+  %     $x\oplus y\oplus z\oplus 1$ & $-$ & $-$ & $+$ & $+$ & $-$ \\
+  %     \hline
+  %   \end{tabular}
   \item
-    \begin{tabular}[b]{|c|c|c|c|c|c|}
-      \hline
-      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
-      \hline
-      $xy$ & $+$ & $+$ & $-$ & $-$ & $+$\\
-      \hline
-      $x\vee y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
-      \hline
-      $x\oplus y\oplus z\oplus 1$ & $-$ & $-$ & $+$ & $+$ & $-$ \\
-      \hline
-    \end{tabular}
-  \item
+    % \newline
     \begin{tabular}[b]{|c|c|c|c|c|c|}
       \hline
       & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
@@ -1076,6 +1113,10 @@
     $T_0 \cap L$, $T_1 \cap L$;
   \item
     $T_0 \cap T_1 \cap L$;
+  \item
+    $M \setminus T_1$;
+  \item
+    $M \setminus T_0$;
   \end{enumerate}
 \end{problem}
 

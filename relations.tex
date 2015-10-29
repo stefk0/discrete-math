@@ -46,28 +46,32 @@
 За краен брой множества $A_1,A_2,\dots,A_n$, определяме
 \[A_1\times A_2\times\cdots\times A_n = \{\pair{a_1,a_2,\dots,a_n}\mid a_1 \in A_1\ \&\ a_2\in A_2\ \&\ \dots\ \&\ a_n \in A_n\}.\]
 
-Подмножествата $R$ от вида $R \subseteq A\times A\times\cdots\times A$ се наричат релации.
 
 \begin{problem}
-  Преверете, че:
-  \begin{enumerate}[1)]
+  Преверете дали:
+  \begin{enumerate}[a)]
   \item 
-    $A\times(B\cup C) = (A\times B) \cup (A\times C)$.
+    $A\times(B\cup C) = (A\times B) \cup (A\times C)$;
   \item
-    $(A\cup B)\times C = (A\times C)\cup (B\times C)$.
+    $(A\cup B)\times C = (A\times C)\cup (B\times C)$;
   \item 
-    $A\times(B\cap C) = (A\times B) \cap (A\times C)$.
+    $A\times(B\cap C) = (A\times B) \cap (A\times C)$;
   \item
-    $(A \cap B)\times C = (A \times C)\cap(B\times C)$.
+    $(A \cap B)\times C = (A \times C)\cap(B\times C)$;
   \item 
-    $A\times(B\setminus C) = (A\times B) \setminus (A\times C)$.
+    $A\times(B\setminus C) = (A\times B) \setminus (A\times C)$;
   \item
-    $(A\setminus B)\times C = (A\times C)\setminus (B\times C)$.
+    $(A\setminus B)\times C = (A\times C)\setminus (B\times C)$;
+  \item
+    $(A\triangle B)\times C = (A\times C)\triangle (B\times C)$;
+  \item
+    $\Ps(A \times B) = \Ps(A) \times \Ps(B)$;
   \end{enumerate}
 \end{problem}
 
 \section{Основни видове бинарни релации}
-\marginpar{Бинарни релации}
+% \marginpar{Бинарни релации}
+Подмножествата $R$ от вида $R \subseteq A\times A\times\cdots\times A$ се наричат релации.
 Релациите от вида $R\ \subseteq\ A\times A$ са важен клас, който ще срещаме често.
 Да разгледаме няколко основни вида релации от този клас:
 \begin{enumerate}[I)]
@@ -104,8 +108,9 @@
 \end{enumerate}
 
 \begin{remark}
-  Добре е да запомните как се наричат тези основни видове релации,
-  защото ще ги използваме често.
+  Добре е да запомните как се наричат тези основни видове релации, защото ще ги използваме често.
+  Обърнете също внимание, че ако една релация {\em не} е рефлексивна, то това не означава, че тя е антирефлексивна.
+  Също така, ако една релация {\em не} е симетрична, то това не означава, че тя е антисиметрична или асиметрична.
 \end{remark}
 
 \begin{example}
@@ -130,7 +135,7 @@
     \[(a,b) \in R \iff a | b.\]
   \item
     $R \subseteq \Z\times \Z$ е определена като
-    \[\pair{x,y}\in R \iff \mbox{НОД}(x,y) = 1\]% \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
+    \[(x,y)\in R \iff \mbox{НОД}(x,y) = 1\]% \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
   \item
     \marginpar{Озн. $\R$ - реалните числа}
     $R\subseteq \Int^2$ и е определена като
@@ -146,14 +151,17 @@
     \[(a,b) \in R \iff a+b\mbox{ е четно}.\]
   \item
     $R\subseteq (\Int^2)^2$ и е определена като
-    \[(\langle{a,b}\rangle, \langle{c,d}\rangle) \in R \iff a+d = b+c.\]
+    \[(\pair{a,b}, \pair{c,d}) \in R \iff a+d = b+c.\]
   \item
     $R\subseteq (\Int^2)^2$ и е определена като
-    \[(\langle{a,b}\rangle,\langle{c,d}\rangle) \in R \iff a\cdot d = b\cdot c.\]
+    \[(\pair{a,b},\pair{c,d}) \in R \iff a\cdot d = b\cdot c.\]
+  \item
+    $R\subseteq (\Int\times (\Int\setminus\{0\}))^2$ и е определена като
+    \[(\pair{a,b},\pair{c,d}) \in R \iff a\cdot d = b\cdot c.\]
   \item
     \marginpar{Озн. $\Z$ - целите числа}
     $R_{m}\subseteq \Z^2, m\in \Z, m>0$ и е определена като
-    \[(a,b) \in R_m \iff m\mid (a - b).\]
+    \[\pair{a,b} \in R_m \iff m\mid (a - b).\]
   \item
     $R\subseteq \R^2$ и е определена като 
     \[(x,y) \in R \iff (x-y)\mbox{ е рационално число}.\]
@@ -195,6 +203,26 @@
   %   $R \circ S$.
   \end{enumerate}
 \end{problem}
+
+\begin{problem}
+  Нека $\Sigma = \{1,2,\dots,9\}$ и $n$ е ествествено число.
+  Нека $R \subseteq \Sigma^n \times \Sigma^n$, където
+  $(\pair{a_1,a_2,\dots,a_n},\pair{b_1,b_2,\dots,b_n}) \in R \iff a_i + 1 \equiv b_1 (\mod 2)$.
+\end{problem}
+
+\begin{problem}
+  За едно число $x \in \Nat$, нека с $x_{(2)}$ да означаваме най-късия двоичния запис на $n$,
+  а с $N_0(x)$ и $N_1(x)$ броя на $0$-лите и съответно броя на $1$-ците в $x_{(2)}$.
+  Нека $R \subseteq \Nat\times\Nat$, където
+  \begin{enumerate}
+  \item 
+    $(x,y) \in R$ iff $N_0(x) \leq N_0(y)\ \&\ N_1(x) \leq N_1(y)$.
+  \item
+    $(x,y) \in R$ iff $N_0(x) = N_0(y)\ \vee\ N_1(x) = N_1(y)$.
+  \end{enumerate}
+\end{problem}
+
+
 
 %% Rosen Textbook
 \begin{problem}
@@ -316,7 +344,7 @@ $\beta = \gamma \cdot \alpha$.
   \item
   \marginpar{Очевидно е, че $P$ е рефлексивна релация, дори ако $R$ не е.}
   {\bf Рефлексивно затваряне} на релацията $R \subseteq A\times A$ е релацията
-  \[P = R \cup A\times A.\]
+  \[P = R \cup \{\pair{a,a} \mid a\in A\}.\]
 \item
   {\bf Итерация} на релацията $R \subseteq A\times A$ дефинираме като за всяко естествено число $n$,
   дефинираме релацията $R^n$ по следния начин:

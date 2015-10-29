@@ -309,13 +309,17 @@
   \item
     $A\triangle B = B\triangle A$ и $A \triangle B = (A \cup B)\setminus (A\cap B)$;
   \item
-    $A\triangle(B\triangle C) = (A\triangle B)\triangle C$
+    $A\triangle(B\triangle C) = (A\triangle B)\triangle C$;
   \item
-    $A\backslash B = A\triangle(A\cap B)$
+    $A \triangle (B \cup C) = (A \triangle B) \cup (A \triangle C)$;
   \item
-    $A\cap(B\triangle C) = (A\cup B)\triangle(A\cup C)$
+    $A \triangle (B \cap C) = (A \triangle B) \cap (A \triangle C)$;
   \item
-    $A\cup B = (A\triangle B)\cup(A\cap B)$
+    $A\backslash B = A\triangle(A\cap B)$;
+  \item
+    $A\cap(B\triangle C) = (A\cup B)\triangle(A\cup C)$;
+  \item
+    $A\cup B = (A\triangle B)\cup(A\cap B)$;
   \item
     $A\triangle A = A$ и $A\triangle B = \emptyset \iff A = B$;
   \item
@@ -355,6 +359,13 @@
     \end{tabular}
 
     където са дадени множествата $A,B,C$ и $B\subseteq A\subseteq C$.
+  % \item
+  %   \begin{tabular}{l c l}
+  %     $\big|A\setminus X$ & $= $ & $ C\setminus X$\\
+  %     $\big|B\cup X $ & $=$ & $ C$,
+  %   \end{tabular}
+
+  %   където са дадени множествата $A,B,C$ и $A \subseteq B\subseteq C$.
   \end{enumerate}
 \end{problem}
 
