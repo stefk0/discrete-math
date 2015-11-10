@@ -145,41 +145,53 @@
 
 
 \begin{example}
-  Нека $f:\Real\to\Real$ е дефинирана като $f(x) = \abs{x+1}$ и нека $A = [-1,1)$.
-  \begin{itemize}
+  Нека $f:\Real\to\Real$ е дефинирана като $f(x) = \abs{x+1}$.
+  Тогава имаме, че:  
+  \begin{enumerate}[a)]
   \item
-    $f(A) = \{f(x) \mid x\in A\} = \{\abs{x+1} \mid x \in [-1,1)\} = [0, 2)$.
+    $f([-1,1)) = \{\abs{x+1} \mid -1 \leq x < 1\} = [0, 2)$;
   \item
-    $f^{-1}(A) = \{x\in\Real\mid f(x) \in A\} = \{x\in\Real\mid \abs{x+1} \in [-1,1)\} = [-1,0)$.
-  \end{itemize}
+    $f^{-1}([-1,1)) = \{x\in\Real\mid -1 \leq \abs{x+1} < 1\} = [-1,0)$;
+  \item
+    $f^{-1}([-1,0)) = \{x \in \Real \mid -1 \leq \abs{x+1} < 0\} = \emptyset$;
+  \item
+    $f([-1,0)) = \{\abs{x+1} \mid -1 \leq x < 0\} = [0, 1)$;
+  \item
+    $f^{-1}([0,2)) = \{x \in \Real \mid 0 \leq \abs{x+1} < 2\} = (-3, 1)$.
+  \end{enumerate}
+  Да положим $A = [-1,1)$. 
+  От б) и г) виждаме, че $f(f^{-1}(A)) \neq A$, а от 
+  а) и д) виждаме, че $f^{-1}(f(A)) \neq A$.
 \end{example}
+
+
 
 \begin{problem}
   Нека е дадена произволна функция $f:A \to B$.
   Проверете:
   \begin{enumerate}[a)]
   \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)$.
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)]$;
   \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)$.
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)]$;
   \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$.
+    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$;
   \item
-    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$.
+    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$;
   \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$.
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$;
   \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$.
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$;
   \item
     $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
   \item
-    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$
+    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$;
   \item
     при какви условия за $f$,
-    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$.
+    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$;
   \item
     при какви условия за $f$,
-    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$.
+    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$;
   \item
     при какви условия за $f$,
     $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.

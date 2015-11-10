@@ -30,30 +30,30 @@
   Например, $(\exists x \in\mathbb{C})[x^2 = -1]$, но $(\forall x\in\Real)[x^2 \neq -1]$.
 \end{enumerate}
 
-\begin{example}
-  \begin{itemize}
-  \item
-    За всяко естествено число, съществува по-голямо от него:
-    \[(\forall x\in\Nat)(\exists z\in\Nat)[x < z].\]
-  \item
-    Съществува естествено число, от което няма по-малко:
-    \[(\exists x\in\Nat)(\forall y\in\Nat)[x < y \vee x = y].\]
-    Нека да означим с $Zero(x)$ предиката, който казва, че $x$ е най-малкото число, т.е.
-    \[Zero(x) \equiv (\forall y)[x < y \vee x =y].\]
-  \item
-    Нека $S(x,y)$ да бъде предиката, който казва, че $y = x+1$ в естествените числа:
-    \[S(x,y) \equiv (x < y\ \wedge\ (\forall z\in\Nat)[x < z\ \rightarrow (z = y\ \vee\ y < z)].\]
-  \item
-    $One(x)$ - $x$ е числото $1$:
-    \[One(x) \equiv (\exists y)[Z(y)\ \wedge\ S(y,x)].\]
-  \item
-    $Div(x,y)$ - $x$ се дели на $y$:
-    \[Div(x,y) \equiv (\exists z)[x = y.z].\]
-  \item
-    $Prime(x)$ - $x$ е просто число:
-    \[Prime(x) \equiv x \geq 2\ \wedge\ (\forall y\in\Nat)[\neg (O(y)\ \wedge Z(y))\ \rightarrow\ \neg Div(x,y)].\]
-  \end{itemize}
-\end{example}
+% \begin{example}
+%   \begin{itemize}
+%   \item
+%     За всяко естествено число, съществува по-голямо от него:
+%     \[(\forall x\in\Nat)(\exists z\in\Nat)[x < z].\]
+%   \item
+%     Съществува естествено число, от което няма по-малко:
+%     \[(\exists x\in\Nat)(\forall y\in\Nat)[x < y \vee x = y].\]
+%     Нека да означим с $Zero(x)$ предиката, който казва, че $x$ е най-малкото число, т.е.
+%     \[Zero(x) \equiv (\forall y)[x < y \vee x =y].\]
+%   \item
+%     Нека $S(x,y)$ да бъде предиката, който казва, че $y = x+1$ в естествените числа:
+%     \[S(x,y) \equiv (x < y\ \wedge\ (\forall z\in\Nat)[x < z\ \rightarrow (z = y\ \vee\ y < z)].\]
+%   \item
+%     $One(x)$ - $x$ е числото $1$:
+%     \[One(x) \equiv (\exists y)[Z(y)\ \wedge\ S(y,x)].\]
+%   \item
+%     $Div(x,y)$ - $x$ се дели на $y$:
+%     \[Div(x,y) \equiv (\exists z)[x = y.z].\]
+%   \item
+%     $Prime(x)$ - $x$ е просто число:
+%     \[Prime(x) \equiv x \geq 2\ \wedge\ (\forall y\in\Nat)[\neg (O(y)\ \wedge Z(y))\ \rightarrow\ \neg Div(x,y)].\]
+%   \end{itemize}
+% \end{example}
 
 
 \subsection*{Закони на предикатното смятане}
@@ -234,7 +234,7 @@
     \marginpar{$\forall x(K(x) \leftrightarrow (\exists yS(y) \wedge \neg S(x)))$}
     ``Някои пушат, но аз не.''
   \item
-    \marginpar{$\forall x(K(x) \leftrightarrow \exists yS(y))\ \wedge$ $\forall x(K(x) \iff \neg S(x))$}
+    \marginpar{$\forall x(K(x) \leftrightarrow \exists yS(y))\ \wedge$ $\forall x(K(x) \leftrightarrow \neg S(x))$}
     ``Някои пушат.'' и след това добавили - ``Аз не пуша.''.
   \end{enumerate}
   Какво можем да кажем за обитателите на този остров?

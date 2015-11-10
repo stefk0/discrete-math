@@ -362,6 +362,22 @@ $\beta = \gamma \cdot \alpha$.
 За дадена релация $R$, с $R^\star$ ще означаваме нейното рефлексивно и транзитивно затваряне.
 От дефинициите е ясно, че \[R^\star = \bigcup_{n\geq 0} R^n.\]
 
+\begin{example}
+  Да разгледаме релацията $R$ над $\Nat$, за която
+  $R = \{\pair{x,y} \in \Nat^2 \mid x+1 = y\}$. Тогава:
+  \begin{itemize}
+  \item 
+    $R^0 = \{\pair{x,x} \mid x\in \Nat\}$;
+  \item
+    $R^n = \{\pair{x,y} \in \Nat^2 \mid x+n = y\}$, за всяко $n \in \Nat$;
+  \item
+    $R^+ = \{\pair{x,y}\in\Nat^2 \mid (\exists n\geq 1)[x+n = y]\} = \{\pair{x,y} \in \Nat^2 \mid x < y\}$;
+  \item
+    $R^\star = \{\pair{x,y} \in \Nat^2 \mid x \leq y\}$.
+  \end{itemize}
+\end{example}
+
+
 \begin{problem}
   Дайте пример за релации $R$ и $S$, за които
   \[R\circ S \neq S\circ R.\]
@@ -396,6 +412,7 @@ $\beta = \gamma \cdot \alpha$.
       Тогава от $R^{-1}\subseteq R$ следва, че $(y,x)\in R$.
     \end{enumerate}
   \item
+    Тази задача е лесна.
   \item
     Нека $R^{-1}\circ R = R$. Ще докажем, че $R$
     е симетрична и транзитивна.
