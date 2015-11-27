@@ -514,16 +514,10 @@
     \State \Call{INIT}{$s$}
     \State $U := V$
     \While{$U \neq\emptyset$}
-    % \AND $(\exists u\in V^\prime)[dist[u] < \infty]$}
     \State Избираме $u_0\in U$, за който $\texttt{dist}[u_0] = \min\{\texttt{dist}[v] \mid v\in U\} $
     \State $U := V^\prime\setminus\{u_0\}$
     \ForAll{ $v\in Adj[u_0]$ }
-    % \If{$(u_0,v)\in E$}
     \State\Call{UPDATE}{$u_0$,$v$}
-    % \AND $\delta(v) > \delta(u_0) + c(u_0,v)$}
-    % \State $\delta(v):= \delta(u_0)+c(u_0,v)$
-    % \State $\pi(v) := u_0$
-    % \EndIf
     \EndFor
     \EndWhile
     \EndProcedure

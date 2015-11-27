@@ -70,8 +70,8 @@
 \end{problem}
 
 \section{Основни видове бинарни релации}
-% \marginpar{Бинарни релации}
-Подмножествата $R$ от вида $R \subseteq A\times A\times\cdots\times A$ се наричат релации.
+\index{бинарна релация}
+% Подмножествата $R$ от вида $R \subseteq A\times A\times\cdots\times A$ се наричат релации.
 Релациите от вида $R\ \subseteq\ A\times A$ са важен клас, който ще срещаме често.
 Да разгледаме няколко основни вида релации от този клас:
 \begin{enumerate}[I)]
@@ -183,9 +183,7 @@
     Нека $\leq_1\ \subseteq\ A^2$ и $\leq_2\ \subseteq\ B^2$ са частични наредби.
     $R \subseteq A^2\times B^2$ е определена като
     \[(\pair{a,b}, \pair{c,d}) \in R \iff a\leq_{1}c\ \vee\ b\leq_{2}d .\]
-  \item
-    $f:X\rightarrow Y$ е функция, $R\ \subseteq\ \Ps(X)\times\Ps(X)$ и 
-    \[(A,B)\in R \iff f(A) = f(B).\]
+
   \end{enumerate}
 \end{problem}
 
@@ -330,7 +328,20 @@ $\beta = \gamma \cdot \alpha$.
     \[(\alpha, \beta)\in R \iff |\alpha| = |\beta| > n\ \&\ (\forall i > n)[a_i = b_i].\]
   \end{enumerate}
 \end{problem}
-\newpage
+
+\begin{problem}
+  Да фиксираме две множества $B \subseteq A$. Дефинираме бинарната релация $R$ върху $\Ps(A)$ по следния начин:
+  \[R = \{(X,Y) \in \Ps(A)\times\Ps(A) \mid (X \triangle Y) \subseteq B\}.\]
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item 
+    $R$ е релация на еквивалентност;
+  \item
+    за всяко $X \in \Ps(A)$ съществува точно едно множество $Y \in [X]_R$, за което $Y \cap B = \emptyset$.
+  \end{enumerate}
+\end{problem}
+
+
 \section{Операции върху релации}
 \begin{enumerate}[I)]
 \item
@@ -361,6 +372,16 @@ $\beta = \gamma \cdot \alpha$.
 
 За дадена релация $R$, с $R^\star$ ще означаваме нейното рефлексивно и транзитивно затваряне.
 От дефинициите е ясно, че \[R^\star = \bigcup_{n\geq 0} R^n.\]
+
+\begin{problem}
+  Ако $P$ е множеството от всички хора, да разгледаме релациите
+  \begin{align*}
+    E & = \{\pair{x,y} \in P\times P \mid \text{$x$ е враг на $y$}\},\\
+    F & = \{\pair{x,y} \in P\times P \mid \text{$x$ е приятел на $y$}\}.
+  \end{align*}
+  Ако приемем, че поговорката ,,врагът на моя враг е мой приятел'' е вярна, то 
+  какво ни казва това за релациите $E$ и $F$ ?
+\end{problem}
 
 \begin{example}
   Да разгледаме релацията $R$ над $\Nat$, за която
@@ -546,7 +567,17 @@ $\beta = \gamma \cdot \alpha$.
 Нека $R \subseteq A\times A$ е бинарна релация.
 Да определим множеството $[x]_R$ като
 \[[x]_R = \{y\in A\mid \pair{x,y} \in R\}.\]
+\index{клас на еквивалентност}
 Ако $R$ е релация на еквивалентност и $x\in Field(R)$, то наричаме множеството $[x]_R$ {\bf клас на еквивалентност} за $x$ относно релацията $R$.
+
+\begin{example}
+  Нека $S$ е множеството от всички студенти, които живеят в Студентски град.
+  Да разгледаме следната бинарна релация над $S$:
+  \[R = \{\pair{x,y} \in S \times S \mid \text{$x$ живее в същия блок като $y$}\}.\]
+  Лесно се съобразява, че $R$ е релация на еквивалентност.
+  Тогава всеки блок в Студентски град определя отделен клас на еквивалентност.
+  Елементите на такъв клас са всички студенти, които живеят в съответния блок.
+\end{example}
 
 \begin{example}
   \marginpar{$x \equiv y \mod 4 \iff (\exists k \in \Z)(x = y + 4\cdot k)$}
@@ -562,6 +593,7 @@ $\beta = \gamma \cdot \alpha$.
   Намерете множествата $[1]_R$ и $[\frac{1}{2}]_R$.
 \end{problem}
 
+\newpage
 \section{Наредби}
 Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
 Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
@@ -590,7 +622,7 @@ $\beta = \gamma \cdot \alpha$.
   {\bf добра наредба}\index{наредба!добра}, ако всяко непразно подмножество $X\subseteq A$ има {\em най-малък} елемент , т.е.
   \[(\forall X\subseteq A)[X\neq\emptyset \rightarrow (\exists m\in X)(\forall y\in X)[\pair{m,y}\in R \vee m = y]].\]
 \item
-  \marginpar{lexicographical order}
+  \marginpar{На англ. lexicographical order}
   {\bf лексикографска наредба} върху частичната наредба $(X,<)$ ще наричаме 
   наредбата $(X\times X,\prec)$, където
   \[\pair{x,y}\prec\pair{x^\prime,y^\prime}\ \iff\ x<x^\prime\ \vee\ (x = x^\prime\ \wedge\ y < y^\prime).\]
@@ -643,20 +675,6 @@ $\beta = \gamma \cdot \alpha$.
   \item
     $(\Nat^+,|)$, където $m|n \iff m\neq n\ \&\ m\mbox{ дели }n$.
   \end{enumerate}
-\end{problem}
-
-
-\begin{problem}
-  Нека $A$ е непразно множество и $f$ е функция с $Dom(f) = A$.
-  Дефинираме релацията $R\subseteq A\times A$ като:
-  \[R = \{(x,y)\mid x,y\in A\wedge f(x) = f(y)\}.\]
-  Докажете, че
-  \begin{enumerate}[a)]
-  \item
-    $R$ е релация на еквивалентност.
-  \item
-    Определете класовете на еквивалентност на $R$.
-\end{enumerate}
 \end{problem}
 
 \begin{problem}

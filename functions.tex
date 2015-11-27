@@ -164,8 +164,6 @@
   а) и д) виждаме, че $f^{-1}(f(A)) \neq A$.
 \end{example}
 
-
-
 \begin{problem}
   Нека е дадена произволна функция $f:A \to B$.
   Проверете:
@@ -179,7 +177,7 @@
   \item
     $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$;
   \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff X\cap f^{-1}(Y) = \emptyset]$;
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff  X~\cap~f^{-1}(Y)~=~\emptyset]$;
   \item
     $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$;
   \item
@@ -225,6 +223,11 @@
   \end{itemize}
 \end{example}
 
+\begin{example}
+  \marginpar{Среща се студенти да пишат, че $f^{-1}(x) = \frac{1}{x}$, което е безумно!}
+  Ако дефинираме $f:A\to A$ като $f(x) = x$, 
+  то за $f^{-1}:A\to A$ имаме също $f^{-1}(x) = x$.
+\end{example}
 
 % \begin{enumerate}[I)]
 % \item
@@ -288,11 +291,6 @@
   \end{enumerate}
 \end{problem}
 
-\begin{problem}
-  Нека $f: A\to B$, $g: B\to C$ са {\em биективни} функции.
-  Докажете, че
-  \[(g\circ f)^{-1} = f^{-1}\circ g^{-1}.\]
-\end{problem}
 
 \begin{problem}
   Нека а дадена произволна функция $f:A \to B$.
@@ -381,7 +379,166 @@
   Вярна ли е обратната посока?
 \end{problem}
 
-\section{Монотонни функции}
+\begin{problem}
+  Нека $\Fs = \{f| f:A\to B\}$ и $R$ е бинарна релация върху $B$.
+  Да разгледаме бинарната релация $S$ върху $\Fs$:
+  \[S = \{\pair{f,g}\in \Fs\times \Fs \mid (\forall a\in A)[\pair{f(a),g(a)} \in R]\}.\]
+  Докажете или дайте контра-пример за следните твърдения:
+  \begin{enumerate}[a)]
+  \item 
+    ако $R$ е рефликсивна, то $S$ е рефликсивна?
+  \item 
+    ако $R$ е симетрична, то $S$ е симетрична?
+  \item 
+    ако $R$ е транзитивна, то $S$ е транзитивна?
+  \end{enumerate}
+\end{problem}
+
+% p. 243
+\begin{problem}
+  Нека $A = \Real \setminus \{1\}$.
+  Да рагледаме функцията $f: A \to A$ определена като
+  \[f(x) = \frac{x+1}{x-1}.\]
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item 
+    $f$ е инективна и сюрективна;
+  \item
+    $f\circ f = id_A$.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  Нека $A = \Real \setminus \{0\}$ и $B = \Real \setminus \{2\}$.
+  Да разгледаме $f:A \to B$, където
+  \[f(x) = \frac{1}{x} + 2.\]
+  \marginpar{$f^{-1}(x) = \frac{1}{x-2}$}
+  Проверете дали $f$ е инективна и сюрективна.
+  Ако да, то намерете $f^{-1}$.
+\end{problem}
+
+\begin{problem}
+  Нека $A = \Real$ и $B = \{x \in \Real \mid x \geq 0\}$.
+  Да разгледаме $f:A \to B$, където
+  \[f(x) = x^2.\]
+  \marginpar{$f^{-1}$ не е инективна}
+  Проверете дали $f$ е инективна и сюрективна.
+  Ако да, то намерете $f^{-1}$.
+\end{problem}
+\begin{hint}
+  За да бъде една функция $g$ обратната на $f$,
+  трабва да имаме свойствата $g\circ f = id_A$ и $f \circ g = id_B$.
+  Не е достатъчно да имаме само едното.
+  Ако вземем $g(x) = \sqrt{x}$,  то 
+  $g(f(-3)) = \sqrt{(-3)^2} = 3 \neq -3$.
+\end{hint}
+
+\begin{problem}
+  Нека $f:\Real \to \Real$ е определена като
+  \[f(x) = \frac{2x+5}{3}.\]
+  Покажете, че $f$ е инективна и сюрективна.
+  Намерете $f^{-1}$.
+\end{problem}
+
+\begin{problem}
+  Нека $f:\Real \to \Real$ е определена като 
+  \[f = \frac{x+7}{5}.\]
+  \begin{enumerate}[a)]
+  \item 
+    Докажете, че $f$ е биективна и намерете $f^{-1}$.
+  \item
+    Покажете, че $f\circ f^{-1} = id_\Real$ и $f^{-1}\circ f = id_\Real$.
+  \end{enumerate}
+  Да разгледаме сега следните функции:
+  \[f_1(x) = x+7, \quad f_2(x) = \frac{x}{5}.\]
+  Проверете, че:
+  \begin{enumerate}[a)]
+  \item 
+    $f = f_2 \circ f_1$;
+  \item
+    $f^{-1} = f^{-1}_1 \circ f^{-1}_2$.
+  \end{enumerate}
+\end{problem}
+
+Предишната задача ни подсказва, че трябва да имаме следното свойство.
+\begin{problem}
+  Нека $f: A\to B$, $g: B\to C$ са {\em биективни} функции.
+  Докажете, че
+  \[(g\circ f)^{-1} = f^{-1}\circ g^{-1}.\]
+\end{problem}
+
+\begin{problem}
+  За дадена функция $f:A \to B$, определяме бинарна релация $R_f$ по следния начин:
+  \begin{enumerate}[a)]
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(A) \times \Ps(A) \mid f(X) = f(Y)\}$;
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(A) \times \Ps(A) \mid f(X) \subseteq f(Y)\}$;
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(B) \times \Ps(A) \mid f^{-1}(X) = f^{-1}(Y)\}$;
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(B) \times \Ps(A) \mid f^{-1}(X) \subseteq f^{-1}(Y)\}$.
+  \end{enumerate}
+  В зависимост от това какви свойства има релацията $f$, определете свойствата на $R_f$.
+\end{problem}
+
+\begin{problem}
+  Нека $A$ е непразно множество и тоталната функция $f:A \to B$.
+  Дефинираме бинарната релация $R$ над $A$ като:
+  \[R = \{(x,y) \in A\times A\mid f(x) = f(y)\}.\]
+  Докажете, че:
+  \begin{enumerate}[a)]
+  \item
+    $R$ е релация на еквивалентност.
+  \item
+    Определете класовете на еквивалентност на $R$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+  \marginpar{Възможно ли е да са частични функции?}
+  Да разгледаме функциите $f:A\to B$ и $g:B\to A$.
+  \begin{enumerate}[a)]
+  \item 
+    Ако $f$ е сюрективна и $g\circ f = id_A$, то докажете, че $g = f^{-1}$.
+  \item
+    Ако $f$ е инективна и $f\circ g = id_B$, то докажете, че $g = f^{-1}$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item 
+    \marginpar{Да напомним, че $id_A(a) =a$ за всяко $a\in A$}
+    Възможно ли е $g$ да не е тотална функция, т.е. да съществува $b\in B$, 
+    за което $g(b)$ не е дефинирана ?
+    Да допуснем, че съществува такова $b$. 
+    Понеже $f$ е сюрективна, съществува поне едно $a \in A$, за което $f(a) = b$.
+    Това означава, че $(g\circ f)(a)$ не е дефинирана. Това е противоречие с условието, че $g\circ f = id_A$.
+    
+    Сега ще проверим, че $f$ е инективна. От това ще следва, че $f^{-1}$ е функция.
+    Нека да разгледаме $a, a' \in A$,  за които $f(a) = b = f(a')$. Ще докажем, че $a = a'$.
+    Щом $g\circ f = id_A$, то $g(f(a)) = g(b) = a$  и $g(f(a'))= g(b) = a'$.
+    Ясно е, че $a = a'$, защото $g$ е функция.
+
+    Вече знаем, че $f$ е биективна и следователно $f^{-1}$ е биективна функция. 
+    Понеже $g$ е тотална, достатъчно е да докажем, че $g \subseteq f^{-1}$, т.е.
+    \[(\forall a\in A)(\forall b\in B)[g(b) = a \implies f(a) = b].\]
+    Нека $g(b) = a$ и $f(a') = b$. Знаем, че такова $a'$ съществува, защото $f$ е сюрективна.
+    Но тогава $(g\circ f)(a') = a$ и следователно $a = a'$, защото $g\circ f = id_A$.
+  \item    
+    \marginpar{Да напомним, че $id_B(b)=b$ за всяко $b\in B$}
+    Отново, възможно ли е $g$ да не е тотална функция, т.е. да съществува $b\in B$, за което $g(b)$ не е дефинирана?
+    Но тогава е ясно, че $(f\circ g)(b)$ също няма да е дефинирана, което е противоречие с условието, че $f\circ g = id_B$.
+    \marginpar{Добре е да отбележим, че понеже $f$ е инективна ние знаем, че $f^{-1}$ е функция.}
+    Щом $g$ е тотална, за да докажем, че $g = f^{-1}$ е достатъчно да проверим, че $g\subseteq f^{-1}$, т.е.
+    \[(\forall a\in A)(\forall b\in B)[g(b) = a \implies f(a) = b].\]
+    \marginpar{Вярно ли е, че $f$ е сюрктивна?}
+    Това е лесно да се провери. Нека $g(b) = a$. Понеже $(f\circ g)(b) = b$, то $f(g(b)) = f(a) = b$.
+  \end{enumerate}
+\end{proof}
+
+
+% \section{Монотонни функции}
 
 
 

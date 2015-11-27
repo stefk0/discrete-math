@@ -1,12 +1,26 @@
+%%%% NORMAL dimensions %%%%%%%%%%%%%%%%%
 \documentclass[a4paper,10pt]{report}
-% \documentclass{report}
+\setlength{\marginparsep}{0.5cm}
+\setlength{\oddsidemargin}{0.3cm}
+\setlength{\hoffset}{0cm}
+\setlength{\marginparwidth}{110pt}
+\let\oldmarginpar\marginpar
 
+\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
+{\raggedright\scriptsize #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% KINDLE dimensions %%%%
+% \documentclass[10pt]{extreport}
 % \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
+% \renewcommand\marginpar[1]{}
+% \usepackage{extsizes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \setlength{\oddsidemargin}{4cm}
 % \setlength{\evensidemargin}{4cm}
 %\usepackage{ucs}
-
 
 % \usepackage[bindingoffset=2cm]{geometry}
 \usepackage[english,bulgarian]{babel}
@@ -19,12 +33,17 @@ citecolor=green, urlcolor=blue]{hyperref}
 \usepackage{mathrsfs}
 \usepackage{latexsym}
 \usepackage{amsthm}
-\usepackage{paralist}
-\usepackage{enumerate}
 \usepackage{makeidx}
 \usepackage{layout}
 \usepackage{framed}
 \usepackage{bussproofs}
+
+\usepackage{enumerate}
+\usepackage{paralist}
+% \newenvironment{compactenum}{%
+%   \enumerate[topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]%
+% }{\endenumerate}
+% \usepackage[inline]{enumitem}
 
 \usepackage{algorithm}
 \floatname{algorithm}{Алгоритъм}
@@ -105,17 +124,9 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\Prob}[1]{{\em Задача~\ref{pr:#1}}}
 \newcommand{\Prop}[1]{{\em Твърдение~\ref{pr:#1}}}
 
-\setlength{\marginparsep}{0.5cm}
-\setlength{\oddsidemargin}{0.3cm}
-\setlength{\hoffset}{0cm}
-\setlength{\marginparwidth}{110pt}
-\let\oldmarginpar\marginpar
-
-\renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
-{\raggedright\scriptsize #1}}
 
 % \setlist[itemize]{leftmargin=*}
-% \renewcommand\marginpar[1]{}
+
 
 
 %\renewcommand\marginpar[1]{\oldmarginpar{\scriptsize #1}}
@@ -146,7 +157,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 % \include{context-free}
 % \include{turing}
 %\include{graphs}
-\include{graph-alg}
+% \include{graph-alg}
 
 % \backmatter
 
