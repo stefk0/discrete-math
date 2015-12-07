@@ -590,146 +590,6 @@
   \end{enumerate}
 \end{solution}
 
-\begin{problem} % Гаврилов стр. 265, зад. 7
-  Нека $U$ е множество от $n$ елемента, $n\geq 3$. За всяко множество $X\subseteq U$, с $\overline{X}$ означаваме $U\setminus X$.
-  Също така, за множества $X$ и $Y$, понякога ще пишем $XY$ вместо $X \cap Y$.
-  Намерете броя на:
-  \begin{enumerate}[a)]
-  \item
-    \marginpar{Отг. $4^n$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$;
-  \item
-    \marginpar{Отг. $2\binom{n}{1} 2^{n-1}$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X}\vert = 1$;
-  \item
-    \marginpar{Отг. $2^2\binom{n}{2}2^{n-2}$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X}\vert = 2$;
-  \item
-    %\marginpar{Отг. $4^n - 3^{n}$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X}\vert \geq 1$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X}\vert = k$ и $k < n$;
-  \item
-    %\marginpar{Отг. $3^{n} + \binom{n}{1} 3^{n-1}$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X}\vert \leq 1$;
-  \item
-    \marginpar{Отг. $\binom{n}{1}\binom{n}{1} = n^2$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X}\vert = 1$ и $\vert{Y}\vert = 1$;
-  \item
-    \marginpar{Нямаме буква $XY$. Отг. $3^n$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $X \cap Y = \emptyset$;
-  \item
-    \marginpar{Една буква $XY$. Отг. $\binom{n}{1}3^{n-1}$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\abs{X \cap Y} = 1$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\abs{X \cap Y} = k$ и $k < n$;
-  \item
-    %\marginpar{Отг. $2\binom{n}{1}2^{n-1} = n2^n$}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\abs{(X\setminus Y) \cup (Y\setminus X)} = 1$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $X\cap Y = \emptyset$ и
-    $|X|\geq 1$, $|Y|\geq 1$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $X\cap Y = \emptyset$ и 
-    $|X|\geq 2, |Y|\geq 2$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X\setminus Y}\vert = 1$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $\vert{X\setminus Y}\vert = k$ и $k < n$;
-  \item
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $|(X\setminus Y)\cup(Y\setminus X)| = 1$ и 
-    $|X|\geq 2, |Y|\geq 2$;
-  \item
-    %\marginpar{Използвайте принципа за вкл. и изкл.}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $X\cap Y = \emptyset$, $|X|\geq 2$ и $|Y|\geq 3$;
-  \item
-    % \marginpar{Използвайте принципа за вкл. и изкл.}
-    двойките $(X,Y)$ за $X,Y\subseteq U$, за които $|(X\setminus Y)\cup(Y\setminus X)| = 1$, $X\cap Y = \emptyset$, $|X|\geq 2$ и $|Y|\geq 3$;
-  \item
-    \marginpar{Отг. $8^n$}
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$;
-  \item
-    \marginpar{Отг. $6^n$}
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X \cap Y = \emptyset$;
-  \item
-    \marginpar{$U = X\overline{Y}Z\cup X\overline{YZ} \cup \overline{X}Y\overline{Z}$. Отг. $3^n$}
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}$;
-  \item
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $Y\cup X = Z\cup\overline{Y}$;
-  \item
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}$ и
-    $|Z| = 0$.
-  \item
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}$ и
-    $|X|\geq 1, |Y|\geq 1, |Z| = 1$.
-  \item
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}$ и
-    $|X|\geq 1, |Y|\geq 1, |Z|\leq 1$.
-  \item
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X \cup YZ = \ov{X} \cup \ov{Z}$;
-  \item
-    тройките $(X,Y,Z)$ за $X,Y,Z\subseteq U$, за които $X\ov{Y} \cup YZ = U$;
-  \end{enumerate}
-\end{problem}
-\begin{solution}
-  \begin{enumerate}[a)]
-  \item 
-    Разглеждаме азбука $\Sigma = \{XY, X\ov{Y}, \ov{X}Y, \ov{X}\ov{Y}\}$.
-    Да разгледаме $U = \{u_1,\dots,u_n\}$.
-    На всеки елемент на  $\{(X,Y) \mid X,Y \subseteq U\}$ можем еднозначно да съпоставим 
-    дума  $\alpha = a_1\cdots a_n$ над азбуката $\Sigma$
-    по следния начин:
-    \begin{itemize}
-    \item 
-      ако $u_i \in X \cap Y$, то $a_i = XY$;
-    \item 
-      ако $u_i \in X \cap  \ov{Y}$, то $a_i = X\ov{Y}$;
-    \item 
-      ако $u_i \in \ov{X} \cap Y$, то $a_i = \ov{X}Y$;
-    \item 
-      ако $u_i \in \ov{X} \cap \ov{Y}$, то $a_i = \ov{X}\ov{Y}$.
-    \end{itemize}
-    Да разгледаме няколко примера:
-    \begin{itemize}
-    \item
-      на двойката $(\{u_1\},\{u_2\})$ съпоставяме думата $\alpha = a_1\cdots a_n$,
-      където $a_1 = X\ov{Y}$, $a_2 = \ov{X}Y$, $a_i = \ov{X}\ov{Y}$ за $i \geq 3$.
-    \item 
-      на двойката $(U,\{u_2\})$ съпоставяме думата $\alpha = a_1\cdots a_n$,
-      където $a_2 = XY$ и $a_i = X\ov{Y}$ за $i \neq 2$.
-    \item
-      на двойката $(\{u_1\},\{u_1,u_2\})$ съпоставяме думата $\alpha = a_1\cdots a_n$,
-      където $a_1 = XY$ и $a_2 = \ov{X}Y$, $a_i = \ov{X}\ov{Y}$ за $i \geq 3$.
-    \end{itemize}
-    Понеже всички думи с дължина $n$ над азбука с $4$ букви са $4^n$, 
-    то всички двойки $(X,Y)$ са също $4^n$.
-  \item
-    Трябва да намерим всичи думи с дължина $n$ над азбуката $\{XY,X\ov{Y},\ov{X}Y,\ov{X}\ov{Y}\}$,
-    като буквите $XY$ и $X\ov{Y}$ се срещат общо веднъж.
-    Това означава, че от $n$ позиции трябва да изберем една, в която да поставим $XY$ или $X\ov{Y}$,
-    а в останалите $n-1$ позиции поставяме буквите $\ov{X}Y$ или $\ov{X}\ov{Y}$.
-    Така получаваме като резултат \[2\binom{n}{1}2^{n-1} = n2^n.\]
-  \item
-    Тук разглеждаме тези думи с дължина $n$ над азбуката $\Sigma$, като
-    има {\em точно едно} срещане на $XY$ или $X\ov{Y}$.
-    Всички тези думи са $2\binom{n}{1}2^{n-1}$
-  \item[ф)]
-    Понеже $X \cap Y = \emptyset$, то в думите не се срещат буквите $XYZ$ и $XY\ov{Z}$.
-    Така остават $6$ възможни букви и оттук веднага следва, че всички такива думи са $6^n$.    
-  \item[х)]
-    Да разгледаме какво означава $X\cup Y\ov{Z} = \ov{X} \cup \ov{Y}$.
-    \begin{itemize}
-    \item 
-      Ако $x \in X$, то $x \in X \cup Y\ov{Z}$ и следователно $x \in \ov{X} \cup \ov{Y}$.
-      Тогава е ясно, че $x \in \ov{Y}$. Това означава, че имаме буквите $X\ov{Y}Z$ и $X\ov{Y}\ov{Z}$.
-    \item
-      Ако $x \in \ov{X}$, то $X \in \ov{X} \cup \ov{Y}$ и следователно $x \in X \cup Y\ov{Z}$.
-      Сега получаваме, че $x \in Y\ov{Z}$. Това означава, че имаме буквата $\ov{X}Y\ov{Z}$.
-    \end{itemize}
-    Видяхме, че с горното ограничение трябва да разгледаме само думите с дължина $n$ съставени от три букви.
-    Те са общо $3^n$ на брой.
-  \end{enumerate}
-\end{solution}
 
 % \begin{problem}
 %   Дайте комбинаторно доказателство на 
@@ -830,6 +690,48 @@
     \end{enumerate}
   \end{enumerate}
 \end{problem}
+
+\begin{problem}
+  Да фиксираме множеството $U = \{u_1,u_2\dots,u_n\}$.
+  Намерете броя на елементите на следните множества:
+  \begin{enumerate}[a)]
+  \item 
+    $S = \{(X,Y) \mid X \subseteq Y \subseteq U\}$;
+  \item
+    $S = \{(X,Y,Z) \mid X \subseteq Y \subseteq Z \subseteq U\}$;
+  \item
+    $S = \{(X,Y,Z) \mid X \subseteq Y \subseteq Z \subseteq U\}$;
+  \end{enumerate}
+\end{problem}
+\begin{hint}
+  \begin{enumerate}[a)]
+  \item 
+    За всяко $k = 0,\dots,n$, да разгледаме
+    $S_k = \{(X,Y) \mid X \subseteq Y \subseteq U\ \&\ \abs{X} = k\}$.
+    Съобразете, че:
+    \begin{itemize}
+    \item 
+      за $k \neq k'$, $S_k \neq S_{k'}$;
+    \item
+      $\abs{S} = \abs{\bigcup^n_{k=0} S_k} = \sum^n_{k=0}\abs{S_k}$.
+    \item
+      $\abs{S_0} = 2^n$;
+    \item
+      $\abs{S_1} = n.2^{n-1}$;
+    \item
+      $\abs{S_k} = \binom{n}{k}2^{n-k}$;
+    \end{itemize}
+    Тогава 
+    \[\abs{S} = \sum^n_{k=0} \binom{n}{k}2^{n-k} = (1+2)^n = 3^n.\]
+    
+    Сега да видим, че тази задача може да се реши по-лесно ако интерпретираме всеки елемент от вида $(X,Y) \in S$
+    като една дума над азбуката $XY$, $\ov{X}Y$, $X\ov{Y}$, $\ov{X}\ov{Y}$.
+    Единственото нещо, което трябва да съобразим е, че нямаме букви от вида $X\ov{Y}$, защото това ще означава, че 
+    $X \not\subseteq Y$. Така свеждаме задачата до въпроса колко са всички думи с дължина $n$ над азбука с три букви.
+    Ясно е, че отговорър е $3^n$.
+  \end{enumerate}
+  
+\end{hint}
 
 
 \section{Комбинаторни задачи за функции}
@@ -1134,6 +1036,149 @@
   има поне два елемента $\sum^l_{i=1}a_i, \sum^k_{i=1}a_i$, за $l<k$, които дават един и същ остатък при деление на $n$.
   Получаваме, че \[n|(\sum^l_{i=1}a_i - \sum^k_{i=1}a_i)\ \Rightarrow\ n|(\sum^k_{i=l+1}a_i).\]
 \end{proof}
+
+
+\section{Допълнителни задачи}
+
+\begin{problem} % Гаврилов стр. 265, зад. 7
+  Нека $U$ е множество от $n$ елемента, $n\geq 3$. За всяко множество $X\subseteq U$, с $\overline{X}$ означаваме $U\setminus X$.
+  Също така, за множества $X$ и $Y$, понякога ще пишем $XY$ вместо $X \cap Y$.
+  Намерете броя на елементите на следните множества:
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{Отг. $4^n$}
+    $\{(X,Y) \mid X,Y\subseteq U\}$
+  \item
+    \marginpar{Отг. $2\binom{n}{1} 2^{n-1}$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \vert{X}\vert = 1\}$;
+  \item
+    \marginpar{Отг. $2^2\binom{n}{2}2^{n-2}$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \vert{X}\vert = 2\}$;
+  \item
+    \marginpar{Отг. $4^n - 3^{n}$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \vert{X}\vert \geq 1\}$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \vert{X}\vert = k\}$ за произволно $k \leq n$;
+  \item
+    \marginpar{Отг. $3^{n} + \binom{n}{1} 3^{n-1}$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \vert{X}\vert \leq 1\}$;
+  \item
+    \marginpar{Отг. $\binom{n}{1}\binom{n}{1} = n^2$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \vert{X}\vert = 1\ \&\ \vert{Y}\vert = 1\}$;
+  \item
+    \marginpar{Нямаме буква $XY$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ X \cap Y = \emptyset\}$;
+  \item
+    \marginpar{Една буква $XY$. Отг. $\binom{n}{1}3^{n-1}$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \abs{X \cap Y} = 1\}$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \abs{X \cap Y} = k\}$ за произволно $k \leq n$;
+  \item
+    \marginpar{Отг. $2\binom{n}{1}2^{n-1} = n2^n$}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ \abs{(X\setminus Y) \cup (Y\setminus X)} = 1\}$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ X\cap Y = \emptyset\ \&\ |X|\geq 1\ \&\ |Y|\geq 1\}$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ X\cap Y = \emptyset\ \&\ |X|\geq 2\ \&\ |Y|\geq 2\}$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ |X\setminus Y| = 1\}$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ |X\setminus Y| = k\}$ за произволно $k \leq n$;
+  \item
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ |(X\setminus Y)\cup(Y\setminus X)| = 1\ \&\ |X|\geq 2\ \&\ |Y|\geq 2\}$;
+  \item
+    \marginpar{Използвайте принципа за вкл. и изкл.}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ X\cap Y = \emptyset\ \&\ |X|\geq 2\ \&\ |Y|\geq 3\}$;
+  \item
+    \marginpar{Използвайте принципа за вкл. и изкл.}
+    $\{(X,Y) \mid X,Y\subseteq U\ \&\ |(X\setminus Y)\cup(Y\setminus X)| = 1\ \&\ X\cap Y = \emptyset\ \&\ |X|\geq 2\ \&\ |Y|\geq 3\}$;
+  \item
+    \marginpar{Отг. $8^n$}
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\}$;
+  \item
+    \marginpar{Отг. $6^n$}
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ X \cap Y = \emptyset\}$;
+  \item
+    \marginpar{$U = X\overline{Y}Z\cup X\overline{YZ} \cup \overline{X}Y\overline{Z}$. Отг. $3^n$}
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}\}$;
+  \item
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ Y\cup X = Z\cup\overline{Y}\}$;
+  \item
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}\ \&\ |Z| = 0\}$;
+  \item
+    $\{(X,Y,Z) \mid X,Y,Z \subseteq U\ \&\ X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}\ \&\ |X|\geq 1\ \&\ |Y|\geq 1\ \&\ |Z| = 1\}$;
+  \item
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ X\cup Y\overline{Z} = \overline{X}\cup\overline{Y}\ \&\ |X|\geq 1\ \&\ |Y|\geq 1\ \&\ |Z|\leq 1\}$;
+  \item
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ X \cup YZ = \ov{X} \cup \ov{Z}\}$;
+  \item
+    $\{(X,Y,Z) \mid X,Y,Z\subseteq U\ \&\ X\ov{Y} \cup YZ = U\}$;
+  \end{enumerate}
+\end{problem}
+\begin{hint}
+  \begin{enumerate}[a)]
+  \item
+    Понеже всички подмножества на $U$ са $2^n$ и множествата $X$ и $Y$ са независими едно от друго, то
+    лесно се съобразява, че броят на елементите на $\{(X,Y) \mid X,Y \in U\} = \Ps(U) \times \Ps(U)$ е $4^n$.
+    Ще дадем и друго доказателство, което ще ни помогне да решаваме по-сложни задачи, в които имаме връзка между 
+    елементите на $X$ и $Y$.
+    
+    Нека $U = \{u_1,\dots,u_n\}$ и да разгледаме азбуката $\Sigma = \{XY, X\bar{Y}, \bar{X}Y, \bar{X}\bar{Y}\}$.
+    На всеки елемент на  $\{(X,Y) \mid X,Y \subseteq U\}$ можем еднозначно да съпоставим 
+    дума  $\alpha = a_1\cdots a_n$ над азбуката $\Sigma$
+    по следния начин:
+    \marginpar{Всеки елемент $u_i \in U$ попада в един от четирите случаи}
+    \begin{itemize}
+    \item 
+      ако $u_i \in X \cap Y$, то $a_i = XY$;
+    \item 
+      ако $u_i \in X \cap \bar{Y}$, то $a_i = X\bar{Y}$;
+    \item 
+      ако $u_i \in \bar{X} \cap Y$, то $a_i = \bar{X}Y$;
+    \item 
+      ако $u_i \in \bar{X} \cap \bar{Y}$, то $a_i = \bar{X}\bar{Y}$.
+    \end{itemize}
+    Да разгледаме няколко примера:
+    \begin{itemize}
+    \item
+      на двойката $(\{u_1\},\{u_2\})$ съпоставяме думата $\alpha = a_1\cdots a_n$,
+      където $a_1 = X\bar{Y}$, $a_2 = \bar{X}Y$, $a_i = \bar{X}\bar{Y}$ за $i \geq 3$.
+    \item 
+      на двойката $(U,\{u_2\})$ съпоставяме думата $\alpha = a_1\cdots a_n$,
+      където $a_2 = XY$ и $a_i = X\bar{Y}$ за $i \neq 2$.
+    \item
+      на двойката $(\{u_1\},\{u_1,u_2\})$ съпоставяме думата $\alpha = a_1\cdots a_n$,
+      където $a_1 = XY$ и $a_2 = \bar{X}Y$, $a_i = \bar{X}\bar{Y}$ за $i \geq 3$.
+    \end{itemize}
+    Понеже всички думи с дължина $n$ над азбука с $4$ букви са $4^n$, 
+    то всички двойки $(X,Y)$ са също $4^n$.
+  \item
+    Трябва да намерим всичи думи с дължина $n$ над азбуката $\{XY,X\ov{Y},\ov{X}Y,\ov{X}\ov{Y}\}$,
+    като буквите $XY$ и $X\ov{Y}$ се срещат общо веднъж.
+    Това означава, че от $n$ позиции трябва да изберем една, в която да поставим $XY$ или $X\ov{Y}$,
+    а в останалите $n-1$ позиции поставяме буквите $\ov{X}Y$ или $\ov{X}\ov{Y}$.
+    Така получаваме като резултат \[2\binom{n}{1}2^{n-1} = n2^n.\]
+  \item
+    Тук разглеждаме тези думи с дължина $n$ над азбуката $\Sigma$, като
+    има {\em точно едно} срещане на $XY$ или $X\ov{Y}$.
+    Всички тези думи са $2\binom{n}{1}2^{n-1}$
+  \item[ф)]
+    Понеже $X \cap Y = \emptyset$, то в думите не се срещат буквите $XYZ$ и $XY\ov{Z}$.
+    Така остават $6$ възможни букви и оттук веднага следва, че всички такива думи са $6^n$.    
+  \item[х)]
+    Да разгледаме какво означава $X\cup Y\ov{Z} = \ov{X} \cup \ov{Y}$.
+    \begin{itemize}
+    \item 
+      Ако $x \in X$, то $x \in X \cup Y\ov{Z}$ и следователно $x \in \ov{X} \cup \ov{Y}$.
+      Тогава е ясно, че $x \in \ov{Y}$. Това означава, че имаме буквите $X\ov{Y}Z$ и $X\ov{Y}\ov{Z}$.
+    \item
+      Ако $x \in \ov{X}$, то $X \in \ov{X} \cup \ov{Y}$ и следователно $x \in X \cup Y\ov{Z}$.
+      Сега получаваме, че $x \in Y\ov{Z}$. Това означава, че имаме буквата $\ov{X}Y\ov{Z}$.
+    \end{itemize}
+    Видяхме, че с горното ограничение трябва да разгледаме само думите с дължина $n$ съставени от три букви.
+    Те са общо $3^n$ на брой.
+  \end{enumerate}
+\end{hint}
 
 
 %%% Local Variables: 
