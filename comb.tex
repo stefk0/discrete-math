@@ -666,7 +666,7 @@
   \begin{enumerate}[a)]
   \item 
     За всяко $k = 0,\dots,n$, да разгледаме
-    $S_k = \{(X,Y) \mid X \subseteq Y \subseteq U\ \&\ \abs{X} = k\}$.
+    \[S_k = \{(X,Y) \mid X \subseteq Y \subseteq U\ \&\ \abs{X} = k\}.\]
     Съобразете, че:
     \begin{itemize}
     \item 
@@ -678,10 +678,10 @@
     \item
       $\abs{S_1} = n.2^{n-1}$;
     \item
-      $\abs{S_k} = \binom{n}{k}2^{n-k}$.
+      $\abs{S_k} = \binom{n}{k}2^{n-k}$, за всяко $k = 0,1,\dots,n$.
     \end{itemize}
     Тогава отговорът е
-    \[\abs{S} = |\bigcup^n_{k=0} S_k| = \sum^n_{k=0} |S_k| = \sum^n_{k=0} \binom{n}{k}2^{n-k} = (1+2)^n = 3^n.\]
+    \[\abs{S} = |\bigcup^n_{k=0} S_k| = \sum^n_{k=0} |S_k| = \sum^n_{k=0} \binom{n}{k}1^k.2^{n-k} = (1+2)^n = 3^n.\]
     
     Сега да видим, че тази задача може да се реши по-лесно ако интерпретираме всеки елемент от вида $(X,Y) \in S$
     като една дума над азбуката $\Sigma = \{XY$, $\bar{X}Y$, $X\bar{Y}$, $\bar{X}\bar{Y}\}$.

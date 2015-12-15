@@ -38,8 +38,9 @@ citecolor=green, urlcolor=blue]{hyperref}
 \usepackage{framed}
 \usepackage{bussproofs}
 
-\usepackage{enumerate}
 \usepackage{paralist}
+\usepackage[shortlabels]{enumitem}
+\setlist{leftmargin=*}
 % \newenvironment{compactenum}{%
 %   \enumerate[topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]%
 % }{\endenumerate}
@@ -118,7 +119,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 \newcommand{\TM}{\langle{Q,\Sigma,\Gamma,\delta,s,\bot,F}\rangle}
 
 \renewcommand{\iff}{\ \leftrightarrow\ }
-
+\newcommand{\todo}{\ding{45} }
+\newcommand{\dff}{\stackrel{\text{\footnotesize{дeф}}}{=}}
 \newcommand{\Th}[1]{{\em Теорема~\ref{th:#1}}}
 \newcommand{\Lem}[1]{{\em Лема~\ref{lem:#1}}}
 \newcommand{\Prob}[1]{{\em Задача~\ref{pr:#1}}}
@@ -131,12 +133,12 @@ citecolor=green, urlcolor=blue]{hyperref}
 
 %\renewcommand\marginpar[1]{\oldmarginpar{\scriptsize #1}}
 
-\fontfamily{garamond}
+% \fontfamily{garamond}
 \title{Записки по Дискретна математика}
 \author{Стефан Вътев\thanks{ел. поща: \href{stefanv@fmi.uni-sofia.bg}{stefanv@fmi.uni-sofia.bg}}}
 %, Факултет по математика и информатика, Софийски университет ,,Св. Климент Охридски''}}
 
-\usepackage{breqn}         % automatic equation breaking
+% \usepackage{breqn}         % automatic equation breaking
 
 \makeindex
 \begin{document}
@@ -161,7 +163,8 @@ citecolor=green, urlcolor=blue]{hyperref}
 
 % \backmatter
 
-\bibliographystyle{amsalpha}
+% \bibliographystyle{amsalpha}
+\bibliographystyle{amsplain}
 \bibliography{discrete-math}
 
 \printindex
