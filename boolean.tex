@@ -1,7 +1,5 @@
 \chapter{Булеви функции}
 
-%Основен източник е %\cite{gavrilov}.
-
 Да припомним таблицата за истинност на някои от основните булеви функции на два аргумента.
 \marginpar{$x\oplus y$ - симетрична разлика}
 
@@ -20,47 +18,49 @@
   \hline
 \end{tabular}
 
+Когато две булеви формули $\varphi$ и $\psi$ са тъждествено еквивалентни (т.е. имат еднакви стълбове), то ще пишем $\varphi \equiv \psi$.
+
 \section{Основни свойства}
 
 \marginpar{Често вместо $x\wedge y$ пишем $x\cdot y$ или $xy$. Също така, вместо $\neg x$ пишем $\overline{x}$}
 \begin{enumerate}[1)]%% ДА се напишат всичките от Манев, стр. 189
 \item
   Комутативни свойства
-  \[xy = yx,\quad x\vee y = y\vee x,\quad x\oplus y = y\oplus x\]
+  \[xy \equiv yx,\quad x\vee y \equiv y\vee x,\quad x\oplus y \equiv y\oplus x\]
 \item
   Асоциативни свойства
-  \[(xy)z = x(yz),\quad (x\vee y)\vee z = x\vee (y\vee z),\quad (x\oplus y)\oplus z = x\oplus (y\oplus z)\]
+  \[(xy)z \equiv x(yz),\quad (x\vee y)\vee z \equiv x\vee (y\vee z),\quad (x\oplus y)\oplus z \equiv x\oplus (y\oplus z)\]
 \item
   Лесно се проверява с таблиците за истинност, че:
-  \[x\oplus y = x\ov{y}\vee \ov{x}y = (x\vee y)(\ov{x}\vee\ov{y})\]
+  \[x\oplus y \equiv x\ov{y}\vee \ov{x}y \equiv (x\vee y)(\ov{x}\vee\ov{y})\]
 \item
   Свойства на отрицанието
-  \[x\ov{x} = 0, \quad x\vee\ov{x} = x\vee 1,\quad x\oplus\ov{x} = 1\]
+  \[x\ov{x} \equiv 0, \quad x\vee\ov{x} \equiv x\vee 1,\quad x\oplus\ov{x} \equiv 1\]
 \item
   Закон за двойното отрицание
-  \[\ov{\ov{x}} = x\]
+  \[\ov{\ov{x}} \equiv x\]
 \item
   Свойства на константите
-  \[x\cdot 0 = 0, \quad x\cdot 1 = x,\quad x\vee 0 = x,\quad x\vee 1 = 1,\quad x\oplus 0 = x, \quad x\oplus 1 = \ov{x}\]
+  \[x\cdot 0 \equiv 0, \quad x\cdot 1 \equiv x,\quad x\vee 0 \equiv x,\quad x\vee 1 \equiv 1,\quad x\oplus 0 \equiv x, \quad x\oplus 1 \equiv \ov{x}\]
 \item
   Дистрибутивни свойства
   \begin{enumerate}[]
   \item
-    $x(y\vee z) = xy \vee xz$,
+    $x(y\vee z) \equiv xy \vee xz$,
   \item
-    $xy \vee z = (x\vee z)(y\vee z)$,
+    $xy \vee z \equiv (x\vee z)(y\vee z)$,
   \item
-    $(x\oplus y)z = xz \oplus yz$.
+    $(x\oplus y)z \equiv xz \oplus yz$.
   \end{enumerate}
 \item
   Идемпотентентни свойства
-  \[xx = x, \quad x\vee x = x\]
+  \[xx \equiv x, \quad x\vee x \equiv x\]
 \item
   Свойства на отрицанието
-  \[x\ov{x} = 0, \quad x\vee\ov{x} = 1, \quad x\oplus\ov{x} = 1\]
+  \[x\ov{x} \equiv 0, \quad x\vee\ov{x} \equiv 1, \quad x\oplus\ov{x} \equiv 1\]
 \item
   Закони на Де Морган
-  \[\ov{xy} = \ov{x}\vee\ov{y}, \quad \ov{x\vee y} = \ov{x}\cdot\ov{y}\]
+  \[\ov{xy} \equiv \ov{x}\vee\ov{y}, \quad \ov{x\vee y} \equiv \ov{x}\cdot\ov{y}\]
 \end{enumerate}
 
 \begin{problem} %% Гаврилов, стр. 30
@@ -86,166 +86,34 @@
 \begin{solution}
   \begin{enumerate}[a)]
   \item
-    $\psi =  x\rightarrow ((y\rightarrow z)\rightarrow x)\ =\ \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  =\ 1$.
+    Ще направим еквивалентни преобразувания върху двете формули докато получим един и същ резултат.
     \begin{align*}
+      \psi =\ &  x\rightarrow ((y\rightarrow z)\rightarrow x)\\
+      \equiv\ & \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  \equiv\ 1\\
       \varphi =\ & (x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))\\
-      =\ & \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
-      =\ & \overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
-      =\ & \overline{x}.\overline{yz} \vee xyz \vee x\vee \overline{y}\vee z =\ \overline{x}(\overline{y}\vee\overline{z}) \vee x\vee \overline{y}\vee z\\
-      =\ & \overline{x}.\overline{y} \vee \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z =\ \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z\\
-      =\ & \overline{(x\vee z)} \vee (x\vee z)\vee \overline{y} = 1 \vee \ov{y} = 1.
+      \equiv\ & \overline{(x\vee yz)(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
+      \equiv\ & \overline{(x\vee yz)}\vee\overline{(\overline{x}\vee\overline{yz})} \vee x\vee \overline{y}\vee z\\
+      \equiv\ & \overline{x}.\overline{yz} \vee xyz \vee x\vee \overline{y}\vee z \equiv\ \overline{x}(\overline{y}\vee\overline{z}) \vee x\vee \overline{y}\vee z\\
+      \equiv\ & \overline{x}.\overline{y} \vee \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z \equiv\ \overline{x}.\overline{z} \vee x\vee \overline{y}\vee z\\
+      \equiv\ & \overline{(x\vee z)} \vee (x\vee z)\vee \overline{y} \equiv 1 \vee \ov{y} \equiv 1.
     \end{align*}
-  \item
-    $\psi = (x\rightarrow y)\rightarrow(\overline{y}\rightarrow\overline{x}) = 
-    \ov{\ov{x}\vee y} \vee y \vee \ov{x} = x\ov{y} \vee y \vee \ov{x} = x \vee y \vee \ov{x} = 1$
-    
-    \begin{tabular}{l c l}
-      $\varphi $ & $=$ & $(\overline{x}\vee \overline{y}.z)\rightarrow ((x\rightarrow y)\rightarrow (y\vee z)\rightarrow\overline{x}) $\\
-      & $ = $ & $\ov{\overline{x}\vee \overline{y}.z} \vee \ov{x\rightarrow y} \vee \ov{y\vee z} \vee \ov{x}$ \\
-      & $=$ & $x(y\vee \ov{z})\vee \ov{\ov{x}\vee y} \vee \ov{y}.\ov{z} \vee \ov{x} = $\\
-      & $=$ & $xy \vee x\ov{z} \vee x.\ov{y} \vee \ov{y}.\ov{z} \vee \ov{x} =$ \\
-      & $=$ & $x(y\vee\ov{y}) \vee x\ov{z} \vee \ov{y}.\ov{z} \vee \ov{x} = $\\
-      & $=$ & $x \vee \ov{x} \vee x\ov{z} \vee \ov{y}.\ov{z} = 1$
-    \end{tabular}
-    
-  \item
-    $\psi = (x.(\overline{y}.\overline{z})\oplus y)\oplus z = x(y\oplus 1)(z\oplus 1) \oplus y \oplus z = xyz \oplus xy \oplus xz \oplus x \oplus y \oplus z$
-    
-    \begin{tabular}{l c l}
-      $\varphi$ & $=$ & $(x\overline{y}\vee \overline{x}z)\oplus ((y\rightarrow z)\rightarrow \overline{x}y)$\\
-      & $=$ & $(x\ov{y}\vee \ov{x}z) \oplus (\ov{\ov{y}\vee z} \vee \ov{x}y)$ \\
-      & $=$ & $x\ov{y}\oplus \ov{x}z \oplus (y\ov{z} \oplus \ov{x}y)$ \\
-      & $=$ & $x\ov{y}\oplus \ov{x}z\oplus \ov{x}y\ov{z} \oplus y\ov{z} \oplus \ov{x}y$ \\
-      & $=$ & $xy \oplus x \oplus xz \oplus z \oplus (x\oplus 1)y(z\oplus 1) \oplus yz\oplus y \oplus xy \oplus y$ \\
-      & $=$ & $x \oplus xz \oplus z \oplus (x\oplus 1)y(z\oplus 1) \oplus yz\oplus $ \\
-      & $=$ & $x \oplus xz \oplus z \oplus xyz \oplus yz \oplus xy \oplus y \oplus yz\oplus $ \\
-      & $=$ & $x \oplus y\oplus z \oplus xz \oplus xy \oplus xyz$ \\
-     \end{tabular}
-     
-  %  \item
-  %    $\psi = \ov{x.(y\rightarrow\ov{z})} = \ov{x}\vee yz$.
-     
-  %    \begin{tabular}{l c l}
-  %      $\varphi$ & $ = $ & $x\rightarrow ((\ov{x}.\ov{y}\rightarrow(\ov{x}.\ov{z}\rightarrow y))\rightarrow y).z$\\
-  %      & $=$ & $\ov{x} \vee ((\ov{\ov{x}.\ov{y}} \vee \ov{\ov{x}.\ov{z}}\vee y)\rightarrow y).z$\\
-  %      & $=$ & $\ov{x} \vee ((x\vee y \vee x\vee z \vee y)\rightarrow y).z$\\
-  %      & $=$ & $\ov{x} \vee ((x\vee y \vee z)\rightarrow y).z$\\
-  %      & $=$ & $\ov{x} \vee (\ov{x\vee y \vee z}\vee y).z$\\
-  %      & $=$ & $\ov{x} \vee yz$
-  %    \end{tabular}
-
-     
-  % \item
-  %   $\psi = (x\rightarrow y)\vee z = \ov{x}\vee y \vee z$.
-    
-  %   \begin{tabular}{l c l}
-  %     $\varphi $ & $ = $ & $\ov{((x\vee y) \rightarrow y.z)\vee (y\rightarrow x.z)} \vee (x\rightarrow (\ov{y}\rightarrow z)) $\\
-  %     & $=$ & $\ov{\ov{x}.\ov{y}\vee yz \vee \ov{y}\vee xz} \vee \ov{x}\vee y \vee z$\\
-  %     & $=$& $\ov{\ov{y}\vee yz \vee xz} \vee \ov{x}\vee y \vee z$ \\
-  %     & $=$ & $\ov{\ov{y}\vee z \vee xz} \vee \ov{x}\vee y \vee z$\\
-  %     & $=$ & $\ov{\ov{y}\vee z} \vee \ov{x}\vee y \vee z$ \\
-  %     & $=$ & $y\ov{z} \vee \ov{x}\vee y \vee z$ \\
-  %     & $=$ & $\ov{x}\vee y \vee z$.
-  %   \end{tabular}
+  \item[в)]
+    Правим отново същото.
+    \begin{align*}
+      \psi =\ & (x.(\overline{y}.\overline{z})\oplus y)\oplus z\\
+      \equiv\ & x(y\oplus 1)(z\oplus 1) \oplus y \oplus z\\
+      \equiv\ & xyz \oplus xy \oplus xz \oplus x \oplus y \oplus z\\
+      \varphi =\ & (x\overline{y}\vee \overline{x}z)\oplus ((y\rightarrow z)\rightarrow \overline{x}y)\\
+      \equiv\ & (x\ov{y}\vee \ov{x}z) \oplus (\ov{\ov{y}\vee z} \vee \ov{x}y)\\
+      \equiv\ & x\ov{y}\oplus \ov{x}z \oplus (y\ov{z} \oplus \ov{x}y) \\
+      \equiv\ & x\ov{y}\oplus \ov{x}z\oplus \ov{x}y\ov{z} \oplus y\ov{z} \oplus \ov{x}y \\
+      \equiv\ & xy \oplus x \oplus xz \oplus z \oplus (x\oplus 1)y(z\oplus 1) \oplus yz\oplus y \oplus xy \oplus y \\
+      \equiv\ & x \oplus xz \oplus z \oplus (x\oplus 1)y(z\oplus 1) \oplus yz\oplus  \\
+      \equiv\ & x \oplus xz \oplus z \oplus xyz \oplus yz \oplus xy \oplus y \oplus yz\oplus\\
+      \equiv\ & xyz \oplus xy \oplus xz \oplus x \oplus y \oplus z.
+     \end{align*}
 \end{enumerate}
 \end{solution}
-
-
-
-
-\section{Полином на Жегалкин}
-
-\begin{itemize}
-\item 
-  Полином на Жегалкин на 2 променливи е формула от вида:
-  \[a_0\oplus a_1x_1\oplus a_2x_2  \oplus a_{12}x_1x_2  ,\]
-  където $a_0,a_1,a_2,a_{12}$ приемат стойности 0 или 1.
-\item
-  Полином на Жегалкин на 3 променливи е формула от вида:
-  \[a_0\oplus a_1x_1\oplus a_2x_2 \oplus a_3x_3 \oplus a_{12}x_1x_2 \oplus a_{13}x_1x_3 \oplus a_{23} x_2x_3 \oplus a_{123}x_1x_2x_3,\]  
-  където $a_0,a_1\dots,a_{123}$ приемат стойности 0 или 1.
-\item
-  Полином на Жегалкин на $n$ променливи е формула от вида:
-  \[a_0 \oplus \bigoplus_{1\leq i\leq n}a_i x_i\oplus \bigoplus_{1\leq i<j \leq n}a_{ij} x_ix_j\oplus\dots  \oplus a_{12\dots n} x_1x_2\dots x_n,\]
-\end{itemize}
-
-\begin{thm}
-  Всяка булева функция има единствен полином на Жегалкин.
-\end{thm}
-\begin{proof}
-  Всеки полином на Жегалкин представя различна булева функция.
-  Всички полиноми на Жегалкин на $n$ променливи са $2^{2^n}$.
-  Всички булеви функции на $n$ променливи са $2^{2^n}$.
-\end{proof}
-
-
-\begin{problem}
-  По метода на неопределените коефициенти, намерете полинома на Жегалкин на функцията 
-  \begin{enumerate}[a)]
-  \item
-    $f(x,y) = x\vee y$;
-  \item
-    $f(x,y,z) = x\vee y \vee z$;
-  \item
-    $f(x,y,z) = x\rightarrow (y \rightarrow z)$;
-  \item
-    $f(x,y,z) = x(y\vee\overline{z})$.
-  \end{enumerate}
-\end{problem}
-\begin{proof}
-  \begin{enumerate}[a)]
-  \item
-    Общият вид на $f(x,y) = a_0\oplus a_1 x \oplus a_2 y \oplus a_3 xy $.
-    \[
-    \begin{array}{c c c}
-      a_0\oplus a_1 0 \oplus a_2 0 \oplus a_3 0 & = 0 \vee 0  &  = 0\\
-      a_0\oplus a_1 1 \oplus a_2 0 \oplus a_3 0 & = 1 \vee 0  &  = 1\\
-      a_0\oplus a_1 0 \oplus a_2 1 \oplus a_3 0 & = 0 \vee 1  &  = 1\\
-      a_0\oplus a_1 1 \oplus a_2 1 \oplus a_3 1 & = 1 \vee 1  &  = 1\\
-    \end{array}
-    \]
-    Следователно, $x\vee y = x\oplus y\oplus xy$.
-  \end{enumerate}
-\end{proof}
-
-\begin{problem}
-  Използвайки еквивалентности от вида $\overline{A} = A\oplus 1$ и $A\vee B = AB\oplus A\oplus B$, 
-  намерете полинома на Жегалкин на функцията:
-  \begin{enumerate}[a)]
-  \item
-    \marginpar{$1 \oplus x \oplus xy$}
-    $f(x,y) = x\rightarrow y$;
-  \item
-    \marginpar{$1 \oplus xy \oplus xyz$}
-    $f(x,y,z) = (x\rightarrow (y\rightarrow z))$;
-  \item
-    \marginpar{$x\oplus z\oplus xy\oplus xz \oplus xyz$}
-    $f(x,y,z) = ((x\rightarrow y)\rightarrow z)$;
-  \item
-    \marginpar{$x\oplus z\oplus xy\oplus xz \oplus xyz$}
-    $f(x,y,z) = (x\rightarrow (y\rightarrow z)).((x\rightarrow y)\rightarrow z)$;
-  \item
-    $f(x,y,z,t) = (x\rightarrow y)\rightarrow (z\rightarrow xt)$;
-  \item
-    $f(x,y,z,t) = x\vee (y\rightarrow ((z\rightarrow y)\rightarrow t)$;
-  \item
-    $f(x,y,z,t) = (x\vee y\vee z)t \vee xyz$.
-  \end{enumerate}
-\end{problem}
-% \begin{proof}
-%   \begin{enumerate}[a)]
-%   \item
-%     $x\rightarrow y = \overline{x}\vee y = \overline{x}\oplus y \oplus \overline{x}y = x\oplus 1 \oplus y \oplus (x\oplus 1)y = 
-%     x\oplus 1 \oplus y \oplus xy \oplus y = 1 \oplus x \oplus xy$.
-%   \item
-%     $1 \oplus xy \oplus xyz$
-%   \item
-%     $x\oplus z\oplus xy\oplus xz \oplus xyz$
-%   \item
-%     $x\oplus z\oplus xy\oplus xz \oplus xyz$
-
-%   \end{enumerate}
-% \end{proof}
 
 \section{Дизюнктивна нормална форма}
 
@@ -260,7 +128,7 @@
   Една съждителна формула $\Phi(x_1,\dots,x_n)$ е в {\bf дизюнктивна нормална форма (ДНФ)}, ако
   тя представлява дизюнкция от конюнкти на някои от променливите на $\Phi$.
   Например, формулата 
-  \[\Phi(x,y) = \ov{x}y \vee x\ov{y}\]
+  \[\Phi(x,y,z) = \ov{x}y \vee z\ov{y}\]
   е в дизюнктивна формална форма.
 \item
   \index{съвършена дизюнктивна нормална форма}
@@ -324,6 +192,7 @@
   \end{enumerate}
 \end{problem}
 
+
 \section{Класовете $T_0$ и $T_1$}
 \index{$T_0, T_1$}
 
@@ -342,13 +211,13 @@
   \begin{enumerate}[a)]
   \item
     \marginpar{Да}
-    $f = (x\rightarrow y)(y\rightarrow z)(z\rightarrow x)$;
+    $f(x,y,z) = (x\rightarrow y)(y\rightarrow z)(z\rightarrow x)$;
   \item
     \marginpar{Да}
-    $f = x\rightarrow(y\rightarrow (z\rightarrow x))$;
+    $f(x,y,z) = x\rightarrow(y\rightarrow (z\rightarrow x))$;
   \item
     \marginpar{Да}
-    $f = xyz \vee \ov{x}y \vee \ov{y}$;
+    $f(x,y,z) = xyz \vee \ov{x}y \vee \ov{y}$;
   \end{enumerate}
 \end{problem}
 
@@ -356,9 +225,9 @@
   При какви $n$ функцията $f(x_1,\dots, x_n)$ принадлежи на $T_0\setminus T_1$?
   \begin{enumerate}[1)]
   \item
-    $f = x_1\oplus x_2 \oplus\dots\oplus x_n$;
+    $f(\xn) = x_1\oplus x_2 \oplus\dots\oplus x_n$;
   \item
-    $f = (\bigoplus^{n-1}_{i=1} x_ix_{i+1})\oplus x_nx_1$;
+    $f(\xn) = (\bigoplus^{n-1}_{i=1} x_ix_{i+1})\oplus x_nx_1$;
   \end{enumerate}
 \end{problem}
 
@@ -392,19 +261,24 @@
   \begin{enumerate}[1)]
   \item
     \marginpar{Да}
-    $f = x\rightarrow y$, $g = \overline{x}.y$;
+    $f(x,y) = x\rightarrow y$, $g(x,y) = \overline{x}.y$;
   \item
     \marginpar{Не}
-    $f = (\overline{x}\rightarrow\overline{y})\rightarrow(y\rightarrow x)$, $g = (x\rightarrow y).(\overline{y}\rightarrow\overline{x})$;
+    $f(x,y) = (\overline{x}\rightarrow\overline{y})\rightarrow(y\rightarrow x)$, \\
+    $g(x,y) = (x\rightarrow y).(\overline{y}\rightarrow\overline{x})$;
   \item
     \marginpar{Да}
-    $f = x.y \rightarrow z$, $g = \overline{x}.\overline{y}.z$;
+    $f(x,y,z) = xy \rightarrow z$,\\
+    $g(x,y,z) = \overline{x}.\overline{y}.z$;
   \item
-    $f = (x\vee y\vee z).t\vee x.y.z$, $g = (x\vee y\vee z).t\vee x.y.z$;
+    $f(x,y,z,t) = (x\vee y\vee z).t\vee x.y.z$, \\
+    $g(x,y,z,t) = (x\vee y\vee z).t\vee x.y.z$;
   \item
-    $f = xy\vee yz\vee zt\vee tx$, $g = xz\vee yt$;
+    $f(x,y,z,t) = xy\vee yz\vee zt\vee tx$, \\
+    $g(x,y,z,t) = xz\vee yt$;
   \item
-    $f = (x\rightarrow y).(z\rightarrow t)$, $g = (x\rightarrow\overline{z}).(x\rightarrow t).(\overline{y}\rightarrow\overline{z}).(\overline{y}\rightarrow t)$.
+    $f(x,y,z,t) = (x\rightarrow y).(z\rightarrow t)$, \\
+    $g(x,y,z,t) = (x\rightarrow\overline{z}).(x\rightarrow t).(\overline{y}\rightarrow\overline{z}).(\overline{y}\rightarrow t)$.
   \end{enumerate}
 \end{problem}
 
@@ -520,6 +394,85 @@
   \end{inparaenum}
 \end{problem}
 
+\section{Полином на Жегалкин}
+
+\begin{itemize}
+\item 
+  Полином на Жегалкин на 2 променливи е формула от вида:
+  \[a_0\oplus a_1x_1\oplus a_2x_2  \oplus a_{12}x_1x_2  ,\]
+  където $a_0,a_1,a_2,a_{12}$ приемат стойности 0 или 1.
+\item
+  Полином на Жегалкин на 3 променливи е формула от вида:
+  \[a_0\oplus a_1x_1\oplus a_2x_2 \oplus a_3x_3 \oplus a_{12}x_1x_2 \oplus a_{13}x_1x_3 \oplus a_{23} x_2x_3 \oplus a_{123}x_1x_2x_3,\]  
+  където $a_0,a_1\dots,a_{123}$ приемат стойности 0 или 1.
+\item
+  Полином на Жегалкин на $n$ променливи е формула от вида:
+  \[a_0 \oplus \bigoplus_{1\leq i\leq n}a_i x_i\oplus \bigoplus_{1\leq i<j \leq n}a_{ij} x_ix_j\oplus \bigoplus_{1\leq i<j<k \leq n}a_{ijk} x_ix_jx_k \dots  \oplus a_{12\dots n} x_1x_2\dots x_n,\]
+\end{itemize}
+
+\begin{thm}
+  Всяка булева функция има единствен полином на Жегалкин.
+\end{thm}
+\begin{hint}
+  Всеки полином на Жегалкин представя различна булева функция.
+  Всички полиноми на Жегалкин на $n$ променливи са $2^{2^n}$.
+  Всички булеви функции на $n$ променливи са $2^{2^n}$.
+\end{hint}
+
+
+\begin{problem}
+  По метода на неопределените коефициенти, намерете полинома на Жегалкин на функцията 
+  \begin{enumerate}[a)]
+  \item
+    $f(x,y) = x\vee y$;
+  \item
+    $f(x,y,z) = x\vee y \vee z$;
+  \item
+    $f(x,y,z) = x\rightarrow (y \rightarrow z)$;
+  \item
+    $f(x,y,z) = x(y\vee\overline{z})$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  \begin{enumerate}[a)]
+  \item
+    Понеже общият вид на булевата функция е $f(x,y) = a_0\oplus a_1 x \oplus a_2 y \oplus a_3 xy $,
+    трябва да намерим коефициентите $a_0,a_1,a_2,a_3$.
+    \begin{align*}
+      & a_0\oplus a_1 0 \oplus a_2 0 \oplus a_3 0 = 0 \vee 0 = 0\\
+      & a_0\oplus a_1 1 \oplus a_2 0 \oplus a_3 0 = 1 \vee 0 = 1\\
+      & a_0\oplus a_1 0 \oplus a_2 1 \oplus a_3 0 = 0 \vee 1 = 1\\
+      & a_0\oplus a_1 1 \oplus a_2 1 \oplus a_3 1 = 1 \vee 1 = 1.
+    \end{align*}
+    Следователно, $x\vee y \equiv x\oplus y\oplus xy$.
+  \end{enumerate}
+\end{proof}
+
+\begin{problem}
+  Използвайки еквивалентности от вида $\overline{A} = A\oplus 1$ и $A\vee B = AB\oplus A\oplus B$, 
+  намерете полинома на Жегалкин на функцията:
+  \begin{enumerate}[a)]
+  \item
+    \marginpar{$1 \oplus x \oplus xy$}
+    $f(x,y) = x\rightarrow y$;
+  \item
+    \marginpar{$1 \oplus xy \oplus xyz$}
+    $f(x,y,z) = (x\rightarrow (y\rightarrow z))$;
+  \item
+    \marginpar{$x\oplus z\oplus xy\oplus xz \oplus xyz$}
+    $f(x,y,z) = ((x\rightarrow y)\rightarrow z)$;
+  \item
+    \marginpar{$x\oplus z\oplus xy\oplus xz \oplus xyz$}
+    $f(x,y,z) = (x\rightarrow (y\rightarrow z)).((x\rightarrow y)\rightarrow z)$;
+  \item
+    $f(x,y,z,t) = (x\rightarrow y)\rightarrow (z\rightarrow xt)$;
+  \item
+    $f(x,y,z,t) = x\vee (y\rightarrow ((z\rightarrow y)\rightarrow t)$;
+  \item
+    $f(x,y,z,t) = (x\vee y\vee z)t \vee xyz$.
+  \end{enumerate}
+\end{problem}
+
 \section{Линейни функции}
 \index{линейна!булева функция}
 
@@ -606,10 +559,19 @@
 
 \begin{itemize}
 \item 
-  Нека $\alpha$ и $\beta$ са два бинарни вектора с равна дължина.
+  Нека $\alpha = (a_1,a_1,\dots,a_n)$ и $\beta = (b_1,b_2,\dots,b_n)$ са два булеви вектора с равна дължина.
   \marginpar{Това не е лексикографската наредба!}
   Дефинираме релацията $\preceq$ между тях по следния начин.
   \[\alpha \preceq \beta \iff \abs{\alpha} = \abs{\beta}\wedge (\forall i \leq \abs{\alpha})[a_i \leq b_i].\]
+  Ето няколко примера:
+  \begin{itemize}
+  \item 
+    $(0,1,0) \preceq (0,1,1)$;
+  \item
+    $(0,1,0) \not\preceq (1,0,1)$;
+  \item
+    $(1,0,1) \not\preceq (0,1,0)$.
+  \end{itemize}
 \item
   Булевата фунция $f(\xn)$ наричаме {\bf монотонна}\index{монотонна!функция}, ако 
   \[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]  
@@ -621,7 +583,6 @@
   Класът на монотонните функции е затворен, т.е. $[M] = M$.
   Освен това, $M \subsetneqq \Fs_2$.
 \end{prop}
-
 
 \begin{problem}
   Проверете монотонни ли са функциите:
@@ -655,16 +616,16 @@
     \marginpar{Отг. $\alpha = (010)$, $\beta = (110)$}
     $f = x\oplus y\oplus z$;
   \item
-    \marginpar{Отг. $\alpha = (110)$, $\beta = (111)$}
+    % \marginpar{Отг. $\alpha = (110)$, $\beta = (111)$}
     $f = xy\oplus z$;
   \item
-    \marginpar{Отг. $\alpha = (010)$, $\beta = (011)$}
+     % \marginpar{Отг. $\alpha = (010)$, $\beta = (011)$}
     $f = x\vee y\ov{z}$;
   \item
-    \marginpar{Отг. $\alpha = (0111)$, $\beta = (1111)$}
+    % \marginpar{Отг. $\alpha = (0111)$, $\beta = (1111)$}
     $f = xz\oplus yt$;
   \item
-    \marginpar{Отг. $\alpha = (1110)$, $\beta = (1111)$}
+    % \marginpar{Отг. $\alpha = (1110)$, $\beta = (1111)$}
     $f(x,y,z,t) = (xyt\rightarrow yz)\oplus t$;
   \end{enumerate}
 \end{problem}
@@ -688,19 +649,18 @@
 
 \section{Пълнота и затворени класове}
 
-\begin{dfn}
-Нека $F\subseteq \Fs_2$ е множество от булеви функции. С
-индукция дефинираме следната редица за всяко $n \in \Nat$:
-\begin{align*}
-  & F_0 = F\cup \{I^m_k \mid m,k\in\Nat, 1\leq k\leq m\}\\
-  & F_{n+1} = F_n \cup \{h \mid (\exists f, g_1\dots g_m \in F_n)[h(x_1\dots x_k) =  f(g_1(x_1\dots x_k), \dots, g_m(x_1\dots x_k)]\},
-\end{align*}
-
-Затварянето на $F$ по отношение на суперпозиция наричаме
-множеството:
-\[[F] = \bigcup_{n\in \mathbb{N}}F_n.\]
-
-\end{dfn}
+\begin{itemize}
+\item 
+  Нека $F\subseteq \Fs_2$ е множество от булеви функции.
+  С индукция дефинираме следната редица за всяко $n \in \Nat$:
+  \begin{align*}
+    F_0 = & F\cup \{I^m_k \mid m,k\in\Nat, 1\leq k\leq m\}\\
+    F_{n+1} = & F_n\ \cup\\
+    & \{h \mid (\exists f, g_1\dots g_m \in F_n)[h(x_1\dots x_k) =  f(g_1(x_1\dots x_k), \dots, g_m(x_1\dots x_k)]\},
+  \end{align*}
+  Затварянето на $F$ по отношение на суперпозиция наричаме множеството:
+  \[[F] = \bigcup_{n\in \mathbb{N}}F_n.\]
+\end{itemize}
 
 % Така множеството $[F]$ се задава с индукция от базово множество
 % $F\cup \{I^n_k \mid 1\leq k\leq n \}$ по правилото суперпозиция. От
@@ -709,111 +669,127 @@
 
 
 \begin{dfn}
+  \index{пълно множество}
   Нека $F\subseteq \Fs_2$ е множество от булеви функции. 
-  $F$ е пълно множество, ако $[F] = \Fs_2$.
+  $F$ е {\bf пълно} множество, ако $[F] = \Fs_2$.
+  Това означава, че всяка булева функция може да се представи като суперпозиция на функции от множеството $F$.
   $F$ се нарича базис, ако не съществува $G \subsetneqq F$, за което $[G] = \Fs_2$.
 \end{dfn}
 
 \begin{thm}[Бул]
   Множеството $\{x\vee y,\ov{x},x\wedge y\}$ е пълно.
 \end{thm}
-\begin{proof}
-  Ще докажем, че за всяка булева функция $f \in \Fs_2$, $f \in [\{x\vee y, \ov{x}, x \wedge y\}]$.
+\begin{hint}
+  Ще докажем, че за всяка булева функция $f \in \Fs_2$ е изпълнено, че
+  $f \in [\{x\vee y, \ov{x}, x \wedge y\}]$.
   Ще разгледаме два случая.
-  
-  Нека $f = \bf{0}$. Тогава $f(x_1,\dots,x_n) \equiv x_1\wedge\ov{x}_1$.
-  
-  Нека $f \neq \bf{0}$. Тогава лесно се съобразява, че
-  \marginpar{$x^1 = x$, $x^0 = \ov{x}$}
-  \[f(x_1,\dots,x_n) \equiv \bigvee_{\stackrel{a_1,\dots,a_n:}{f(a_1,\dots,a_n) = 1}} x^{a_1}_1\dots x^{a_n}_n\]
-\end{proof}
-
-\index{пълно множество}
-\begin{thm}[Критерий за пълнота на Пост-Яблонский]
-  Нека $P\subseteq \Fs_2$ е непразно множество от булеви функции. Множеството $P$ е {\em пълно} тогава и само тогава, когато то {\em не} е подмножество на 
-  нито едно от множествата $T_0,T_1,S,M,L$.
-\end{thm}
-\begin{proof}
-  Първо, нека $P$ е пълно множество, т.е. $[P] = \Fs_2$.
-  Ако допуснем, че съществува $K \in \{T_0,T_1,S,M,L\}$, за което $P \subseteq K$, то
-  \[\Fs_2 = [P] \subseteq [K] = K,\]
-  от което следва, че $\Fs_2 = K$, което е противоречие.
-  
-  Нека сега имаме, че за всяко $K \in \{T_0,T_1,S,M,L\}$, $P \not\subseteq K$.
-  Ще докажем, че $\{\ov{x}, x\vee y\} \subseteq [P]$. Тогава, от теоремата на Бул $\Fs_2 = [\{\ov{x}, x\vee y\}] \subseteq [P]$,
-  ще следва, че $[P] = \Fs_2$.
-  Да фиксираме функциите:
-  \[f_0 \in P\setminus T_0,\ f_1 \in P \setminus T_1,\ f_S \in P\setminus S,\ f_M \in P\setminus M,\ f_L \in P\setminus L.\]
-  
-  Можем да приемем, че функциите $f_0$ и $f_1$ са едноаргументни,
-  защото ако например $f_0$ е $n$-аргументна, то ще вземем 
-  $g_0(x) = f_0(x,\dots,x) = f_0(I^1_1(x),\dots,I^1_1(x)) \in [P]$.
-  Имаме, че $f_0(0) = 1$ и $f_1(1) = 0$. 
-  Ще разгледаме четири случая за другите стойности на аргументите:
-  \begin{enumerate}[1)]
-  \item 
-    ако $f_0(1) = 0$ и $f_1(0) = 0$, тогава $f_0 \equiv \ov{x}$, $f_1 \equiv {\bf 0}$ и $f_0(f_1(x)) = 1$;
-  \item
-    ако $f_0(1) = 0$ и $f_1(0) = 1$, тогава $f_0 \equiv f_1\equiv \ov{x}$;
-  \item
-    ако $f_0(1) = 1$ и $f_1(0) = 0$, тогава $f_0 \equiv {\bf 1}$ и $f_1 \equiv {\bf 0}$;
-  \item
-    ако $f_0(1) = 1$ и $f_1(0) = 1$, тогава $f_0 \equiv {\bf 1}$, $f_1 \equiv \ov{x}$ и $f_1(f_0(x)) = 0$.
-  \end{enumerate}
-  В случаите $1)$, $3)$, $4)$ получихме, че ${\bf 0}, {\bf 1} \in [P]$.
-  Ще докажем, че и в случая $2)$ също имаме, че ${\bf 0}, {\bf 1} \in [P]$.
-  За целта ще трябва да разгледаме и функцията $f_S \not\in S$.
-  За нея знаем, че съществуват стойности на аргументите ѝ $a_1,\dots,a_n$, такива че:
-  \[f_S(a_1,\dots,a_n) = f_S(\ov{a}_1,\dots,\ov{a}_n).\]
-  Да разгледаме едноместната функция $g_S$, дефинирана като:
-  \[g_S(x) = f_S(x^{a_1},\dots,x^{a_n}) \in [P].\]
-  \begin{align*}
-    g_S(0) & = f_S(0^{a_1},\dots,0^{a_n}) & (0^0 = 1, 0^1 = 0)\\
-    & = f_S(\ov{a}_1,\dots,\ov{a}_n) = f_S(a_1,\dots,a_n) & (\text{защото } f_S\not\in S)\\
-    & = f_S(1^{a_1},\dots,1^{a_n}) & (1^0 = 0, 1^1 = 1)\\
-    & = g_S(1).
-  \end{align*}
-  Следователно $g_S$ е константа функция. 
-  Понеже сме в случая $2)$, то $\ov{x} \in [P]$ и следователно $\ov{g}_S$ е другата константна функция.
-  Заключаваме, че във всичките четири случая получаваме, че ${\bf 0}, {\bf 1} \in [P]$.
-  
-  Сега ще докажем, че имаме $\ov{x} \in [P]$.
-  Да разгледаме $f_M \not\in M$. Това означава, че съществуват вектори $\alpha  \prec \beta$, които се различават
-  само в една стойност и $f_M(\alpha) = 1$, $f_M(\beta) = 0$.
-  Имаме, че  $\alpha = (a_1,\dots,a_{k-1},0,a_{k+1},\dots,a_n)$ и $\beta = (a_1,\dots,a_{k-1},1,a_{k+1},\dots,a_n)$.
-  Да разгледаме едноместната булева функция $g_M$, дефинираната като:
-  \[g_M(x) = f_M(a_1,\dots,a_{k-1},x,a_{k+1},\dots,a_n).\]
-  Понеже вече доказахме, че ${\bf 0},{\bf 1} \in [P]$, то $g_M \in [P]$.
-  Лесно се вижда, че $g_M(x) = \ov{x}$. 
-
-  Остава да докажем, че $xy \in [P]$.
-  Да разгледаме $f_L \not\in L$. Това означава, че $f_L$ има следния вид:
-  \[f_L(x_1,\dots,x_n) = a_0 \oplus a_1x_1\oplus a_2x_2 \dots\oplus a_n x_n\oplus \dots \oplus a_lx_{i_1}x_{i_2}\dots x_{i_k}\oplus\dots \]
-  Нека $x_{i_1}x_{i_2}\dots x_{i_k}$ е първият нелинеен член в записа на $f_L$.
-  Да разгледаме двуместната булева функция $g_L$, дефинирана като:
-  \[g_L(x_{i_1},x_{i_2}) = a_0 \oplus a_{i_1}x_{i_1} \oplus a_{i_2}x_{i_2} \oplus x_{i_1}x_{i_2},\]
-  т.е. тя е получена от $f_L$ като $x_{j} = 1$ за $j \in \{i_3,\dots,i_k\}$ и $x_j = 0$ за $j \not\in\{i_1,i_2,\dots,i_k\}$.
-  
-  Можем да приемем, че $a_0 = 0$, защото ако $a_0 = 1$, то ще разгледаме функцията $g^\prime_L(x_{i_1},x_{i_2}) = \ov{g}_L(x_{i_1},x_{i_2}) \in [P]$.
-  За нея, $g^\prime(0,0) = a_0 = 0$.
-  И така, нека $g_L$ има вида
-  \[g_L(x,y) = ax\oplus by \oplus xy.\]
-  Отново трябва да разгледаме четири случая за стойностите на $a$ и $b$.
   \begin{itemize}
   \item 
-    ако $a = 0$, $b = 0$, тогава $g_L(x,y) = xy$;
-  \item 
-    ако $a = 0$, $b = 1$, тогава $g_L(x,y) = y \oplus xy$ и 
-    \[g_L(\ov{x},y) = y\oplus (x\oplus 1)y = y \oplus y \oplus xy = xy;\]
-  \item 
-    ако $a = 1$, $b = 0$, тогава $g_L(x,y) = x\oplus xy$ и
-    \[g_L(x, \ov{y}) = x\oplus x(y\oplus 1) = xy;\]
-  \item 
-    ако $a = 1$, $b = 1$, тогава $g_L(x,y) = x \oplus y \oplus xy$ и
-    \[\ov{g}_L(\ov{x},\ov{y}) = xy.\]
+    Нека $f = \bf{0}$. Тогава $f(x_1,\dots,x_n) \equiv x_1\wedge\ov{x}_1$.
+  \item
+    Нека $f \neq \bf{0}$. Тогава лесно се съобразява, че
+    \marginpar{Да напомним, че $x^1 = x$, $x^0 = \ov{x}$}
+    \[f(x_1,\dots,x_n) \equiv \bigvee_{\stackrel{a_1,\dots,a_n:}{f(a_1,\dots,a_n) = 1}} x^{a_1}_1\dots x^{a_n}_n.\]
   \end{itemize}
-  Във всички случаи получихме, че $xy \in [P]$.
-\end{proof}
+\end{hint}
+
+\begin{example}
+  Нека да фиксираме булевите функции $c(x,y) = x\wedge y$, $d(x,y) = x\vee y$, $n(x) = \ov{x}$.
+  Булевата функция \[f(x,y,z) = \ov{\ov{x}y \vee z}\] се изразява чрез суперпозиция на функциите $c(x,y)$, $d(x,y)$ и $n(x)$
+  по следния начин:
+  \[f(x,y,z) \equiv n(d(c(n(x),y),z)).\]
+\end{example}
+
+
+\begin{framed}
+  \begin{thm}[Критерий за пълнота на Пост-Яблонский]
+    \index{Пост-Яблонский}
+    Нека $P\subseteq \Fs_2$ е непразно множество от булеви функции. Множеството $P$ е {\em пълно} тогава и само тогава, когато то не е подмножество на 
+    нито едно от множествата $T_0,T_1,S,M,L$.
+  \end{thm}
+\end{framed}
+
+% \begin{proof}
+%   Първо, нека $P$ е пълно множество, т.е. $[P] = \Fs_2$.
+%   Ако допуснем, че съществува $K \in \{T_0,T_1,S,M,L\}$, за което $P \subseteq K$, то
+%   \[\Fs_2 = [P] \subseteq [K] = K,\]
+%   от което следва, че $\Fs_2 = K$, което е противоречие.
+  
+%   Нека сега имаме, че за всяко $K \in \{T_0,T_1,S,M,L\}$, $P \not\subseteq K$.
+%   Ще докажем, че $\{\ov{x}, x\vee y\} \subseteq [P]$. Тогава, от теоремата на Бул $\Fs_2 = [\{\ov{x}, x\vee y\}] \subseteq [P]$,
+%   ще следва, че $[P] = \Fs_2$.
+%   Да фиксираме функциите:
+%   \[f_0 \in P\setminus T_0,\ f_1 \in P \setminus T_1,\ f_S \in P\setminus S,\ f_M \in P\setminus M,\ f_L \in P\setminus L.\]
+  
+%   Можем да приемем, че функциите $f_0$ и $f_1$ са едноаргументни,
+%   защото ако например $f_0$ е $n$-аргументна, то ще вземем 
+%   $g_0(x) = f_0(x,\dots,x) = f_0(I^1_1(x),\dots,I^1_1(x)) \in [P]$.
+%   Имаме, че $f_0(0) = 1$ и $f_1(1) = 0$. 
+%   Ще разгледаме четири случая за другите стойности на аргументите:
+%   \begin{enumerate}[1)]
+%   \item 
+%     ако $f_0(1) = 0$ и $f_1(0) = 0$, тогава $f_0 \equiv \ov{x}$, $f_1 \equiv {\bf 0}$ и $f_0(f_1(x)) = 1$;
+%   \item
+%     ако $f_0(1) = 0$ и $f_1(0) = 1$, тогава $f_0 \equiv f_1\equiv \ov{x}$;
+%   \item
+%     ако $f_0(1) = 1$ и $f_1(0) = 0$, тогава $f_0 \equiv {\bf 1}$ и $f_1 \equiv {\bf 0}$;
+%   \item
+%     ако $f_0(1) = 1$ и $f_1(0) = 1$, тогава $f_0 \equiv {\bf 1}$, $f_1 \equiv \ov{x}$ и $f_1(f_0(x)) = 0$.
+%   \end{enumerate}
+%   В случаите $1)$, $3)$, $4)$ получихме, че ${\bf 0}, {\bf 1} \in [P]$.
+%   Ще докажем, че и в случая $2)$ също имаме, че ${\bf 0}, {\bf 1} \in [P]$.
+%   За целта ще трябва да разгледаме и функцията $f_S \not\in S$.
+%   За нея знаем, че съществуват стойности на аргументите ѝ $a_1,\dots,a_n$, такива че:
+%   \[f_S(a_1,\dots,a_n) = f_S(\ov{a}_1,\dots,\ov{a}_n).\]
+%   Да разгледаме едноместната функция $g_S$, дефинирана като:
+%   \[g_S(x) = f_S(x^{a_1},\dots,x^{a_n}) \in [P].\]
+%   \begin{align*}
+%     g_S(0) & = f_S(0^{a_1},\dots,0^{a_n}) & (0^0 = 1, 0^1 = 0)\\
+%     & = f_S(\ov{a}_1,\dots,\ov{a}_n) = f_S(a_1,\dots,a_n) & (\text{защото } f_S\not\in S)\\
+%     & = f_S(1^{a_1},\dots,1^{a_n}) & (1^0 = 0, 1^1 = 1)\\
+%     & = g_S(1).
+%   \end{align*}
+%   Следователно $g_S$ е константа функция. 
+%   Понеже сме в случая $2)$, то $\ov{x} \in [P]$ и следователно $\ov{g}_S$ е другата константна функция.
+%   Заключаваме, че във всичките четири случая получаваме, че ${\bf 0}, {\bf 1} \in [P]$.
+  
+%   Сега ще докажем, че имаме $\ov{x} \in [P]$.
+%   Да разгледаме $f_M \not\in M$. Това означава, че съществуват вектори $\alpha  \prec \beta$, които се различават
+%   само в една стойност и $f_M(\alpha) = 1$, $f_M(\beta) = 0$.
+%   Имаме, че  $\alpha = (a_1,\dots,a_{k-1},0,a_{k+1},\dots,a_n)$ и $\beta = (a_1,\dots,a_{k-1},1,a_{k+1},\dots,a_n)$.
+%   Да разгледаме едноместната булева функция $g_M$, дефинираната като:
+%   \[g_M(x) = f_M(a_1,\dots,a_{k-1},x,a_{k+1},\dots,a_n).\]
+%   Понеже вече доказахме, че ${\bf 0},{\bf 1} \in [P]$, то $g_M \in [P]$.
+%   Лесно се вижда, че $g_M(x) = \ov{x}$. 
+
+%   Остава да докажем, че $xy \in [P]$.
+%   Да разгледаме $f_L \not\in L$. Това означава, че $f_L$ има следния вид:
+%   \[f_L(x_1,\dots,x_n) = a_0 \oplus a_1x_1\oplus a_2x_2 \dots\oplus a_n x_n\oplus \dots \oplus a_lx_{i_1}x_{i_2}\dots x_{i_k}\oplus\dots \]
+%   Нека $x_{i_1}x_{i_2}\dots x_{i_k}$ е първият нелинеен член в записа на $f_L$.
+%   Да разгледаме двуместната булева функция $g_L$, дефинирана като:
+%   \[g_L(x_{i_1},x_{i_2}) = a_0 \oplus a_{i_1}x_{i_1} \oplus a_{i_2}x_{i_2} \oplus x_{i_1}x_{i_2},\]
+%   т.е. тя е получена от $f_L$ като $x_{j} = 1$ за $j \in \{i_3,\dots,i_k\}$ и $x_j = 0$ за $j \not\in\{i_1,i_2,\dots,i_k\}$.
+  
+%   Можем да приемем, че $a_0 = 0$, защото ако $a_0 = 1$, то ще разгледаме функцията $g^\prime_L(x_{i_1},x_{i_2}) = \ov{g}_L(x_{i_1},x_{i_2}) \in [P]$.
+%   За нея, $g^\prime(0,0) = a_0 = 0$.
+%   И така, нека $g_L$ има вида
+%   \[g_L(x,y) = ax\oplus by \oplus xy.\]
+%   Отново трябва да разгледаме четири случая за стойностите на $a$ и $b$.
+%   \begin{itemize}
+%   \item 
+%     ако $a = 0$, $b = 0$, тогава $g_L(x,y) = xy$;
+%   \item 
+%     ако $a = 0$, $b = 1$, тогава $g_L(x,y) = y \oplus xy$ и 
+%     \[g_L(\ov{x},y) = y\oplus (x\oplus 1)y = y \oplus y \oplus xy = xy;\]
+%   \item 
+%     ако $a = 1$, $b = 0$, тогава $g_L(x,y) = x\oplus xy$ и
+%     \[g_L(x, \ov{y}) = x\oplus x(y\oplus 1) = xy;\]
+%   \item 
+%     ако $a = 1$, $b = 1$, тогава $g_L(x,y) = x \oplus y \oplus xy$ и
+%     \[\ov{g}_L(\ov{x},\ov{y}) = xy.\]
+%   \end{itemize}
+%   Във всички случаи получихме, че $xy \in [P]$.
+% \end{proof}
 
 \begin{example}
   Да проверим дали следното множество от булеви функции е пълно
@@ -853,9 +829,7 @@
 
 \begin{problem} %Гаврилов, стр. 83, зад. 6.1
   Пълна ли е системата от функции?
-  \begin{enumerate}[1)]
-  % \item
-  %   $A = \{xy, x\vee y, x\oplus y\oplus z\oplus 1\}$;
+  \begin{enumerate}[a)]
   \item
     $A = \{1, xy(x\oplus z)\}$;
   \item
@@ -883,57 +857,33 @@
   \end{enumerate}
 \end{problem}
 \begin{solution}
-  \begin{enumerate}[1)]
-  % \item
-  %   \begin{tabular}[b]{|c|c|c|c|c|c|}
-  %     \hline
-  %     & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
-  %     \hline
-  %     $xy$ & $+$ & $+$ & $-$ & $-$ & $+$\\
-  %     \hline
-  %     $x\vee y$ & $+$ & $+$ & $-$ & $-$ & $+$\\
-  %     \hline
-  %     $x\oplus y\oplus z\oplus 1$ & $-$ & $-$ & $+$ & $+$ & $-$ \\
-  %     \hline
-  %   \end{tabular}
-  \item
-    % \newline
-    \begin{tabular}[b]{|c|c|c|c|c|c|}
-      \hline
-      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
-      \hline
-      $1$ & $-$ & $+$ & $+$ & $-$ & $+$\\
-      \hline
-      $xy(x\oplus z)$ & $+$ & $-$ & $-$ & $-$ & $-$\\
-      \hline
-    \end{tabular}
-  \item
-    \begin{tabular}[b]{|c|c|c|c|c|c|}
-      \hline
-      & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
-      \hline
-      $x\rightarrow y$ & $-$ & $+$ & $-$ & $-$ & $+$\\
-      \hline
-      $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
-      \hline
-    \end{tabular}
-  % \item
-  %   \begin{tabular}[b]{|c|c|c|c|c|c|}
-  %     \hline
-  %     & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
-  %     \hline
-  %     $0$ & $+$ & $-$ & $+$ & $-$ & $+$\\
-  %     \hline
-  %     $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
-  %     \hline
-  %     $x\rightarrow y$ & $-$ & $+$ & $-$ & $-$ & $-$\\
-  %     \hline
-  %     $xy \sim xz$ & $-$ & $+$ & $-$ & $-$ & $-$\\
-  %     \hline
-    % \end{tabular}
-  \end{enumerate}
+  \begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+      \begin{tabular}[b]{|c|c|c|c|c|c|}
+        \hline
+        & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+        \hline
+        $1$ & $-$ & $+$ & $+$ & $-$ & $+$\\
+        \hline
+        $xy(x\oplus z)$ & $+$ & $-$ & $-$ & $-$ & $-$\\
+        \hline
+      \end{tabular}
+      \caption{}      
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\textwidth}
+      \begin{tabular}[b]{|c|c|c|c|c|c|}
+        \hline
+        & $T_0$ & $T_1$ & $L$ & $S$ & $M$\\
+        \hline
+        $x\rightarrow y$ & $-$ & $+$ & $-$ & $-$ & $+$\\
+        \hline
+        $x\oplus y$ & $+$ & $-$ & $+$ & $-$ & $-$\\
+        \hline
+      \end{tabular}
+      \caption{}
+    \end{subfigure}
+  \end{figure}
 \end{solution}
-
 
 \begin{problem} % Гаврилов, стр. 83
   Проверете пълно ли е множеството от булеви функции:
