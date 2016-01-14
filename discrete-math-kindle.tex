@@ -1,0 +1,187 @@
+%%%% NORMAL dimensions %%%%%%%%%%%%%%%%%
+% \documentclass[a4paper,10pt]{report}
+% \setlength{\marginparsep}{0.5cm}
+% \setlength{\oddsidemargin}{0.3cm}
+% \setlength{\hoffset}{0cm}
+% \setlength{\marginparwidth}{110pt}
+% \let\oldmarginpar\marginpar
+
+% \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
+% {\raggedright\scriptsize #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% KINDLE dimensions %%%%
+
+\documentclass[8pt]{extreport}
+% \usepackage[scaled=0.5]{helvet}
+\usepackage[papersize={3.6in,4.8in},margin=2mm]{geometry}  % page geometry
+\renewcommand\marginpar[1]{}
+% \usepackage{extsizes}
+\setlength{\abovecaptionskip}{2pt} % space above captions 
+\setlength{\belowcaptionskip}{0pt} % space below captions
+\setlength{\textfloatsep}{2pt}     % space between last top float or first bottom float and the text
+\setlength{\floatsep}{2pt}         % space left between floats
+\setlength{\intextsep}{2pt}        % space left on top and bottom of an in-text float
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \setlength{\oddsidemargin}{4cm}
+% \setlength{\evensidemargin}{4cm}
+%\usepackage{ucs}
+
+% \usepackage[bindingoffset=2cm]{geometry}
+\usepackage[english,bulgarian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
+citecolor=green, urlcolor=blue]{hyperref}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{makeidx}
+\usepackage{layout}
+\usepackage{framed}
+\usepackage{bussproofs}
+
+\usepackage{paralist}
+\usepackage[shortlabels]{enumitem}
+\setlist{leftmargin=*}
+% \newenvironment{compactenum}{%
+%   \enumerate[topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]%
+% }{\endenumerate}
+% \usepackage[inline]{enumitem}
+
+\usepackage{algorithm}
+\floatname{algorithm}{Алгоритъм}
+%\usepackage{algorithmic}
+\usepackage[noend]{algpseudocode}
+%\usepackage{algpseudocode}
+
+%%%%%%%%%%%%%%% TIKZ Package %%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgf}
+\usetikzlibrary{arrows,automata}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{caption}
+\usepackage{subcaption}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Теорема}
+\newtheorem{crl}{Следствие}
+\newtheorem{cor}{Следствие}
+\newtheorem{lemma}{Лема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{dfn}{Определение}
+\newtheorem{problem}{Задача}
+\newtheorem{example}{Пример}
+\newtheorem{question}{Въпрос}
+\newtheorem*{remark}{Забележка}
+\renewenvironment{proof}{\noindent{\bf Доказателство.}\hspace*{1em}}{\qed\par}
+\newenvironment{solution}{\noindent{\bf Решение.}\hspace*{1em}}{\qed\par}
+\newenvironment{hint}{\noindent{\bf Упътване.}\hspace*{1em}}{\qed\par}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\renewcommand{\C}{\mathcal{C}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Ls}{\mathscr{L}}
+\newcommand{\Fs}{\mathscr{F}}
+\newcommand{\Rs}{\mathscr{R}}
+\newcommand{\Ps}{\mathscr{P}}
+\newcommand{\As}{\mathscr{A}}
+\newcommand{\Bs}{\mathscr{B}}
+\newcommand{\Es}{\mathscr{E}}
+\newcommand{\Is}{\mathscr{I}}
+\newcommand{\Ss}{\mathscr{S}}
+\newcommand{\xn}{x_{1},\dots,x_{n}}
+
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Int}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+
+\newcommand{\xs}{overline{x}}
+
+\newcommand{\ys}{overline{y}}
+
+\newcommand{\zs}{overline{z}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\lvert{#1}\rvert}
+\newcommand{\pair}[1]{\langle{#1}\rangle}
+
+\newcommand{\FA}{\langle{Q,\Sigma,s,\delta,F}\rangle}
+\newcommand{\FAn}[1]{\langle{Q_#1,\Sigma,s_#1,\delta_#1,F_#1}\rangle}
+\newcommand{\NFA}{\langle{Q,\Sigma,s,\Delta,F}\rangle}
+\newcommand{\NFAn}[1]{\langle{Q_#1,\Sigma,s_#1,\Delta_#1,F_#1}\rangle}
+\newcommand{\PDA}{\langle{Q,\Sigma,\Gamma,\#,s,\Delta,F}\rangle}
+\newcommand{\PDAn}[1]{\langle{Q_#1,\Sigma,\Gamma,\#,s_#1,\Delta_#1,F_#1}\rangle}
+\newcommand{\CFG}{\langle{V,\Sigma,R,S}\rangle}
+\newcommand{\TM}{\langle{Q,\Sigma,\Gamma,\delta,s,\bot,F}\rangle}
+
+\renewcommand{\iff}{\ \leftrightarrow\ }
+\newcommand{\todo}{\ding{45} }
+\newcommand{\dff}{\stackrel{\text{\footnotesize{дeф}}}{=}}
+\newcommand{\Th}[1]{{\em Теорема~\ref{th:#1}}}
+\newcommand{\Lem}[1]{{\em Лема~\ref{lem:#1}}}
+\newcommand{\Prob}[1]{{\em Задача~\ref{pr:#1}}}
+\newcommand{\Prop}[1]{{\em Твърдение~\ref{pr:#1}}}
+
+
+% \setlist[itemize]{leftmargin=*}
+
+
+
+%\renewcommand\marginpar[1]{\oldmarginpar{\scriptsize #1}}
+
+% \fontfamily{garamond}
+\title{Записки по Дискретна математика}
+\author{Стефан Вътев\thanks{ел. поща: \href{stefanv@fmi.uni-sofia.bg}{stefanv@fmi.uni-sofia.bg}}}
+%, Факултет по математика и информатика, Софийски университет ,,Св. Климент Охридски''}}
+
+\usepackage{breqn}         % automatic equation breaking
+
+\makeindex
+\begin{document}
+\maketitle
+\layout
+
+\tableofcontents
+\include{propositional}
+\include{predicate}
+\include{sets}
+\include{relations}
+\include{functions}
+\include{cardinality}
+\include{proofs}
+\include{comb}
+\include{boolean}
+% \include{automata}
+% \include{context-free}
+% \include{turing}
+%\include{graphs}
+% \include{graph-alg}
+
+% \backmatter
+
+% \bibliographystyle{amsalpha}
+\bibliographystyle{amsplain}
+\bibliography{discrete-math}
+
+\printindex
+% \listofalgorithms
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
