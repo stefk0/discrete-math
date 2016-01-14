@@ -1,5 +1,5 @@
 %%%% NORMAL dimensions %%%%%%%%%%%%%%%%%
-\documentclass[a4paper,10pt]{report}
+\documentclass[a4paper,10pt,fleqn]{report}
 \setlength{\marginparsep}{0.5cm}
 \setlength{\oddsidemargin}{0.3cm}
 \setlength{\hoffset}{0cm}
@@ -25,8 +25,19 @@
 % \usepackage[bindingoffset=2cm]{geometry}
 \usepackage[english,bulgarian]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[colorlinks=true, linkcolor=blue,pdfstartview=FitV,
-citecolor=green, urlcolor=blue]{hyperref}
+\usepackage[]{hyperref}
+\hypersetup{
+  pdftitle={Exercises in Discrete mathematics},
+  pdfauthor={Stefan Vatev},
+  colorlinks=true,
+  linkcolor=blue,
+  pdfstartview=FitV,
+  citecolor=green,
+  pdfpagemode=UseOutlines,    % this is the option you were lookin for
+  urlcolor=blue
+}
+% \usepackage[pdftex,colorlinks=true,linkcolor=blue,pdfstartview=FitV,citecolor=green,urlcolor=blue]{hyperref}
+% \usepackage{hypcap}
 \usepackage{pifont}
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -143,7 +154,7 @@ citecolor=green, urlcolor=blue]{hyperref}
 \makeindex
 \begin{document}
 \maketitle
-\layout
+% \layout
 
 \tableofcontents
 \include{propositional}
