@@ -23,7 +23,7 @@
 \section{Основни свойства}
 
 \marginpar{Често вместо $x\wedge y$ пишем $x\cdot y$ или $xy$. Също така, вместо $\neg x$ пишем $\overline{x}$}
-\begin{enumerate}[1)]%% ДА се напишат всичките от Манев, стр. 189
+\begin{enumerate}[1)]
 \item
   Комутативни свойства
   \[xy \equiv yx,\quad x\vee y \equiv y\vee x,\quad x\oplus y \equiv y\oplus x\]
@@ -63,7 +63,8 @@
   \[\ov{xy} \equiv \ov{x}\vee\ov{y}, \quad \ov{x\vee y} \equiv \ov{x}\cdot\ov{y}\]
 \end{enumerate}
 
-\begin{problem} %% Гаврилов, стр. 30
+\begin{problem}
+  \marginpar{\cite[стр. 30]{gavrilov}}
   Проверете еквивалентни ли са формулите $\varphi$ и $\psi$ като използвате еквивалентни преобразования на формулите.
   \begin{enumerate}[a)]
   \item
@@ -138,7 +139,8 @@
   \[\Phi(x_1,\dots,x_n) = \bigvee_{\stackrel{(\sigma_1\dots \sigma_n) \in \{0,1\}^n}{f(\sigma_1, \dots \sigma_n) = 1}}x_1^{\sigma_1}x_2^{\sigma_2}\dots x_n^{\sigma_n}.\]
 \end{itemize}
 
-\begin{problem} %% Гаврилов стр. 50
+\begin{problem}
+  \marginpar{\cite[стр. 50]{gavrilov}}
   С помощта на еквивалентни преобразувания постройте ДНФ на булевите функции
   \begin{enumerate}[a)]
   \item
@@ -236,8 +238,8 @@
 \end{prop}
 
 
-\section{Самодвойнствени функции}
-
+\section{Самодвойнствени булеви функции}
+\index{булева функция!самодвойнствена}
 \begin{itemize}
 \item 
   Нека е дадена булевата функция $f(\xn)$. Дефинираме булевата функция $f^\star(\xn)$ като
@@ -395,7 +397,7 @@
 \end{problem}
 
 \section{Полином на Жегалкин}
-
+\index{полином на Жегалкин}
 \begin{itemize}
 \item 
   Полином на Жегалкин на 2 променливи е формула от вида:
@@ -474,10 +476,13 @@
 \end{problem}
 
 \section{Линейни функции}
-\index{линейна!булева функция}
+\index{булева функция!линейна}
 
 \begin{itemize}
-\item 
+\item
+  Знаем, че всяка булева функция може да се представи {\em по единствен начин}
+  с полином на Жегалкин.
+\item
   Всяка булева функция $f(\xn)$ с полином на Жегалкин от вида 
   \[a_0\oplus a_1x_1 \oplus a_2x_2 \dots\oplus a_nx_n\] наричаме {\bf линейна}.
 \item
@@ -556,7 +561,7 @@
 
 
 \section{Монотонни функции}
-
+\index{булева функция!монотонна}
 \begin{itemize}
 \item 
   Нека $\alpha = (a_1,a_1,\dots,a_n)$ и $\beta = (b_1,b_2,\dots,b_n)$ са два булеви вектора с равна дължина.
@@ -573,7 +578,7 @@
     $(1,0,1) \not\preceq (0,1,0)$.
   \end{itemize}
 \item
-  Булевата фунция $f(\xn)$ наричаме {\bf монотонна}\index{монотонна!функция}, ако 
+  Булевата фунция $f(\xn)$ наричаме {\bf монотонна}, ако 
   \[(\forall \alpha,\beta\in J^n_2 )[\alpha\preceq\beta \rightarrow f(\alpha) \leq f(\beta)].\]  
 \item
   Ще означаваме с $M$ множеството от всички монотонни булеви функции, а с $M^n$ тези на $n$ променливи.
