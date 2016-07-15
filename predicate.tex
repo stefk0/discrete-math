@@ -134,6 +134,23 @@
 \end{problem}
 
 \begin{example}
+  Казваме, че редицата $(q_n)_{n\in\Nat}$ е сходяща и клони към $a$, ако
+  \[(\forall \varepsilon)(\exists N)(\forall n)[n > N \implies |a - q_n| < \varepsilon].\]
+  Обикновено това означаваме като $\lim_n q_n = a$.
+  Да видим какво означава, че $\lim_n q_n \neq a$.
+  \begin{align*}
+    & \neg (\forall \varepsilon)(\exists N)(\forall n)[n > N \implies |a - q_n| < \varepsilon] \iff \\
+    & \neg (\forall \varepsilon)(\exists N)(\forall n)[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
+    & (\exists \varepsilon) \neg (\exists N)(\forall n)[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
+    & (\exists \varepsilon) (\forall N) \neg (\forall n)[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
+    & (\exists \varepsilon) (\forall N)(\exists n)\neg[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
+    & (\exists \varepsilon) (\forall N)(\exists n)\neg[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
+    & (\exists \varepsilon) (\forall N)(\exists n)[n > N\ \wedge\ |a - q_n| \geq \varepsilon].
+  \end{align*}
+\end{example}
+
+
+\begin{example}
   Казваме, че $f:D \to \Real$ е {\em непрекъсната} в точката $x_0 \in D$, ако 
   \[(\forall \varepsilon > 0)(\exists \delta >0)(\forall x\in D)[|x_0 - x| < \delta \implies |f(x_0) - f(x)| < \varepsilon].\]
   Да видим какво означава $f$ да бъде {\em прекъсната} в точката $x_0 \in D$:
@@ -155,11 +172,11 @@
   Напишете формула, която казва, че $f$ не е равномерно непрекъсната.
 \end{problem}
 
-\begin{problem}
-  Казваме, че $f:D \to \Real$ е {\em би-Липшиц непрекъсната}, ако
-  \[(\exists K \geq 1)(\forall x\in D)(\forall y \in D)\left[\frac{|x-y|}{K} \leq |f(x)-f(y)| \leq K|x-y|\right].\]
-  Напишете формула, която казва, че $f$ не е би-Липшиц непрекъсната.
-\end{problem}
+% \begin{problem}
+%   Казваме, че $f:D \to \Real$ е {\em би-Липшиц непрекъсната}, ако
+%   \[(\exists K \geq 1)(\forall x\in D)(\forall y \in D)\left[\frac{|x-y|}{K} \leq |f(x)-f(y)| \leq K|x-y|\right].\]
+%   Напишете формула, която казва, че $f$ не е би-Липшиц непрекъсната.
+% \end{problem}
 
 
 \begin{problem}
