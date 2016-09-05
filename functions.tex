@@ -59,6 +59,143 @@
 за всеки елемент $a\in A$ съотвества {\em най-много един} елемент $b \in B$, т.е.
 \[(\forall x\in A)(\forall y_1,y_2 \in B)[(\langle{x,y_1}\rangle\in R\ \wedge\ \langle{x,y_2}\rangle\in R) \rightarrow y_1 = y_2].\]
 
+
+\section{Операции върху функции}
+
+\subsection*{Образ и първообраз}
+Нека е дадена функцията $f:A\to B$.
+Ще разгледаме няколко основни операции върху функции.
+
+\begin{itemize}
+\item 
+  \index{образ на множество}
+  {\bf Образ на множеството} $X\subseteq A$ под действието на функцията $f$, наричаме
+  множеството: \[f(X) = \{b\in B \mid f(a) = b\ \wedge\ a \in X\}.\]
+\item
+  \index{първообраз на множество}
+  {\bf Първообраз на множеството} $Y\subseteq B$ под действието на функцията $f$, наричаме
+  множеството: \[f^{-1}(Y) = \{a\in A \mid f(a) = b\ \wedge\ b \in Y\}.\]
+\end{itemize}
+
+
+\begin{example}
+  Нека $f:\Real\to\Real$ е дефинирана като $f(x) = \abs{x+1}$.
+  Тогава имаме, че:  
+  \begin{enumerate}[a)]
+  \item
+    $f([-1,1)) = \{\abs{x+1} \mid -1 \leq x < 1\} = [0, 2)$;
+  \item
+    $f^{-1}([-1,1)) = \{x\in\Real\mid -1 \leq \abs{x+1} < 1\} = [-1,0)$;
+  \item
+    $f^{-1}([-1,0)) = \{x \in \Real \mid -1 \leq \abs{x+1} < 0\} = \emptyset$;
+  \item
+    $f([-1,0)) = \{\abs{x+1} \mid -1 \leq x < 0\} = [0, 1)$;
+  \item
+    $f^{-1}([0,2)) = \{x \in \Real \mid 0 \leq \abs{x+1} < 2\} = (-3, 1)$.
+  \end{enumerate}
+  Да положим $A = [-1,1)$. 
+  От б) и г) виждаме, че $f(f^{-1}(A)) \neq A$, а от 
+  а) и д) виждаме, че $f^{-1}(f(A)) \neq A$.
+\end{example}
+
+\begin{problem}
+  Нека е дадена произволна функция $f:A \to B$.
+  Проверете:
+  \begin{enumerate}[a)]
+  \item
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)]$;
+  \item
+    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)]$;
+  \item
+    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$;
+  \item
+    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$;
+  \item
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff  X~\cap~f^{-1}(Y)~=~\emptyset]$;
+  \item
+    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$;
+  \item
+    $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
+  \item
+    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$;
+  \item
+    при какви условия за $f$,
+    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$;
+  \item
+    при какви условия за $f$,
+    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$;
+  \item
+    при какви условия за $f$,
+    $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
+  \end{enumerate}
+\end{problem}
+
+\subsection*{Обратна функция}
+
+За всяка биективна функция $f:A\to B$, определяме нейната обратна функция $g:B \to  A$ като:
+\[(\forall a \in A)(\forall b \in Ran(f))[g(b) = a\ \iff\ f(a) = b].\]
+Обикновено означаваме $g$ като $f^{-1}$.
+
+\subsection*{Композиция}
+
+Нека са дадени функциите $f:A\to B$ и $g:C\to A$.
+{\bf Композиция} на $f$ и $g$ е функцията $f\circ g: C \to B$ определена като
+\[f\circ g = \{\pair{c,b}\mid (\exists a\in A)[g(c) = a\ \wedge\ f(a) = b]\}.\]
+\marginpar{Най-напред прилагаме $g$ и след това $f$}
+Композицията на $f$ и $g$ може да се запише и така:
+\[(\forall c\in C)[(f\circ g)(c) = f(g(c))]\]
+
+\begin{example}
+  Нека $f(x) = 2x+1$, $g(x) = x^2$. Тогава:
+  \begin{itemize}
+  \item 
+    $(f\circ g)(x) = 2x^2 + 1$;
+  \item
+    $(g\circ f)(x) = (2x+1)^2$.
+  \end{itemize}
+\end{example}
+
+\begin{example}
+  \marginpar{Среща се студенти да пишат, че $f^{-1}(x) = \frac{1}{x}$ !}
+  Ако дефинираме $f:A\to A$ като $f(x) = x$, 
+  то за $f^{-1}:A\to A$ имаме също $f^{-1}(x) = x$.
+\end{example}
+
+% \begin{enumerate}[I)]
+% \item
+%   {\bf Образ}
+  
+
+% \item
+%   {\bf Първообраз}
+
+
+% \item
+%   {\bf Обратна функция}
+
+% \item 
+%   {\bf Рестрикция}
+
+%   Нека $X\subseteq A$. {\em Рестрикция} на $f$ до множеството $X$, наричаме
+%   множеството: \[f\upharpoonright X = \{\langle{x,y}\rangle\mid f(x) = y\ \wedge\ x\in X\} =  f\cap X\times B.\]
+% \item
+%   {\bf Затваряне}
+  
+%   Нека в този случай $f:A\to A$ и нека $X\subseteq A$.
+%   За всяко $n \geq 0$ определяме $X_0 = X$ и $X_{n+1} = X_n \cup f(X_n)$.
+%   {\em Затваряне} на множеството $X$ относно функцията $f$ е множеството
+%   \[f[X] = \bigcup_{n\in\Nat} X_n. \]
+  
+% \item
+%   {\bf Композиция}
+
+
+% \end{enumerate}
+
+
+
+\section{Задачи}
+
 \begin{problem}
   За всяка от следните тотални функции $f$ определете дали $f$ е
   инекция, сюрекция или биекция.
@@ -127,139 +264,23 @@
   \end{enumerate}
 \end{problem}
 
-\section{Операции върху функции}
-
-
-\subsection*{Образ и първообраз}
-Нека е дадена функцията $f:A\to B$.
-Ще разгледаме няколко основни операции върху функции.
-
-\begin{itemize}
-\item 
-  {\bf Образ на множеството} $X\subseteq A$ под действието на функцията $f$, наричаме
-  множеството: \[f(X) = \{b\in B \mid f(a) = b\ \wedge\ a \in X\}.\]
-\item
-  {\bf Първообраз на множеството} $Y\subseteq B$ под действието на функцията $f$, наричаме
-  множеството: \[f^{-1}(Y) = \{a\in A \mid f(a) = b\ \wedge\ b \in Y\}.\]
-\end{itemize}
-
-
-\begin{example}
-  Нека $f:\Real\to\Real$ е дефинирана като $f(x) = \abs{x+1}$.
-  Тогава имаме, че:  
-  \begin{enumerate}[a)]
-  \item
-    $f([-1,1)) = \{\abs{x+1} \mid -1 \leq x < 1\} = [0, 2)$;
-  \item
-    $f^{-1}([-1,1)) = \{x\in\Real\mid -1 \leq \abs{x+1} < 1\} = [-1,0)$;
-  \item
-    $f^{-1}([-1,0)) = \{x \in \Real \mid -1 \leq \abs{x+1} < 0\} = \emptyset$;
-  \item
-    $f([-1,0)) = \{\abs{x+1} \mid -1 \leq x < 0\} = [0, 1)$;
-  \item
-    $f^{-1}([0,2)) = \{x \in \Real \mid 0 \leq \abs{x+1} < 2\} = (-3, 1)$.
-  \end{enumerate}
-  Да положим $A = [-1,1)$. 
-  От б) и г) виждаме, че $f(f^{-1}(A)) \neq A$, а от 
-  а) и д) виждаме, че $f^{-1}(f(A)) \neq A$.
-\end{example}
-
+%% Rosen Textbook
 \begin{problem}
-  Нека е дадена произволна функция $f:A \to B$.
-  Проверете:
+  Нека с $[\Int \to \Int]$ да означим множеството на всички тотални функции от $\Int$ в $\Int$.
+  Кои от следните бинарни релации над $[\Int\to\Int]$ са релации на еквивалентност? Опишете техните класове на еквивалентност.
   \begin{enumerate}[a)]
   \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\cup Y) = f^{-1}(X)\cup f^{-1}(Y)]$;
+    $R = \{(f,g)\mid f(1) = g(1)\}$.
   \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\cap Y) = f^{-1}(X)\cap f^{-1}(Y)]$;
+    $R = \{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
   \item
-    $(\forall X,Y \subseteq B)[f^{-1}(X\backslash Y) = f^{-1}(X)\backslash f^{-1}(Y)]$;
+    $R =\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
   \item
-    $(\forall X\subseteq A)(\forall Y\subseteq B)[f(X)\cap Y = f(X\cap f^{-1}(Y))]$;
+    $R = \{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
   \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\cap Y = \emptyset \iff  X~\cap~f^{-1}(Y)~=~\emptyset]$;
-  \item
-    $(\forall X \subseteq A)(\forall Y \subseteq B)[f(X)\subseteq Y \iff X\subseteq f^{-1}(Y)]$;
-  \item
-    $(\forall X,Y \subseteq A)[f(X)\cup f(Y) = f(X\cup Y)]$;
-  \item
-    $f(\bigcup_{i\in I}X_i) = \bigcup_{i\in I}(X_i)$;
-  \item
-    при какви условия за $f$,
-    $(\forall X\subseteq A)[X =  f^{-1}(f(X))]$;
-  \item
-    при какви условия за $f$,
-    $(\forall Y \subseteq B)[Y = f(f^{-1}(Y))]$;
-  \item
-    при какви условия за $f$,
-    $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
+    $R = \{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
   \end{enumerate}
 \end{problem}
-
-\subsection*{Обратна функция}
-
-За всяка биективна функция $f:A\to B$, определяме нейната обратна функция $g:B \to  A$ като:
-\[(\forall a \in A)(\forall b \in Ran(f))[g(b) = a\ \iff\ f(a) = b].\]
-Обикновено означаваме $g$ като $f^{-1}$.
-
-\subsection*{Композиция}
-
-Нека са дадени функциите $f:A\to B$ и $g:C\to A$.
-{\em Композиция} на $f$ и $g$ е функцията $f\circ g: C \to B$ определена като
-\[f\circ g = \{\pair{c,b}\mid (\exists a\in A)[g(c) = a\ \wedge\ f(a) = b]\}.\]
-\marginpar{Най-напред прилагаме $g$ и след това $f$}
-Композицията на $f$ и $g$ може да се запише и така:
-\[(\forall c\in C)[(f\circ g)(c) = f(g(c))]\]
-
-\begin{example}
-  Нека $f(x) = 2x+1$, $g(x) = x^2$. Тогава:
-  \begin{itemize}
-  \item 
-    $(f\circ g)(x) = 2x^2 + 1$;
-  \item
-    $(g\circ f)(x) = (2x+1)^2$.
-  \end{itemize}
-\end{example}
-
-\begin{example}
-  \marginpar{Среща се студенти да пишат, че $f^{-1}(x) = \frac{1}{x}$, което е безумно!}
-  Ако дефинираме $f:A\to A$ като $f(x) = x$, 
-  то за $f^{-1}:A\to A$ имаме също $f^{-1}(x) = x$.
-\end{example}
-
-% \begin{enumerate}[I)]
-% \item
-%   {\bf Образ}
-  
-
-% \item
-%   {\bf Първообраз}
-
-
-% \item
-%   {\bf Обратна функция}
-
-% \item 
-%   {\bf Рестрикция}
-
-%   Нека $X\subseteq A$. {\em Рестрикция} на $f$ до множеството $X$, наричаме
-%   множеството: \[f\upharpoonright X = \{\langle{x,y}\rangle\mid f(x) = y\ \wedge\ x\in X\} =  f\cap X\times B.\]
-% \item
-%   {\bf Затваряне}
-  
-%   Нека в този случай $f:A\to A$ и нека $X\subseteq A$.
-%   За всяко $n \geq 0$ определяме $X_0 = X$ и $X_{n+1} = X_n \cup f(X_n)$.
-%   {\em Затваряне} на множеството $X$ относно функцията $f$ е множеството
-%   \[f[X] = \bigcup_{n\in\Nat} X_n. \]
-  
-% \item
-%   {\bf Композиция}
-
-
-% \end{enumerate}
-
-
-
 
 \begin{problem}
   Нека $f: A\to B$, $g: B\to C$ са функции.
