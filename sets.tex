@@ -28,6 +28,7 @@
   \end{itemize}
 \end{example}
 
+
 \section{Сравняване на множества}
 
 Казваме, че едно множество $A$ {\bf се включва в} множеството $B$, което означаваме с $A \subseteq B$, 
@@ -168,6 +169,26 @@
       $A\triangle B = \{x\in\Nat\mid 1<x\leq 3\}$
     \end{itemize}
 \end{example}
+
+\section*{Индуктивни дефиниции на множества}
+
+Следващият пример проказва, че трябва да бъдем внимателни как строим нови множества.
+\begin{example}
+  Нека съвкупността от обекти $D$ е определена като
+  \[D = \{A\mid A\mbox{ е множество и } A\not\in A\}.\]
+  Тогава:
+  \begin{enumerate}[a)]
+  \item
+    Ако $D \in D$, то $D \not\in D$. Противоречие.
+  \item
+    Ако $D \not\in D$, то $D \in D$. Противоречие.
+  \end{enumerate}
+\end{example}
+
+\section*{Компютърно представяне на крайни множества}
+
+
+
 
 \section{Задачи}
 
@@ -373,58 +394,13 @@
   \end{enumerate}
 \end{problem}
 
-Следващият пример проказва, че трябва да бъдем внимателни как строим нови множества.
-\begin{example}
-  Нека съвкупността от обекти $D$ е определена като
-  \[D = \{A\mid A\mbox{ е множество и } A\not\in A\}.\]
-  Тогава:
-  \begin{enumerate}[a)]
-  \item
-    Ако $D \in D$, то $D \not\in D$. Противоречие.
-  \item
-    Ако $D \not\in D$, то $D \in D$. Противоречие.
-  \end{enumerate}
-\end{example}
+\section*{Литература}
 
-
-% \begin{problem}
-%   Нека множеството $A$ е дефинирано по следния начин:
-%   \begin{enumerate}
-%   \item
-%     $0\in A$
-%   \item
-%     Ако $x\in A$, то $2x+1 \in A$.
-% \end{enumerate}
-% Намерете $A$.
-% \end{problem}
-% \begin{proof}
-%   $A = \{2^n - 1\ \mid n\in\N\}$.
-% \end{proof}
-
-% \begin{thm}
-%   Нека множеството $A$ е дефинирано по следния начин:
-%   \begin{enumerate}[(1)]
-%   \item
-%     $1\in A$
-%   \item
-%     Ако $m,n\in A$, то $2m+3n \in A$.
-%   \item
-%     Всички елементи на $A$ са добавени или по правило (1) или правило (2).
-% \end{enumerate}
-% Намерете $A$.
-% \end{thm}
-% \begin{proof}
-%   Нека $B = \{n \mid n\equiv 1 (\mod 12)\ \vee n\equiv 5 (\mod 12) \}$.
-%   Искаме да докажем, че $A = B$.
-%   Първо ще докажем, че $A\subseteq B$.
-%   За целта проверяваме, че $1\in B$ и ако $m,n \in B$, то $2m+3n \in B$.
-  
-%   За другата посока, т.е. $B\subseteq A$, трябва да докажем, че ако
-%   за всяко $k\leq n$ е вярно, че $12k+1 \in B$ и $12k + 5 \in B$,
-%   то е вярно, че $12(n+1)+1 \in B $ и $12(n+1) + 5 \in B$.
-% \end{proof}
-
-
+\begin{itemize}
+\item 
+  В \cite[Глава 2]{rosen} се разглеждат основно крайни множества или 
+  множества ограничени от някакъв универсум $U$.
+\end{itemize}
 
 
 %%% Local Variables: 

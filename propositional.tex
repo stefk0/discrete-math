@@ -179,38 +179,58 @@
 
 \subsection*{Съждителни закони}
 
+Следва списък от съждителни еквивалентности.
+Те се наричат закони, защото се използват много често.
+Не е необходимо да ги учите наизуст, но е важно да може да
+проверите за всеки от тях защо е валиден.
+
 \begin{enumerate}[A)]
-  \item
-    {\bf Комутативен закон}
-    \[p\vee q \equiv q\vee p\] 
-    \[p \wedge q \equiv q \wedge p\]
-  \item
-    {\bf Асоциативен закон}
-    \[(p\vee q)\vee r \equiv p\vee(q\vee r)\]
-    \[(p\ \wedge\ q)\ \wedge\ r \equiv p\ \wedge\ (q\ \wedge\ r)\]
-  \item
-    {\bf Дистрибутивен закон}
-    \[p\ \wedge\ (q \vee r) \equiv (p\ \wedge q)\vee (p\ \wedge\ r)\]
-    \[p\vee (q\ \wedge\ r) \equiv (p\vee q)\ \wedge\ (p\vee r)\]
-  \item
-    {\bf Закони на де Морган}
-    \[\neg(p \wedge q) \equiv (\neg p \vee \neg q)\]
-    \[\neg(p\vee q) \equiv (\neg p \wedge \neg q)\]
-  \item
-    {\bf Закон за контрапозицията}
-    \[p\rightarrow q \equiv \neg q \rightarrow \neg p\]
-  \item
-    {\bf Обобщен закон за контрапозицията}
-    \[(p \wedge q)\rightarrow r \equiv (p \wedge \neg r) \rightarrow \neg q\]
-  \item
-    {\bf Закон за изключеното трето}
-    \[p\vee \neg p \equiv {\mathbf 1}\]
-  \item
-    {\bf Закон за силогизма (транзитивност)}
-    \[[(p\rightarrow q)\ \wedge\ (q\rightarrow r)] \rightarrow (p\rightarrow r) \equiv {\mathbf 1}\]
+\item
+  {\bf Закон за идентитета}
+  \[p \land \mathbf{1} \equiv p\]
+  \[p \lor \mathbf{0} \equiv p\]
+\item
+  {\bf Закон за доминацията}
+  \[p \lor \mathbf{1} \equiv \mathbf{1}\]
+  \[p \land \mathbf{0} \equiv \mathbf{0}\]
+\item
+  {\bf Закон за идемпотентността}
+  \[p \lor p \equiv p\]
+  \[p \land p \equiv p\]
+\item
+  {\bf Закон за двойното отрицание}
+  \[\neg \neg p \equiv p\]
+\item
+  {\bf Комутативен закон}
+  \[p\vee q \equiv q\vee p\] 
+  \[p \wedge q \equiv q \wedge p\]
+\item
+  {\bf Асоциативен закон}
+  \[(p\vee q)\vee r \equiv p\vee(q\vee r)\]
+  \[(p\ \wedge\ q)\ \wedge\ r \equiv p\ \wedge\ (q\ \wedge\ r)\]
+\item
+  {\bf Дистрибутивен закон}
+  \[p\ \wedge\ (q \vee r) \equiv (p\ \wedge q)\vee (p\ \wedge\ r)\]
+  \[p\vee (q\ \wedge\ r) \equiv (p\vee q)\ \wedge\ (p\vee r)\]
+\item
+  {\bf Закони на де Морган}
+  \[\neg(p \wedge q) \equiv (\neg p \vee \neg q)\]
+  \[\neg(p\vee q) \equiv (\neg p \wedge \neg q)\]
+\item
+  {\bf Закон за контрапозицията}
+  \[p\rightarrow q \equiv \neg q \rightarrow \neg p\]
+\item
+  {\bf Обобщен закон за контрапозицията}
+  \[(p \wedge q)\rightarrow r \equiv (p \wedge \neg r) \rightarrow \neg q\]
+\item
+  {\bf Закон за изключеното трето}
+  \[p\vee \neg p \equiv {\mathbf 1}\]
+\item
+  {\bf Закон за силогизма (транзитивност)}
+  \[[(p\rightarrow q)\ \wedge\ (q\rightarrow r)] \rightarrow (p\rightarrow r) \equiv {\mathbf 1}\]
 \end{enumerate}
 
-Лесно се проверява с таблиците за истинност, че законите са тавтологии.
+% Лесно се проверява с таблиците за истинност, че законите са тавтологии.
 
 \begin{example}
   Нека например да проверим едно от правилата на де Морган и закона
@@ -231,21 +251,22 @@
   \end{array}
   \]
   При всички стойности на променливите $p$ и $q$, стълбовете съответстващи на $\neg(p \wedge q)$ и $\neg p \vee \neg q$
-  съвпадат. Следователно, законът на де Морган е валиден.
+  съвпадат. Това означава, че $\val{\neg(p \land q)} = \val{\neg p \lor \neg q}$.  
+  Следователно, законът на де Морган е валиден.
   По същия начин се съобразява, че законът за контрапозицията е валиден.
 \end{example}
 
 
 \begin{example}
   Можем да докажем валидността на законите и по друг начин, а именно чрез допускане на противното.
-  Така ще докажем, че законът за силогизма е валиден.
+  Така ще докажем, че законът за силогизма е тавтология.
   
   Да допуснем, че съществува стойност на променливите $p$,$q$,$r$, за които
-  \[\underbrace{[(p\rightarrow q)\ \wedge\ (q\rightarrow r)]}_{\mathbf{1}} \rightarrow \underbrace{(p\rightarrow r)}_{\mathbf{0}} \equiv {\mathbf 0}\]
+  \[\underbrace{((p\rightarrow q)\ \wedge\ (q\rightarrow r))}_{\mathbf{1}} \rightarrow \underbrace{(p\rightarrow r)}_{\mathbf{0}} \equiv {\mathbf 0}\]
   Това означава, че
   \[p \equiv \mathbf{1}, r \equiv \mathbf{0}.\]
-  Тогава
-  \[\underbrace{[(\mathbf{1}\rightarrow q)\ \wedge\ (q\rightarrow \mathbf{0})]}_{\mathbf{1}} \rightarrow \underbrace{(\mathbf{1}\rightarrow \mathbf{0})}_{\mathbf{0}} \equiv {\mathbf 0}\]
+  Тогава, като заместим,
+  \[\underbrace{((\mathbf{1}\rightarrow q)\ \wedge\ (q\rightarrow \mathbf{0}))}_{\mathbf{1}} \rightarrow \underbrace{(\mathbf{1}\rightarrow \mathbf{0})}_{\mathbf{0}} \equiv {\mathbf 0}\]
   \begin{itemize}
   \item 
     Ако $q \equiv \mathbf{0}$, то $(\mathbf{1}\rightarrow \mathbf{0})\ \wedge\ (\mathbf{0}\rightarrow \mathbf{0}) \equiv \mathbf{0} \wedge \mathbf{1} \equiv \mathbf{0}$,
@@ -270,7 +291,12 @@
   \item
     $p\rightarrow(p\vee q)$;
   \item
-    $(p\rightarrow q) \iff (\neg q \rightarrow \neg p)$;
+    $(p\rightarrow q) \iff (\neg q \rightarrow \neg p)$.
+  \end{enumerate}
+\end{problem}  
+\begin{problem}
+  Проверете дали:
+  \begin{enumerate}[a)]
   \item
     $p\rightarrow q \equiv \neg p \vee q$
   \item
@@ -339,53 +365,56 @@
 \end{remark}
 
 \begin{problem}
-  \marginpar{(От книгата на Смълян \cite{smullyan})}
+  \marginpar{Книгата на Смълян \cite{smullyan} е пълна с такива задачи. Също и \cite[стр. 23]{rosen}}
   Да предположим, че сме на остров, който се обитава негодници и благородници.
   Негодниците винаги лъжат, а благородниците винаги казват истината.
   Срещаме трима обитатели на този остров, наречени {\bf А}, {\bf Б} и {\bf В}.
   \begin{enumerate}[a)]
   \item
-    \begin{enumerate}[]
+    \begin{itemize}
     \item
       \marginpar{$a \iff \ov{a}\ov{b}\ov{c}$}
-      {\bf А} казва ``Всички сме негодници''.
+      {\bf А} казва ,,Всички сме негодници''.
     \item
       \marginpar{$b \iff (\ov{a}\ov{b}c\vee \ov{a}b\ov{c}\vee a\ov{b}\ov{c})$}
-      {\bf Б} казва ``Точно един от нас е благородник''.
-    \item
+      {\bf Б} казва ,,Точно един от нас е благородник''.
+    \end{itemize}
       Какви са {\bf А},{\bf Б} и {\bf В}?
-    \end{enumerate}
   \item
-    \begin{enumerate}[]
+    \begin{itemize}
     \item
       \marginpar{$a \iff \ov{a}\ov{b}\ov{c}$}
-      {\bf А} казва ``Всички сме негодници''.
+      {\bf А} казва ,,Всички сме негодници''.
     \item
       \marginpar{$b \iff (\ov{a}bc\vee ab\ov{c}\vee a\ov{b}c)$}
-      {\bf Б} казва ``Точно един от нас е негодник''.
+      {\bf Б} казва ,,Точно един от нас е негодник''.
+    \end{itemize}
+    Тогава можем ли да определим:
+    \begin{itemize}
     \item
-      Може ли да определим какъв е {\bf Б}?
+      какъв е {\bf Б}?
     \item
-      Може ли да определим какъв е {\bf В}?
-    \end{enumerate}
+      какъв е {\bf В}?
+    \end{itemize}
   \item
-    \begin{enumerate}[]
+    \begin{itemize}
     \item
       \marginpar{$a \iff \ov{b}$}
-      {\bf А} казва ``{\bf Б} е негодник''.
+      {\bf А} казва ,,{\bf Б} е негодник''.
     \item
       \marginpar{$b \iff (ac \vee \ov{a}\ov{c})$}
-      {\bf Б} казва ``{\bf А} и {\bf В} са от един и същ тип, т.е. или и двамата са благородници, или и двамата са негодници''.
-    \item
-      Какъв е {\bf В}?
-    \end{enumerate}
+      {\bf Б} казва ,,{\bf А} и {\bf В} са от един и същ тип, т.е. или и двамата са благородници, или и двамата са негодници''.
+    \end{itemize}
+    Какъв е {\bf В}?
   \end{enumerate}
 \end{problem}
 \begin{proof}
+  Нека с всеки от тримата обитателя на острова да асоциираме една съждителна променлива.
+  Например, нека съждителната променлива $a$ да има стойност {\bf 1}, ако {\bf A} е благородник и нека има стойност {\bf 0}, 
+  ако {\bf A} е негодник. По същия начин свързваме съждителната променлива $b$ с обитателя {\bf Б} и 
+  съждителната променлива $c$ с обитателя {\bf В}.
   \begin{enumerate}[a)]
   \item
-    Нека съждителната променлива $a$ да има стойност {\bf 1}, ако {\bf A} е благородник и нека има стойност {\bf 0}, 
-    ако {\bf A} е негодник.
     Тогава
     \begin{enumerate}[a)]
     \item
@@ -426,9 +455,14 @@
 \section*{Литература}
 
 \begin{itemize}
+\item
+  Първа глава от \cite{rosen} представлява достъпен и подробен увод в съждителното смятане.
+  Силно препоръчителна книга за увод в дискретната математика.
 \item 
   В книгата на Смълян \cite{smullyan} има много занимателни задачи, с които 
   студентът може неусетно да навлезе в дълбочините на логиката.
+% \item
+%   Първата глава от \cite{enderton-logic} дава подробно изложение на 
 \end{itemize}
 
 %%% Local Variables: 

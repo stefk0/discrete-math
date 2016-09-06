@@ -1,5 +1,8 @@
 \section{Предикати и квантори}
 
+За разлика от съждителното смятане, в предикатното смятане, променливите могат да приемат 
+произволни стойности в рамките на предварително фиксирана област от стойности (домейн).
+
 \subsection*{Квантори}
 
 Свойствата или отношенията на елементите в произволно множество се наричат {\bf предикати}.
@@ -10,21 +13,21 @@
   \hline
   твърдение & Кога е истина? & Кога е неистина?\\
   \hline
-  $\forall x P(x)$ & за всяко $x$, $P(x)$ е вярно & съществува $x$, за което $P(x)$ {\bf не} е вярно \\
+  $\forall x P(x)$ & за всяко $x$ в областта, $P(x)$ е вярно & съществува $x$ в областта, за което $P(x)$ {\bf не} е вярно \\
   \hline
-  $\exists x P(x)$ & съществува $x$, за което $P(x)$ е вярно & $P(x)$ {\bf не} е вярно за всяко $x$\\
+  $\exists x P(x)$ & съществува $x$ в областта, за което $P(x)$ е вярно & $P(x)$ {\bf не} е вярно за всяко $x$ в областта\\
   \hline
 \end{tabular}  
 \bigskip
 
 \begin{enumerate}[(I)]
 \item 
-  {\bf Квантор за общност} $\forall x$.
+  {\bf Квантор за общност}.
   Записът $(\forall x \in A) P(x)$ означава, че за всеки елемент $a$ в $A$, 
   твърдението $P(a)$ има стойност истина.
   Например, $(\forall x\in\Real)[(x+1)^2 = x^2+2x+1]$.
 \item
-  {\bf Квантор за съществуване} $\exists x$.
+  {\bf Квантор за съществуване}.
   Записът $(\exists x \in A) P(x)$ означава, че съществува елемент $a$ в $A$, 
   за който твърдението $P(a)$ има стойност истина.
   Например, $(\exists x \in\mathbb{C})[x^2 = -1]$, но $(\forall x\in\Real)[x^2 \neq -1]$.
@@ -58,6 +61,7 @@
 
 \subsection*{Закони на предикатното смятане}
 
+\Stefan{Това да се опрости?}
 \begin{enumerate}[(I)]
   \item
     $\neg\forall x P(x) \iff \exists x \neg P(x)$
@@ -134,12 +138,12 @@
 \end{problem}
 
 \begin{example}
-  Казваме, че редицата $(q_n)_{n\in\Nat}$ е сходяща и клони към $a$, ако
-  \[(\forall \varepsilon)(\exists N)(\forall n)[n > N \implies |a - q_n| < \varepsilon].\]
+  Казваме, че редицата $q_0,q_1,\dots,q_n,\dots$ е сходяща и клони към $a$, ако
+  \[(\forall \varepsilon)(\exists N)(\forall n)[n > N \to |a - q_n| < \varepsilon].\]
   Обикновено това означаваме като $\lim_n q_n = a$.
   Да видим какво означава, че $\lim_n q_n \neq a$.
   \begin{align*}
-    & \neg (\forall \varepsilon)(\exists N)(\forall n)[n > N \implies |a - q_n| < \varepsilon] \iff \\
+    & \neg (\forall \varepsilon)(\exists N)(\forall n)[n > N \to |a - q_n| < \varepsilon] \iff \\
     & \neg (\forall \varepsilon)(\exists N)(\forall n)[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
     & (\exists \varepsilon) \neg (\exists N)(\forall n)[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
     & (\exists \varepsilon) (\forall N) \neg (\forall n)[n \leq N \vee |a - q_n| < \varepsilon] \iff \\
@@ -172,15 +176,8 @@
   Напишете формула, която казва, че $f$ не е равномерно непрекъсната.
 \end{problem}
 
-% \begin{problem}
-%   Казваме, че $f:D \to \Real$ е {\em би-Липшиц непрекъсната}, ако
-%   \[(\exists K \geq 1)(\forall x\in D)(\forall y \in D)\left[\frac{|x-y|}{K} \leq |f(x)-f(y)| \leq K|x-y|\right].\]
-%   Напишете формула, която казва, че $f$ не е би-Липшиц непрекъсната.
-% \end{problem}
-
-
 \begin{problem}
-  \marginpar{(От \cite{smullyan})}
+  \marginpar{От книгата на Смълян \cite{smullyan}}
   На един остров живеели два вида обитатели - благородници и негодници.
   Благородниците винаги казвали истината, а негодниците винаги лъжели.
   Един пътешественик попаднал на този остров и искал да разбере повече за
