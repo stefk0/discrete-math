@@ -6,52 +6,43 @@
 което пък от своя страна се основава на понятието наредена двойка.
 
 \subsection*{Наредена двойка}
-\index{наредена двойка}
-На всеки два елемента $a$ и $b$ асоциираме  елемент, който наричаме {\bf наредена двойка} и обикновено го означаваме като $\pair{a,b}$.
+
+За два елемента $a$ и $b$ въвеждаме опрецията {\bf наредена двойка} $\pair{a,b}$.
 Наредената двойка $\pair{a,b}$ има следното характеристичното свойство:
 \[a_1 = a_2\ \wedge\ b_1 = b_2\ \iff\ \pair{a_1,b_1} = \pair{a_2,b_2}.\]
-
-\begin{remark}
-  Възможно е да използваме примитивните теоретико-множествени конструкции за да въведем понятието наредена двойка.
-  То може да се дефинира по много начини, стига да изпълнява харектеристичното свойство.
-  Ето примери как това може да стане:
-  \begin{enumerate}[1)]
-  \item
-    \marginpar{Norbert Wiener (1914)}
-    Първото теоретико-множествено определение на понятието наредена двойка е
-    дадено от Норберт Винер:
-    \[\pair{a,b} = \{\{\{a\},\emptyset\},\{\{b\}\}\}.\]
-  \item
-    \marginpar{Kazimierz Kuratowski (1921)}
-    Определението на Куратовски се приема за ,,стандартно'' в наши дни:
-    \[\pair{a,b} = \{\{a\},\{a,b\}\}.\]
-  \end{enumerate}
-\end{remark}
+Понятието наредена двойка може да се дефинира по много начини, стига да изпълнява харектеристичното свойство.
+Ето примери как това може да стане:
+\begin{enumerate}[1)]
+\item
+  \marginpar{Norbert Wiener (1914)}
+  Първото теоретико-множествено определение на понятието наредена двойка е
+  дадено от Норберт Винер:
+  \[\pair{a,b} = \{\{\{a\},\emptyset\},\{\{b\}\}\}.\]
+\item
+  \marginpar{Kazimierz Kuratowski (1921)}
+  Определението на Куратовски се приема за ,,стандартно`` в наши дни:
+  \[\pair{a,b} = \{\{a\},\{a,b\}\}.\]
+\end{enumerate}
 
 \begin{problem}
   Докажете, че горните дефиниции наистина изпълняват харектеристичното свойство за наредени двойки.
 \end{problem}
 
+\begin{remark}
   %\marginpar{Пример за рекурсивна дефиниция}
-Сега можем да въведем понятието наредена $n$-орка $\pair{a_1,\dots,a_n}$ за всяко естествено число $n \geq 1$:
-\begin{align*}
-  & \pair{a_1} = a_1,\\
-  & \pair{a_1,a_2,\dots,a_n} = \pair{a_1,\pair{a_2,\dots,a_n}}
-\end{align*}
-
-% \begin{example}
-%   Ако използваме дефиницията на Куратовски за наредени двойки, това означава, че 
-%   $\pair{a,b,c} = \pair{a,\pair{b,c}} = \{\{a\},\{a, \pair{b,c}\}\} = \{\{a\}, \}\}$
-% \end{example}
-
-
+  Сега можем да въведем понятието наредена $n$-орка $\pair{a_1,\dots,a_n}$ за всяко естествено число $n \geq 1$:
+  \begin{align*}
+    & \pair{a_1} = a_1,\\
+    & \pair{a_1,a_2,\dots,a_n} = \pair{a_1,\pair{a_2,\dots,a_n}}
+  \end{align*}
+\end{remark}
+ 
 \section{Декартово произведение}
 \marginpar{На англ. cartesian product}
 \index{декартово произведение}
 \marginpar{Считаме, че $(A\times B)\times C = A\times (B\times C) = A\times B \times C$}
 За две множества $A$ и $B$, определяме тяхното декартово произведение като
 \[A\times B = \{\pair{a,b}\mid a\in A\ \&\ b\in B\}.\]
-
 За краен брой множества $A_1,A_2,\dots,A_n$, определяме
 \[A_1\times A_2\times\cdots\times A_n = \{\pair{a_1,a_2,\dots,a_n}\mid a_1 \in A_1\ \&\ a_2\in A_2\ \&\ \dots\ \&\ a_n \in A_n\}.\]
 
@@ -85,45 +76,35 @@
 Да разгледаме няколко основни вида релации от този клас:
 \begin{enumerate}[I)]
 \item
-  \index{релация!рефлексивна}
   {\bf рефликсивна}, ако
   \[(\forall x\in A)[\pair{x,x}\in R].\]
   Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е рефлексивна, защото
   \[(\forall x\in \Nat)[x \leq x].\]
 \item
-  \index{релация!антирефлексивна}
   {\bf антирефлексивна}, ако
   \[(\forall x\in A)[\pair{x,x}\not\in R].\]
   Например, релацията $<\ \subseteq\ \Nat\times\Nat$ е антирефлексивна, защото
   \[(\forall x\in \Nat)[x \not< x].\]
 \item
-  \index{релация!транзитивна}
   {\bf транзитивна}, ако
   \[(\forall x,y,z\in A)[\pair{x,y}\in R\ \&\ \pair{y,z}\in R \rightarrow \pair{x,z}\in R].\]
   Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е транзитивна, защото
   \[(\forall x,y,z\in A)[x \leq y\ \&\ y \leq z\ \rightarrow\ x\leq z].\]
 \item
-  \index{релация!симетрична}
   {\bf симетрична}, ако
   \[(\forall x,y\in A)[\pair{x,y}\in R \rightarrow \pair{y,x}\in R].\]
-  Например, релацията $=\ \subseteq\ \Nat\times\Nat$ е симетрична, защото
+  Например, релацията $=\ \subseteq\ \Nat\times\Nat$ е рефлексивна, защото
   \[(\forall x,y\in \Nat)[x = y\ \rightarrow\ y = x].\]
-  Друг пример е релацията ,,брат на'', защото
-  ако $x$ е брат на $y$, то $y$ е брат на $x$.
 \item
-  \index{релация!антисиметрична}
   {\bf антисиметрична}, ако
   \[(\forall x,y\in A)[\pair{x,y}\in R\ \&\ \pair{y,x}\in R \rightarrow x = y].\]
   Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е антисиметрична, защото
   \[(\forall x,y,z\in A)[x \leq y\ \&\ y \leq x\ \rightarrow\ x = y].\]
 \item
-  \index{релация!асиметрична}
   {\bf асиметрична}, ако
-  \[(\forall x,y)[\pair{x,y}\in R \implies \pair{y,x}\not\in R].\]
+  \[(\forall x,y)[\pair{x,y}\in R \rightarrow \pair{y,x}\not\in R].\]
   Например, релацията $\leq\ \subseteq\ \Nat\times\Nat$ е асиметрична, защото
-  \[(\forall x,y\in \Nat)[x < y \implies y \not< x].\]
-  Друг пример е релацията ,,родител на'' разгледана върху множеството от всички човеци, защото
-  ако $x$ е родител на $y$, то със сигурност $y$ не е родител на $x$.
+  \[(\forall x,y\in \Nat)[x < y\ \rightarrow\ y \not< x].\]
 \end{enumerate}
 
 \begin{remark}
@@ -148,12 +129,12 @@
   Проверете кои от горе-изброените свойства притежава релацията $R$:
   \begin{enumerate}[a)]
   \item
-    \marginpar{Озн. $A^2 = A \times A$}
+    \marginpar{Озн. $\Nat^2 = \Nat\times\Nat$}
     $R\subseteq \Nat^2$ и е определна като 
     \marginpar{$a\vert b \iff (\exists k\in\Nat)(b = k\cdot a)$}
     \[(a,b) \in R \iff a | b.\]
   \item
-    $R \subseteq \Int^2$ е определена като
+    $R \subseteq \Z\times \Z$ е определена като
     \[(x,y)\in R \iff \mbox{НОД}(x,y) = 1\]% \iff \neg(\exists z > 1)[\ z\vert x\ \wedge\ z\vert y\ ]\]
   \item
     \marginpar{Озн. $\R$ - реалните числа}
@@ -223,31 +204,49 @@
 
 \begin{problem}
   Нека $\Sigma = \{1,2,\dots,9\}$ и $n$ е ествествено число.
-  Да разгледаме бинарната релация $R$ над $\Sigma^n$, където
-  \[(\pair{a_1,a_2,\dots,a_n},\pair{b_1,b_2,\dots,b_n}) \in R \iff a_i - b_i \equiv 1 \bmod\ 2.\]
-  Какви свойства притежава релацията $R$ ?
+  Нека $R \subseteq \Sigma^n \times \Sigma^n$, където
+  $(\pair{a_1,a_2,\dots,a_n},\pair{b_1,b_2,\dots,b_n}) \in R \iff a_i + 1 \equiv b_1 (\mod 2)$.
 \end{problem}
 
 \begin{problem}
   За едно число $x \in \Nat$, нека с $x_{(2)}$ да означаваме най-късия двоичния запис на $n$,
   а с $N_0(x)$ и $N_1(x)$ броя на $0$-лите и съответно броя на $1$-ците в $x_{(2)}$.
-  Какви свойства притежава бинаранта релация $R$ над $\Nat$, където:
+  Нека $R \subseteq \Nat\times\Nat$, където
   \begin{enumerate}
   \item 
-    $(x,y) \in R \iff N_0(x) \leq N_0(y)\ \&\ N_1(x) \leq N_1(y)$;
+    $(x,y) \in R$ iff $N_0(x) \leq N_0(y)\ \&\ N_1(x) \leq N_1(y)$.
   \item
-    $(x,y) \in R \iff N_0(x) = N_0(y)\ \vee\ N_1(x) = N_1(y)$.
+    $(x,y) \in R$ iff $N_0(x) = N_0(y)\ \vee\ N_1(x) = N_1(y)$.
+  \end{enumerate}
+\end{problem}
+
+
+
+%% Rosen Textbook
+\begin{problem}
+  Кои от следните бинарни релации върху множеството на функциите от $\Z$ в $\Z$
+  са релации на еквивалентност? Опишете техните класове на еквивалентност.
+  \begin{enumerate}[a)]
+  \item
+    $R = \{(f,g)\mid f(1) = g(1)\}$.
+  \item
+    $R = \{(f,g)\mid f(0) = g(0)\wedge f(1) = g(1)\}$.
+  \item
+    $R =\{(f,g)\mid (\forall x\in\Z)[f(x)-g(x) = 1]\}$.
+  \item
+    $R = \{(f,g)\mid (\exists c\in\Z)(\forall x\in\Z)[f(x)-g(x) = c]\}$.
+  \item
+    $R = \{(f,g)\mid f(0) = g(1)\wedge f(1) = g(0)\}$.
   \end{enumerate}
 \end{problem}
 
 \section{Релации над думи}
-\index{азбука}
-\index{дума}
+
 \begin{itemize}
 \item
-  {\bf Азбука} е крайно множество $\Sigma = \{a_1,\dots,a_n\}$, където елементите $a_i$ на $\Sigma$ наричаме {\bf букви}.
+  Азбука е крайно множество $\Sigma = \{a_1,\dots,a_n\}$ като елементите $a_i$ на $\Sigma$ наричаме {\bf букви}.
 \item
-  Нека да фиксираме един нов елемент $\varepsilon \not\in \Sigma$.
+  Нека да фиксираме един елемент $\varepsilon \not\in \Sigma$.
   Сега ще определим {\bf думите} над азбуката $\Sigma$. Това са:
   \begin{itemize}
   \item
@@ -346,12 +345,10 @@ $\beta = \gamma \cdot \alpha$.
 \section{Операции върху релации}
 \begin{enumerate}[I)]
 \item
-  \index{релация!композиция}
   {\bf Композиция} на две релации $S \subseteq B\times C$ и $T \subseteq A\times B$ е релацията $S\circ T \subseteq A\times C$,
   определена като:
   \[S\circ T = \{\langle{a,c}\rangle \mid (\exists b \in B)[\pair{a,b}\in T\ \&\ \pair{b,c} \in S]\}.\]
 \item
-  \marginpar{на англ. inverse}
   {\bf Обръщане} на релацията $R \subseteq A\times B$ е релацията $R^{-1}\subseteq B\times A$, 
   определена като:
   \[R^{-1} = \{\pair{x,y} \mid \pair{y,x} \in R\}.\]
@@ -377,25 +374,6 @@ $\beta = \gamma \cdot \alpha$.
 От дефинициите е ясно, че \[R^\star = \bigcup_{n\geq 0} R^n.\]
 
 \begin{problem}
-  Нека бинарната релация $S$ над множеството $\Int$ е зададена като 
-  $(x,y) \in S \iff y = x+2$.
-  Намерете релациите:
-  \begin{enumerate}[a)]
-  \item 
-    $S \circ S$;
-  \item
-    $S \circ S^{-1}$;
-  \item
-    $S^{-1} \circ S$;
-  \item
-    $S^{-1} \circ S^{-1}$;
-  \item
-    $(S \circ S)^{-1}$;
-  \end{enumerate}
-\end{problem}
-
-
-\begin{problem}
   Ако $P$ е множеството от всички хора, да разгледаме релациите
   \begin{align*}
     E & = \{\pair{x,y} \in P\times P \mid \text{$x$ е враг на $y$}\},\\
@@ -407,7 +385,7 @@ $\beta = \gamma \cdot \alpha$.
 
 \begin{example}
   Да разгледаме релацията $R$ над $\Nat$, за която
-  \[R = \{\pair{x,y} \in \Nat^2 \mid x+1 = y\}.\] Тогава:
+  $R = \{\pair{x,y} \in \Nat^2 \mid x+1 = y\}$. Тогава:
   \begin{itemize}
   \item 
     $R^0 = \{\pair{x,x} \mid x\in \Nat\}$;
@@ -615,8 +593,8 @@ $\beta = \gamma \cdot \alpha$.
   Намерете множествата $[1]_R$ и $[\frac{1}{2}]_R$.
 \end{problem}
 
+\newpage
 \section{Наредби}
-\index{наредба}
 Обикновено се изучават релации притежаващи различни комбинации от горните свойства. 
 Сега ще изброим няколко основни вида релации (понякога се наричат наредби).
 Релацията $R \subseteq A\times A$ се нарича:
@@ -704,69 +682,6 @@ $\beta = \gamma \cdot \alpha$.
 \end{problem}
 
 
-\Stefan{Да се направи глава за графи след комбинаториката}
-
-\section{Графи}
-\index{граф}
-\begin{itemize}
-\item
-  {\bf ориентиран (или насочен) граф} е наредена двойка $\pair{V,E}$, където $V$ е произволно множество,
-  а $E$ е бинарна релация над $V$.
-\item
-  {\bf неориентиран граф} е граф $\pair{V,E}$, където релацията $E$ е симетрична;
-  \marginpar{т.е. $\pair{x,y} \in E \implies \pair{y,x} \in E$}
-\item
-  Обикновено графите се представят графично като елементите на $V$ се интерпретират като върхове,
-  а наредените двойки, които са елементи на $E$ се интерпретират като стрелки (или ребра) между съответните върхове.
-\item
-  {\bf Примка} в граф наричаме ребро от вида $\pair{x,x}$.
-\item
-  {\bf Прост граф} е неориентиран граф без примки, т.е. релацията $E$ е антирефлексивна и симетрична.
-  За такива графи въвеждаме следните означения:
-  \begin{itemize}
-  \item 
-    за $v \in V$, с $\delta_G(v) = |\{u \in V \mid \pair{v,u} \in E\}$ 
-    означаваме {\bf степента} на $v$;
-  \item
-    $\delta(G) = \min\{\delta_G(v) \mid v \in V\}$;
-  \item
-    $\Delta(G) = \max\{\delta_G(v) \mid v \in V\}$;
-  \item
-    $\nu(G) = |V|$, $\epsilon(G) = |E|$.
-  \end{itemize}
-\end{itemize}
-
-\begin{problem}
-  Докажете, че $\delta \leq \frac{2\epsilon}{\nu} \leq \Delta$.
-\end{problem}
-\begin{proof}
-  $\nu\delta \leq\sum_{1\leq i \leq\nu} deg_G(v_i) \leq \nu\Delta$.
-\end{proof}
-
-\begin{problem}
-  Нека $G$ е свързан граф.
-  Докажете, че всеки два най-дълги пътя в свързан граф имат общ връх.
-\end{problem}
-\begin{proof}
-  Да разгледаме два най-дълги пътя в $G$, $\pi_1 = [u_1,\dots,u_n]$ и $\pi_2 = [v_1,\dots,v_n]$ и да допуснем, че $\pi_1$ и $\pi_2$
-  нямат общи върхове.
-  $G$ е свързан, следователно има път $\rho$ от $u_i$ до $v_j$, за някои $i,j$.
-  Със сигурност по $\rho$ има ребро, което не участва нито в $\pi_1$, нито в $\pi_2$, защото иначе ще имаме общ връх между $\pi_1$ и $\pi_2$.
-  Но така пък имаме път с дължина поне $n+1$, което е противоречие.
-\end{proof}
-
-\begin{problem}%GTWA 1.6.13
-  Покажете, че ако $G$ е прост, $diam(G) = 2$ и $\Delta = \nu - 2$, то $\varepsilon \geq 2\nu - 4$.
-\end{problem}
-
-\begin{problem}
-  За $G$ прост граф, докажете, че $\varepsilon = \binom{\nu}{2}$ т.с.т.к. $G$ е пълен.
-\end{problem}
-
-\begin{lemma}[Денеш Кьониг]\index{Кьониг, Денеш!теорема}
-  Ако $G$ е свързан граф с безкрайно много върхове и всеки връх има крайна степен, то всеки връх в $G$ е част от 
-  безкрайно дълъг прост път (т.е. път без повтарящи се върхове).
-\end{lemma}
 
 
 

@@ -1,4 +1,4 @@
-%%%% NORMAL DIMENSIONS %%%%%%%%%%%%%%%%%
+%%%% NORMAL dimensions %%%%%%%%%%%%%%%%%
 \documentclass[a4paper,10pt,fleqn]{report}
 \setlength{\marginparsep}{0.5cm}
 \setlength{\oddsidemargin}{0.3cm}
@@ -13,7 +13,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% KINDLE DIMENSIONS %%%%
+%%% KINDLE dimensions %%%%
 % \documentclass[10pt]{extreport}
 % \usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
 % \renewcommand\marginpar[1]{}
@@ -25,11 +25,6 @@
 %\usepackage{ucs}
 
 % \usepackage[bindingoffset=2cm]{geometry}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%    PACKAGES        %%
-%%%%%%%%%%%%%%%%%%%%%%%%
-
 \usepackage[english,bulgarian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[]{hyperref}
@@ -46,11 +41,12 @@
 % \usepackage[pdftex,colorlinks=true,linkcolor=blue,pdfstartview=FitV,citecolor=green,urlcolor=blue]{hyperref}
 % \usepackage{hypcap}
 \usepackage{pifont}
-\usepackage{amssymb, amsmath, amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{mathrsfs}
 \usepackage{latexsym}
+\usepackage{amsthm}
 \usepackage{makeidx}
-\usepackage{stmaryrd}
 \usepackage{layout}
 \usepackage{framed}
 \usepackage{bussproofs}
@@ -76,26 +72,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{color, soulutf8}
-\newcommand{\newauthor}[2]{
-\definecolor{#1}{rgb}{#2}
-\expandafter\newcommand\csname #1\endcsname[1]{{\sethlcolor{#1}\hl{#1: ,,##1''}}}}
- 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-
-\newauthor{Stefan}{0.6,0.6,0.6}
-\newauthor{Stela}{0.8,0.8,0}
-
-
-
-
-%%%%%%%%%%%%%%%%%
-%% ENVIRONMENT %%
-%%%%%%%%%%%%%%%%%
 
 \theoremstyle{definition}
 \newtheorem{thm}{Теорема}
@@ -111,12 +87,6 @@
 \renewenvironment{proof}{\noindent{\bf Доказателство.}\hspace*{1em}}{\qed\par}
 \newenvironment{solution}{\noindent{\bf Решение.}\hspace*{1em}}{\qed\par}
 \newenvironment{hint}{\noindent{\bf Упътване.}\hspace*{1em}}{\qed\par}
-
-
-%%%%%%%%%%%%%%%%%%
-%%   HELPERS    %%
-%%%%%%%%%%%%%%%%%%
-
 
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\B}{\mathcal{B}}
@@ -151,7 +121,7 @@
 \newcommand{\ov}[1]{\overline{#1}}
 \newcommand{\abs}[1]{\lvert{#1}\rvert}
 \newcommand{\pair}[1]{\langle{#1}\rangle}
-\newcommand{\val}[1]{\llbracket{#1}\rrbracket}
+
 \newcommand{\FA}{\langle{Q,\Sigma,s,\delta,F}\rangle}
 \newcommand{\FAn}[1]{\langle{Q_#1,\Sigma,s_#1,\delta_#1,F_#1}\rangle}
 \newcommand{\NFA}{\langle{Q,\Sigma,s,\Delta,F}\rangle}
@@ -168,7 +138,6 @@
 \newcommand{\Lem}[1]{{\em Лема~\ref{lem:#1}}}
 \newcommand{\Prob}[1]{{\em Задача~\ref{pr:#1}}}
 \newcommand{\Prop}[1]{{\em Твърдение~\ref{pr:#1}}}
-\newcommand{\Eq}[1]{{\em Равенство~(\ref{eq:#1}})}
 
 
 % \setlist[itemize]{leftmargin=*}

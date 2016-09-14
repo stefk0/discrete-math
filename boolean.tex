@@ -1,12 +1,8 @@
 \chapter{Булеви функции}
-\index{булева функция}
-\section{Съждителни формули}
-\index{съждителни формули}
 
 Да припомним таблицата за истинност на някои от основните булеви функции на два аргумента.
 \marginpar{$x\oplus y$ - симетрична разлика}
 
-\vspace{8pt}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
   \hline
   $x$ & $y$ & $\overline{x}$ & $x \vee y$ & $xy$ & $x \rightarrow y$ & $\overline{x}\vee y$ & $x \iff y$ & $x \oplus y$ & $x\overline{y} \vee \overline{x}y$\\
@@ -21,16 +17,12 @@
   1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
   \hline
 \end{tabular}
-\vspace{8pt}
 
-Ще казваме, че две съждителни формули $\varphi$ и $\psi$ са тъждествено еквивалентни, ако имат имат еднакви стълбове в 
-съответните таблици за истинност. В такъв случай, ще пишем $\varphi \equiv \psi$.
+Когато две булеви формули $\varphi$ и $\psi$ са тъждествено еквивалентни (т.е. имат еднакви стълбове), то ще пишем $\varphi \equiv \psi$.
 
-\subsection{Основни свойства}
+\section{Основни свойства}
 
-\Stefan{Това да се сложи още в началото при съждителното смятане. Операцията $\oplus$ направо да се махне оттук}
-
-\marginpar{За да улесним записа, често вместо $x\wedge y$ пишем $x\cdot y$ или $xy$. Също така, вместо $\neg x$ пишем $\overline{x}$}
+\marginpar{Често вместо $x\wedge y$ пишем $x\cdot y$ или $xy$. Също така, вместо $\neg x$ пишем $\overline{x}$}
 \begin{enumerate}[1)]
 \item
   Комутативни свойства
@@ -73,7 +65,7 @@
 
 \begin{problem}
   \marginpar{\cite[стр. 30]{gavrilov}}
-  Проверете еквивалентни ли са съждителните формули $\varphi$ и $\psi$ като използвате еквивалентни преобразования.
+  Проверете еквивалентни ли са формулите $\varphi$ и $\psi$ като използвате еквивалентни преобразования на формулите.
   \begin{enumerate}[a)]
   \item
     $\varphi = (x\oplus yz)\rightarrow (\overline{x}\rightarrow (y\rightarrow z))$,
@@ -95,7 +87,7 @@
 \begin{solution}
   \begin{enumerate}[a)]
   \item
-    Ще направим еквивалентни преобразования върху двете формули докато получим един и същ резултат.
+    Ще направим еквивалентни преобразувания върху двете формули докато получим един и същ резултат.
     \begin{align*}
       \psi =\ &  x\rightarrow ((y\rightarrow z)\rightarrow x)\\
       \equiv\ & \overline{x}\vee (\overline{y\rightarrow z}\vee x)\  \equiv\ 1\\
@@ -166,8 +158,7 @@
   \end{enumerate}
 \end{problem}
 
-\begin{problem}
-  \marginpar{\cite[стр. 50]{gavrilov}}
+\begin{problem}% Гаврилов, стр. 50, 2.12
   По дадена ДНФ на булевата функция $f$ постройте нейната СДНФ.
   \begin{enumerate}[1)]
   \item
@@ -205,8 +196,7 @@
 
 
 \section{Класовете $T_0$ и $T_1$}
-\index{булева функция!запазваща константите}
-\index{$T_0,T_1$}
+\index{$T_0, T_1$}
 
 \begin{itemize}
 \item 
@@ -218,8 +208,7 @@
   С $T^n_0$ и $T^n_1$ означаваме тези функции, които са на $n$ променливи и принадлежат на $T_0$ или $T_1$ съответно.
 \end{itemize}
 
-\begin{problem}
-  \marginpar{\cite[стр. 73]{gravrilov}}
+\begin{problem}% Гаврилов, стр. 73
   Принадлежи ли функцията $f$ на множеството $T_1 \setminus T_0$ ?
   \begin{enumerate}[a)]
   \item
@@ -268,8 +257,8 @@
   Освен това, $S \subsetneqq \Fs_2$.
 \end{prop}
 
-\begin{problem}
-  \marginpar{\cite[стр. 31]{gavrilov}}
+
+\begin{problem} %% Гаврилов, стр. 31, зад. 1.25
   Проверете дали функцията $g$ е двойнствена на $f$.
   \begin{enumerate}[1)]
   \item
@@ -664,7 +653,7 @@
 
 
 \section{Пълнота и затворени класове}
-\index{базис}
+
 \begin{itemize}
 \item 
   Нека $F\subseteq \Fs_2$ е множество от булеви функции.
@@ -693,7 +682,6 @@
 \end{dfn}
 
 \begin{thm}[Бул]
-  \index{Бул}
   Множеството $\{x\vee y,\ov{x},x\wedge y\}$ е пълно.
 \end{thm}
 \begin{hint}
@@ -1088,13 +1076,6 @@
 \end{problem}
 
 
-\section*{Литература}
-
-\begin{itemize}
-\item 
-  \cite[Глави 1 и 2]{gavrilov} предлага много задачи за булеви функции.
-  Част от задачите в тази глава са взети оттам.
-\end{itemize}
 
 %%% Local Variables: 
 %%% mode: latex
