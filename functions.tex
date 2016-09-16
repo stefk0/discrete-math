@@ -54,7 +54,7 @@
 Както много добре знаем, за стойности от вида $(x,0)$, функцията $f$ не е дефинирана.
 Такива функции ще наричаме {\bf частични}.
 Официалната дефиниция е следната.
-\marginpar{Тук нямаме условието $Dom(R) = A$}
+\marginpar{Тук нямаме условието $Dom(R) = A$, а само $Dom(R) \subseteq A$}
 Релацията $R \subseteq A\times B$ се нарича {\bf частична функция}\index{частична функция} от $A$ в $B$, ако
 за всеки елемент $a\in A$ съотвества {\em най-много един} елемент $b \in B$, т.е.
 \[(\forall x\in A)(\forall y_1,y_2 \in B)[(\langle{x,y_1}\rangle\in R\ \wedge\ \langle{x,y_2}\rangle\in R) \rightarrow y_1 = y_2].\]
@@ -64,7 +64,6 @@
   инекция, сюрекция или биекция.
   \begin{enumerate}[a)]
   \item
-    \marginpar{(биекция)}
     $f: \Real\rightarrow \Real$, $f(x) = 2x+3$.
   \item
     $f: \Real\rightarrow \Real$, $f(x) = x^2 - 4x +2$.
@@ -194,6 +193,21 @@
     при какви условия за $f$,
     $(\forall X,Y \subseteq A)[f(X)\backslash f(Y) = f(X\backslash Y)]$.
   \end{enumerate}
+\end{problem}
+
+\begin{problem}
+  За дадена функция $f:A \to B$, определяме бинарна релация $R_f$ по следния начин:
+  \begin{enumerate}[a)]
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(A) \times \Ps(A) \mid f(X) = f(Y)\}$;
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(A) \times \Ps(A) \mid f(X) \subseteq f(Y)\}$;
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(B) \times \Ps(A) \mid f^{-1}(X) = f^{-1}(Y)\}$;
+  \item
+    $R_f = \{\pair{X,Y} \in \Ps(B) \times \Ps(A) \mid f^{-1}(X) \subseteq f^{-1}(Y)\}$.
+  \end{enumerate}
+  В зависимост от това какви свойства има релацията $f$, определете свойствата на $R_f$.
 \end{problem}
 
 \subsection*{Обратна функция}
@@ -439,18 +453,21 @@
 \end{problem}
 
 \begin{problem}
-  Нека $f:\Real \to \Real$ е определена като 
-  \[f = \frac{x+7}{5}.\]
+  Да рагледаме функциите:
+  \begin{itemize}
+  \item 
+    $f:\Real \to \Real$, дефинирана като $f(x) = \frac{x+7}{5}$;
+  \item
+    $f_1:\Real \to \Real$, дефинирана като $f_1(x) = x + 7$;
+  \item
+    $f_2:\Real \to \Real$, дефинирана като $f_2(x) = \frac{x}{5}$.
+  \end{itemize}
+  Докажете, че:
   \begin{enumerate}[a)]
   \item 
-    Докажете, че $f$ е биективна и намерете $f^{-1}$.
+    $f$ е биективна и намерете $f^{-1}$;
   \item
-    Покажете, че $f\circ f^{-1} = id_\Real$ и $f^{-1}\circ f = id_\Real$.
-  \end{enumerate}
-  Да разгледаме сега следните функции:
-  \[f_1(x) = x+7, \quad f_2(x) = \frac{x}{5}.\]
-  Проверете, че:
-  \begin{enumerate}[a)]
+    $f\circ f^{-1} = id_\Real$ и $f^{-1}\circ f = id_\Real$;
   \item 
     $f = f_2 \circ f_1$;
   \item
@@ -465,20 +482,7 @@
   \[(g\circ f)^{-1} = f^{-1}\circ g^{-1}.\]
 \end{problem}
 
-\begin{problem}
-  За дадена функция $f:A \to B$, определяме бинарна релация $R_f$ по следния начин:
-  \begin{enumerate}[a)]
-  \item
-    $R_f = \{\pair{X,Y} \in \Ps(A) \times \Ps(A) \mid f(X) = f(Y)\}$;
-  \item
-    $R_f = \{\pair{X,Y} \in \Ps(A) \times \Ps(A) \mid f(X) \subseteq f(Y)\}$;
-  \item
-    $R_f = \{\pair{X,Y} \in \Ps(B) \times \Ps(A) \mid f^{-1}(X) = f^{-1}(Y)\}$;
-  \item
-    $R_f = \{\pair{X,Y} \in \Ps(B) \times \Ps(A) \mid f^{-1}(X) \subseteq f^{-1}(Y)\}$.
-  \end{enumerate}
-  В зависимост от това какви свойства има релацията $f$, определете свойствата на $R_f$.
-\end{problem}
+
 
 \begin{problem}
   Нека $A$ е непразно множество и тоталната функция $f:A \to B$.

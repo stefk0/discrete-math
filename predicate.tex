@@ -13,13 +13,9 @@
   \hline
   твърдение & Кога е истина? & Кога е неистина?\\
   \hline
-<<<<<<< HEAD
-  $\forall x P(x)$ & за всяко $x$ в областта, $P(x)$ е вярно & съществува $x$ в областта, за което $P(x)$ {\bf не} е вярно \\
-=======
-  $\forall x P(x)$ & $P(x)$ е вярно за всяко $x$ & съществува $x$, за което $P(x)$ {\bf не} е вярно \\
->>>>>>> parent of 343a1ec... Добавки основно за съждително смятане. Следваща стъпка - графи
+  $(\forall x\in A) P(x)$ & за всяко $x$ в областта $A$, $P(x)$ е вярно & съществува $x$ в областта $A$, за което $P(x)$ {\bf не} е вярно \\
   \hline
-  $\exists x P(x)$ & съществува $x$ в областта, за което $P(x)$ е вярно & $P(x)$ {\bf не} е вярно за всяко $x$ в областта\\
+  $(\exists x\in A) P(x)$ & съществува $x$ в областта $A$, за което $P(x)$ е вярно & $P(x)$ {\bf не} е вярно за всяко $x$ в областта $A$\\
   \hline
 \end{tabular}  
 \bigskip
@@ -65,7 +61,7 @@
 
 \subsection*{Закони на предикатното смятане}
 
-\Stefan{Това да се опрости?}
+% \Stefan{Това да се опрости?}
 \begin{enumerate}[(I)]
   \item
     $\neg\forall x P(x) \iff \exists x \neg P(x)$
@@ -76,7 +72,7 @@
   \item
     $\exists x P(x) \iff \neg\forall x \neg P(x)$
   \item
-    $\forall x \forall y P(x) \iff \forall y\forall x P(x)$
+    $\forall x \forall y P(x,y) \iff \forall y\forall x P(x,y)$
   \item
     $\exists x\exists y P(x,y) \iff \exists y \exists x P(x)$  
   \item
