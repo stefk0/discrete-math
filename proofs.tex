@@ -392,19 +392,59 @@
   \[(2k+1)^4 \equiv 1\ (\bmod\ 4).\]
 \end{problem}
 
+\subsection*{Малката теорема на Ферма}
+
 \begin{problem}
   Докажете, че за произволни числа $x,y$ и естествено число $n$ е изпълнено равенството:
   \[(x+y)^n = \sum^{n}_{i=0}\binom{n}{i}x^iy^{n-i}.\]
 \end{problem}
-\begin{problem}[Теорема на Ферма]
-  Нека $p$ е просто число. Тогава докажете, че за числото $a$:
-  \begin{enumerate}[i)]
-  \item
-    $a^p \equiv a\ (\bmod\ p)$;
-  \item 
-    $a^{p-1} \equiv 1\ (\bmod\ p)$, ако $a$ не се дели на $p$.
-  \end{enumerate}
+
+\begin{problem}
+  Докажете, че за произволно просто число $p$ и естествено число $n$,
+  ако $0 < n < p$, то
+  \[\binom{p}{n} \equiv 0\ (\bmod\ p).\]
+  Това свойство не е задължително да е изпълнено за произволно $n$, ако $p$ не е просто.
 \end{problem}
+\begin{hint}
+  Ясно е, че 
+  \[\binom{p}{n} = p \left[\frac{(p-1)!}{(p-n)!n!}\right].\]
+  Въпросът е защо $\frac{(p-1)!}{(p-n)!n!}$ е естествено число.
+  Знаем, че $\binom{p}{n}$ е естествено число. Следователно,
+  \[\binom{p}{n} = p_{i_0}p_{i_1}\cdots p_{i-k},\]
+  за някои прости числа $p_{i_j}$.
+  Ясно е, че $p = p_{i_j}$, за някое $j$.
+\end{hint}
+
+\begin{problem}
+  За всяко просто $p$ и числа $0 \leq m \leq p$,
+  \[\binom{p}{m} \equiv 0\ (\bmod\ p) \text{ или } \binom{p}{m} \equiv 1\ (\bmod\ p).\]
+\end{problem}
+
+
+\begin{problem}
+  Докажете, че за произволни естествено число $n$ и просто число $p$,
+  \[(n+1)^p \equiv n^p + 1\ (\bmod\ p).\]
+\end{problem}
+
+\begin{problem}
+  Докажете, че за произволни естествени числа $n,i$ и просто число $p$,
+  \[(n+i)^p \equiv n^p + i\ (\bmod\ p).\]
+\end{problem}
+
+
+
+\begin{framed}
+  \begin{thm}[Малката теорема на Ферма]
+    \index{Ферма}
+    Нека $p$ е просто число. Тогава докажете, че за числото $a$:
+    \begin{enumerate}[i)]
+    \item
+      $a^p \equiv a\ (\bmod\ p)$;
+    \item 
+      $a^{p-1} \equiv 1\ (\bmod\ p)$, ако $a$ не се дели на $p$.
+    \end{enumerate}
+  \end{thm}  
+\end{framed}
 \begin{proof}
   Да разгледаме следното равенство:
   \[(x+1)^p = x^p + \binom{p}{1}x^{p-1} + \binom{p}{2}x^{p-2} + \dots + 1 = \sum^{p}_{i=0}\binom{p}{i}x^i\]
